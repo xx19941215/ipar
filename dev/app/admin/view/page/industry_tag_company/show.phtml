@@ -1,0 +1,26 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('industry_tag-content'),
+    'breadcrumbs' => ['']
+]); ?>
+<?php $tag = $this->tag; ?>
+<?php $this->section('page-body'); ?>
+    <div class="entity-show">
+        <?php echo $this->insert("module/industry_tag-menu", ['select' => 'content', 'tag' => $tag]); ?>
+        <h2><?php echo trans('industry-tag') . ':' . $tag->title; ?></h2>
+        <div class="tag-time">
+            <ul>
+                <li>Created: <?php echo $tag->created; ?></li>
+                <li>Last edit: <?php echo $tag->changed; ?></li>
+            </ul>
+        </div>
+
+        <div class="tag-body">
+            <h3><?php echo trans('tag-content'); ?></h3>
+            <p>
+                <?php echo $tag->content; ?>
+            </p>
+        </div>
+    </div>
+
+
+<?php $this->replace(); ?>

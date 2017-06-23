@@ -1,0 +1,59 @@
+<?php
+$this->layout('layout/third-party-login', [
+    'html_title' => trans('wx-login-create-new-account'),
+]);
+$errors = $this->errors ? $this->errors : [];
+?>
+
+<?php $this->section('main'); ?>
+
+<div class="link">
+    <i class="icon icon-logo"></i>
+    <i class="icon icon-shuangxiangjiantou"></i>
+    <i class="icon icon-weixin"></i>
+</div>
+
+<div class="user-binding">
+    <div class="avt-wrap">
+        <div class="avt">
+            <img src="<?php echo $this->headimgurl; ?>">
+        </div>
+        <p class="nickname"><?php echo $this->nickname; ?></p>
+    </div>
+    <div class="bind">
+        <p><?php echo trans('for-your-safety-please-bind-your-account-with-email'); ?></p>
+        <form method="post" action="<?php echo route_url('wx-login-reg-post'); ?>">
+            <?php echo csrf_field(); ?>
+            <ul class="menu vertical bind-exist-account">
+                <li class="item">
+                    <?php echo $this->insert('element/form/input-field', [
+                        'type' => 'email',
+                        'name' => 'email',
+                        'required' => true,
+                        'placeholder' => trans('email'),
+                        'value' => $this->email,
+                        'maxlength' => 0,
+                        'data_type' => '',
+                        'has_error' => isset($errors['email'])
+                    ]); ?>
+                </li>
+            </ul>
+            <?php echo $this->insert('element/errorbox'); ?>
+            <input type="submit" class="bind-account" value="<?php echo trans('direct-access'); ?>">
+        </form>
+    </div>
+</div>
+
+<?php $this->stop(); ?>
+
+<?php $this->section('script'); ?>
+<script>
+    (function () {
+        'use strict';
+        var config = window.config || {};
+        config.wx_state = '<?php echo $this->wx_state; ?>';
+        config.wx_appid = '<?php echo $this->config->get('wx.appid'); ?>';
+        config.wx_oauth_callback = '<?php echo route_url('wx-oauth-callback'); ?>';
+    }());
+</script>
+<?php $this->append(); ?>

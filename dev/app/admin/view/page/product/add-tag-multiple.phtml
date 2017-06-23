@@ -1,0 +1,40 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-product-show'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+<?php $this->section('page-body'); ?>
+    <div class="entity-show">
+        <?php echo $this->insert('module/entity-show-top', [
+            'entity' => $this->product,
+            'is_info' => false,
+            'is_content' => false,
+            'select' => 'tag-multiple',
+        ]); ?>
+
+        <form action="<?php echo $this->action; ?>" method="post">
+            <?php echo csrf_field(); ?>
+            <input type="hidden" name="url" value="<?php echo $this->url; ?>">
+            <input type="hidden" name="id" value="<?php echo $this->product->id; ?>">
+            <label for="title"><?php echo trans('tag-title'); ?></label>
+            <input type="text" name="multiple_title">
+            <p>可以输入单个或多个标签，使用逗号隔开。</p>
+            <?php if ($this->errors) { ?>
+                <p class="errors">
+                    <?php foreach ($this->errors as $err_key => $err_value) { ?>
+                        <span class="label alert">
+                <?php echo $err_key; ?>,<?php echo $err_value; ?>
+            </span>
+                    <?php } ?>
+                </p>
+            <?php } ?>
+            <br>
+            <div>
+                <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+            </div>
+        </form>
+    </div>
+
+
+<?php $this->replace(); ?>

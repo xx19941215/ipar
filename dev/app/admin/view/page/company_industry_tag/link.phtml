@@ -1,0 +1,40 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-company-industry_tag-add'),
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="page-company">
+    <?php
+    echo $this->insert('module/entity-menu-group', [
+        'group' => $this->company,
+        'select' => 'industry_tag'
+    ]);
+    ?>
+
+    <div class="company-profile">
+        <h2>
+            <span><?php echo $this->company->fullname; ?></span>
+        </h2>
+        <div class="company-exist-items">
+            <h3 class="title"><?php echo trans('Industry'); ?></h3>
+            <?php foreach ($exit_industry_tag_set = $this->exist_industry_tag_set->getItems() as $tag) { ?>
+                <a href="<?php echo route_url('admin-ui-industry_tag-show', ['tag_id' => $tag->id]); ?>" target="_blank">
+                    <span><?php echo $tag->title ?></span>
+                </a>
+            <?php } ?>
+            <?php if (!$exit_industry_tag_set) {
+                echo trans('add-industry_tag-to-this-company');
+            } ?>
+        </div>
+    </div>
+
+    <h2><?php echo trans('select-from-exist-industry_tag'); ?></h2>
+    <?php echo $this->insert('module/form/query'); ?>
+    <?php
+    echo $this->insert('module/form/select-exist-industry_tag', [
+        'industry_tag_set' => $this->select_industry_tag_set
+    ])
+    ?>
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->select_industry_tag_set->getPageCount()]); ?>
+</div>
+<?php $this->replace(); ?>

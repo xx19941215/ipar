@@ -1,0 +1,83 @@
+<?php
+namespace Gap\Database\Pdo;
+
+
+class PdoAdapter {
+
+    protected $pdo;
+
+    public function __construct($pdo) {
+        $this->pdo = $pdo;
+    }
+
+    public function select($sql, $params = [], $model = '') {
+        $stmt = $this->pdo->prepare($sql);
+        if ($model) {
+            $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $model);
+        }
+        if ($stmt->execute($params)) {
+            return $stmt->fetchAll();
+        } else {
+            return false;
+        }
+    }
+
+    public function one($sql, $params = [], $model = '') {
+        if ($rows = $this->select($sql, $params, $model)) {
+            return $rows[0];
+        } else {
+            return false;
+        }
+    }
+
+    public function insert($sql, $params = []) {
+        $stmt = $this->pdo->prepare($sql);
+        if ($stmt->execute($params)) {
+            return $this->pdo->lastInsertId();
+        } else {
+            return false;
+        }
+    }
+
+    public function update($sql, $params = []) {
+        return $this->affected($sql, $params);
+    }
+
+    public function delete($sql, $params = []) {
+        return $this->affected($sql, $params);
+    }
+
+    public function statement($sql, $params = []) {
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute($params);
+    }
+
+    public function beginTransaction() {
+        return $this->pdo->beginTransaction();
+    }
+
+    public function commit() {
+        return $this->pdo->commit();
+    }
+
+    public function rollBack() {
+        return $this->pdo->rollBack();
+    }
+
+    public function table($table) {
+        $builder = new SqlBuilder($this);
+        $builder->table($table);
+        return $builder;
+    }
+
+    // protected
+    protected function affected($sql, $params = []) {
+        $stmt = $this->pdo->prepare($sql);
+        if ($stmt->execute($params)) {
+            return $stmt->rowCount();
+        } else {
+            return false;
+        }
+    }
+
+}

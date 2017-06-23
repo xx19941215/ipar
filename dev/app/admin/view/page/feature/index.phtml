@@ -1,0 +1,18 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-feature'),
+    'breadcrumbs' => ['admin-entity', 'admin-feature']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+
+<?php echo $this->insert('module/form/query', [
+    'buttons' => [
+        ['link' => route_url('admin-feature-add'), 'text' => trans('add-feature')]
+    ]
+]); ?>
+
+<div class="row column">
+    <?php echo $this->insert('module/entity-set', ['entity_set' => $this->feature_set]); ?>
+</div>
+
+<?php $this->replace(); ?>

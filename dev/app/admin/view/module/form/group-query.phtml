@@ -1,0 +1,23 @@
+<?php
+if (!$query = $this->query) {
+    $query = http_request()->query->get('query');
+}
+?>
+<form class="admin-form-query" method="get" action="<?php echo $this->action; ?>">
+    <div class="input-group">
+        <input class="input-group-field" type="search" name="s" value="<?php echo $query; ?>" placeholder="<?php echo
+        trans('please-enter-company-or-group-name'); ?>">
+        <input type="hidden" name="t" value="<?php echo $this->t; ?>">
+        <div class="group-type">
+            <select name="type_id">
+                <option value=""><?php echo trans('type'); ?></option>
+                <?php foreach (config()->get('type_relation')->get('group')->all() as $key) { ?>
+                    <option value="<?php echo get_type_id($key); ?>"><?php echo $key; ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="input-group-field">
+            <button class="button small">search</button>
+        </div>
+    </div>
+</form>

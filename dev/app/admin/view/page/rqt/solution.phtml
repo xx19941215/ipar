@@ -1,0 +1,39 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-rqt-show'),
+    'breadcrumbs' => ['admin-entity', 'admin-rqt'],
+]);
+?>
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->rqt,
+        'is_info' => false,
+        'is_content' => false,
+        'select' => 'solution',
+    ]); ?>
+
+    <?php echo $this->insert('module/form/query', [
+        'buttons' => [
+            [
+                'link' => route_url('admin-rqt-product-add', ['eid' => $this->rqt->eid]),
+                'text' => trans('add-product')
+            ],
+            [
+                'link' => route_url('admin-rqt-idea-add', ['eid' => $this->rqt->eid]),
+                'text' => trans('add-idea')
+            ],
+        ]
+    ]); ?>
+
+    <?php /*
+        <a class="button" href="<?php echo route_url('admin-rqt-invent-add', ['eid' => $this->rqt->eid]); ?>">
+            <?php echo trans('add-invent'); ?>
+        </a>
+ */ ?>
+
+    <?php echo $this->insert('module/entity-set', ['entity_set' => $this->solution_set]); ?>
+</div>
+
+<?php $this->replace(); ?>
+

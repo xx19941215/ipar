@@ -1,0 +1,85 @@
+<div>
+    <h3>
+        <?php echo trans('account-setting'); ?>
+    </h3>
+    <div class="user-info user-nick">
+        <span class="title">
+            <?php echo trans('nick'); ?>
+        </span>
+        <span class="content">
+            <?php echo $this->user->nick; ?>
+        </span>
+        <span class="modify">
+            <a href="<?php echo route_url('ipar-ui-i-change-nick', ['zcode' => $this->user->zcode]); ?>">
+                <i class="icon icon-edit-pen"></i>
+            </a>
+        </span>
+    </div>
+    <div class="user-info user-email">
+        <span class="title">
+            <?php echo trans('email'); ?>
+        </span>
+        <span class="content" <?php echo "data-email='" . $this->user->email . "'"; ?> >
+            <?php if ($this->user->email) {
+                echo $this->user->email;
+            } else {
+                echo trans('not-set-email');
+            } ?>
+        </span>
+        <span class="modify">
+            <a href="<?php echo route_url('ipar-ui-i-change-email', ['zcode' => $this->user->zcode]) ?>">
+                <i class="icon icon-edit-pen"></i>
+            </a>
+        </span>
+    </div>
+
+    <div class="user-info user-phone">
+        <span class="title">
+            <?php echo trans('phone'); ?>
+        </span>
+
+        <span class="content" <?php echo "data-phone='" . $this->user->phone . "'"; ?> >
+            <?php if ($this->user->phone) {
+                echo $this->user->phone;
+            } else {
+                echo trans('not-set-phone');
+            } ?>
+        </span>
+
+        <span class="modify">
+            <a href="<?php echo route_url('ipar-ui-i-bind-phone', ['zcode' => $this->user->zcode]) ?>">
+                <i class="icon icon-edit-pen"></i>
+            </a>
+        </span>
+    </div>
+
+
+    <div class="user-info user-password">
+            <span class="title">
+            <?php echo trans('password'); ?>
+            </span>
+        <span class="content">
+                <?php if ($this->user->passhash) {
+                    echo '******';
+                } else {
+                    echo trans('not-set-password');
+                } ?>
+            </span>
+        <span class="modify">
+                <a href="<?php echo route_url('ipar-ui-i-change-password', ['zcode' => $this->user->zcode]) ?>">
+                    <i class="icon icon-edit-pen"></i>
+                </a>
+            </span>
+    </div>
+
+    <div class="delete-account">
+        <a class="button">
+            <?php echo trans('delete-account'); ?>
+        </a>
+        <p>
+            <?php echo trans('delete-account-alert-tips'); ?>
+        </p>
+    </div>
+    <?php if ($this->isSecondaryValid) echo "<span class='valid-" . $this->user->uid . "'>"; ?>
+
+</div>

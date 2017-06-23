@@ -1,0 +1,51 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-company-add-product'),
+    'breadcrumbs' => ['admin-ui-group-index', 'admin-ui-company-list'],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="page-company">
+    <?php echo $this->insert('module/entity-menu-group', [
+        'company' => $this->company,
+        'select' => $this->select
+    ]); ?>
+
+    <div class="company-profile">
+        <h2>
+            <span><?php echo $this->company->fullname; ?></span>
+        </h2>
+        <div class="company-exist-items">
+            <h3 class="title"><?php echo trans('product'); ?></h3>
+            <?php foreach ($exit_product_set = $this->exist_product_set->getItems() as $product) { ?>
+                <a href="<?php echo route_url('admin-product-show', ['eid' => $product->eid]); ?>" target="_blank">
+                    <span><?php echo $product->title ?></span>
+                </a>
+            <?php } ?>
+            <?php if (!$exit_product_set) {
+                echo trans('add-product-to-this-company');
+            } ?>
+        </div>
+    </div>
+
+    <div class="row column">
+        <h2><?php echo trans('add-product-from-existed-product'); ?></h2>
+        <?php echo $this->insert('module/form/query'); ?>
+        <?php echo $this->insert('module/form/select-exist-product', [
+            'entity_set' => $this->select_product_set,
+            'gid' => $this->company->gid,
+        ]); ?>
+    </div>
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->select_product_set->getPageCount()]); ?>
+
+    <div class="row column">
+        <h2><?php echo trans('add-new-product'); ?></h2>
+        <?php echo $this->insert('module/form/admin-form-company_product', [
+            'gid' => $this->company->gid
+        ]); ?>
+    </div>
+
+</div>
+
+<?php $this->replace(); ?>

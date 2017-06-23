@@ -1,0 +1,51 @@
+<?php $this->layout('layout/ipar', [
+    'header_menu' => 'ipar-product-index',
+    'tdk_keywords' => true,
+    'tdk_description' => true,
+]); ?>
+
+<?php $this->section('cat');?>
+<div class="product-page-banner" >
+        <h1><?php echo trans('page-title-ipar-ui-product-index');?></h1>
+        <p><?php echo trans('page-subtitle-ipar-ui-product-index');?></p>
+</div>
+<?php $this->append() ?>
+
+<?php $this->section('main'); ?>
+<div class="hot_tag_words">
+    <div class="hot_tag_title">
+        <span>
+        <?php echo trans('hot_tag_title'); ?></div>
+        </span>
+    <div class="hot_tag_content">
+        <?php foreach ($this->hot_tag as $tag) : ?>
+        <a href="<?php echo $tag['url']; ?>"><span><?php echo $tag['title']; ?></span></a>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<?php //echo $this->insert('module/sort-toggle') ?>
+<div class="sort-toggle sort-hot">
+    <a href="javascript:void(0);" class='sort-hot'><?php echo trans('sort-by-hot'); ?></a>
+    |
+    <a href="javascript:void(0);" class='sort-date sort-visited'><?php echo trans('sort-by-date'); ?></a>
+</div>
+
+
+<div class="product-set-wrap box-set-wrap"></div>
+
+<div class="loading" data-action="product" data-page="1" data-sort="1">
+    <div class="one">
+        <a href="javascript:;" class="trigger"><?php echo trans('see-more'); ?></a>
+    </div>
+    <div class="two">
+        <a href="<?php echo route_url('ipar-product-all'); ?>"><?php echo trans('explore-all-products'); ?></a>
+    </div>
+</div>
+
+<?php $this->append(); ?>
+
+<?php $this->section('side'); ?>
+    <?php echo $this->insert('module/sidebar/section-rqt') ?>
+    <?php echo $this->insert('module/sidebar/section-article') ?>
+<?php $this->replace(); ?>

@@ -1,0 +1,30 @@
+<?php
+$menu_items = [
+    'ipar-rqt-index',
+    'ipar-product-index',
+    'ipar-ui-company-index',
+    'ipar-ui-company_service-show',
+
+];
+?>
+
+<div class="container">
+    <ul class="top-nav-ul menu underline">
+        <?php foreach ($menu_items as $key=>$item) { ?>
+            <?php
+            if ($this->header_menu == $item) {
+                $class = ' class="selected"';
+            } else {
+                $class = '';
+            }
+            ?>
+            <li <?php echo $class; ?> >
+                <a href="<?php echo route_url($item); ?>">
+                    <?php echo trans($item); ?><?php if($key != count($menu_items) - 1) echo "<i></i>";?>
+                </a>
+            </li>
+
+        <?php } ?>
+    </ul>
+
+</div>

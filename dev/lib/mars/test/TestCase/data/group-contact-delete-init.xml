@@ -1,0 +1,8 @@
+<?xml version = "1.0" ?>
+<dataset>
+    <group_contact
+            gid='1' name='karan' roles='secret' phone='123456789' email='123456789@126.com'
+            contact_uid='983'/>
+    <group_contact
+            gid='2' name='UFO' roles='manager' phone='987654321' email='987654321@126.com' contact_uid='14'/>
+</dataset>

@@ -1,0 +1,32 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => 'admin-entity-delete'
+]); ?>
+
+<?php $this->section('css'); ?>
+<style>
+.entity-form {
+    background-color: #fff;
+    padding: 6px 15px;
+    margin: 15px 0;
+    box-shadow: 0 0 7px rgba(0,0,0,0.21);
+}
+</style>
+<?php $this->append(); ?>
+
+<?php $this->section('content'); ?>
+<div class="entity">
+    <p>eid: <?php echo $this->entity->eid; ?></p>
+    <p>uid: <?php echo $this->entity->uid; ?></p>
+    <p>type: <?php echo $this->entity->type; ?></p>
+    <p>zcode: <?php echo $this->entity->zcode; ?></p>
+    <p>title: <?php echo $this->entity->title; ?></p>
+    <p>abbr: <?php echo $this->entity->abbr; ?></p>
+    <p>content: <?php echo $this->entity->content; ?></p>
+</div>
+<form class="entity-form" method="post" action="<?php echo route_url('admin-entity-delete-post', ['eid' => $this->entity->eid]); ?>">
+    <?php echo $this->insert('element/csrf-field'); ?>
+    <input type="hidden" name="eid" value="<?php echo $this->entity->eid; ?>">
+    <p><?php echo trans('confirm to delete this entity permanent'); ?></p>
+    <input class="button tiny" type="submit" value="<?php echo trans('submit'); ?>">
+</form>
+<?php $this->append(); ?>

@@ -1,0 +1,104 @@
+<?php $this->layout('layout/page', [
+    'csses' => [
+        'ipar.css' => 1,
+        'page.css' => 1
+    ]
+]);  ?>
+
+<?php $this->section('main'); ?>
+
+<div class="bike-activity-ad">
+    <div class="bike-activity-info">
+        <div class="bike-activity-title">
+        单车也疯狂
+        </div>
+        <div class="bike-activity-message">
+        ofo VS 摩拜单车　谁能笑到最后
+        </div>
+<!--        <div class="bike-activity-content row">-->
+<!--            <div class="bike-activity-join small-5 columns">-->
+<!--                参与人数: XX人-->
+<!--            </div>-->
+<!--            <div class="bike-activity-read small-5 columns">-->
+<!--                浏览人数: XX人-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="bike-activity-deadline">
+            <p>
+             11月22日12:00截止
+            </p>
+        </div>
+    </div>
+</div>
+<div class="bike-activity-brandcontainer">
+<div class="bike-activity-brand row">
+    <div class="bike-activity-brandofo medium-5  columns">
+        <div class="bike-activity-brandcontent">
+           <a href="<?php echo route_url('ipar-product-show',['zcode' => '5809a0a2cac09']); ?>" target="_blank"><img src="<?php echo static_url('/img/ofo.png'); ?>" alt="" /></a>
+           <a href="<?php echo route_url('ipar-product-show',['zcode' => '5809a0a2cac09']); ?>" target="_blank"><button class="bike-activityBtn" type="button" name="button">去看看</button></a>
+        </div>
+    </div>
+    <div class="bike-activity-vs medium-2 columns">
+      vs
+    </div>
+    <div class="bike-activity-brandmoby medium-5 columns">
+        <a href="<?php echo route_url('ipar-product-show',['zcode' => '5809ac66a1906']); ?>" target="_blank"><img src="<?php echo static_url('/img/moby.png'); ?>" alt="" /></a>
+        <a href="<?php echo route_url('ipar-product-show',['zcode' => '5809ac66a1906']); ?>" target="_blank"><button class="bike-activityBtn" type="button" name="button">去看看</button></a>
+    </div>
+</div>
+</div>
+<div class="bike-activity-detail">
+    <div class="bike-activity-title">
+        <p>
+            活动细则
+        </p>
+    </div>
+    <div class="bike-activity-style">
+        <p>
+            活动方式
+        </p>
+        <p>
+            点击喜欢的产品图片，进入产品详情页，给喜欢的产品点赞，同时可以提出个人的改进意见，也可以给别人意见点赞，最后意见获赞前三的用户可获小趴精心准备的大奖。
+        </p>
+    </div>
+    <div class="bike-activity-forwards">
+        <p>
+            活动奖品
+        </p>
+        <p>
+            一等奖：LAMY恒星系列钢笔一只
+        </p>
+        <p>
+            二等奖：象尚人脸识别U盘一只
+        </p>
+        <p>
+            三等奖：coach home记忆棉美臀坐垫一个
+        </p>
+    </div>
+    <div class="bike-activity-rule">
+        <p>
+            活动规则
+        </p>
+        <p>
+            １. 投票时间：即日起－2016年11月22日 12: 00;
+        </p>
+        <p>
+            2.活动结束后，点趴网将在结束日当日通过点趴网微信公众号（可直接扫描下侧二维码）公布获奖名单，获奖人员将个人主页截图并发送至微信公众号领取奖品.
+        </p>
+        <p>
+            ３.本次活动最终解释权归主办方所有
+        </p>
+        <p>
+            咨询电话：021-55520263
+        </p>
+    </div>
+</div>
+<div class="bike-activity-ideapar">
+    <div class="bike-activity-ideaparQrcode">
+        <img src="<?php echo static_url('/img/wx_qrcode2.png'); ?>"alt="" />
+    </div>
+    <p>
+        点趴订阅号
+    </p>
+</div>
+<?php $this->replace(); ?>

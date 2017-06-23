@@ -1,0 +1,48 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('friend_link-index'),
+    'breadcrumbs' => ['admin-ui-friend_link-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<?php echo $this->insert('module/form/query'); ?>
+
+    <div class="row">
+        <h3><?php echo trans('friend-link'); ?> (<?php echo $this->friend_link_set->getItemCount(); ?>) </h3>
+        <table class="groups">
+            <thead>
+            <tr>
+                <th><?php echo trans('logo'); ?></th>
+                <th><?php echo trans('website-title'); ?></th>
+                <th><?php echo trans('type'); ?></th>
+                <th><?php echo trans('modify'); ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->friend_link_set->getItems() as $friend_link) { ?>
+                <tr>
+                    <td><?php if ($friend_link->logo_img) { ?><img
+                            src="<?php echo img_src((array)json_decode($friend_link->logo_img)); ?>" alt=""><?php } ?>
+                    </td>
+                    <td class="tag-index-title">
+                        <?php echo $friend_link->title; ?>
+                    </td>
+                    <td><?php echo $friend_link->type; ?></td>
+                    <td>
+                        <a href="<?php echo route_url('admin-ui-friend-link-edit', ['tag_id' => $friend_link->id]); ?>"
+                           target="_blank"><?php echo trans('edit'); ?></a>
+
+                        <?php if ($friend_link->status == 1) { ?>
+                            <a href="<?php echo route_url('admin-ui-friend-link-deactivate', ['tag_id' => $friend_link->id]); ?>"
+                            ><?php echo trans('deactivate');
+                        } else { ?></a>
+                            <a href="<?php echo route_url('admin-ui-friend-link-activate', ['tag_id' => $friend_link->id]); ?>"
+                            ><?php echo trans('activate'); ?></a>
+                        <?php } ?>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+<?php echo $this->insert('element/pagination', ['page_count' => $this->friend_link_set->getPageCount()]); ?>
+<?php $this->replace(); ?>

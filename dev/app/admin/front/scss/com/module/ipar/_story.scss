@@ -1,0 +1,103 @@
+$story-avt-size: 40px;
+$cell-interval: 7px;
+.story {
+    max-width: 690px;
+    margin-bottom: 21px;
+    border-bottom: 1px solid $light-gray;
+    padding: 5px 7px 5px 5px;
+
+    .story-src {
+        margin-bottom: $cell-interval;
+
+        .label {
+            font-size: $small-font-size;
+            color: $medium-gray;
+        }
+        .title {
+            font-size: $small-font-size;
+            font-weight: bold;
+            //color: $black;
+        }
+    }
+
+    .story-user-action {
+        @include clearfix;
+
+        position: relative;
+        font-size: $small-font-size;
+
+        margin-bottom: $cell-interval;
+
+        .user {
+            float: left;
+            width: $story-avt-size;
+
+            a.user-avt {
+                text-decoration: none;
+            }
+
+            .icon-avt {
+                font-size: $story-avt-size;
+                line-height: $story-avt-size;
+                color: $medium-gray;
+            }
+        }
+
+        .main {
+            float: left;
+            margin-left: 16px;
+            line-height: $global-font-size;
+        }
+
+        .action {
+            .icon {
+                font-size: rem-calc(18);
+                line-height: rem-calc(18);
+                color: $success-color;
+            }
+            .text {
+                color: $medium-gray;
+            }
+        }
+
+        .date {
+            float: right;
+            font-size: $small-font-size;
+            color: $medium-gray;
+        }
+    }
+
+    .story-entity {
+        margin-bottom: $cell-interval;
+        .data-title {
+            font-weight: bold;
+            a {
+                color: $black;
+            }
+        }
+        .data-abbr {
+            font-size: $small-font-size;
+            margin: 3px 0 7px;
+        }
+        .imgs img {
+            margin: 0 1px 0;
+        }
+    }
+
+    .story-ops {
+        font-size: $small-font-size;
+        color: $medium-gray;
+        margin-bottom: $cell-interval;
+
+        a {
+            color: $medium-gray;
+            &:hover {
+                color: $dark-gray;
+                text-decoration: none;
+            }
+        }
+        .comment {
+            margin-left: 15px;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+<?php $this->layout('layout/default'); ?>
+
+<?php $this->section('title'); ?>
+    <?php echo trans('sketch-delete'); ?>
+<?php $this->append(); ?>
+
+<?php $this->section('content'); ?>
+    <?php echo trans('confirm-delte'); ?>
+    <form method="post" action="<?php echo route_url('sketch-delete-post', ['zcode' => $this->sketch->zcode]); ?>">
+        <?php echo $this->insert('element/csrf-field'); ?>
+        <input type="hidden" name="eid" value="<?php echo $this->sketch->eid; ?>">
+
+        <div class="operating-wrap">
+            <input type="submit" class="button tiny alert" value="<?php echo trans('commit'); ?>">
+            <a class="cancel" href="<?php echo route_url('sketch-index'); ?>">
+                <?php echo trans('cancel'); ?>
+            </a>
+        </div><!-- .operating-wrap -->
+    </form>
+<?php $this->replace(); ?>

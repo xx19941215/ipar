@@ -1,0 +1,90 @@
+<?php
+$this->layout('layout/ipar', [
+    'html_title' => trans('ipar-index-home')
+]);
+?>
+
+<?php $this->section('main'); ?>
+<div>
+
+
+
+
+<form action="<?php echo route_url('ipar-company-updatecontact-post');?>" method="post">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="gid" value="<?php echo $this->gid; ?>"></input>
+    <input type="hidden" name="reg_address_id" value="<?php echo $this->reg_address_id; ?>"></input>
+    <div><?php echo trans('resource');?></div>
+
+    <div>
+        <span><?php echo trans('company');?></span>
+        <input type="text" name="title" placeholder="title" value="<?php echo $this->title;?>" required="required"></input>
+    </div>
+    <div>
+        <span><?php echo trans('describe');?></span>
+        <textarea name="content"><?php echo $this->content; ?></textarea>
+    </div>
+    <div>
+        <div><?php echo trans('logo'); ?></div>
+        <span class="company-logo"></span>
+        <a class="change-company-logo" href="javascript:;">
+            <i class="icon icon-camera"></i>
+        </a>
+        <input type="hidden" class="company-logo-url" name="company_logo_url" value=""></input>
+    </div>
+    <div>
+        <span><?php echo trans('address'); ?></span>
+        <input type="text" name="address" class="keyword" width="500px"  autocomplete="off" required="required" value="<?php echo $this->address;?>"></input>
+        <input type="hidden" class="address_id" name="address_id" value="<?php echo $this->address_id;?>">
+        </input>
+        <div id="suggestion" style="margin-top: -12px;margin-bottom: 28px;"></div>
+    </div>
+
+
+    <div>
+        <input type="text" name="contact"  placeholder="contact" required="required" value="<?php echo $this->contact; ?>"></input>
+    </div>
+
+    <div>
+        <input type="text" name="phone"  placeholder="phone" required="required" value="<?php echo $this->phone; ?>"></input>
+    </div>
+
+    <div>
+        <input type="text" name="email"  placeholder="email" required="required" value="<?php echo $this->email; ?>"></input>
+    </div>
+
+    <div>
+        <input type="text" name="website"  placeholder="office website" required="required" value="<?php echo $this->website; ?>"></input>
+    </div>
+
+    <div>
+        <input type="text" name="weibo"  placeholder="weibo" required="required" value="<?php echo $this->weibo; ?>"></input>
+    </div>
+
+    <div>
+        <input type="text" name="wechat"  placeholder="wechat" required="required" value="<?php echo $this->wechat; ?>"></input>
+    </div>
+    <?php if ($this->errors) { ?>
+    <p class="errors">
+        <?php foreach ($this->errors as $err_key => $err_val) { ?>
+            <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+        <?php } ?>
+    </p>
+    <?php } ?>
+
+    <input type="submit" class="button small" value="<?php echo trans('submit'); ?>" style="margin-top: 25px;">
+
+</form>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<?php $this->replace(); ?>

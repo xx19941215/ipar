@@ -1,0 +1,83 @@
+<?php
+$this->layout('layout/ipar', [
+    'html_title' => trans('ipar-index-home')
+]);
+?>
+
+<?php $this->section('main'); ?>
+<div>
+
+
+
+
+<form action="<?php echo $this->action;?>" method="post">
+    <?php echo csrf_field(); ?>
+
+    <div><?php echo trans('resource');?></div>
+
+    <div>
+        <span><?php echo trans('company');?></span>
+        <input type="text" name="title" placeholder="title" value="<?php echo $this->title;?>" required="required"></input>
+    </div>
+    <div>
+        <span><?php echo trans('describe');?></span>
+        <textarea name="content"></textarea>
+    </div>
+    <div>
+        <div><?php echo trans('logo'); ?></div>
+        <span class="company-logo"></span>
+        <a class="change-company-logo" href="javascript:;">
+            <i class="icon icon-camera"></i>
+        </a>
+        <input type="hidden" class="company-logo-url" name="company_logo_url" value=""></input>
+    </div>
+    <div>
+        <span><?php echo trans('address'); ?></span>
+        <input type="text" name="address" class="keyword" width="500px"  autocomplete="off" required="required"></input>
+        <input type="hidden" class="address_id" name="address_id" value="1">
+        </input>
+        <div id="suggestion" style="margin-top: -12px;margin-bottom: 28px;"></div>
+    </div>
+
+
+    <div>
+        <input type="text" name="contact"  placeholder="contact" required="required"></input>
+    </div>
+
+    <div>
+        <input type="text" name="phone"  placeholder="phone" required="required"></input>
+    </div>
+
+    <div>
+        <input type="text" name="email"  placeholder="email" required="required"></input>
+    </div>
+
+    <div>
+        <input type="text" name="website"  placeholder="office website" required="required"></input>
+    </div>
+
+    <div>
+        <input type="text" name="weibo"  placeholder="weibo" required="required"></input>
+    </div>
+
+    <div>
+        <input type="text" name="wechat"  placeholder="wechat" required="required"></input>
+    </div>
+
+
+    <input type="submit" class="button small" value="<?php echo trans('submit'); ?>" style="margin-top: 25px;">
+
+</form>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<?php $this->replace(); ?>

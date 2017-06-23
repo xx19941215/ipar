@@ -1,0 +1,57 @@
+<?php
+$this->layout('page', [
+    'html_title' => $this->rqt->title
+]);
+$rqt = $this->rqt;
+?>
+
+<?php $this->section('page-body'); ?>
+    <div class="row page-rqt-show layout">
+        <div class="layout-main">
+
+            <div class="tnrl">
+                <div class="tnrl-topic">
+                    <?php echo $this->insert('module/page-uem', ['entity' => $rqt, 'is_show_abbr' => $this->is_show_abbr]); ?>
+                </div>
+
+                <div class="tnrl-nav clearfix">
+                    <div class="nav-title">
+                        <a href="<?php echo route_url('rqt-show', ['zcode' => $rqt->zcode]); ?>"><i class="icon icon-zuixin"></i><?php echo trans('latest-update'); ?></a>
+                    </div>
+                    <div class="nav-btns">
+                        <a href="<?php echo route_url('idea-create', [], ['src_eid' => $rqt->eid]); ?>" class="button"><?php echo trans('rqt-add-idea'); ?></a>
+                    </div>
+                    <?php echo $this->insert('include/tnrl/nav-tab', [
+                        'type' => 'rqt',
+                        'zcode' => $rqt->zcode,
+                        'cts' => $this->cts
+                    ]); ?>
+                </div>
+
+                <div class="tnrl-reply-list">
+                    <?php echo $this->insert('module/uem-list', ['entities' => $this->solutions]); ?>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="layout-side">
+            <?php //echo $this->insert('ipar/rqt/include/side'); ?>
+            <?php //echo $this->insert('include/side/author'); ?>
+
+            <?php echo $this->insert('include/side/entity-followers', [
+                'followers' => $this->followers,
+                'entity' => $this->rqt
+            ]); ?>
+            <div class="side-line"></div>
+
+            <?php echo $this->insert('include/side/tag', [
+                'tags' => $this->tags,
+                'entity' => $this->rqt,
+            ]); ?>
+            <div class="side-line"></div>
+
+            <?php echo $this->insert('include/side/relate'); ?>
+        </div>
+    </div>
+<?php $this->append(); ?>

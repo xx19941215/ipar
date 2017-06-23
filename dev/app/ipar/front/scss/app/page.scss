@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+// foundation
+@import 'foundation';
+@import 'motion-ui';
+
+@include foundation-grid;
+
+// page
+@import 'page/ipar-page-about-us';
+@import 'page/ipar-page-join-us';
+@import 'page/ipar-page-bike';
+@import 'page/ipar-page-foundation';
+@import 'page/ipar-page-umbrella';
+@import 'page/ipar-page-links';
+@import 'page/ipar-company-service';

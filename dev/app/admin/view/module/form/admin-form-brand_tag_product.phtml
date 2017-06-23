@@ -1,0 +1,34 @@
+<form
+    action="<?php echo route_url('admin-ui-company_brand_tag_product-save_post', ['gid' => $this->gid, 'tag_id' => $this->brand_tag->tag_id]); ?>"
+    method="post">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="brand_tag_id" value="<?php echo $this->brand_tag->id; ?>">
+    <input type="hidden" name="tag_id" value="<?php echo $this->brand_tag->tag_id; ?>">
+    <?php if ($this->eid) { ?>
+        <input type="hidden" name="eid" value="<?php echo $this->eid; ?>">
+    <?php } ?>
+    <label>
+        <?php echo trans('title'); ?>
+        <input type="text" name="title" required="required" value="<?php echo $this->title; ?>">
+    </label>
+    <label>
+        <?php echo trans('url'); ?>
+        <input type="url" name="url" value="<?php echo $this->url; ?>">
+    </label>
+    <label>
+        <?php echo trans('content'); ?>
+        <?php echo $this->insert('element/zeditor', ['name' => 'content', 'value' => $this->content]); ?>
+    </label>
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <a onclick="history.go(-1);"><?php echo trans('cancel'); ?></a>
+    </div>
+</form>

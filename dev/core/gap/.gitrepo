@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = ssh://git@git.ideapar.com:3222/tc/gap.git
+	branch = master
+	commit = e7d0c3944d3fe5cdee8560dff2005d6a1d3070fc
+	parent = 52871a619e89a8fa864dc11536be5f7016ed855c
+	cmdver = 0.3.0

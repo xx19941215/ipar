@@ -1,0 +1,15 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-group-add'),
+    'breadcrumbs' => ['admin-ui-group-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="page-group-edit">
+    <div class="row column">
+        <h1><?php echo trans('admin-ui-group-add'); ?></h1>
+        <?php echo $this->insert('module/form/group/admin-form-group'); ?>
+    </div>
+</div>
+
+<?php $this->replace(); ?>
+

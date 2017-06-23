@@ -1,0 +1,13 @@
+<?php $this->layout('layout/admin', [
+    'breadcrumbs' => ['admin-ui-group-index']
+]);
+$social_config = config()->get('social');
+?>
+
+<?php $this->section('page-body'); ?>
+<div iclass="page-group-social-edit">
+    <h1><?php echo trans("admin-ui-company-social-edit"); ?></h1>
+    <?php echo $this->insert('module/form/group_social/admin-form-group_social'); ?>
+</div>
+
+<?php $this->replace(); ?>

@@ -1,0 +1,24 @@
+<?php $this->layout('layout/invent', [
+    'html_title' => $this->invent->title
+]); ?>
+
+<?php $this->section('invent-content'); ?>
+
+    <div>
+        <a href="<?php echo route_url('invent-feature-create', ['zcode' => $this->invent->zcode]); ?>">
+            <?php echo trans('create-feature'); ?>
+        </a>
+    </div>
+
+    <?php echo $this->insert('include/wrap-entities'); ?>
+
+<?php /*
+<?php foreach ($this->features as $feature) { ?>
+    <div class="invent-feature">
+        <a href="<?php echo route_url('invent-feature-show', ['zcode' => $this->invent->zcode, 'eid' => $feature->eid]); ?>">
+            <?php echo $feature->getTitle(); ?>
+        </a>
+    </div>
+<?php } ?>
+ */ ?>
+<?php $this->replace(); ?>

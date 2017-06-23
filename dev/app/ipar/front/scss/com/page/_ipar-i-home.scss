@@ -1,0 +1,96 @@
+.ipar-i-home {
+    .sort-hot {
+        display: none;
+    }
+
+    .user-info a{
+        margin-right: 10px;
+    }
+
+    .main {
+        padding-top: 16px;
+    }
+}
+
+.ipar-i-rqt {
+    .user-info a{
+        margin-right: 10px;
+    }
+}
+
+.ipar-i-feature {
+    .user-info a{
+        margin-right: 10px;
+    }
+}
+
+.ipar-i-product {
+    .user-info a{
+        margin-right: 10px;
+    }
+}
+
+.i-home-top {
+    .user-tag {
+        margin-bottom: 21px;
+    }
+
+    .user-wrap {
+        @include clearfix;
+
+        margin-bottom: 21px;
+
+        .side {
+            float: left;
+            width: 115x;
+            margin-right: 21px;
+            position: relative;
+        }
+        .main {
+            float: left;
+        }
+
+        .change-avt {
+            position: absolute;
+            bottom: 10px;
+            left: 7px;
+            color: $white;
+            font-size: 20px;
+            line-height: 20px;
+            padding: 0 3px 2px;
+            background: rgba(0,0,0,0.42);
+            border-radius: 4px;
+
+            &:hover {
+                background: $black;
+            }
+        }
+
+    }
+
+    .user-nick a {
+        color: $black;
+        font-weight: normal;
+    }
+
+    .user-avt {
+        width: 115px;
+        height: 115px;
+        .icon-avt {
+            font-size: 100px;
+            line-height: 135px;
+        }
+    }
+
+    .user-login {
+        .item {
+            font-size: $small-font-size;
+            color: $dark-gray;
+
+            .text {
+                color: $medium-gray;
+                margin-right: 5px;
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+.property-button-wrap {
+    padding: 21px 0;
+}
+
+.property-box {
+    margin-top:25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.box-title > a:hover {
+    color: #2b6dad;
+}
+
+.hot_tag_words {
+
+}
+
+.hot_tag_title {
+    border-bottom: 1px solid #ccc;
+
+    span {
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+}
+
+.hot_tag_content {
+    margin-top: 8px;
+    margin-bottom: 43px;
+
+    a {
+        margin-right: 10px;
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 40px;
+        background-color: #FFF1F0;
+        text-align: center;
+        display: inline-block;
+        width: 72px;
+
+        span {
+            color: #f25653;
+            font-size: 12px;
+        }
+    }
+
+    a:hover {
+        background-color: #e72344;
+
+        span {
+            color: white;
+            background-color: #e72344;
+        }
+    }
+}

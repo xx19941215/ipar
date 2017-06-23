@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<dataset>
+    <article_tag id="1" article_id="1" tag_id="1" vote_count="0"/>
+    <article_tag id="2" article_id="3" tag_id="1" vote_count="0"/>
+    <article_tag id="3" article_id="4" tag_id="1" vote_count="0"/>
+    <article_tag id="4" article_id="4" tag_id="2" vote_count="0"/>
+    <article_tag id="5" article_id="3" tag_id="2" vote_count="0"/>
+    <article id="1" title="request1" content="content1"/>
+    <article id="2" title="request2" content="content1"/>
+    <article id="3" title="product1" content="content1"/>
+    <article id="4" title="product2" content="content1"/>
+</dataset>

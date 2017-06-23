@@ -1,0 +1,22 @@
+<?php
+$entities = $this->solution_set->getItems();
+$page_count = $this->solution_set->getPageCount();
+?>
+
+<?php if ($entities) { ?>
+
+<div class="solution-set entity-set">
+    <?php foreach ($entities as $entity) { ?>
+
+    <?php echo $this->insert('module/entity', [
+        'entity' => $entity,
+        'is_info' => 1,
+        'is_analysis' => 1
+    ]); ?>
+
+    <?php } ?>
+
+    <?php echo $this->insert('element/pagination', ['page_count' => $page_count]); ?>
+</div>
+
+<?php } ?>

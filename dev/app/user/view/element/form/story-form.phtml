@@ -1,0 +1,94 @@
+<div class="row wrap-story">
+    <?php if ($this->story_title) { ?>
+        <div class="story-section-title"><?php echo $this->story_title; ?></div>
+    <?php } ?>
+
+<form method="post" action="<?php echo $this->action; ?>">
+
+    <?php echo $this->insert('element/csrf-field'); ?>
+
+    <?php if ($this->hiddens) { ?>
+        <?php foreach ($this->hiddens as $name => $val) { ?>
+            <input type="hidden" name="<?php echo $name; ?>" value="<?php echo $val; ?>">
+        <?php } ?>
+    <?php } ?>
+
+    <div class="story-section">
+        <div class="story-section-wrap">
+            <?php if ($this->src) { ?>
+                <div class="story-entity story-entity-<?php echo $this->src->type; ?>">
+                    <div class="story-entity-label">
+                        <i class="icon icon-s-<?php echo $this->src->type; ?>"></i>
+                        <span><?php echo trans($this->src->type); ?></span>
+                    </div>
+                    <div class="main">
+                        <div class="main-title">
+                            <h2>
+                                <a href="<?php echo route_url($this->src->type . '-show', ['zcode' => $this->src->zcode]); ?>">
+                                    <?php echo $this->src->title; ?>
+                                </a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+
+            <div class="story-entity story-entity-<?php echo $this->type; ?>">
+                <div class="story-entity-label">
+                    <i class="icon icon-s-<?php echo $this->type; ?>"></i>
+                    <span><?php echo trans($this->type); ?></span>
+                </div>
+                <div class="main">
+                    <?php if (!$this->is_hide_title) { ?>
+                    <div class="main-title">
+                        <div class="main-input">
+                            <?php echo $this->insert('include/form/input-field', [
+                                'class' => 'item',
+                                'type' => 'text',
+                                'name' => 'title',
+                                'required' => true,
+                                'placeholder' => trans($this->type . '-title'),
+                                'value' => $this->title
+                            ]); ?>
+                        </div>
+                    </div>
+                    <?php } ?>
+                    <div class="main-body">
+                        <div class="main-textarea">
+                            <?php if ($this->content_type == 'textarea') { ?>
+                                <?php echo $this->insert('include/form/textarea-field', [
+                                    'type' => 'text',
+                                    'name' => 'content',
+                                    'required' => true,
+                                    'placeholder' => trans("{$this->type}-content"),
+                                    'value' => $this->content,
+                                    'error' => prop($this->errors, 'content')
+                                ]); ?>
+                            <?php } else { ?>
+                                <?php echo $this->insert('include/form/zeditor', [
+                                    'name' => 'content',
+                                    'placeholder' => trans("{$this->type}-content"),
+                                    'value' => $this->content
+                                ]); ?>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="operatearea">
+            <?php if ($this->operatearea) { ?>
+                <?php echo $this->operatearea; ?>
+            <?php } else { ?>
+                <button class="btn-<?php echo $this->type; ?>"><?php echo trans("{$this->type}-submit"); ?></button>
+                <?php if ($this->cancel) { ?>
+                    <a href="<?php echo $this->cancel; ?>"><?php echo trans('cancel'); ?></a>
+                <?php } ?>
+            <?php } ?>
+        </div>
+
+    </div>
+</form>
+</div>

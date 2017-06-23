@@ -1,0 +1,51 @@
+<?php
+    $pbranches = $this->pbranch_set->getItems();
+    $page_count = $this->pbranch_set->getPageCount();
+ ?>
+
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-product-show'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+<?php $this->section('page-body'); ?>
+
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_content' => false,
+        'select' => 'pbranch',
+    ]); ?>
+
+    <table class="table-pbranch">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>created</th>
+                <th>edit</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($pbranches as $pbranch) {?>
+            <tr>
+                <td><?php echo $pbranch->id ?></td>
+                <td><?php echo $pbranch->title ?></td>
+                <td><?php echo $pbranch->created ?></td>
+                <td><a href="
+                    <?php echo route_url('admin-product-pbranch-edit', [
+                        'eid' => $this->product->eid,
+                        'pbranch_id' => $pbranch->id
+                    ]); ?>
+                    ">edit</a>
+                </td>
+            </tr>
+
+        <?php } ?>
+        </tbody>
+    </table>
+
+    <?php echo $this->insert('element/pagination', ['page_count' => $page_count]); ?>
+
+<?php $this->replace(); ?>

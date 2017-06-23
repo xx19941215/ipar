@@ -1,0 +1,30 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-product-add-improving'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_content' => false,
+        'select' => 'improving',
+    ]); ?>
+
+    <div class="row column">
+        <h2><?php echo trans('add-from-existing-improving'); ?></h2>
+        <?php echo $this->insert('module/form/query'); ?>
+        <?php echo $this->insert('module/form/select-exist', ['entity_set' => $this->rqt_set]); ?>
+    </div>
+
+    <div class="row column">
+        <h2><?php echo trans('add-from-new-improving'); ?></h2>
+        <?php echo $this->insert('module/form/admin-form-rqt'); ?>
+    </div>
+</div>
+
+
+<?php $this->replace(); ?>

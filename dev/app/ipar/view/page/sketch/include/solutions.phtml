@@ -1,0 +1,7 @@
+<div class="solutions">
+<?php foreach ($this->solutions as $solution) { ?>
+    <li>
+        <?php echo $this->insert('module/uem', ['entity' => $solution]); ?>
+    </li>
+<?php } ?>
+</div>

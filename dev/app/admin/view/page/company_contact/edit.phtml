@@ -1,0 +1,14 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-company-contact'),
+    'breadcrumbs' => ['admin-ui-group-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div id="page-company-contact-edit">
+    <div class="row column">
+        <h1><?php echo trans('admin-ui-company-contact-edit'); ?></h1>
+        <?php echo $this->insert('module/form/group_contact/admin-form-group_contact'); ?>
+    </div>
+</div>
+
+<?php $this->replace(); ?>

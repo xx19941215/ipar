@@ -1,0 +1,84 @@
+.ipar-ui-company-index {
+    .page-body {
+        margin-top: 40px;
+    }
+    .side {
+        display: none;
+    }
+    .company-page-banner {
+        width: 100%;
+        background-color: #F0B635;
+        text-align: center;
+        padding: 60px 0;
+        margin: 0 0 30px 0;
+        h1, p {
+            color: #fff;
+            font-weight: 300;
+        }
+
+        p {
+            font-weight: 100;
+            font-size: 18px;
+        }
+    }
+    .box-set-wrap {
+        max-width: 1020px;
+        margin: 0 auto;
+    }
+
+    .box-wrap {
+        width: 25%;
+        margin-bottom: 8px;
+    }
+
+    .loading {
+        margin: 0 auto;
+        max-width: 1000px;
+        .one {
+            a {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+
+    .box-set {
+        padding: 0 12px;
+    }
+
+    .sort-toggle {
+        margin: 10px auto;
+        max-width: 998px;
+        padding: 0 12px;
+    }
+
+    .box {
+        max-width: 225px;
+    }
+
+    @media screen and (max-width: 640px) {
+        .box-wrap {
+            width: 100%;
+            margin-bottom: -6px;
+        }
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 640px) {
+        .box-wrap {
+            width: 50%;
+        }
+    }
+
+    @media screen and (min-width: 640px) and (max-width: 800px)  {
+        .box-wrap {
+            width: 33.3%;
+        }
+    }
+
+    @include breakpoint(medium) {
+        .company-page-banner {
+            padding: 70px;
+            margin-top: -15px;
+        }
+    }
+}

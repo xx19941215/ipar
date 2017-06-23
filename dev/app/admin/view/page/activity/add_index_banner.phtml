@@ -1,0 +1,36 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-article-activate')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+
+<div class="activity">
+<h4><?php echo trans('admin-activity-index-picture'); ?></h4>
+<a style="display:block;float:right;" href="<?php echo route_url('admin-activity-list'); ?>">return</a>
+<form enctype= "multipart/form-data" action="<?php echo route_url('admin-ui-activity-add-img'); ?>" method="post">
+    <?php echo csrf_field(); ?>
+    <div class="img-index" style="height:100px;width:400px;background-color:gray;overflow:hidden">
+        <img style="height:100px;width:400px;" src="<?php echo json_decode($this->pic_set[0]->img_index); ?>" alt="" />
+    </div>
+    <input type="file" accept="image/x-png, image/gif, image/jpeg" name="img_index">
+    <input type="hidden" name="id" value="<?php echo $this->activity_id; ?>">
+    <input type="submit" value="<?php echo trans('submit'); ?>">
+</form>
+<hr>
+<h4><?php echo trans('admin-activity-banner'); ?></h4>
+<form enctype= "multipart/form-data" action="<?php echo route_url('admin-ui-activity-add-img'); ?>" method="post">
+    <?php echo csrf_field(); ?>
+    <div class="banner">
+        <div class="img-banner" style="height:100px;width:400px;background-color:gray;;overflow:hidden">
+            <img style="height:100px;width:400px;" src="<?php echo json_decode($this->pic_set[0]->img_banner); ?>" alt="" />
+        </div>
+    </div>
+    <input type="file" accept="image/x-png, image/gif, image/jpeg" name="img_banner" >
+    <input type="hidden" name="id" value="<?php echo $this->activity_id; ?>">
+    <input type="submit" name="img_index" value="<?php echo trans('submit'); ?>">
+</form>
+<hr>
+
+<?php $this->replace(); ?>

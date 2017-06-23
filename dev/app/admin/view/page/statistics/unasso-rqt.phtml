@@ -1,0 +1,25 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-article-activate')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<a style="float:right;" href="<?php echo route_url('admin-statistics-list'); ?>">return</a>
+<table>
+    <thead>
+        <tr>
+            <td>Title</td>
+            <!-- <td>Icon</td> -->
+            <td>Edit</td>
+            <td>Stop</td>
+            <td>Tag</td>
+        </tr>
+    </thead>
+    <tbody>
+
+
+    </tbody>
+</table>
+<?php echo $this->insert('element/pagination', ['page_count' => $this->pageCount]); ?>
+<?php $this->replace(); ?>

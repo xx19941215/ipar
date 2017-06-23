@@ -1,0 +1,100 @@
+.search-product-div {
+    float: left;
+    display: block;
+    width: 100%;
+    .entity{
+        padding-bottom: 0;
+    }
+}
+
+.more-about {
+    float: left;
+    padding: 7px 15px;
+    border-radius: 4px;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 16px;
+    a {
+        color: #999;
+        font-size: 14px;
+    }
+}
+
+.loading {
+    clear:both;
+    padding: 0;
+}
+
+
+.user-avt{
+    display: inline-block;
+    img{
+        margin-right: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+.user-avt-medium-image{
+    display: inline-block;
+    img{
+        width:45px;
+        height: 45px;
+        margin-right: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+.user-avt-small-picture{
+    display: inline-block;
+    img{
+        width:20px;
+        height: 20px;
+        margin-right: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+.header-div{
+    border-bottom: 1px solid #eeeeee;
+    height:35px;
+    margin-bottom:8px;
+    clear:both;
+    h3{
+        display:inline-block;
+    }
+}
+
+.rqt-header-div{
+    display:block;
+}
+
+.user-header-div{
+    display:block;
+}
+
+.product-header-div{
+    display:block;
+}
+
+.article-header-div{
+    display:block;
+}
+
+div[class^="page ipar-index-search"] {
+    .page-header {
+        margin-bottom: 0;
+    }
+
+    .tag_sort ul {
+        border-top: none;
+    }
+    .product-header-div {
+        margin-top: 30px;
+    }
+    .section.section-bottom {
+        border-top: none;
+    }
+}

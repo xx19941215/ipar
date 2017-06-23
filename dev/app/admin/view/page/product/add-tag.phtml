@@ -1,0 +1,20 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-product-show'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_content' => false,
+        'select' => 'tag',
+    ]); ?>
+
+    <?php echo $this->insert('module/form/tag/admin-form-tag'); ?>
+</div>
+
+
+<?php $this->replace(); ?>

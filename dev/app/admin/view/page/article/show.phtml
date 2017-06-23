@@ -1,0 +1,57 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-article-show'),
+    'breadcrumbs' => ['admin-article']
+]);
+
+$article = $this->article;
+$articles_i18n = $this->articles_i18n->getItems();
+$tags = $this->tag_set->getItems();
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show rqt-show">
+    <?php echo $this->insert('module/article-show-top', [
+        'article' => $article,
+        'select' => 'content',
+        'is_tag' => true,
+    ]); ?>
+
+    <div>
+        <?php echo $this->insert('module/form/admin-form-article'); ?>
+    </div>
+
+    <div class="row column">
+        <h2><?php echo trans('locale') ?></h2>
+        <a href="<?php echo route_url('admin-article-add-locale', ['original_id' => $article->original_id]) ?>" class="button small"><?php echo trans('add'); ?></a>
+        <table>
+            <thead>
+            <tr>
+                <th><?php echo trans('title') ?></th>
+                <th><?php echo trans('locale') ?></th>
+                <th><?php echo trans('created') ?></th>
+                <th><?php echo trans('action') ?></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($articles_i18n as $article) {?>
+                <tr>
+                    <td><a href="<?php echo route_url('admin-article-show', ['zcode' => $article->zcode]); ?>"><?php echo $article->title; ?></a></td>
+                    <td><?php echo $article->locale_id ?></td>
+                    <td><?php echo $article->created ?></td>
+                    <td>
+                        <a href="<?php echo route_url('admin-article-delete-locale', ['zcode' => $article->zcode]) ?>"><?php echo trans('admin-delete-locale') ?></a>
+                    </td>
+
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+<?php $this->replace(); ?>

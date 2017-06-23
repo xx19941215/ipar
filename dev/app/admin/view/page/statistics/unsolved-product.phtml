@@ -1,0 +1,32 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-article-activate')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<a style="float:right;" href="<?php echo route_url('admin-statistics-list'); ?>">return</a>
+<table>
+    <thead>
+        <tr>
+            <td>Title</td>
+            <!-- <td>Icon</td> -->
+            <td>Edit</td>
+            <td>Stop</td>
+            <td>Tag</td>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($this->unsolved_rqt_set as $v) : ?>
+        <tr>
+            <td><?php echo $v->title; ?></td>
+            <!-- <td>img</td> -->
+            <td><a target="_blank" href="<?php echo route_url('admin-rqt-edit', ['eid' => $v->eid]); ?>">edit</a></td>
+            <td><a target="_blank" href="<?php echo route_url('admin-entity-deactivate', ['eid' => $v->eid]); ?>">stop</a></td>
+            <td><a target="_blank" href="<?php echo route_url('admin-ui-tag_rqt-add_multiple', ['eid' => $v->eid]) ?>">add</a></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<?php echo $this->insert('element/pagination', ['page_count' => $this->pageCount]); ?>
+<?php $this->replace(); ?>

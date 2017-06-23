@@ -1,0 +1,20 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-group-show'),
+    'breadcrumbs' => ['admin-ui-group-index']
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="page-group">
+    <?php
+    echo $this->insert('module/entity-menu-group', [
+        'group' => $this->group,
+        'select' => $this->select
+    ]);
+    ?>
+    <?php echo $this->insert('module/form/group/admin-form-group_detail-show'); ?>
+    <?php echo $this->insert('module/form/group/admin-form-group_content-show'); ?>
+</div>
+
+
+<?php $this->replace(); ?>

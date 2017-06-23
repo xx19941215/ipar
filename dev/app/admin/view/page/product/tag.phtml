@@ -1,0 +1,72 @@
+<?php
+$tags = $this->tag_set->getItems();
+?>
+
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-product-show'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_content' => false,
+        'select' => 'tag',
+        'is_tag' => 'true'
+    ]); ?>
+
+
+    <?php echo $this->insert('module/form/query'); ?>
+    <div class="row">
+        <table class="groups">
+            <thead>
+            <tr>
+                <th><?php echo trans('id'); ?></th>
+                <th><?php echo trans('title'); ?></th>
+                <th><?php echo trans('content'); ?></th>
+                <th><?php echo trans('edit');?></th>
+                <th><?php echo trans('status');?></th>
+                <th><?php echo trans('unlink');?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($tags as $tag) { ?>
+                <tr>
+                    <td><?php echo $tag->id; ?></td>
+                    <td class="tag-index-title">
+                        <a href="<?php echo route_url('admin-ui-tag-show', ['tag_id' => $tag->id]); ?>">
+                            <?php echo $tag->title; ?>
+                        </a>
+                    </td>
+                    <td><?php echo $tag->content; ?></td>
+                    <td>
+                        <a href="<?php echo route_url('admin-ui-tag-edit', ['tag_id' => $tag->id]); ?>"><?php echo trans('edit'); ?></a>
+                    </td>
+                    <?php if ($tag->status === "1") { ?>
+                        <td>
+                            <a href="<?php echo route_url('admin-ui-tag-deactivate', ['tag_id' => $tag->id]); ?>"><?php echo trans('deactivate'); ?></a>
+                        </td>
+                    <?php } ?>
+                    <?php if ($tag->status === "0") { ?>
+                        <td>
+                            <a href="<?php echo route_url('admin-ui-tag-activate', ['tag_id' => $tag->id]); ?>"><?php echo trans('activate'); ?></a>
+                        </td>
+                    <?php } ?>
+                    <td>
+                        <a href="<?php echo route_url('admin-ui-product_tag-unlink', ['eid'=>$this->product->eid,'tag_id'=>$tag->id]); ?>"><button><?php echo trans('unlink') ?></button></a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+
+        <?php echo $this->insert('element/pagination', ['page_count' => $this->tag_set->getPageCount()]); ?>
+    </div>
+</div>
+
+
+<?php $this->replace(); ?>
+

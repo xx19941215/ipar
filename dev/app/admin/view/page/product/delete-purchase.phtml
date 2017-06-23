@@ -1,0 +1,24 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-product-purchase-delete'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_abbr' => false,
+        'select' => 'purchase'
+    ]); ?>
+
+    <?php echo $this->insert('module/form/admin-form-product_purchase-delete', [
+        'product' => $this->product,
+        'product_purchase' => $this->product_purchase
+    ]); ?>
+</div>
+
+
+<?php $this->replace(); ?>

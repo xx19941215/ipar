@@ -1,0 +1,23 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-feature-content'),
+    'breadcrumbs' => ['admin-entity', 'admin-feature'],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show feature-show">
+
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->feature,
+        'is_info' => false,
+        'is_abbr' => false,
+        'select' => 'content'
+    ]); ?>
+
+    <div class="entity-content">
+        <?php echo $this->feature->getContent(); ?>
+    </div>
+</div>
+<?php $this->replace(); ?>
+

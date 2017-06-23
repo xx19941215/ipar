@@ -1,0 +1,200 @@
+.bike-activity-ad{
+    background-image: url("/img/bg_C.png");
+    background-size: cover;
+    overflow: hidden;
+    height: 850px;
+    @media screen and (max-width: 415px){
+        height: 500px;
+    }
+       .bike-activity-info{
+           max-width: 1000px;
+           color: #ffffff;
+           text-align: center;
+           margin: 250px auto;
+           @media screen and (max-width: 415px){
+               margin: 0 auto;
+           }
+           .bike-activity-title{
+               @media screen and (max-width: 881px){
+                   font-size: 60px;
+                   margin: 0 auto;
+               }
+               @media screen and (max-width: 415px){
+                   font-size: 40px;
+                   margin: 0 auto;
+                   margin-top: 150px;
+                   margin-bottom: 50px;
+               }
+              font-size: 60px;
+              font-weight:800;
+           }
+           .bike-activity-message{
+               @media screen and (max-width: 881px){
+                   font-size: 40px;
+               }
+               @media screen and (max-width: 415px){
+                   font-size: 20px;
+               }
+              font-size: 40px;
+              font-weight: 700;
+           }
+           .bike-activity-content{
+               @media screen and (max-width: 881px){
+                   font-size: 25px;
+               }
+               @media screen and (max-width: 415px){
+                   font-size: 15px;
+                   max-width: 300px;
+                   padding: 0;
+               }
+               max-width: 600px;
+               margin: 2em auto;
+               font-size: 24px;
+               .bike-activity-join{
+                   padding: 0
+               }
+               .bike-activity-read{
+                   padding: 0
+               }
+
+            }
+           .bike-activity-deadline{
+               position: relative;
+               font-size: 24px;
+               top: 150px;
+               right: -700px;
+               @media screen and (max-width: 1688px){
+                   right: -500px;
+               }
+               @media screen and (max-width: 881px){
+                   right: -200px;
+               }
+               @media screen and (max-width: 415px){
+                   top: 100px;
+                   right: -60px;
+                   font-size: 17px;
+
+               }
+            }
+      }
+}
+.bike-activity-brandcontainer{
+  text-align: center;
+  margin-top: 150px;
+  padding-bottom: 80px;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+.bike-activity-brand{
+     max-width: 900px;
+     display: inline-block;
+     overflow: hidden;
+    .bike-activity-brandofo{
+        float: left;
+        img{
+            width: 240px;
+            @media screen and (max-width: 415px){
+            width: 15em;
+            }
+        }
+        button{
+            display: block;
+            width: 150px;
+            height: 50px;
+            border:2px solid;
+            text-align: center;
+            margin: 50px auto;
+            @media screen and (max-width: 415px){
+            margin-bottom: 0;
+            }
+        }
+    }
+    .bike-activity-vs{
+        float: left;
+        font-size: 70px;
+        font-weight: 900;
+        height:240px;
+        text-align: center;
+        line-height: 240px;
+        margin: 0 auto;
+        @media screen and (max-width: 415px){
+        height: 100px;
+        line-height: 100px;
+        }
+
+    }
+    .bike-activity-brandmoby{
+        float: left;
+        img{
+            display: block;
+            width: 240px;
+            margin: 0 auto;
+            @media screen and (max-width: 415px){
+                width: 15em;
+            }
+        }
+        button{
+            display: block;
+            width: 150px;
+            height: 50px;
+            border:2px solid;
+            text-align: center;
+            margin: 50px auto;
+        }
+    }
+}
+.bike-activity-detail{
+  display: block;
+  max-width: 1000px;
+  margin: 0 auto;
+  p{
+    text-align: center;
+    font-family: Microsoft Yahei;
+  }
+    .bike-activity-title{
+        p{
+            font-size: 24px;
+            font-weight: 800;
+            margin:35px 0;
+        }
+    }
+    .bike-activity-rule{
+        p:nth-child(1){
+            margin-top: 70px;
+        }
+    }
+    .bike-activity-forwards{
+        p:nth-child(1){
+            margin-top: 70px;
+        }
+    }
+}
+.bike-activity-ideapar{
+    margin: 0 auto;
+    width: 200px;
+    text-align: center;
+    img{
+        margin-top: 35px;
+        width: 100%;
+    }
+    p{
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: 900;
+    }
+}
+
+.ipar-ui-page-activity_bike {
+    .page-body {
+        margin-top: 0;
+        padding: 0;
+        max-width: 100%;
+    }
+}
+
+.ipar-ui-page-activity-index {
+    .page-body {
+        margin-top: 0;
+        padding: 0;
+        max-width: 100%;
+    }
+}

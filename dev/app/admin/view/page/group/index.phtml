@@ -1,0 +1,123 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-group'),
+    'breadcrumbs' => ['admin-ui-group-index']
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="page-group-list">
+    <!--搜索框-->
+    <?php echo $this->insert('module/form/group-query', [
+        'buttons' => [
+            ['link' => route_url('admin-ui-group-add'), 'text' => trans('add-group')],
+            ['link' => route_url('admin-ui-company-add'), 'text' => trans('add-company')],
+        ]
+    ]); ?>
+
+    <div class="groups">
+        <table>
+            <thead>
+            <th class="group-list-title">
+                <span class="group-type"><?php echo trans("type") ?></span>
+                <span class="group-fullname"><?php echo trans("fullname") ?></span>
+            </th>
+            <th class="group-establish-time"><?php echo trans("established_time") ?></th>
+            <th>
+                <?php echo trans("operation") ?>
+            </th>
+            </thead>
+            <tbody>
+            <?php foreach ($this->group_set->getItems() as $group) {
+                $type_key = get_type_key($group->type_id);
+                ?>
+                <tr>
+                    <td class="group-info">
+                        <p>
+                            <span class="group-type">
+                                <button class="button <?php if ($group->status == 1) echo 'success'; ?>">
+                                    <?php echo get_type_key($group->type_id); ?>
+                                </button>
+                            </span>
+                            <span class="group-fullname">
+                                <a href="<?php echo route_url("admin-ui-{$type_key}-show", ['gid' => $group->gid]); ?>" target="_blank">
+                                    <?php echo $group->fullname; ?>
+                                </a>
+                            </span>
+                        </p>
+                        <p class="group-time-info">
+                            <span class="group-created">
+                                <span class="group-created-person">
+                                    <?php echo "Created: " . user($group->uid)->nick; ?>
+                                </span>
+                                <span class="group-created-time">
+                                    <?php echo $group->created; ?>
+                                </span>
+                            </span>
+                            <span class="group-changed">
+                                <span class="group-changed-person">
+                                    <?php echo "Last edit: " . user($group->uid)->nick; ?>
+                                </span>
+                                <span class="group-changed-time">
+                                    <?php echo $group->changed; ?>
+                                </span>
+                            </span>
+                        </p>
+                        <div class="group-content-box">
+                            <div class="group-logo">
+                                <a href="<?php echo route_url("admin-ui-{$type_key}-show", ['gid' => $group->gid]); ?>" target="_blank">
+                                    <img src="<?php
+                                    if (json_decode($group->logo, true)) {
+                                        echo img_src($group->getLogo(), 'small');
+                                    } else {
+                                        echo static_url('/img/default_img.png');
+                                    }
+                                    ?>">
+                                </a>
+                            </div>
+                            <div class="group-description">
+                                <a class="see-more" href="<?php echo route_url("admin-ui-{$type_key}-show",
+                                    ['gid' => $group->gid]); ?>" target="_blank">
+                                    <?php if (!$group->content) {
+                                        echo trans('no-content');
+                                    } ?>
+                                    <?php echo mb_substr($group->content, 0, 50); ?>
+                                    <?php if (mb_strlen($group->content) > 50) { ?>
+                                        <span><?php echo '...' . trans('read-more'); ?></span>
+                                    <?php } ?>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="group-establish-time">
+                        <?php echo $group->established; ?>
+                    </td>
+                    <td class="group-status">
+                        <p>
+                            <?php if ($group->status == 1) { ?>
+                                <a href="<?php echo route_url("admin-ui-{$type_key}-deactivate", ['gid' => $group->gid]) ?>">
+                                    <?php echo trans('deactivate') ?>
+                                </a>
+                            <?php } else { ?>
+                                <a href="<?php echo route_url("admin-ui-{$type_key}-activate", ['gid' => $group->gid]) ?>">
+                                    <?php echo trans('activate') ?>
+                                </a>
+                            <?php } ?>
+                        </p>
+                        <p>
+                            <a href="<?php echo route_url("admin-ui-{$type_key}-edit", ['gid' => $group->gid]); ?>"
+                               target="_blank">
+                                <?php echo trans('edit'); ?>
+                            </a>
+                        </p>
+                        <?php if ($group->status == 0) {
+                            echo '<p><a href="' . route_url("admin-ui-{$type_key}-delete", ['gid' => $group->gid]) . '">' . trans('delete') . '</a></p>';
+                        } ?>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<?php echo $this->insert('element/pagination', ['page_count' => $this->group_set->getPageCount()]); ?>
+<?php $this->replace(); ?>

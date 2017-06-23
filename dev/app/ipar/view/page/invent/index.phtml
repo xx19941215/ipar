@@ -1,0 +1,24 @@
+<?php $this->layout('page'); ?>
+
+
+<?php $this->section('page-body'); ?>
+
+
+    <div class="page-invent-list">
+        <div class="row">
+            <div class="index-idea-list-wrap">
+                <h2>
+                    <span><?php echo trans('page-invent-list-title'); ?></span>
+                </h2>
+
+                <div class="index-idea-list">
+                    <?php echo $this->insert('ipar/index/include/invents', [
+                        'invents' => $this->invents
+                    ]); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php $this->append(); ?>
+

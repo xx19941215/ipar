@@ -1,0 +1,21 @@
+<?php
+$this->layout('layout/page', [
+]);
+?>
+
+<?php $this->section('main'); ?>
+<div class="user-setting">
+    <?php echo $this->insert('module/user-setting-menu',[
+        'select' => 'profile-change',
+        'user' => $this->user
+    ]); ?>
+    <div class="setting-wrap">
+        <?php echo $this->insert('module/profile', [
+            'user' => $this->user
+        ]); ?>
+    </div>
+</div>
+
+
+<?php $this->replace(); ?>
+

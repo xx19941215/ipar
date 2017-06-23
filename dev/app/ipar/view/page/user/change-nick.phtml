@@ -1,0 +1,21 @@
+<?php
+$this->layout('layout/page', [
+]);
+?>
+
+<?php $this->section('main'); ?>
+<div class="user-setting">
+    <?php echo $this->insert('module/user-setting-menu',[
+        'select' => 'account-info'
+    ]); ?>
+    <div class="setting-wrap">
+        <h2 class="setting-breadcrumb">
+            <?php echo trans('basic-info'); ?> > <?php echo trans('change-nick'); ?>
+        </h2>
+        <?php echo $this->insert('module/form/user_setting/ipar-form-nick-name'); ?>
+    </div>
+</div>
+
+
+<?php $this->replace(); ?>
+

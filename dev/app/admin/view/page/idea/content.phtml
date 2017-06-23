@@ -1,0 +1,23 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-idea-content'),
+    'breadcrumbs' => ['admin-entity', 'admin-idea'],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show idea-show">
+
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->idea,
+        'is_info' => false,
+        'is_abbr' => false,
+        'select' => 'content'
+    ]); ?>
+
+    <div class="entity-content">
+        <?php echo $this->idea->getContent(); ?>
+    </div>
+</div>
+<?php $this->replace(); ?>
+

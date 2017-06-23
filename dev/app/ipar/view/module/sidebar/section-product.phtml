@@ -1,0 +1,20 @@
+<?php
+$product_set = service('entity')->schEntitySet([
+    'type_key' => 'product'
+]);
+$products = $product_set->setCountPerPage(5)->getItems();
+?>
+
+<div class="section">
+    <h3 class="section-title"><?php echo trans('hot-product'); ?><a href="<?php echo route_url('ipar-product-index')?>" class="float-right"><?php echo trans("more")?>+</a></h3>
+    <div class="section-body">
+    <?php foreach ($products as $product) { ?>
+        <div class="item">
+        <a href="<?php echo route_url('ipar-product-show', ['zcode' => $product->zcode]); ?>">
+            <?php echo title_text($product->title); ?>
+        </a>
+        </div>
+    <?php } ?>
+    </div>
+</div>
+

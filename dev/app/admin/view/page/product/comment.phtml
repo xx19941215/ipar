@@ -1,0 +1,70 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('%s-tag', $this->product->title),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+$entity = $this->product;
+$comments = $this->comment_set->getItems();
+?>
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_content' => false,
+        'select' => 'comment',
+        'is_tag' => true,
+    ]); ?>
+
+    <div class="row">
+        <table class="groups">
+            <thead>
+            <tr>
+                <th><?php echo trans('id'); ?></th>
+                <th><?php echo trans('content'); ?></th>
+                <th><?php echo trans('status'); ?></th>
+                <th><?php echo trans('user'); ?></th>
+                <th><?php echo trans('create_time');?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($comments as $comment) { ?>
+                <tr>
+                    <td><?php echo $comment->id; ?></td>
+                    <td class="">
+                        <?php echo $comment->content; ?>
+                    </td>
+                    <td class="">
+
+                        <?php if ($comment->status == 1) {
+                            ?>
+                            <a href="<?php echo route_url('admin-ui-product_comment-deactivate',
+                                ['eid' => $entity->eid, 'comment_id' => $comment->id]) ?>">
+                                <?php echo trans('activate');?>
+                            </a>
+                        <?php } ?>
+                        <?php if ($comment->status == 0) {
+                            ?>
+                            <a href="<?php echo route_url('admin-ui-product_comment-activate',
+                                ['eid' => $entity->eid, 'comment_id' => $comment->id]) ?>">
+                                <?php echo trans('deactivate');?>
+                            </a>
+                        <?php } ?>
+                    </td>
+                    <td>
+                        <?php echo $comment->getUser()->nick; ?>
+                    </td>
+                    <td>
+                        <?php echo $comment->created;?>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+
+        <?php echo $this->insert('element/pagination', ['page_count' => $this->comment_set->getPageCount()]); ?>
+    </div>
+
+</div>
+
+<?php $this->replace(); ?>

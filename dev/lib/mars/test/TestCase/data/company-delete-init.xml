@@ -1,0 +1,19 @@
+<?xml version="1.0"  ?>
+<dataset>
+    <company gid="1" legal_person="test_person1" reg_address="test_addr1" company_address="test_company_addr1"
+             email="company1@email.com" admin_uid="983" is_claimed="1"/>
+    <company gid="4" legal_person="test_person2" reg_address="test_addr2" company_address="test_company_addr2"
+             email="company2@email.com" admin_uid="983" is_claimed="1"/>
+    <group gid="1" uid="983" zcode="1" type_id="15" name="testname1" fullname="fullname1" content="test-content1"
+           logo=""
+           website="http://test.com" size_range_id="1" status="0" established="2016-07-01 00:00:00"/>
+    <group gid="2" uid="983" zcode="2" type_id="14" name="testname2" fullname="fullname2" content="test-content2"
+           logo=""
+           website="http://test.com" size_range_id="1" status="0" established="2016-07-01 00:00:00"/>
+    <group gid="3" uid="983" zcode="3" type_id="14" name="testname3" fullname="fullname3" content="test-content3"
+           logo=""
+           website="http://test.com" size_range_id="1" status="1" established="2016-07-01 00:00:00"/>
+    <group gid="4" uid="983" zcode="4" type_id="15" name="testname4" fullname="fullname4" content="test-content4"
+           logo=""
+           website="http://test.com" size_range_id="1" status="1" established="2016-07-01 00:00:00"/>
+</dataset>

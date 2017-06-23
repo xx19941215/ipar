@@ -1,0 +1,65 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => 'admin-entity'
+]); ?>
+
+<?php $this->section('css'); ?>
+<style>
+.date {
+    font-size: 10px;
+    width: 75px;
+}
+</style>
+<?php $this->append(); ?>
+
+<?php $this->section('content'); ?>
+<div class="entities">
+    <h1>Admin Entity</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>eid</td>
+                <td>type</td>
+                <td>title</td>
+                <td>abbr</td>
+                <td>status</td>
+                <td>created</td>
+                <td>changed</td>
+                <td colspan="2">action</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->entities as $entity) { ?>
+            <tr>
+                <td><?php echo $entity->eid; ?></td>
+                <td><?php echo $entity->type; ?></td>
+                <td><?php echo $entity->getTitle(); ?></td>
+                <td>
+                    <?php echo $entity->abbr; ?><br>
+                    <?php if ($imgs = $entity->getImgs()) { ?>
+                        <?php foreach ($imgs as $img) { ?>
+                            <img src="<?php echo img_src($img, 'small'); ?>">
+                        <?php } ?>
+                    <?php } ?>
+                </td>
+                <td><?php echo $entity->status; ?></td>
+                <td class="date"><?php echo $entity->created; ?></td>
+                <td class="date"><?php echo $entity->changed; ?></td>
+                <td>
+                    <?php if ($entity->status == 1) { ?>
+                        <a href="<?php echo route_url('admin-entity-suspend', ['eid' => $entity->eid]); ?>">suspend</a>
+                    <?php } else { ?>
+                        <a href="<?php echo route_url('admin-entity-active', ['eid' => $entity->eid]); ?>">active</a>
+                    <?php } ?>
+                </td>
+                <td>
+                    <a href="<?php echo route_url('admin-entity-delete', ['eid' => $entity->eid]); ?>">delete</a>
+                </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+
+<?php echo $this->insert('include/page-nav-simple', ['items' => $this->entities]); ?>
+
+<?php $this->replace(); ?>

@@ -1,0 +1,35 @@
+<?php
+$this->layout('layout/ipar', [
+    'html_title' => $this->feature->title,
+    'header_menu' => 'ipar-feature-index'
+]);
+?>
+
+<?php $this->section('main'); ?>
+
+<?php echo $this->insert('module/feature-show-top', [
+    'feature' => $this->feature,
+    'select' => 'product'
+]); ?>
+
+<div class="product-set-wrap"></div>
+
+<div class="loading" data-action="feature_product" data-page="1" data-eid="<?php echo $this->feature->eid; ?>">
+    <span class="one"><?php echo trans('loading'); ?></span>
+    <span class="two"><?php echo trans('see-more'); ?></span>
+</div>
+<?php /*
+<div class="story-set-wrap"></div>
+
+<div class="loading" data-action="story" data-page="1" data-eid="<?php echo $this->feature->eid; ?>">
+    <div class="one">
+        <a href="javascript:;" class="trigger"><?php echo trans('see-more'); ?></a>
+    </div>
+    <div class="two">
+        <?php echo trans('no-more'); ?>
+    </div>
+</div>
+ */ ?>
+
+<?php $this->replace(); ?>
+

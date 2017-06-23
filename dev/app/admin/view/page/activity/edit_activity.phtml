@@ -1,0 +1,46 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-article-activate')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+
+<div class="activity">
+    <h2>---<?php echo trans('admin-activity-edit'); ?>---</h2>
+    <a style="display:block;float:right;" href="<?php echo route_url('admin-activity-list'); ?>">return</a>
+    <form action="<?php echo route_url('admin-ui-activity-edit-activity'); ?>" method="post">
+        <?php echo csrf_field(); ?>
+        <div class="title">
+            <h3><?php echo trans('admin-activity-title'); ?>*</h3>
+            <input type="text" name="title" value="<?php echo $this->set[0]->title; ?>">
+        </div>
+        <div class="description">
+            <h3><?php echo trans('admin-activity-chief-title'); ?>*</h3>
+            <input type="text" name="description" value="<?php echo $this->set[0]->description; ?>">
+        </div>
+        <div class="createtime">
+            <h3><?php echo trans('admin-activity-start-time'); ?>*</h3>
+            <input type="datetime" name="createtime" value="<?php echo $this->set[0]->created; ?>">
+        </div>
+        <div class="endtime">
+            <h3><?php echo trans('admin-activity-end-time'); ?>*</h3>
+            <input type="datetime" name="endtime" value="<?php echo $this->set[0]->expired; ?>">
+        </div>
+        <h3><?php echo trans('admin-activity-rule'); ?>*</h3>
+        <textarea name="rule" rows="8" cols="40">
+            <?php echo $this->set[0]->rule; ?>
+        </textarea>
+        <input type="hidden" name="id" value="<?php echo $this->set[0]->id; ?>">
+        <button type="submit"><?php echo trans('submit'); ?></button>
+    </form>
+</div>
+
+<script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'rule' );
+</script>
+
+
+
+<?php $this->replace(); ?>

@@ -1,0 +1,40 @@
+.tag-time{
+    ul{
+        margin-left: 0px;
+        li{
+            display:inline-block;
+            margin-right: 30px;
+        }
+    }
+}
+
+.tag-body{
+    border:solid 0.4px #000000;
+    width: 100%;
+}
+
+.tag-index-title{
+    a{
+        color: #000;
+        font-weight: bold;
+    }
+}
+
+.entity-top-tag{
+    height:25px;
+    width:800px;
+    overflow:hidden;
+    span{
+        border:0px solid;
+        border-radius: 30px;
+        padding: 3px 10px;
+        margin-right: 6px;
+        background-color: #eff6fa;
+        color:#259;
+        font-size:14px;
+        &:hover{
+            background-color: #259;
+            color: #FFFFFF;
+        }
+    }
+}

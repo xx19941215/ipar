@@ -1,0 +1,7 @@
+<?php
+namespace Mars\Dto;
+
+class EntityTagDto extends TagDto {
+    public $eid;
+}
+

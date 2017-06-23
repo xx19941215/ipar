@@ -1,0 +1,278 @@
+<?php $this->layout('layout/page', [
+    'csses' => [
+        'ipar.css' => 1,
+        'page.css' => 1
+    ]
+]); ?>
+
+<?php $this->section('main'); ?>
+<!--karan's code start main-->
+<ul class="aboutusNav small-12 medium-4 large-4">
+    <li class="small-4 current"><a href="#aboutusInfo"><?php echo trans('about-us-who-we-are') ?></a></li>
+    <li class="small-4"><a href="#aboutusContact"><?php echo trans('about-us-contact-us') ?></a></li>
+    <li class="small-4 "><a href="#aboutusTeam"><?php echo trans('about-us-party-members') ?></a></li>
+</ul>
+<div class="aboutusInfo" id="aboutusInfo">
+    <div class="aboutusSection aboutusCompany">
+        <h2 class="title"><?php echo trans('about-us-ideapar-requirement-driven-platform'); ?></h2>
+        <div class="container">
+            <p><?php echo trans('about-us-We-make-innovation-evoke-requirement-and-inspire-possibility'); ?></p>
+        </div>
+    </div>
+    <div class="aboutusSection aboutusMission">
+        <h2 class="title"><?php echo trans('about-us-our-mission'); ?></h2>
+        <div class="container">
+            <p><?php echo trans('about-us-gather-wisdom-and-ideas-to-create-a-fair-platform'); ?></p>
+            <p><?php echo trans('about-us-help-small-and-medium-sized-manufacturing-businesses'); ?></p>
+            <p><?php echo trans('about-us-a-long-way-to-go-time-call-for-innovation'); ?></p>
+        </div>
+    </div>
+    <div class="aboutusSection aboutusVision">
+        <h2 class="title"><?php echo trans('about-us-our-vision'); ?></h2>
+        <div class="container">
+            <p><?php echo trans('about-us-our-combine-global-resource-become-creative-engines'); ?></p>
+        </div>
+    </div>
+</div>
+<div class="requirements">
+    <div class="requireSection requireMeaning">
+        <h2 class="title"><?php echo trans('about-us-How-to-define-a-requirement'); ?></h2>
+        <div class="container">
+            <p><?php echo trans('about-us-Base-on-the-scenario-expected-satisfy-you-with-comfort.'); ?></p>
+        </div>
+    </div>
+    <div class="requireSection requireQuestion">
+        <h2 class="title"><?php echo trans('about-us-Customers-dont-know-what-they-want'); ?></h2>
+        <div class="container">
+            <p><?php echo trans('about-us-Ideapar-will-let-the-real-fun-begin'); ?></p>
+        </div>
+    </div>
+    <div class="requireSection requireUser">
+        <h2 class="title"><?php echo trans('about-us-If-you-love-to'); ?></h2>
+        <div class="container">
+            <p><?php echo trans('about-us-focus-on-new-things'); ?></p>
+            <p><?php echo trans('about-us-identify-gaps'); ?></p>
+            <p><?php echo trans('about-us-invent-and-create'); ?></p>
+            <p><?php echo trans('about-us-persure-perfection'); ?></p>
+            <p><?php echo trans('about-us-think-independently'); ?></p>
+            <p>
+                <?php echo trans('about-us-Ideapar-is-your-choice-We-let-infinite-discoveries-and-possibilities-consolidate-each-other'); ?>
+            </p>
+        </div>
+    </div>
+    <div class="requireSection requireQuest">
+        <h2 class="title"><?php echo trans('about-us-Greatness-is-within-our-reach'); ?></h2>
+    </div>
+</div>
+
+<div class="aboutusContact" id="aboutusContact">
+    <div class="aboutusSection aboutusMap">
+        <h2 class="title"><?php echo trans('about-us-contact-us'); ?></h2>
+        <div class="container clearfix">
+            <div class="map column small-12 medium-7">
+                <!--百度地图容器-->
+                <div id="allmap" style="width：100%;max-width：606px;height:280px;overflow：hidden"></div>
+            </div>
+            <div class="small-12 medium-1" style="height:10px;"></div>
+            <div class="txt column small-12 medium-4">
+                <p><i class="icon icon-22dh"></i>上海市杨浦区国定路335号2号楼2110室</p>
+                <p><i class="icon icon-dianhua"></i>021-55520263</p>
+                <p><i class="icon icon-dianziyoujian"></i>service@ideapar.com</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="aboutusTeam" id="aboutusTeam">
+    <div class="aboutusSection container">
+        <h2 class="title"><?php echo trans('about-us-party-members'); ?></h2>
+        <div class="team">
+            <div class="row medium-up-4">
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/zhouyu.png'); ?>">
+                    </div>
+                    <h3 class="name">Ivan</h3>
+                    <div class="intro">“融全球资源，做创造引擎”</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/zhanjunhui.png'); ?>">
+                    </div>
+                    <h3 class="name">辉&Omega;</h3>
+                    <div class="intro">专注与网站开放建设相关的技术领域，喜欢运动，喜欢旅游，喜欢专研新技术</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/xuzhaoxiong.png'); ?>">
+                    </div>
+                    <h3 class="name">UFO</h3>
+                    <div class="intro">7 年的 IT 产品设计/开发/运营经验，涉及 20+款（移动）互联网产品的设计/开发/运营，关注行业格局、用户体验、盈利模式的产品人</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/shengjialin.png'); ?>">
+                    </div>
+                    <h3 class="name">Jelly</h3>
+                    <div class="intro">专注设计趋势，为设计而狂热，个人多年涉及互联网（移动，PC端等）方面具有丰富经验，用户界面及体验做到极致。</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/pengyanhua.png'); ?>">
+                    </div>
+                    <h3 class="name">延华</h3>
+                    <div class="intro">对HTML5、CSS3以及页面应用体验有着非常深入的研究，对Pc端、Mobile端页面开发有非常丰富的实战经验。</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/zhangmengyun.png'); ?>">
+                    </div>
+                    <h3 class="name">梦云</h3>
+                    <div class="intro">等待是一种美好的状态，因为它包含了无数的可能性。愿和大家一起进步一起成长，团结就是力量！</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/zhoumeng.png'); ?>">
+                    </div>
+                    <h3 class="name">Vermouth</h3>
+                    <div class="intro">别忘了答应自己要做的事情，别忘了答应自己要去的地方，无论有多难，有多远。</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/liuyuchen.png'); ?>">
+                    </div>
+                    <h3 class="name">主播</h3>
+                    <div class="intro">永无止尽的好奇心，天马星空的想象和层出不穷的创意带给我无限的生活乐趣，享受用音乐的美感表达思考。</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/yujinyan.png'); ?>">
+                    </div>
+                    <h3 class="name">柯南</h3>
+                    <div class="intro">喜欢技术，热爱钻研，追求细节，珍惜每一次机会，不断学习，做喜欢的事。</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/yangchaolin.png'); ?>">
+                    </div>
+                    <h3 class="name">阳先生</h3>
+                    <div class="intro">爱生活，爱运动，生活中的修炼者，嗯，正准备做生活中的浪人</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/zhangmingwu.png'); ?>">
+                    </div>
+                    <h3 class="name">Ritea</h3>
+                    <div class="intro">爱吃爱玩爱修图的工科女～励志成为斜杠青年&生活家</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/zoushengyu.png'); ?>" width="180">
+                    </div>
+                    <h3 class="name">Christy</h3>
+                    <div class="intro">凡事尽力，无愧于心，一切都是最好的安排</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/fangyuqiong.png'); ?>">
+                    </div>
+                    <h3 class="name">Knapweed</h3>
+                    <div class="intro">神经病人思维广，弱智儿童欢乐多</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/zhangxiner.png'); ?>">
+                    </div>
+                    <h3 class="name">馨儿</h3>
+                    <div class="intro">七百页的书都啃不下来，搞什么技术！</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/xiaoke.png'); ?>" width="180">
+                    </div>
+                    <h3 class="name">Karan</h3>
+                    <div class="intro">活在忙与闲的两种境界里，才能俯仰自得，享受生活的乐趣，成就人生的意义!</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/changyuanjian.png'); ?>" width="180">
+                    </div>
+                    <h3 class="name">Jason</h3>
+                    <div class="intro">高山仰止，景行行止，虽不能至，心向往之。</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/liangbing.png'); ?>" width="180">
+                    </div>
+                    <h3 class="name">饼饼</h3>
+                    <div class="intro">我是一个纠结的大瓶子。</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/zhangyisheng.jpg'); ?>" width="180">
+                    </div>
+                    <h3 class="name">Navier</h3>
+                    <div class="intro">宝剑锋从磨砺出，梅花香自苦寒来</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/huyangfeng.jpg'); ?>" width="180">
+                    </div>
+                    <h3 class="name">felix</h3>
+                    <div class="intro">相信团队的力量！更相信年轻团队的力量！</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/xiaoxiao.jpg'); ?>" width="180">
+                    </div>
+                    <h3 class="name">萧潇</h3>
+                    <div class="intro">但行好事，莫问前程</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/luolingying.png'); ?>" width="180">
+                    </div>
+                    <h3 class="name">罗伶颖</h3>
+                    <div class="intro">生活变成自己爱的样子</div>
+                </div>
+                <div class="column teamMember">
+                    <div class="photo">
+                        <img src="<?php echo static_url('/img/liuwenbo.png'); ?>" width="180">
+                    </div>
+                    <h3 class="name">刘文博</h3>
+                    <div class="intro">不断的学习，不断的进步</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    (function ready(f) {
+        if (document.readyState != 'loading') {
+            f();
+        } else {
+            document.addEventListener('DOMContentLoaded', f);
+        }
+    })(loadBdMap);
+
+    function loadBdMap() {
+        // 百度地图API功能
+        console.log('starting to load BDMap');
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point(121.515386, 31.302911);
+        var marker = new BMap.Marker(point);  // 创建标注
+        map.addOverlay(marker);              // 将标注添加到地图中
+        map.centerAndZoom(point, 15);
+        var opts = {
+            width: 100,     // 信息窗口宽度
+            height: 50,     // 信息窗口高度
+            title: "点趴网" // 信息窗口标题
+        }
+        var infoWindow = new BMap.InfoWindow("地址：复旦科技园创业中心", opts);  // 创建信息窗口对象
+        marker.addEventListener("click", function () {
+            map.openInfoWindow(infoWindow, point); //开启信息窗口
+        });
+        map.addControl(new BMap.NavigationControl());        //添加控件和比例尺
+    }
+
+</script>
+<?php $this->replace(); ?>

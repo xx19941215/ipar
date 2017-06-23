@@ -1,0 +1,8 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('friend-link'),
+    'breadcrumbs' => ['']
+]); ?>
+<?php $this->section('page-body'); ?>
+    <h1><?php echo trans('admin-ui-friend-link-edit');?></h1>
+<?php echo $this->insert('module/form/friend_link/admin-form-friend-link');?>
+<?php $this->replace(); ?>

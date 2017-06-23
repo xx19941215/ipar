@@ -1,0 +1,27 @@
+<?php
+if (!$entity = $this->entity) {
+    _debug('entity cannot be empty');
+}
+$type_key = $entity->getTypeKey();
+?>
+
+
+<div class="entity-show-top">
+    <div class="entity-menu">
+        <?php echo $this->insert("module/entity-menu-$type_key", [
+            $type_key => $entity,
+            'select' => $this->select
+        ]); ?>
+    </div>
+    <?php echo $this->insert('module/entity', [
+        'entity' => $entity,
+        'tag_set' => $this->tag_set,
+        'is_info' => $this->is_info,
+        'is_abbr' => $this->is_abbr,
+        'is_content' => $this->is_content,
+        'is_tag' => $this->is_tag,
+        'select' => $this->select
+    ]); ?>
+
+
+</div>

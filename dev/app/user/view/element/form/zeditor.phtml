@@ -1,0 +1,7 @@
+<div class="zeditor-wrap"<?php if ($this->error) echo ' class="error"'; ?>>
+<div class="zeditor" data-name="<?php echo $this->name; ?>" data-placeholder="<?php echo $this->placeholder; ?>"
+    data-upload="<?php echo urlencode(route_url('img-upload-figure')); ?>"><?php echo $this->value; ?></div>
+<?php if ($this->error) { ?>
+    <div class="error"><?php echo $this->error; ?></div>
+<?php } ?>
+</div>

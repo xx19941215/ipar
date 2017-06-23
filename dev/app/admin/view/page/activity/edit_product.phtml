@@ -1,0 +1,29 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-article-activate')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="activity">
+    <a style="display:block;float:right;" href="<?php echo route_url('admin-activity-list'); ?>">return</a>
+    <div class="product">
+        <?php foreach ($this->set as $k => $v) : ?>
+        <form enctype="multipart/form-data" class="" action="<?php echo route_url('admin-ui-activity-change-product-img'); ?>?id=<?php echo $v->id; ?>" method="post">
+            <?php echo csrf_field(); ?>
+            <div class="product1">
+                <div>
+                    <span>product:</span>
+                </div>
+                <div class="img-product" style="height:100px;width:400px;background-color:gray;">
+                    <img src="<?php echo $v->changed_img; ?>" style="height:100px;width:400px;" alt="" />
+                </div>
+                <input type="file" name="file" accept="image/x-png, image/gif, image/jpeg" value="修改图片" />
+                <input type="submit" value="<?php echo trans('submit'); ?>" />
+            </div>
+        </form>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<?php $this->replace(); ?>

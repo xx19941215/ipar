@@ -1,0 +1,48 @@
+<div class="purchase-promotes">
+    <h3>
+        <?php echo trans('go-to-purchase-product'); ?>
+        <div class="sign">
+            <span>Ad</span>
+            <div class="alert">以下区域为广告链接，点击后将跳转至商家页面
+                <i class="empty"></i>
+            </div>
+        </div>
+    </h3>
+
+    <?php
+    $i = 0;
+    foreach ($this->product_purchase_set->getItems() as $product_purchase) { ?>
+        <?php
+        if ((date_diff(date_create($product_purchase->expired), date_create())->invert != 0) &&
+            (date_diff(date_create($product_purchase->started), date_create())->invert != 1)
+        ) {
+            $i++;
+            ?>
+            <p>
+                <p class="price">
+                    <span class="currency">
+                    <?php
+                         $currency_symbol = (config()->get('currency')->all())[$product_purchase->currency]['1'];
+                         echo $currency_symbol;
+                    ?>
+                    </span>
+                    <span><?php echo $product_purchase->price; ?></span>
+                </p>
+                <a class="go-purchase" href="<?php echo route_url('ipar-ui-product_purchase-go', [
+                        'product_purchase_id' => $product_purchase->id
+                    ]) ?>" target="_blank">
+                    <img src=" <?php echo 'http://favicon.byi.pw/?url=' . $product_purchase->website; ?>">
+                    <?php echo trans("go-$product_purchase->website-purchase"); ?>
+                </a>
+            </p>
+        <?php } ?>
+    <?php }
+    if ($i == 0) {
+        echo '<div class="replaced">';
+        echo '<img src="' . static_url("img/shangdianruzhu.png") . '">';
+        echo '<p>' . trans("please-send-email-to-us") . '：<a href="mailto:market@ideapar.com">market@ideapar.com</a></p>';
+        echo '</div>';
+    }
+    ?>
+
+</div>

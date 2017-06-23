@@ -1,0 +1,64 @@
+<?php
+$this->layout('layout/user', [
+    'html_title' => trans('user-login'),
+    'selected_nav_item' => 'login'
+]);
+$errors = $this->errors ? $this->errors : [];
+?>
+
+<?php $this->section('main'); ?>
+<form method="post" action="<?php echo route_url('login-post'); ?>">
+
+    <?php echo csrf_field(); ?>
+
+    <ul class="menu vertical">
+        <li class="item">
+            <?php echo $this->insert('element/form/input-field', [
+                'type' => 'text',
+                'name' => 'account',
+                'required' => true,
+                'placeholder' => trans('mobilephone-or-email-login'),
+                'value' => $this->account,
+                'data_type' => '',
+                'has_error' => isset($errors['account'])
+            ]); ?>
+        </li>
+        <!-- .item -->
+        <li class="item">
+            <?php echo $this->insert('element/form/input-field', [
+                'type' => 'password',
+                'name' => 'password',
+                'required' => true,
+                'placeholder' => trans('password'),
+                'value' => '',
+                'data_type' => '',
+                'has_error' => isset($errors['password'])
+            ]); ?>
+            <i class="icon icon-eye-close view-password"></i>
+        </li>
+    </ul>
+    <?php echo $this->insert('element/errorbox'); ?>
+    <div>
+        <button class="button submit"><?php echo trans('login'); ?></button>
+    </div>
+    <div class="line">
+        <a class="pwdlink" href="<?php echo route_url('mobile-forgot-password'); ?>">
+            <?php echo trans('forgot-password'); ?>
+        </a>
+    </div>
+</form>
+
+<?php $this->stop(); ?>
+
+<?php $this->section('script'); ?>
+<script>
+    (function () {
+        'use strict';
+        var config = window.config || {};
+        config.wx_state = '<?php echo $this->wx_state; ?>';
+        config.wb_state = '<?php echo $this->wx_state; ?>';
+        config.wx_appid = '<?php echo $this->config->get('wx.appid'); ?>';
+        config.wx_oauth_callback = '<?php echo route_url('wx-oauth-callback'); ?>';
+    }());
+</script>
+<?php $this->append(); ?>

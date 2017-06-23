@@ -1,0 +1,66 @@
+#!/bin/bash
+
+cmd_dir () {
+    dir=$1
+    if [[ -d $dir ]]; then
+        if [[ -d "${dir}/.git" ]]; then
+            printf "$dir\n"
+            cd $dir
+
+            git checkout develop
+            git pull origin develop
+
+            git checkout master
+            git merge --no-ff -m 'merge develop into master' develop
+            if [ -n "$(git remote | grep ideapar.com)" ]; then
+                git push ideapar.com master:zjh/master
+            fi
+            git checkout develop
+
+            printf "\n"
+        fi
+    fi
+}
+
+base_dir=$(pwd)
+arg1=$1
+
+
+cmd_dir $base_dir
+
+
+lib_base_dir="$base_dir/src/lib"
+cd $lib_base_dir
+for d in *; do
+    lib_dir="$lib_base_dir/$d"
+    cmd_dir $lib_dir
+done
+
+app_base_dir="$base_dir/src/app"
+cd $app_base_dir
+for d in *; do
+    app_dir="$app_base_dir/$d"
+    cmd_dir $app_dir
+done
+
+service_base_dir="$base_dir/src/service"
+cd $service_base_dir
+for d in *; do
+    service_dir="$service_base_dir/$d"
+    cmd_dir $service_dir
+done
+
+ssh i@ideapar.com < "$base_dir/script/deploy-remote.sh"
+
+cd "$base_dir/src/app/admin/front"
+gulp scss --nomaps --cleancss --production
+gulp webpack --nomaps --minifyjs --production
+
+cd "$base_dir/src/app/ipar/front"
+gulp scss --nomaps --cleancss --production
+gulp webpack --nomaps --minifyjs --production
+
+#scp -r "$base_dir/site/static/css" i@ideapar.com:"$base_dir/site/static/"
+#scp -r "$base_dir/site/static/js" i@ideapar.com:"$base_dir/site/static/"
+scp $base_dir/site/static/css/*.css i@ideapar.com:"$base_dir/site/static/css/"
+scp $base_dir/site/static/js/*.js i@ideapar.com:"$base_dir/site/static/js/"

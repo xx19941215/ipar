@@ -1,0 +1,67 @@
+<?php
+$this->layout('layout/ipar', [
+    'html_title' => $this->product->title,
+    'header_menu' => 'ipar-product-index'
+]);
+?>
+
+<?php $this->section('main'); ?>
+
+<?php echo $this->insert('module/product-show-top', [
+    'product' => $this->product,
+    'select' => 'solved'
+]); ?>
+
+<div class="property-set-wrap"></div>
+
+<div class="loading" data-action="property" data-page="1" data-ptype_key="solved"
+     data-eid="<?php echo $this->product->eid; ?>">
+    <div class="one">
+        <a class="trigger"><?php echo trans('see-more'); ?></a>
+    </div>
+    <div class="two">
+        <?php echo trans('no-more'); ?>
+    </div>
+</div>
+
+<?php $this->replace(); ?>
+
+<?php $this->section('side'); ?>
+
+<?php
+$entity_type_key = get_type_key($this->product->type_id);
+?>
+
+<?php if ($this->activity_advice) {
+    echo $this->insert('module/activity', [
+        'activity_advice_banner_url' => $this->activity_advice_banner_url
+    ]);
+}
+?>
+
+<?php echo $this->insert('module/follow-show-right', [
+    'eid' => $this->product->eid,
+    'is_following' => $this->is_following,
+    'entity_type_key' => $entity_type_key
+]); ?>
+
+<?php echo $this->insert('module/product-promotes', [
+    'product_purchase_set' => $this->product_purchase_set,
+    'product' => $this->product
+]); ?>
+
+<?php if ($this->brand_tag) {
+    echo $this->insert('module/product-brand_tag', [
+        'brand_tag' => $this->brand_tag,
+    ]);
+} ?>
+
+<?php
+echo $this->insert('module/product-company', [
+    'company_set' => $this->company_set,
+]);
+?>
+
+<?php echo $this->insert('module/side-share'); ?>
+
+<?php $this->replace(); ?>

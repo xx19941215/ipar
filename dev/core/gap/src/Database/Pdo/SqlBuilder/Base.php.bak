@@ -1,0 +1,248 @@
+<?php
+namespace Gap\Database\Pdo\SqlBuilder;
+
+class Base {
+
+    private $table = '';
+    private $limit = 7;
+    private $offset = 0;
+
+    private $tables = [];
+    private $fields = [];
+
+    protected $wheres = [];
+
+    private $orders = [];
+    private $joins = [];
+
+    private $params = [];
+    private $param_index = 1;
+
+    private $model = '';
+
+    private $adapter;
+
+    public function __construct($adapter) {
+        $this->adapter = $adapter;
+    }
+
+    public function select() {
+        return $this->adapter->select(
+            $this->buildSelectSql(),
+            $this->params,
+            $this->model
+        );
+    }
+
+    public function one() {
+        $this->limit = 1;
+        return $this->adapter->one(
+            $this->buildSelectSql(),
+            $this->params,
+            $this->model
+        );
+    }
+
+    public function insert($data = []) {
+        if ($data) {
+            $this->data($data);
+        }
+        return $this->adapter->insert(
+            $this->buildInsertSql(),
+            $this->params
+        );
+    }
+    public function update($data = []) {
+        if ($data) {
+            if (isset($data['id'])) {
+                $this->where('id', '=', $data['id']);
+            }
+            unset($data['id']);
+            $this->data($data);
+        }
+        return $this->adapter->update(
+            $this->buildUpdateSql(),
+            $this->params
+        );
+    }
+    public function exists() {
+        $this->limit = 1;
+        $this->fields(['id' => 1]);
+        $row = $this->adapter->one(
+            $this->buildSelectSql(),
+            $this->params
+        );
+        if ($row) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function table($table) {
+        //$this->table = $table;
+        if (is_string($table)) {
+            $this->tables[] = "`$table`";
+        } else if (is_array($table)) {
+            foreach ($table as $key => $val) {
+                $this->tables[] = "`$key` `$val`";
+            }
+        }
+        return $this;
+    }
+
+    /**
+        ['id', 'firstname' => 1, 'lastname' => 1]
+        ['user' => ['id', 'firstname', 'lastname']]
+    */
+    public function fields(array $fields) {
+        foreach ($fields as $key => $val) {
+            if ($val === 1) {
+                $this->fields[] = "`$key`";
+            } else if (is_array($val)) {
+                foreach ($val as $v) {
+                    $this->fields[] = "`$key`.`$v`";
+                }
+            }
+        }
+        return $this;
+    }
+
+    public function model($model) {
+        $this->model = $model;
+        return $this;
+    }
+
+
+    protected function _where($w, $lg = 'AND') {
+        if ($this->wheres) {
+            $this->wheres[] = " $lg $w";
+        } else {
+            $this->wheres[] = $w;
+        }
+    }
+    public function where($key, $op, $val, $lg = 'AND') {
+        $this->_where("`$key` $op " . $this->param($val), $lg);
+        return $this;
+    }
+    public function where_group($conds, $group_lg = 'AND') {
+        $ws = [];
+        foreach ($conds as $cond) {
+            list($key, $op, $val) = $cond;
+            if (isset($cond[3])) {
+                $lg = $cond[3];
+            } else {
+                $lg = 'AND';
+            }
+            if ($ws) {
+                $ws[] = " $lg `$key` $op " . $this->param($val);
+            } else {
+                $ws[] = "`$key` $op " . $this->param($val);
+            }
+        }
+        if ($this->wheres) {
+            $this->wheres[] = " $group_lg (" . implode('', $ws) . ')';
+        } else {
+            $this->wheres[] = '(' . implode('', $ws) . ')';
+        }
+        return $this;
+    }
+
+    public function join(array $joins) {
+        todo();
+        return $this;
+    }
+
+    public function limit($num) {
+        $this->limit = (int) $num;
+        return $this;
+    }
+
+    public function offset($offset) {
+        $this->offset = $offset;
+        return $this;
+    }
+
+    public function sort(array $orders) {
+        foreach ($orders as $key => $val) {
+            if (is_array($val)) {
+                foreach ($val as $sub_key => $sub_val) {
+                    $this->orders[] = "`$key`.`$sub_key` " . (($sub_val === 1) ? 'ASC' : 'DESC');
+                }
+            } else {
+                $this->orders[] = "`$key` " . (($val === 1) ? 'ASC' : 'DESC');
+            }
+        }
+        return $this;
+    }
+
+    protected function param($val) {
+        if (is_array($val)) {
+            $ps = [];
+            foreach ($val as $sub) {
+                $p = ":p{$this->param_index}";
+                $ps[] = $p;
+                $this->params[$p] = $sub;
+                $this->param_index++;
+            }
+            return '(' . implode(',', $ps) . ')';
+        } else {
+            $p = ":p{$this->param_index}";
+            $this->params[$p] = $val;
+            $this->param_index++;
+            return $p;
+        }
+    }
+
+    private function buildSelectSql() {
+        $sql = "SELECT "
+            . ($this->fields ? implode(', ', $this->fields) : '*')
+            . ' FROM ' . implode(',', $this->tables);
+        if ($this->wheres) {
+            $sql .= ' WHERE ' . implode('', $this->wheres);
+        }
+        if ($this->orders) {
+            $sql .= ' ORDER BY ' . implode(',', $this->orders);
+        }
+
+        if ($this->offset || $this->limit) {
+            $sql .= ' LIMIT ' . ($this->offset ? $this->offset : 0) . ', ' . ($this->limit ? $this->limit : 7);
+        }
+        return $sql;
+
+    }
+
+    public function data($data) {
+        foreach ($data as $key => $val) {
+            if ($val !== null) {
+                $this->fields[] = $key;
+                $this->params[":$key"] = $val;
+            }
+        }
+        return $this;
+    }
+
+    private function buildInsertSql() {
+        $sql = "INSERT INTO " . implode(',', $this->tables)
+            . ' (`' . implode('`, `', $this->fields) . '`)'
+            . ' VALUES(:' . implode(', :', $this->fields) . ')';
+        return $sql;
+    }
+
+    private function buildUpdateSql() {
+        $sets = [];
+        foreach ($this->fields as $field) {
+            $sets[] = "`$field` = :$field";
+        }
+        $sql = "UPDATE " . implode(',', $this->tables)
+            . ' SET'
+            . implode(', ', $sets);
+
+        if ($this->wheres) {
+            $sql .= ' WHERE ' . implode('', $this->wheres);
+        }
+
+        return $sql;
+    }
+
+}

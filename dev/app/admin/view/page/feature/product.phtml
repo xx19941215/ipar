@@ -1,0 +1,23 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-feature-show'),
+    'breadcrumbs' => ['admin-entity', 'admin-feature'],
+]);
+?>
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->feature,
+        'is_info' => false,
+        'is_content' => false,
+        'select' => 'product',
+    ]); ?>
+
+    <?php echo $this->insert('module/form/query'); ?>
+
+    <?php echo $this->insert('module/entity-set', ['entity_set' => $this->product_set]); ?>
+</div>
+
+
+<?php $this->replace(); ?>
+

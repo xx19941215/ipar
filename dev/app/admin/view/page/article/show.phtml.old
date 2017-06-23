@@ -1,0 +1,61 @@
+<?php
+    $article = $this->article;
+
+    $articles_i18n = $this->articles_i18n->getItems();
+
+    $this->layout('layout/admin', [
+        'html_title' => $article->title . ' - ' . trans('admin-article-edit')
+    ]);
+?>
+
+<?php $this->section('page-body'); ?>
+
+<div class="row column">
+    <div class="entity-header">
+        <h1><?php echo trans('admin-article-edit'); ?></h1>
+
+    </div>
+    <div class="entity-info">
+        <span class="article-id"><?php echo $this->id ?></span>
+        |
+        <span class="article-zcode"><?php echo $this->zcode ?></span>
+        |
+        <span class="article-created"><?php echo $this->created ?></span>
+        |
+        <span class="article-changed"><?php echo $this->changed ?></span>
+
+    </div>
+    <?php echo $this->insert('module/form/admin-form-article'); ?>
+</div>
+
+<div class="row column">
+    <h2><?php echo trans('locale') ?></h2>
+    <a href="<?php echo route_url('admin-article-add-locale', ['original_id' => $article->original_id]) ?>" class="button small"><?php echo trans('add'); ?></a>
+    <table>
+        <thead>
+            <tr>
+                <th><?php echo trans('title') ?></th>
+                <th><?php echo trans('locale') ?></th>
+                <th><?php echo trans('created') ?></th>
+                <th><?php echo trans('action') ?></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($articles_i18n as $article) {?>
+            <tr>
+                <td><a href="<?php echo route_url('admin-article-show', ['zcode' => $article->zcode]); ?>"><?php echo $article->title; ?></a></td>
+                <td><?php echo $article->locale_id ?></td>
+                <td><?php echo $article->created ?></td>
+                <td>
+                    <a href="<?php echo route_url('admin-article-delete-locale', ['zcode' => $article->zcode]) ?>"><?php echo trans('admin-delete-locale') ?></a>
+                </td>
+
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+
+
+<?php $this->replace(); ?>

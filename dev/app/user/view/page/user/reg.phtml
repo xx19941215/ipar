@@ -1,0 +1,74 @@
+<?php
+$this->layout('layout/user', [
+    'html_title' => trans('user-reg'),
+    'selected_nav_item' => 'reg'
+]);
+$errors = $this->errors ? $this->errors : [];
+?>
+
+<?php $this->section('main'); ?>
+<div class="reg-tab">
+    <a class="mobile-reg" href="<?php echo route_url('mobile-reg'); ?>">
+        <i class="icon icon-shouji"></i>
+    </a>
+    <a class="email-reg selected" href="<?php echo route_url('reg'); ?>">
+        <i class="icon icon-mail"></i>
+    </a>
+</div>
+<form method="post" action="<?php echo route_url('reg-post'); ?>">
+
+    <?php echo csrf_field(); ?>
+    <ul class="menu vertical">
+        <li class="item">
+            <?php echo $this->insert('element/form/input-field', [
+                'type' => 'text',
+                'name' => 'nick',
+                'required' => true,
+                'placeholder' => trans('nick'),
+                'value' => $this->nick,
+                'maxlength' => 21,
+                'data_type' => '',
+                'has_error' => isset($errors['nick'])
+            ]); ?>
+        </li>
+        <li class="item">
+            <?php echo $this->insert('element/form/input-field', [
+                'type' => 'email',
+                'name' => 'email',
+                'required' => true,
+                'placeholder' => trans('email'),
+                'value' => $this->email,
+                'maxlength' => 0,
+                'data_type' => '',
+                'has_error' => isset($errors['email'])
+            ]); ?>
+        </li>
+        <li class="item">
+            <?php echo $this->insert('element/form/input-field', [
+                'type' => 'password',
+                'name' => 'password',
+                'required' => true,
+                'placeholder' => trans('password'),
+                'value' => '',
+                'maxlength' => 21,
+                'data_type' => '',
+                'has_error' => isset($errors['password'])
+            ]); ?>
+            <i class="icon icon-eye-close view-password"></i>
+        </li>
+    </ul>
+
+    <?php echo $this->insert('element/errorbox'); ?>
+
+    <div>
+        <button class="button submit"><?php echo trans('reg.submit'); ?></button>
+    </div>
+    <div class="registration-agreement">
+        <?php echo trans('click-on-the-register-button-that-is-on-behalf-of-you-agree') ?>
+        <a href="<?php echo route_url('ipar-article-show', ['zcode' => '57e497ace5e66']); ?>" target="_blank">
+            <?php echo trans('ideapar-registration-agreement') ?>
+        </a>
+    </div>
+</form>
+
+<?php $this->stop(); ?>

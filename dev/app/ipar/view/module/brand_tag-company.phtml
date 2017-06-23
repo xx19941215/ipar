@@ -1,0 +1,13 @@
+<?php if ($this->company) { ?>
+    <div class="brand_tag-company">
+        <h3>
+            <?php echo trans('owned-enterprises'); ?>
+        </h3>
+        <p>
+            <a target="_blank"
+               href="<?php echo route_url('ipar-ui-company-show', ['zcode' => $this->company->zcode]); ?>">
+                <?php echo $this->company->fullname; ?>
+            </a>
+        </p>
+    </div>
+<?php } ?>

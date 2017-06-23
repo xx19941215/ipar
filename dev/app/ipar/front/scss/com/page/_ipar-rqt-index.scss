@@ -1,0 +1,38 @@
+.rqt-page-banner {
+    width: 100%;
+    background-color: #51c6ff;
+    text-align: center;
+    padding: 60px 0;
+    margin: 0 0 30px 0;
+    font-size: 18px;
+    h1, p {
+        color: #fff;
+        font-weight: 300;
+    };
+    p {
+        font-weight: 100;
+    }
+}
+
+.product-page-banner{
+    width: 100%;
+    background-color: #7AB6D2;
+    text-align: center;
+    padding: 60px 0;
+    margin: 0 0 30px 0;
+    font-size: 18px;
+    h1, p {
+        color: #fff;
+        font-weight: 300;
+    };
+    p {
+        font-weight: 100;
+    }
+}
+
+@include breakpoint(medium) {
+    .rqt-page-banner,.product-page-banner {
+        padding: 70px;
+        margin-top: -15px;
+    }
+}

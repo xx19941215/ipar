@@ -1,0 +1,24 @@
+<?php
+$this->layout('page', [
+    'jses' => ['ipar.editor.js' => 1],
+]);
+
+$invent_show_url = route_url('invent-show', ['zcode' => $this->invent->zcode]);
+
+?>
+
+
+<?php $this->section('page-body'); ?>
+    <?php echo $this->insert('include/form/story-form', [
+        'story_title' => trans('page-sketch-create-title'),
+        'src' => $this->invent,
+        'action' => route_url('sketch-create-post'),
+        'type' => 'sketch',
+        'cancel' => $invent_show_url,
+        'is_hide_title' => true,
+        'hiddens' => [
+            'target' => $invent_show_url,
+            'src_eid' => $this->invent->eid
+        ]
+    ]); ?>
+<?php $this->replace(); ?>

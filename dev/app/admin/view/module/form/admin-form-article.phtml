@@ -1,0 +1,61 @@
+<?php
+    $locales = config()->get('i18n.locale.available')->all();
+    $locale_keys = array_combine(range(1, count($locales)), array_keys($locales));
+?>
+
+<form action="<?php echo $this->action; ?>" method="post">
+    <?php echo csrf_field(); ?>
+    <?php if ($this->id) { ?>
+    <input type="hidden" name="id" value="<?php echo $this->id; ?>">
+    <input type="hidden" name="last_url" value="<?php echo $this->last_url; ?>">
+    <input type="hidden" name="zcode" value="<?php echo $this->zcode; ?>">
+    <?php } ?>
+    <?php if ($this->original_id) {?>
+    <input type="hidden" name="original_id" value="<?php echo $this->original_id ?>">
+    <?php } ?>
+    <input type="hidden" name="uid" value="<?php echo current_uid(); ?>">
+    <label>
+        <?php echo trans( 'title'); ?>
+        <input type="text" name="title" required="required" value="<?php echo $this->title; ?>">
+    </label>
+    <label>
+        <?php echo trans( 'locale'); ?>
+        <select class="" name="locale_id" required="required">
+            <?php
+            foreach ($locales as $locale) {
+                $locale_id = (int)$locale['id'];
+                $locale_title = $locale_keys[$locale_id];
+                if ((int)$this->locale_id === $locale_id){
+                    echo "<option value=\"$locale_id\" selected=\"selected\">$locale_title</option>";
+                } else {
+                    echo "<option value=\"$locale_id\">$locale_title</option>";
+                }
+            }
+            ?>
+        </select>
+    </label>
+    <label>
+        <?php echo trans( 'content'); ?>
+        <?php echo $this->insert('element/zeditor', ['name' => 'content', 'value' => $this->content]); ?>
+    </label>
+    <?php if ($this->errors) { ?>
+    <p class="errors">
+        <?php foreach ($this->errors as $err_key => $err_val) { ?>
+            <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+        <?php } ?>
+    </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <?php if (intval($this->status) === 1) {?>
+        <a href="<?php echo route_url('admin-article-deactivate', ['zcode' => $this->zcode]) ?>"><?php echo trans('deactivate') ?></a>
+        <?php } else if (intval($this->status) === 0){ ?>
+        <a href="<?php echo route_url('admin-article-activate', ['zcode' => $this->zcode]) ?>"><?php echo trans('activate') ?></a>
+        <?php } ?>
+        <?php if (intval($this->status) === 0) { ?>
+        <a href="<?php echo route_url('admin-article-delete', ['zcode' => $this->zcode]) ?>"><?php echo trans('delete') ?></a>
+        <?php } ?>
+        <?php echo $this->insert('element/link-go-back'); ?>
+    </div>
+</form>

@@ -1,0 +1,41 @@
+<form action="<?php echo $this->action; ?>" method="post">
+    <?php echo csrf_field(); ?>
+
+    <input type="hidden" name="gid" value="<?php echo $this->gid; ?>">
+    <input type="hidden" name="last_url" value="<?php echo $this->last_url; ?>">
+    <label>
+        <?php echo trans('uid'); ?>
+        <input type="text" name="uid" required="required" value="<?php echo $this->uid; ?>">
+    </label>
+    <label>
+
+
+    <label>
+    <input type="hidden" name="gid" value="<?php echo $this->gid; ?>">
+    <input type="hidden" name="last_url" value="<?php echo $this->last_url; ?>">
+        <?php echo trans('roles'); ?>
+        <input type="text" name="roles" required="required" value="<?php echo $this->roles; ?>">
+    </label>
+    <label>
+        <?php echo trans('start'); ?>
+        <input type="date" name="start" required="required" value="<?php echo $this->start; ?>">
+    </label>
+    <label>
+        <?php echo trans('end'); ?>
+        <input type="date" name="end" required="required" value="<?php echo $this->end; ?>">
+    </label>
+
+    <?php if ($this->errors) { ?>
+    <p class="errors">
+    <?php foreach ($this->errors as $err_key => $err_val) { ?>
+    <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+    <?php } ?>
+    </p>
+    <?php } ?>
+    
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <?php echo $this->insert('element/link-go-back'); ?>
+    </div>
+</form>

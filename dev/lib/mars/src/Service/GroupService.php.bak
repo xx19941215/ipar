@@ -1,0 +1,53 @@
+<?php
+namespace Mars\Service;
+
+class GroupService extends \Mars\ServiceBase
+{
+    public function schGroup($gid)
+    {
+        if (!($gid = (int) $gid)) {
+            return $this->packError('gid', 'gid empty');
+        }
+
+        return $this->repo('group')->schGroup($gid);
+    }
+
+    public function createGroup($opts = [])
+    {
+        return $this->repo('group')->createGroup($opts);
+    }
+
+    public function updateGroup($opts = [])
+    {
+        return $this->repo('group')->updateGroup($opts);
+    }
+
+    public function updateGroupLogo($data = [])
+    {
+        return $this->repo('group')->updateGroupLogo($data);
+    }
+
+    public function deleteGroup($gid)
+    {
+        if (!($gid = (int) $gid)) {
+            return $this->packError('gid', 'gid empty');
+        }
+        return $this->repo('group')->deleteGroup($gid);
+    }
+
+    public function activateGroupByGid($gid)
+    {
+        if (!($gid = (int) $gid)) {
+            return $this->packError('gid', 'gid empty');
+        }
+        return $this->repo('group')->activateGroupByGid($gid);
+    }
+
+    public function deactivateGroupByGid($gid)
+    {
+        if (!($gid = (int) $gid)) {
+            return $this->packError('gid', 'gid empty');
+        }
+        return $this->repo('group')->deactivateGroupByGid($gid);
+    }
+}

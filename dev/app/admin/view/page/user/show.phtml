@@ -1,0 +1,31 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => $this->user->nick . ' - ' . trans('admin-user-show')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+
+<div class="row column text-center">
+    <h1><?php echo $this->nick; ?></h1>
+</div>
+
+<div class="row column">
+
+    <div><?php echo $this->user->uid; ?></div>
+    <div><?php echo $this->user->nick; ?></div>
+    <div>
+        <ul>
+        <?php foreach ($this->user->emails as $email) { ?>
+            <li><?php echo $email['email']; ?></li>
+        <?php } ?>
+        </ul>
+    </div>
+    <div><?php echo $this->user->logined; ?></div>
+    <div><?php echo $this->user->changed; ?></div>
+    <div><?php echo $this->user->created; ?></div>
+    <div><?php echo $this->user->status; ?></td>
+
+</div>
+
+<?php $this->replace(); ?>

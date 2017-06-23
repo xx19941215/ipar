@@ -1,0 +1,41 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-article-activate')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+
+<div class="activity">
+    <h2>---<?php echo trans('admin-add--activity'); ?>---</h2>
+    <form class="" action="<?php echo route_url('admin-ui-activity-add_post'); ?>" method="post">
+        <?php echo csrf_field(); ?>
+        <div class="title">
+            <h3><?php echo trans('admin-activity-title'); ?>*</h3>
+            <input type="text" name="title" value="">
+        </div>
+        <div class="description">
+            <h3><?php echo trans('admin-activity-chief-title'); ?>*</h3>
+            <input type="text" name="description" value="">
+        </div>
+        <div class="createtime">
+            <h3><?php echo trans('admin-activity-start-time'); ?>*</h3>
+            <input type="text" name="createtime" placeholder="example: 2016-08-09 00:00:00" value="">
+        </div>
+        <div class="description">
+            <h3><?php echo trans('admin-activity-end-time'); ?>*</h3>
+            <input type="text" name="endtime" value="">
+        </div>
+        <h3><?php echo trans('admin-activity-rule'); ?>*</h3>
+        <textarea name="rule" rows="8" cols="40">
+        </textarea>
+        <button type="submit"><?php echo trans('submit'); ?></button>
+    </form>
+</div>
+
+<script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'rule' );
+</script>
+
+<?php $this->replace(); ?>

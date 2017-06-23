@@ -1,0 +1,41 @@
+<?php $this->layout('layout/page', [
+    'tdk_keywords' => true,
+    'tdk_description' => true,
+    'csses' => [
+        'ipar.css' => 1,
+        'page.css' => 1
+    ]
+]);
+$index = 0;
+array_pop($this->friend_link_set);
+?>
+<?php $this->section('cat'); ?>
+    <div class="links-page-banner">
+        <h1><?php echo trans('page-title-ipar-ui-links-index'); ?></h1>
+    </div>
+    <div class="container">
+        <div class="links-set-wrap">
+            <?php foreach ($this->friend_link_set as $key => $item) { ?>
+                <dl class="item">
+                    <dt>
+                        <i class="icon <?php echo $this->icon_set[$index++]; ?>"></i>
+                        <h3><?php echo trans($key); ?></h3>
+                    </dt>
+                    <?php foreach ($this->friend_link_set[$key] as $item) { ?>
+                        <dd>
+                            <a target="_blank" ref="nofollow" href="<?php echo $item->url; ?>">
+                                <img src="<?php echo img_src((array)json_decode($item->logo_img, true)); ?>" alt="">
+                                <p><?php echo $item->title; ?></p>
+                            </a>
+                        </dd>
+                    <?php } ?>
+                </dl>
+            <?php } ?>
+        </div>
+    </div>
+    <div class="friend-link">
+        <div class="container">
+            <p>Copyright@2015 点趴网</p>
+        </div>
+    </div>
+<?php $this->append(); ?>

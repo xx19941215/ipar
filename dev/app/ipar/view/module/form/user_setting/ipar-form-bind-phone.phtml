@@ -1,0 +1,73 @@
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data" class="user-setting-form">
+    <?php echo csrf_field(); ?>
+    <ul class="menu vertical">
+        <?php if ($this->user->phone) { ?>
+            <li>
+                <div class="title"><?php echo trans('old-phone'); ?></div>
+                <?php echo $this->insert('module/form/user_setting/input-field', [
+                    'type' => 'number',
+                    'name' => '',
+                    'placeholder' => trans('phone-number'),
+                    'value' => $this->user->phone,
+                    'maxlength' => 11,
+                    'disabled' => 'true',
+                    'data_type' => '',
+                    'has_error' => isset($errors['phone-number'])
+                ]); ?>
+            </li>
+        <?php } ?>
+        <li class="item phone-number">
+            <div class="title"><?php echo trans('new-phone'); ?></div>
+            <?php echo $this->insert('module/form/user_setting/input-field', [
+                'type' => 'number',
+                'name' => 'phone_number',
+                'placeholder' => trans('phone-number'),
+                'value' => $this->phone_number,
+                'maxlength' => 11,
+                'disabled' => '',
+                'data_type' => 'reg-phone-number',
+                'has_error' => isset($errors['phone-number'])
+            ]); ?>
+            <p class="phone-error-tips hide error-tips"></p>
+        </li>
+        <li class="item verification-code">
+            <div class="title"><?php echo trans('verification-code'); ?></div>
+            <?php echo $this->insert('module/form/user_setting/input-field', [
+                'type' => 'number',
+                'name' => 'code',
+                'placeholder' => trans('verification-code'),
+                'value' => $this->code,
+                'maxlength' => 6,
+                'disabled' => '',
+                'data_type' => '',
+                'has_error' => isset($errors['verification-code'])
+            ]); ?>
+            <button class="get-reg-code get-code">
+                <?php echo trans('get-verification-code'); ?>
+            </button>
+            <p class="sms-error-tips hide error-tips"></p>
+        </li>
+    </ul>
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_value) { ?>
+                <span class="label alert">
+                <?php echo $err_key; ?>,<?php echo $err_value; ?>
+            </span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+
+    <?php if ($this->msg) { ?>
+        <span><?php echo $this->msg; ?></span>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small user-setting-bind-phone-submit"
+               value="<?php echo trans('bind-phone'); ?>">
+        <a class="small"
+           href="<?php echo route_url('ipar-ui-i-account-info', ['zcode' => $this->user->zcode]); ?>">
+            <?php echo trans('back'); ?>
+        </a>
+    </div>
+</form>

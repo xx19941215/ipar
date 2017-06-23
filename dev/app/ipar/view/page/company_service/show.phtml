@@ -1,0 +1,446 @@
+<?php
+$this->layout('layout/page', [
+    'csses' => [
+        'ipar.css' => 1,
+        'page.css' => 1
+    ],
+    'tdk_keywords' => true,
+    'tdk_description' => true,
+    'header_menu' => 'ipar-ui-company_service-show',
+]);
+
+$imgs_set = [
+    'jorqueen'=> ['src' => static_url('img/company_service/company-logo-1.png') ],
+    'jmindusties'=> ['src' => static_url('img/company_service/company-logo-7.png') ],
+    'senqiu'=> ['src' => static_url('img/company_service/company-logo-3.png') ],
+    'kuipu'=> ['src' => static_url('img/company_service/company-logo-4.png') ],
+    'kuipu_design'=> ['src' => static_url('img/company_service/company-logo-5.png') ],
+    'honeies'=> ['src' => static_url('img/company_service/company-logo-6.png') ]
+];
+
+?>
+<?php $this->section('main'); ?>
+<div class="problem section">
+    <div class="row">
+        <div class="columns">
+            <p class="slogan-first"><?php echo trans('company-service-s1-p1'); ?></p>
+            <p class="slogan-two"><?php echo trans('company-service-s1-p2'); ?></p>
+            <p class="slogan-three"><?php echo trans('company-service-s1-p3'); ?></p>
+            <p class="slogan-four"><?php echo trans('company-service-s1-p4'); ?></p>
+        </div>
+    </div>
+</div>
+<div class="service section hasline">
+    <div class="section-container">
+        <p class="title-lg"><?php echo trans('company-service-s2-p1'); ?></p>
+        <div class="container">
+            <p class="title-sm"><?php echo trans('company-service-s2-desc'); ?></p>
+            <div class="service-container">
+                <a class="company-show">
+                    <b><?php echo trans('company-service-s2-f1'); ?></b>
+                </a>
+                <a class="community-market">
+                    <b><?php echo trans('company-service-s2-f2'); ?></b>
+                </a>
+                <a class="product-progress">
+                    <b><?php echo trans('company-service-s2-f3'); ?></b>
+                </a>
+                <a class="media-campaign">
+                    <b><?php echo trans('company-service-s2-f4'); ?></b>
+                </a>
+            </div>
+            <ul class="service-number">
+                <li class="small-4 columns"><span data-nums="<?php echo $this->count_solved; ?>">0</span>
+                    <p><?php echo trans('company-service-s2-n1'); ?></p>
+                </li>
+                <li class="small-4 columns">
+                        <span data-nums="<?php echo "1" . $this->count_improving; ?>">0</span>
+                    <p><?php echo trans('company-service-s2-n2'); ?></p>
+                </li>
+                <li class="small-4 columns"><span data-nums="<?php echo $this->count_product; ?>">0</span>
+                    <p><?php echo trans('company-service-s2-n3'); ?></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="company_in section hasline">
+    <div class="section-container">
+        <p class="title-lg"><?php echo trans('company-service-s3-p1'); ?></p>
+        <p class="title-sm"><?php echo trans('company-service-s3-desc'); ?></p>
+        <div class="row">
+            <div class="small-10 small-offset-1 columns">
+                <img src="<?php echo static_url('/img/company_service/company-in.png'); ?>" alt="">
+            </div>
+        </div>
+        <div class="liner hide-for-small-only"></div>
+    </div>
+</div>
+<div class="marketing section hasline">
+    <div class="section-container">
+        <p class="title-lg"><?php echo trans('company-service-s4-p1'); ?></p>
+        <p class="title-sm"><?php echo trans('company-service-s4-desc'); ?></p>
+        <div class="row">
+            <div class="small-8 small-offset-2">
+                <img src="<?php echo static_url('/img/company_service/service-marketing.png'); ?>" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="improve section hasline">
+    <div class="section-container">
+        <p class="title-lg"><?php echo trans('company-service-s5-p1'); ?></p>
+        <p class="title-sm"><?php echo trans('company-service-s5-desc'); ?></p>
+        <div class="row feature">
+            <div class="small-12 medium-4 columns research-group">
+                <div class="research-group-img">
+                </div>
+                <div class="row hide-for-medium">
+                    <div class="small-12"><p><?php echo trans('company-service-s5-f1'); ?></p></div>
+                </div>
+            </div>
+            <div class="small-12 medium-4 columns advanced">
+                <div class="advanced-img">
+                </div>
+                <div class="row hide-for-medium">
+                    <div class="small-12"><p><?php echo trans('company-service-s5-f2'); ?></p></div>
+                </div>
+            </div>
+            <div class="small-12 medium-4 columns improvement">
+                <div class="improvement-img">
+                </div>
+                <div class="row hide-for-medium">
+                    <div class="small-12"><p><?php echo trans('company-service-s5-f3'); ?></p></div>
+                </div>
+            </div>
+        </div>
+        <div class="row hide-for-small-only">
+            <div class="small-4 columns"><p><?php echo trans('company-service-s5-f1'); ?></p></div>
+            <div class="small-4 columns"><p><?php echo trans('company-service-s5-f2'); ?></p></div>
+            <div class="small-4 columns"><p><?php echo trans('company-service-s5-f3'); ?></p></div>
+        </div>
+    </div>
+</div>
+<div class="media section hasline">
+    <div class="section-container">
+        <p class="title-lg"><?php echo trans('company-service-s6-p1'); ?></p>
+        <p class="title-sm"><?php echo trans('company-service-s6-desc'); ?></p>
+        <div class="row">
+            <div class="small-12 medium-3 columns audio">
+                <div class="audio-img"></div>
+                <div class="row hide-for-medium">
+                    <div class="small-12"><p><?php echo trans('audio'); ?></p></div>
+                </div>
+            </div>
+            <div class="small-12 medium-4 medium-offset-1 columns video">
+                <div class="video-img"></div>
+                <div class="row hide-for-medium">
+                    <div class="small-12"><p><?php echo trans('video'); ?></p></div>
+                </div>
+            </div>
+            <div class="small-12 medium-3  columns media-patform">
+                <div class="media-patform-img"></div>
+                <div class="row hide-for-medium">
+                    <div class="small-12"><p><?php echo trans('media-patform'); ?></p></div>
+                </div>
+            </div>
+        </div>
+        <div class="row hide-for-small-only">
+            <div class="small-4 medium-3 columns"><p><?php echo trans('audio'); ?></p></div>
+            <div class="small-4 medium-4 medium-offset-1 columns"><p><?php echo trans('video'); ?></p></div>
+            <div class="small-4 medium-3  columns"><p><?php echo trans('media-patform'); ?></p></div>
+        </div>
+    </div>
+</div>
+<div class="advantages section">
+    <div class="section-container">
+        <p class="title-lg"><?php echo trans('company-service-s7-p1'); ?></p>
+        <div class="row">
+            <div class="columns small-4"><?php echo trans('Ideapar'); ?></div>
+            <div class="columns small-4">VS</div>
+            <div class="columns small-4"><?php echo trans('Traditional research'); ?></div>
+        </div>
+        <div class="row">
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-des absolute-right">
+                    <h2><?php echo trans('company-service-s7-h1'); ?></h2>
+                    <b><?php echo trans('company-service-s7-f1'); ?></b>
+                </div>
+            </div>
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-img-wrap"><span></span><img
+                        src="<?php echo static_url('/img/company_service/advantages-1.png'); ?>" alt=""></div>
+            </div>
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-des">
+                    <h2><?php echo trans('company-service-s7-h2'); ?></h2>
+                    <b><?php echo trans('company-service-s7-p2'); ?> </b>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-des absolute-right">
+                    <h2><?php echo trans('company-service-s7-h3'); ?></h2>
+                    <b><?php echo trans('company-service-s7-p3'); ?></b>
+                    <b><?php echo trans('company-service-s7-p4'); ?></b>
+                </div>
+            </div>
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-img-wrap"><span></span><img
+                        src="<?php echo static_url('/img/company_service/advantages-2.png'); ?>" alt=""></div>
+            </div>
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-des">
+                    <h2><?php echo trans('company-service-s7-h4'); ?></h2>
+                    <b><?php echo trans('company-service-s7-p5'); ?> </b>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-des absolute-right">
+                    <h2><?php echo trans('company-service-s7-h5'); ?></h2>
+                    <b><?php echo trans('company-service-s7-p6'); ?></b>
+                </div>
+            </div>
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-img-wrap"><span></span><img
+                        src="<?php echo static_url('/img/company_service/advantages-3.png'); ?>" alt=""></div>
+            </div>
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-des">
+                    <h2><?php echo trans('company-service-s7-h6'); ?></h2>
+                    <b><?php echo trans('company-service-s7-p7'); ?></b>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-des absolute-right">
+                    <h2><?php echo trans('company-service-s7-h7'); ?></h2>
+                    <b><?php echo trans('company-service-s7-p8') ?></b>
+                </div>
+
+            </div>
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-img-wrap"><span></span><img
+                        src="<?php echo static_url('/img/company_service/advantages-4.png'); ?>" alt=""></div>
+            </div>
+            <div class="columns small-4 advantages-item">
+                <div class="advantages-des">
+                    <h2><?php echo trans('company-service-s7-h8'); ?></h2>
+                    <b><?php echo trans('company-service-s7-p9'); ?></b>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="price  section">
+    <div class="section-container">
+        <p class="title-lg"><?php echo trans('company-service-s8-p1'); ?></p>
+        <div class="row price-icon">
+            <div class="small-4 columns">
+                <img src="<?php echo static_url('/img/company_service/price-1-x2.png'); ?>" alt="">
+            </div>
+            <div class="small-4 columns">
+                <img src="<?php echo static_url('/img/company_service/price-2-x2.png'); ?>" alt="">
+            </div>
+            <div class="small-4 columns">
+                <img src="<?php echo static_url('/img/company_service/price-3-x2.png'); ?>" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-4 columns">
+                <h2><?php echo trans('company-service-s8-t1 '); ?></h2>
+
+            </div>
+            <div class="small-4 columns">
+                <h2><?php echo trans('company-service-s8-t2'); ?></h2>
+            </div>
+            <div class="small-4 columns">
+                <h2><?php echo trans('company-service-s8-t3'); ?></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-4 columns">
+                <button class="hollow button price-btn"
+                        href="#price"><?php echo trans('company-service-s8-b1'); ?></button>
+
+            </div>
+            <div class="small-4 columns">
+                <button class="hollow button price-btn"
+                        href="#price"><?php echo trans('company-service-s8-b2'); ?></button>
+            </div>
+            <div class="small-4 columns">
+                <button class="hollow button price-btn"
+                        href="#price"><?php echo trans('company-service-s8-b3'); ?></button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-4 columns">
+                <p><?php echo trans('company-service-s8-s1'); ?> </p>
+                <p><?php echo trans('company-service-s8-s2'); ?></p>
+                <p><?php echo trans('company-service-s8-s3'); ?></p>
+            </div>
+            <div class="small-4 columns">
+                <p><?php echo trans('company-service-s8-s1'); ?> </p>
+                <p><?php echo trans('company-service-s8-s2'); ?></p>
+                <p><?php echo trans('company-service-s8-s4'); ?></p>
+                <p><?php echo trans('company-service-s8-s5'); ?></p>
+            </div>
+            <div class="small-4 columns">
+                <p><?php echo trans('company-service-s8-s1'); ?> </p>
+                <p><?php echo trans('company-service-s8-s2'); ?></p>
+                <p><?php echo trans('company-service-s8-s4'); ?></p>
+                <p><?php echo trans('company-service-s8-s6'); ?></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="partners  section">
+    <div class="section-container">
+        <p class="title-lg">
+            <?php echo trans('company-service-s9-p1'); ?>
+        </p>
+        <p class="title-sm">
+            <?php echo trans('company-service-s9-desc'); ?>
+        </p>
+        <div class="company-logo container">
+            <?php foreach ($imgs_set as $key => $value) {
+                foreach ($value as $key1 => $value1) {
+                    echo '<div class="small-6 medium-4 item columns">';
+                    echo '<div class="company-logo-item">';
+                    echo '<span></span><img src="' . $value1 . '">';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } ?>
+            <?php ?>
+            <a href="<?php echo route_url('ipar-ui-company-index') ?>" class="button hollow">
+                <?php echo trans('more'); ?>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="contact  section ">
+    <div class="section-container">
+        <p class="title-lg">
+            <?php echo trans('company-service-s10-p1'); ?>
+        </p>
+        <div class="row">
+            <div class="small-10 small-push-1 medium-6 medium-push-3">
+                <div class="form-wrap">
+                    <form method="post" id="info">
+                        <label for="name">
+                            <?php echo trans('company-service-s10-i1'); ?>
+                        </label>
+                        <input type="text" name="name" id="name" required>
+                        <label for="phone">
+                            <?php echo trans('company-service-s10-i2'); ?>
+                        </label>
+                        <input type="number" name="phone" id="phone" required>
+                        <label for="email">
+                            <?php echo trans('company-service-s10-i3'); ?>
+                        </label>
+                        <input type="email" name="email" id="email" required>
+                        <label for="company">
+                            <?php echo trans('company-service-s10-i4'); ?>
+                        </label>
+                        <input type="text" name="company" id="company" required>
+                        <label for="zhiwei">
+                            <?php echo trans('company-service-s10-i5'); ?>
+                        </label>
+                        <input type="text" id="job" name="job" required>
+                        <label for="rqt"><?php echo trans('company-service-s10-i6'); ?></label>
+                        <textarea required id="content" name="content"></textarea>
+                        <div class="send-wrap">
+                            <input class="button" id="send" type="submit" value="<?php echo trans('send'); ?>">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php $boool = false;
+if ($boool) { ?>
+<div class="useless" style="background: black;width: 200px;height: 200px;">
+    <?php } ?>
+</div>
+<div class="service-footer ">
+    <div class="container clearfix">
+        <p class="copyright small-12 medium-10 columns">© 2015 ideapar.com All rights reserved. |
+            沪ICP备15027035</p>
+        <p class="social small-12 medium-2 columns">
+                <span>
+                    <a class="icon icon-weibo" href="http://weibo.com/u/5763590919?is_all=1" target="_blank"></a>
+                    <a class="show-qrcode icon icon-weixin" href="javascript:;"></a>
+                </span>
+        </p>
+        <div class="hide">
+        </div>
+    </div>
+</div>
+<ul class="indicate hide-for-small-only">
+    <li class="current"><a href="#problem"></a><span> <?php echo trans('common-problem'); ?></span></li>
+    <li><a href="#service"></a> <span> <?php echo trans('service-introduction'); ?></span></li>
+    <li><a href="#company_in"></a> <span> <?php echo trans('enterprises-settled'); ?></span></li>
+    <li><a href="#marketing"></a> <span> <?php echo trans('community-marketing '); ?></span></li>
+    <li><a href="#improve"></a> <span> <?php echo trans('improvement-report'); ?></span></li>
+    <li><a href="#media"></a> <span> <?php echo trans('media'); ?></span></li>
+    <li><a href="#advantages"></a> <span> <?php echo trans('advantage'); ?></span></li>
+    <li><a href="#price"></a> <span> <?php echo trans('service-package'); ?></span></li>
+    <li><a href="#partners"></a> <span> <?php echo trans('partner'); ?></span></li>
+    <li><a href="#contact"></a> <span> <?php echo trans('contact-us'); ?></span></li>
+</ul>
+
+<div class="msg-layout-wrapper msg-ok" style="display: none;">
+    <div class="msg-layout-mask">
+        <div class="msg-loading" style="display: none;">loading ...</div>
+        <div class="msg-panel" style="display: none;">
+            <div class="panel-body"></div>
+        </div>
+        <div class="msg-panel" style="display: none;">
+            <div class="panel-body">
+                <div class="user-container" data-url="1" data-page="1">
+                    <span class="user-container-title"></span>
+                    <div class="user-body"></div>
+                </div>
+                <div class="user-container" data-url="1" data-page="1">
+                    <span class="user-container-title"></span>
+                    <div class="user-body"></div>
+                </div>
+            </div>
+        </div>
+        <div class="msg-panel">
+            <div class="panel-body">
+                <p>提交成功! 我们将在48小时之内和您联系^_^</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="user-container" data-url="1" data-page="1">
+    <span class="user-container-title"></span>
+    <div class="user-body"></div>
+</div>
+<script type='text/javascript'>
+    (function (m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = '//static.meiqia.com/dist/meiqia.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 35987);
+</script>
+<?php $this->replace(); ?>

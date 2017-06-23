@@ -1,0 +1,29 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-friend_link-deactivate')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+    <div class="row column">
+        <p>
+            <?php echo trans('Are you sure to deactivate this friend_link ?') ?>
+        </p>
+        <?php if ($this->errors) { ?>
+            <p>
+            <ul class="menu vertical">
+                <?php foreach ($this->errors as $key => $val) { ?>
+                    <li><span class="label alert"><?php echo $key; ?>, <?php echo trans($val); ?></span></li>
+                <?php } ?>
+            </ul>
+            </p>
+        <?php } ?>
+        <form action="" method="post">
+            <?php echo csrf_field(); ?>
+            <input type="hidden" name="id" value="<?php echo $this->id; ?>">
+            <input type="submit" class="button tiny" value="<?php echo trans('yes'); ?>">
+            <a onclick="history.go(-1)"><?php echo trans('cancel'); ?></a>
+        </form>
+
+    </div>
+<?php $this->replace(); ?>

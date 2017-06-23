@@ -1,0 +1,71 @@
+<?php
+$range_config = config()->get('size_range');
+$type = ($this->group)? "group":"company";
+?>
+<div class="group-info">
+    <div class="logo-box">
+        <ul>
+            <li class="group-logo"><span><?php echo get_type_key($this->{$type}->type_id) ?></span></li>
+            <li class="group-fullname"><span><?php echo $this->{$type}->fullname; ?></span></li>
+            <li class="group-operation">
+                <?php
+                $edit_or_activate = (($this->{$type}->status == 1) ? 'edit' : 'activate');
+                $deactivate_or_delete = (($this->{$type}->status == 1) ? 'deactivate' : 'delete');
+                $type = get_type_key($this->{$type}->type_id);
+                ?>
+                <a href="<?php echo route_url("admin-ui-{$type}-$edit_or_activate", ['group_id' => $this->{$type}->id]); ?>"
+                   class="button">
+                    <?php echo trans($edit_or_activate); ?>
+                </a>
+                <a href="<?php echo route_url("admin-ui-{$type}-$deactivate_or_delete", ['group_id' => $this->{$type}->id]); ?>"
+                   class="button success">
+                    <?php echo trans($deactivate_or_delete); ?>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p class="group-time-info">
+        <span class="group-create-info">
+            Created: <span class="group-created-person"><?php echo user($this->{$type}->uid)->nick; ?></span>
+            <span class="group-created"><?php echo $this->{$type}->created; ?></span>
+        </span>
+        <span class="group-changed-info">
+            Last edit: <span class="group-changed-person"><?php echo user($this->{$type}->uid)->nick; ?></span>
+            <span class="group-changed"><?php echo $this->{$type}->changed; ?></span>
+        </span>
+    </p>
+    <div class="group-content-box">
+        <div class="group-logo">
+            <img src="" alt="">
+        </div>
+        <div class="group-description">
+            <p>
+                <span><?php echo trans("name") ?>：</span>
+                <?php echo $this->{$type}->name; ?>
+            </p>
+            <p>
+                <span><?php echo trans("legal-person") ?>：</span>
+                <?php echo $this->{$type}->legal_person; ?>
+            </p>
+            <p>
+                <span><?php echo trans("regsister Time") ?>：</span>
+                <?php echo $this->{$type}->established; ?>
+            </p>
+            <p>
+                <span><?php echo trans("regsister address") ?>：</span>
+                <?php echo $this->{$type}->reg_address; ?>
+            </p>
+            <p>
+                <span><?php echo trans("website") ?>：</span>
+                <a href="<?php echo $this->{$type}->website; ?>" target="_blank">
+                    <?php echo $this->{$type}->website; ?>
+                </a>
+            </p>
+            <p>
+                <span><?php echo trans("size") ?>：</span>
+                <?php echo array_search($this->{$type}->size_range_id, $range_config->all()); ?>
+            </p>
+        </div>
+    </div>
+</div>
+

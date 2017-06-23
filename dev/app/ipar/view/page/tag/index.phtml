@@ -1,0 +1,68 @@
+<?php $this->layout('layout/ipar', [
+    'html_title' => $this->tag->title,
+]);
+
+$tag = $this->tag;
+$type = $this->type;
+?>
+
+<?php $this->section('main'); ?>
+<div>
+    <h1><?php echo $tag->title; ?></h1>
+</div>
+<div class="tag_sort">
+    <ul>
+        <a href="<?php echo route_url('ipar-ui-tag-index', ['zcode' => $tag->zcode]); ?>">
+            <li class="<?php if ($type == 'tag_all') echo 'selected'; ?>"><?php echo trans('all'); ?></li>
+        </a>
+        <a href="<?php echo route_url('ipar-ui-tag_rqt-index', ['zcode' => $tag->zcode]); ?>">
+            <li class="<?php if ($type == 'tag_rqt') echo 'selected'; ?>"><?php echo trans('rqt'); ?></li>
+        </a>
+        <a href="<?php echo route_url('ipar-ui-tag_product-index', ['zcode' => $tag->zcode]); ?>">
+            <li class="<?php if ($type == 'tag_product') echo 'selected'; ?>"><?php echo trans('product'); ?></li>
+        </a>
+        <a href="<?php echo route_url('ipar-ui-tag_article-index', ['zcode' => $tag->zcode]); ?>">
+            <li class="<?php if ($type == 'tag_article') echo 'selected'; ?>"><?php echo trans('article'); ?></li>
+        </a>
+    </ul>
+</div>
+
+<div class="header-div rqt-header-div hide">
+    <i class="icon icon-rqt-new-version"></i>
+    <h3><?php echo trans('rqt'); ?></h3>
+</div>
+
+<?php echo $this->insert('module/no-search-result') ?>
+
+<div class="entity-set-wrap"></div>
+
+<div class="header-div product-header-div hide">
+    <i class="icon icon-product"></i>
+    <h3><?php echo trans('product'); ?></h3>
+</div>
+<div class="product-set-wrap"></div>
+
+<div class="header-div article-header-div hide">
+    <i class="icon icon-file"></i>
+    <h3><?php echo trans('article'); ?></h3>
+</div>
+<div class="article-set-wrap"></div>
+
+<div class="loading" data-action="<?php echo $type ?>" data-page="1" data-zcode="<?php echo $tag->zcode ?>">
+    <div class="one">
+        <a href="javascript:;" class="trigger"><?php echo trans('see-more'); ?></a>
+    </div>
+</div>
+
+<?php $this->append(); ?>
+
+<?php $this->section('side'); ?>
+<?php
+if ($tag->content) {
+    echo $this->insert('module/sidebar/section-tag', ['tag' => $tag]);
+} else {
+    echo trans("waiting-add");
+}
+?>
+
+<?php $this->replace(); ?>

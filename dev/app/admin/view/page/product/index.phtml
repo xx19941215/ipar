@@ -1,0 +1,17 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-product'),
+    'breadcrumbs' => ['admin-entity', 'admin-product']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+
+<?php echo $this->insert('module/form/query', [
+    'buttons' => [
+        ['link' => route_url('admin-product-add'), 'text' => trans('add-product')]
+    ]
+]); ?>
+
+<div class="row column">
+    <?php echo $this->insert('module/entity-set', ['entity_set' => $this->product_set]); ?>
+</div>
+<?php $this->replace(); ?>

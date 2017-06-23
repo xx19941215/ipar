@@ -1,0 +1,99 @@
+<?php
+$stories = $this->story_set->getItems();
+?>
+<?php if ($stories) { ?>
+<div class="story-set row column">
+    <?php foreach ($stories as $story) { ?>
+
+<?php
+    $dst_type = get_type_name($story->dst_type);
+    $dst_entity_type = $dst_type;
+    if ($dst_type == 'solved' || $dst_type == 'improving') {
+        $dst_entity_type = 'rqt';
+    }
+    $src_type = '';
+    if ($story->src_eid) {
+        $src_type = get_type_name($story->src_type);
+        $src_link = route_url("ipar-{$src_type}-show", ['zcode' => $story->src_zcode]);
+    }
+    if ($imgs = $story->getImgs()) {
+        $img_count = count($imgs);
+        $img_count = $img_count >= 2 ? 2 : $img_count;
+    } else {
+        $img_count = 0;
+    }
+    $user = user($story->uid);
+
+    $dst_link = route_url("ipar-{$dst_entity_type}-show", ['zcode' => $story->dst_zcode]);
+    $read_more_link = $dst_link;
+    //$data = $story->getDataArr();
+    //$title = prop($data, 'title', '');
+    //$content = prop($data, 'content', '');
+?>
+
+    <div class="story">
+        <?php if ($src_type) { ?>
+        <div class="story-src">
+            <span class="label"><?php echo trans("src-{$src_type}"); ?>:</span>
+            <a class="title" href="<?php echo $src_link; ?>"><?php echo $story->src_title; ?></a>
+        </div>
+        <?php } ?>
+
+        <div class="story-user-action">
+            <div class="user">
+                <a class="user-avt" href="javascript:;"><i class="icon icon-avt"></i></a>
+            </div>
+            <div class="main">
+                <a class="user-nick"><?php echo $user->nick; ?></a>
+                <div class="action">
+                    <span class="text"><?php echo trans($story->getActionKey() . '-' . $dst_type); ?></span>
+                    <i class="icon icon-<?php echo $dst_entity_type; ?>"></i>
+                </div>
+            </div>
+            <div class="date">
+                <?php echo time_elapsed_string($story->created); ?>
+            </div>
+        </div>
+
+        <div class="story-entity">
+            <?php if ($data_title = $story->getDataTitle()) { ?>
+            <div class="data-title">
+                <a href="<?php echo $dst_link; ?>"><?php echo $data_title; ?></a>
+            </div>
+            <?php } ?>
+
+            <?php if ($data_abbr = $story->getDataAbbr()) { ?>
+            <div class="data-abbr">
+                <?php echo $data_abbr; ?>
+                <a href="<?php echo $read_more_link; ?>"><?php echo trans('read-more'); ?></a>
+            </div>
+            <?php } ?>
+
+            <?php if ($img_count) { ?>
+            <?php for ($i = 0; $i < $img_count; $i++) { ?>
+            <img src="<?php echo img_src($imgs[$i], 'cover'); ?>">
+            <?php } ?>
+            <?php } ?>
+
+        </div>
+
+<?php /*
+        <div class="story-ops">
+            <span class="vote">
+                <a href="#"><i class="icon icon-vote"></i></a>
+                <a href="#">点赞</a>
+                <a href="#">15</a>
+            </span>
+            <span class="comment">
+                <a href="#"><i class="icon icon-comment"></i></a>
+                <a href="#">评论</a>
+                <a href="#">35</a>
+            </span>
+        </div>
+ */ ?>
+
+    </div>
+    <?php } ?>
+</div>
+<?php } ?>
+

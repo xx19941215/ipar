@@ -1,0 +1,18 @@
+.menu {
+    &.underline {
+
+        a {
+            margin-right: 15px;
+            padding: 16px 0;
+            border-bottom: 4px solid transparent;
+            font-size: $small-font-size;
+        }
+
+        .selected > a {
+            color: $black;
+            border-bottom: 4px solid $primary-color;
+            text-decoration: none;
+        }
+    }
+
+}

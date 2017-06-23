@@ -1,0 +1,57 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-company-industry_tag'),
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php
+    echo $this->insert('module/entity-menu-group', [
+        'group' => $this->company,
+        'select' => 'industry_tag'
+    ]);
+    ?>
+
+    <h2><?php echo trans('are-you-sure-to-delete-industry_tag-from-company'); ?></h2>
+    <div>
+        <form action="<?php echo $this->action; ?>" method="post">
+            <?php echo csrf_field(); ?>
+            <table>
+                <thead>
+                <tr>
+                    <th><?php echo trans('tag_id'); ?></th>
+                    <th><?php echo trans('title'); ?></th>
+                    <th><?php echo trans('content'); ?></th>
+                </tr>
+                </thead>
+                <tr>
+                    <td><?php echo $this->industry_tag->id; ?></td>
+                    <td><?php echo $this->industry_tag->title; ?></td>
+                    <td><?php echo $this->industry_tag->content; ?></td>
+                </tr>
+            </table>
+            <input type="hidden" name="id" value="<?php echo $this->company_industry_tag->id; ?>">
+            <input type="hidden" name="gid" value="<?php echo $this->company_industry_tag->gid; ?>">
+            <input type="hidden" name="tag_id" value="<?php echo $this->company_industry_tag->tag_id; ?>">
+
+
+
+            <?php if ($this->errors) { ?>
+                <p class="errors">
+                    <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                        <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+                    <?php } ?>
+                </p>
+            <?php } ?>
+
+            <input type="submit" value="<?php echo trans('sure'); ?>" class="button">
+            <a onclick="history.go(-1)"><?php echo trans('cancel') ?></a>
+        </form>
+
+
+    </div>
+
+</div>
+<?php $this->replace(); ?>
+
+
+

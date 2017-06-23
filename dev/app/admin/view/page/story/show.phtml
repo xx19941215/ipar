@@ -1,0 +1,50 @@
+<?php $this->layout('layout/admin', ['html_title' => trans('admin-story')]); ?>
+
+<?php $this->section('page-body'); ?>
+
+
+<?php
+    $story = $this->story;
+    $dst_type_key = get_type_key($story->dst_type_id);
+    $dst_url = route_url("admin-{$dst_type_key}-show", ['eid' => $story->dst_eid]);
+    $src_type = '';
+    if ($story->src_eid) {
+        $src_type = get_type_key($story->src_type_id);
+    }
+?>
+    <div class="story">
+        <?php if ($src_type) { ?>
+        <div class="story-src">
+            <span><?php echo trans("src-{$src_type}"); ?></span>,
+            <a href="<?php echo route_url("admin-{$src_type}-show", ['eid' => $story->src_eid]); ?>"><?php echo $story->src_title; ?></a>
+        </div>
+        <?php } ?>
+
+        <div class="story-action">
+            <span class="story-id"><?php echo $story->id; ?>.</span>
+            <span><?php echo user($story->uid)->nick; ?></span>
+            <span><?php echo trans($story->getActionKey() . '-' . $dst_type_key); ?></span>,
+            <?php if ($data_title = $story->getDataTitle()) { ?>
+            <a href="<?php echo $dst_url; ?>"><?php echo $data_title; ?></a>
+            <?php } else { ?>
+            <a href="<?php echo $dst_url; ?>"><?php echo "{$dst_type_key}#{$story->dst_eid}"; ?></a>
+            <?php } ?>
+        </div>
+
+        <div class="story-created">
+            <?php echo $story->created; ?>
+        </div>
+
+        <?php foreach ($story->getDataArr() as $type => $val) { ?>
+        <br>
+        <div class="story-data-<?php echo $key; ?>">
+            <span class="data-type"><?php echo $type; ?>:</span>
+            <?php echo $val; ?>
+        </div>
+        <?php } ?>
+
+        <br>
+        <?php echo $this->insert('element/link-go-back'); ?>
+
+    </div>
+<?php $this->replace(); ?>

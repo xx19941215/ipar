@@ -1,0 +1,35 @@
+<?php
+//$locale_config = config()->get('i18n.locale.available');
+$locales = config()->get('i18n.locale.available')->all();
+?>
+<form action="<?php echo $this->action; ?>" method="post">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="str" value="<?php echo $this->str; ?>">
+
+    <br>
+    <input type="text" name="str" value="<?php echo $this->str; ?>">
+    <br>
+
+    <?php foreach ($locales as $locale_key => $opt) { ?>
+    <label>
+        <?php echo $locale_key . ' - ' . prop($opt, 'title', ''); ?>
+        <input type="text" name="transes[<?php echo prop($opt, 'id', 0); ?>]" value="<?php echo isset($this->transes[$opt['id']]) ? $this->transes[$opt['id']] : '' ; ?>">
+    </label>
+    <?php } ?>
+
+
+    <?php if ($this->errors) { ?>
+    <p class="errors">
+        <?php foreach ($this->errors as $err_key => $err_val) { ?>
+            <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+        <?php } ?>
+    </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <a onclick="history.go(-1)">
+            <?php echo trans( 'cancel'); ?>
+        </a>
+    </div>
+</form>

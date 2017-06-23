@@ -1,0 +1,48 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('delete-company-from-industry_tag'),
+    'breadcrumbs' => ['']
+]); ?>
+<?php $tag = $this->tag; ?>
+<?php $this->section('page-body'); ?>
+    <div class="entity-show">
+        <?php echo $this->insert("module/industry_tag-menu", ['select' => 'company', 'tag' => $tag]); ?>
+        <h2><?php echo trans('are-you-sure-to-delete-this-company'); ?></h2>
+        <form action="<?php echo $this->action; ?>" method="post">
+            <?php echo csrf_field(); ?>
+            <table>
+                <thead>
+                <tr>
+                    <td><?php echo trans('gid'); ?></td>
+                    <td><?php echo trans('company-fullname'); ?></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><?php echo $this->company->gid; ?></td>
+                    <td>
+                        <a href="<?php echo route_url('admin-ui-company-show', ['gid' => $this->company->gid]) ?>"
+                           target="_blank">
+                            <?php echo $this->company->fullname; ?>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <input type="hidden" name="id" value="<?php echo $this->company_industry_tag->id; ?>">
+            <input type="hidden" name="gid" value="<?php echo $this->company_industry_tag->gid; ?>">
+            <input type="hidden" name="tag_id" value="<?php echo $this->company_industry_tag->tag_id; ?>">
+
+            <?php if ($this->errors) { ?>
+                <p class="errors">
+                    <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                        <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+                    <?php } ?>
+                </p>
+            <?php } ?>
+
+            <input type="submit" value="<?php echo trans('sure'); ?>" class="button">
+            <a onclick="history.go(-1)"><?php echo trans('cancel') ?></a>
+        </form>
+    </div>
+
+<?php $this->replace(); ?>

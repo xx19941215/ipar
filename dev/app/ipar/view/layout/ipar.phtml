@@ -1,0 +1,278 @@
+<?php
+/**
+ * File php.php
+ * PHP Version 7.0.4
+ * @category Tpl
+ * @package Global
+ * @author Zjh <zhanjh@126.com>
+ * @license http:://www.tecposter.cn/bsd-licence BSD Licence
+ * @link http://www.tecposter.cn
+ */
+$csses = ($this->csses && is_array($this->csses)) ? $this->csses : ['ipar.css' => 1];
+if ($this->css_appended && is_array($this->css_appended)) {
+    $csses = array_merge($csses, $this->css_appended);
+}
+$jses = ($this->jses && is_array($this->jses)) ? $this->jses : ['ipar.js' => 1];
+if ($this->js_appended && is_array($this->js_appended)) {
+    $jses = array_merge($jses, $this->js_appended);
+}
+
+$breadcrumbs = ($this->breadcrumbs && is_array($this->breadcrumbs)) ? $this->breadcrumbs : [];
+array_unshift($breadcrumbs, 'ipar-home');
+
+$site_config = config()->get('site');
+$sites = [
+    'static' => ['host' => $site_config->get('static.host')],
+    'api' => ['host' => $site_config->get('api.host')],
+    'nos_ipar_upload' => ['host' => $site_config->get('nos_ipar_upload.host')],
+    'nos_ipar_avt' => ['host' => $site_config->get('nos_ipar_avt.host')]
+];
+$router = router();
+
+$current_route_name = $router->getCurrentRouteName();
+if ($this->html_title) {
+    $tdk_title = trans("tdk-title-$current_route_name-%s", $this->html_title);
+} else {
+    $tdk_title = trans("tdk-title-$current_route_name");
+}
+
+if ($tdk_keywords = $this->tdk_keywords) {
+    if (is_string($tdk_keywords)) {
+        $tdk_keywords = trans("tdk-keywords-$current_route_name-%s", $tdk_keywords);
+    } else {
+        $tdk_keywords = trans("tdk-keywords-$current_route_name");
+    }
+}
+
+if ($tdk_description = $this->tdk_description) {
+    if (is_string($tdk_description)) {
+        $tdk_description = trans("tdk-description-$current_route_name-%s", $tdk_description);
+    } else {
+        $tdk_description = trans("tdk-description-$current_route_name");
+    }
+}
+
+?><!DOCTYPE html>
+<html xmlns:wb="http://open.weibo.com/wb" lang="<?php echo $router->getCurrentLocaleKey(); ?>">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport' />
+    <title><?php echo $tdk_title; ?></title>
+
+    <?php if ($tdk_keywords) { ?>
+        <meta name="keywords" content="<?php echo $tdk_keywords; ?>" />
+    <?php } ?>
+
+    <?php if ($tdk_description) { ?>
+        <meta name="description" content="<?php echo $tdk_description; ?>" />
+    <?php } ?>
+
+
+    <?php foreach ($csses as $css=>$val) { ?>
+    <link rel="stylesheet" href="<?php echo css_url($css); ?>">
+    <?php } ?>
+
+    <?php $this->section('style'); ?>
+    <?php $this->stop(); ?>
+
+    <link rel="icon" type="image/png" href="<?php echo img_url('favicon-16x16.png'); ?>" sizes="16x16" />
+    <link rel="icon" type="image/png" href="<?php echo img_url('favicon-32x32.png'); ?>" sizes="32x32" />
+
+    <?php foreach ($router->getI18nUrls() as $locale_key => $url) { ?>
+        <link rel="alternate" hreflang="<?php echo $locale_key; ?>" href="<?php echo $url; ?>" />
+    <?php } ?>
+
+</head>
+
+<body class="ipar">
+
+<div class="page <?php echo $current_route_name; ?>">
+
+    <?php echo $this->insert('module/page-header-fixed'); ?>
+
+    <div class="page-header"></div>
+    <?php echo $this->insert('module/top-nav'); ?>
+    <?php echo $this->section('cat'); $this->stop(); ?>
+
+    <div class="page-body container">
+        <div class="main">
+            <?php $this->section('main'); $this->stop(); ?>
+        </div>
+        <div class="side">
+            <?php $this->section('side'); $this->stop(); ?>
+            <?php echo $this->insert('module/sidebar/section-bottom'); ?>
+        </div>
+    </div>
+
+<?php /*
+    <div class="page-footer">
+        <?php echo $this->insert('module/page-footer'); ?>
+    </div>
+ */ ?>
+
+</div>
+<div class="user-container" data-url="1" data-page="1">
+<span class="user-container-title"></span>
+<div class="user-body"></div>
+</div>
+
+<?php foreach ($jses as $js => $val) { ?>
+    <script class="static-js" src="<?php echo js_url($js) ?>"></script>
+<?php } ?>
+
+<script>
+(function() {
+    var config = window.config = window.config || {};
+    var dict = window.dict = window.dict || {};
+    var collector = window.collector = window.collector || {};
+
+    config.current_uid = <?php echo current_uid(); ?>;
+    config.api = {
+        user_upload_avt: '<?php echo route_url('api-user-upload-avt'); ?>',
+        follow_entity:'<?php echo route_url('api-follow-entity'); ?>',
+        unfollow_entity:'<?php echo route_url('api-unfollow-entity'); ?>',
+        follow_user:'<?php echo route_url('api-follow-user'); ?>',
+        unfollow_user:'<?php echo route_url('api-unfollow-user'); ?>',
+        follow_common_users:'<?php echo route_url('api-user-common-users'); ?>',
+        followed_users:'<?php echo route_url('api-user-followed-users'); ?>',
+        following_users:'<?php echo route_url('api-user-following-users'); ?>',
+        followed_entitys:'<?php echo route_url('api-entity-followed-users'); ?>',
+
+        //comment
+        get_earlier_comments: '<?php echo route_url('ipar-rest-entity_comment-earlier_post') ?>',
+        get_later_comments: '<?php echo route_url('ipar-rest-entity_comment-later_post') ?>',
+        get_latest_comments: '<?php echo route_url('ipar-rest-entity_comment-latest_post') ?>',
+        create_comment: '<?php echo route_url('ipar-rest-entity_comment-create_post') ?>',
+        count_comment: '<?php echo route_url('comment-count') ?>',
+        delete_comment: '<?php echo route_url('ipar-rest-entity_comment-delete_post') ?>',
+
+        //comment_article
+        get_earlier_article_comments: '<?php echo route_url('ipar-rest-comment_article-earlier_post') ?>',
+        get_later_article_comments: '<?php echo route_url('ipar-rest-comment_article-later_post') ?>',
+        get_latest_article_comments: '<?php echo route_url('ipar-rest-comment_article-latest_post') ?>',
+        create_article_comment: '<?php echo route_url('ipar-rest-comment_article-create') ?>',
+        count_article_comment: '<?php echo route_url('ipar-rest-comment_article-count') ?>',
+        delete_article_comment: '<?php echo route_url('ipar-rest-comment_article-delete') ?>',
+
+        //tag
+        tag_save: '<?php echo route_url('api-tag-save'); ?>',
+        tag_delete: '<?php echo route_url('api-tag-delete'); ?>',
+        tag_vote: '<?php echo route_url('api-tag-vote'); ?>',
+        tag_unvote: '<?php echo route_url('api-tag-unvote'); ?>',
+        tag_list: '<?php echo route_url('api-tag-list'); ?>',
+        tag_vote_users: '<?php echo route_url('api-tag-vote-users'); ?>',
+        area_sch:'<?php echo route_url('api-address-fetchAreas')?>',
+        group_list: '<?php echo route_url('rest-group-index'); ?>',
+        like_entity: '<?php echo route_url('ipar-rest-like-entity')?>',
+        unlike_entity: '<?php echo route_url('ipar-rest-unlike-entity')?>',
+        like_user: '<?php echo route_url('ipar-rest-like-user')?>',
+        vote_solution: '<?php echo route_url('ipar-rest-vote-solution')?>',
+        unvote_solution: '<?php echo route_url('ipar-rest-unvote-solution')?>',
+        solution_users: '<?php echo route_url('ipar-rest-solution-users')?>',
+        vote_property: '<?php echo route_url('ipar-rest-vote-property')?>',
+        unvote_property: '<?php echo route_url('ipar-rest-unvote-property')?>',
+        property_users: '<?php echo route_url('ipar-rest-property-users')?>',
+        solution_users: '<?php echo route_url('ipar-rest-solution-users')?>',
+        js_trans: '<?php echo route_url('ipar-rest-js-trans')?>'
+
+
+
+    };
+    config.token = '<?php echo session()->get('_token'); ?>';
+    //config.site = {static: {host: '<?php echo config()->get('site.static.host'); ?>' }};
+    config.site = <?php echo json_encode($sites, true); ?>;
+    config.locale_key = '<?php echo translator()->getLocaleKey(); ?>';
+
+    <?php $untrans = new \Mars\Service\JsTransService;
+    foreach ($untrans->getJsTranKeys() as $key => $value) {?>
+        dict['<?php echo $value->key;?>'] = '<?php echo trans($value->key);?>';
+    <?php } ?>
+}());
+
+(function () {
+    var api = z.config('api');
+    api.suggest = '<?php echo route_url('ipar-rest-entity-suggest-post'); ?>';
+    api.fetch = '<?php echo route_url('ipar-rest-entity-fetch-post'); ?>';
+    api.search = '<?php echo route_url('ipar-rest-entity-search'); ?>';
+    api.search_article = '<?php echo route_url('ipar-rest-search_article');?>';
+    api.search_rqt = '<?php echo route_url('ipar-rest-entity-search_rqt');?>';
+    api.search_product = '<?php echo route_url('ipar-rest-entity-search_product');?>';
+    api.search_user = '<?php echo route_url('ipar-rest-user-search_user');?>';
+    api.search_company = '<?php echo route_url('ipar-rest-company-search_company');?>';
+
+    api.rqt_save = '<?php echo route_url('ipar-rest-rqt-save-post'); ?>';
+    api.rqt_save_idea = '<?php echo route_url('ipar-rest-rqt-save-idea-post'); ?>';
+    api.rqt_save_product = '<?php echo route_url('ipar-rest-rqt-save-product-post'); ?>';
+    api.rqt_save_solution = '<?php echo route_url('ipar-rest-rqt-save-solution-post'); ?>';
+
+    api.product_save = '<?php echo route_url('ipar-rest-product-save-post'); ?>';
+    api.product_save_feature = '<?php echo route_url('ipar-rest-product-save-feature-post'); ?>';
+    api.product_save_solved = '<?php echo route_url('ipar-rest-product-save-solved-post'); ?>';
+    api.product_save_improving = '<?php echo route_url('ipar-rest-product-save-improving-post'); ?>';
+    //api.product_save_rqt = '<?php echo route_url('ipar-rest-product-save-rqt-post'); ?>';
+    api.product_save_property = '<?php echo route_url('ipar-rest-product-save-property-post'); ?>';
+    api.idea_save = '<?php echo route_url('ipar-rest-idea-save-post'); ?>';
+
+    api.feature_save = '<?php echo route_url('ipar-rest-feature-save-post'); ?>';
+    api.feature_product = '<?php echo route_url('ipar-rest-feature-product'); ?>';
+
+    api.zeditor_upload_url = '<?php echo route_url('ipar-rest-img-upload_figure_post'); ?>';
+
+    api.brand_save = '<?php echo route_url('ipar-rest-brand-save'); ?>';
+    api.brand_delete = '<?php echo route_url('ipar-rest-brand-delete'); ?>';
+    api.brand_vote = '<?php echo route_url('ipar-rest-brand-vote'); ?>';
+    api.brand_unvote = '<?php echo route_url('ipar-rest-brand-unvote'); ?>';
+    api.brand_list = '<?php echo route_url('ipar-rest-brand-list'); ?>';
+    api.brand_vote_users = '<?php echo route_url('ipar-rest-brand-vote-users'); ?>';
+
+    api.story = '<?php echo route_url('ipar-rest-story-index'); ?>';
+    api.rqt = '<?php echo route_url('ipar-rest-rqt-index'); ?>';
+    api.product = '<?php echo route_url('ipar-rest-product-index'); ?>';
+    api.group = '<?php echo route_url('ipar-rest-group-index'); ?>';
+    //api.search = '<?php echo route_url('ipar-rest-index-search'); ?>';
+    api.property = '<?php echo route_url('ipar-rest-product-property'); ?>';
+    api.solution = '<?php echo route_url('ipar-rest-rqt-solution'); ?>';
+
+    api.tag_rqt = '<?php echo route_url('ipar-rest-tag_rqt-index'); ?>';
+    api.tag_product = '<?php echo route_url('ipar-rest-tag_product-index'); ?>';
+    api.tag_article = '<?php echo route_url('ipar-rest-tag_article-index'); ?>';
+
+    api.company_product = '<?php echo route_url('ipar-rest-company_product-show'); ?>';
+    api.article = '<?php echo route_url('ipar-rest-article-index'); ?>';
+    api.brand_tag_product = '<?php echo route_url('ipar-rest-brand_tag_product-show'); ?>';
+
+
+}());
+</script>
+
+<?php $this->section('script'); ?><?php $this->stop(); ?>
+
+
+<?php if (config()->get('env') === 'product') { ?>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a846b9b75bb5184739d9f88918212293";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78678033-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<?php } ?>
+<?php if ($this->article) { ?>
+<script src="http://static.dabanner.com/js/daad.js"></script>
+<?php } ?>
+</body>
+</html>

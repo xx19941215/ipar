@@ -1,0 +1,40 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-article-activate')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<h3><?php echo trans('admin-statistics-total-rqt'); ?><?php echo $this->count_rqt_all; ?></h3>
+<h3><?php echo trans('admin-statistics-total-product'); ?><?php echo $this->count_product_all; ?></h3>
+<h3>
+    <?php echo trans('admin-statistics-total-unsolved-rqt'); ?><?php echo $this->count_rqt_unsolved; ?>
+    <a href="<?php echo route_url('admin-statistics-unsolved_product_list'); ?>">detail</a>
+</h3>
+<h3>
+    <?php echo trans('admin-statistics-total-unassoc-product'); ?><?php echo $this->count_product_unasso; ?>
+    <a href="<?php echo route_url('admin-statistics-unasso_rqt_list'); ?>">detail</a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <td>date</td>
+          <td>rqt</td>
+          <td>product</td>
+          <td>user</td>
+      </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($this->statisticsSet as $stat) : ?>
+      <tr>
+          <td><?php echo $stat->date; ?></td>
+          <td><?php echo $stat->count_rqt; ?></td>
+          <td><?php echo $stat->count_product; ?></td>
+          <td><?php echo isset($stat->count_user) ? $stat->count_user : 0 ?></td>
+      </tr>
+    <?php endforeach; ?>
+  </tbody>
+  </table>
+  <br/>
+<?php echo $this->insert('element/pagination', ['page_count' => $this->pageCount]); ?>
+<?php $this->replace(); ?>

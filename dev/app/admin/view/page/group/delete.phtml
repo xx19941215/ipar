@@ -1,0 +1,11 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-group-deactivate'),
+    'breadcrumbs' => ['admin-ui-group-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+    <div id="page-group-delete">
+        <?php echo $this->insert('module/form/group/admin-form-group-delete'); ?>
+    </div>
+
+<?php $this->replace(); ?>

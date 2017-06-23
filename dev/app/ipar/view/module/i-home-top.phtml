@@ -1,0 +1,33 @@
+<?php
+?><div class="i-home-top">
+    <div class="user-top">
+<?php /*
+        <div class="user-tag">
+            <span class="tag">工业设计</span><span class="tag">80后</span>
+        </div>
+ */ ?>
+        <div class="user-wrap">
+            <div class="side">
+                <a class="user-avt" href="<?php echo $this->user->getUrl(); ?>">
+                    <?php if ($avt = $this->user->getAvt()) { ?>
+                    <img src="<?php echo img_src($avt, 'medium'); ?>">
+                    <?php } else { ?>
+                    <i class="icon icon-avt"></i>
+                    <?php } ?>
+                </a>
+                <?php if (is_mine($this->user)) { ?>
+                <a class="change-avt" href="javascript:;"><i class="icon icon-camera"></i></a>
+                <?php } ?>
+            </div>
+            <div class="main">
+                <h1 class="user-nick">
+                    <a href="<?php echo $this->user->getUrl(); ?>"><?php echo $this->user->nick; ?></a>
+                </h1>
+                <div class="user-login">
+                    <div class="item"><span class="text"><?php echo trans('user-created'); ?>:</span><?php echo substr($this->user->created, 0, 10); ?></div>
+                    <div class="item"><span class="text"><?php echo trans('user-logined'); ?>:</span><?php echo substr($this->user->logined, 0, 10); ?></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

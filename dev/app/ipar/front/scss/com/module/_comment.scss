@@ -1,0 +1,132 @@
+$comment-avt-size: 40px;
+$avt-border-radius: 4px;
+$comments-box-size: 400px;
+$date-color: #999999;
+
+.comments-container {
+
+    background: $white;
+    padding: 1em;
+    border-radius: .5em;
+    display: none;
+    border: 1px solid $light-gray;
+    margin-top: 1em;
+    .comments-list {
+        max-height: $comments-box-size;
+        overflow-y: auto;
+    }
+
+    img {
+        max-width: none;
+    }
+
+    .comment {
+        @include clearfix;
+        border-bottom: 1px solid $light-gray;
+        position: relative;
+        margin-top: 1.5em;
+        margin-right: .8em;
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+
+        .user {
+            @include breakpoint(small only) {
+                width: 20%;
+            }
+
+            @include breakpoint(medium) {
+                width: 10%;
+            }
+            float: left;
+
+            .icon-avt {
+                font-size: $story-avt-size;
+                line-height: $story-avt-size;
+                color: $medium-gray;
+            }
+
+            > img {
+                width: $comment-avt-size;
+                height: $comment-avt-size;
+                border-radius: $avt-border-radius;
+            }
+        }
+
+        .date {
+            position: absolute;
+            right: 0;
+            top: .5em;
+            font-size: $small-font-size;
+            color: $date-color;
+        }
+
+
+        .reply-comment-button {
+            position: absolute;
+            right: 0;
+            bottom: .5em;
+            display: none;
+        }
+
+        .user-nick {
+            color: $dark-gray;
+        }
+
+        .main {
+            overflow: hidden;
+            p:nth-of-type(2) {
+                color: $black;
+            }
+        }
+
+        &:hover {
+            .reply-comment-button {
+                display: block;
+            }
+        }
+    }
+
+    .comment-form {
+        position: relative;
+        margin: 18px 0 0 10px;
+
+        input {
+            display: inline;
+            border-radius: 4px;
+            vertical-align: top;
+        }
+
+        textarea {
+            min-height: auto;
+        }
+        .comment-textbox {
+            display: inline;
+            border-radius: 4px;
+            margin-right: 7px;
+            white-space: normal;
+            overflow: hidden;
+            height: 32px;
+            line-height: 32px;
+            padding: .2em;
+            @include breakpoint(small only) {
+                width: 70%;
+            }
+
+            @include breakpoint(medium) {
+                width: 480px;
+            }
+            resize: none;
+        }
+        .submit-comment-button {
+            float: right;
+        }
+        .reply-hint {
+            position: absolute;
+            left: 1em;
+            line-height: 38px;
+        }
+
+    }
+}

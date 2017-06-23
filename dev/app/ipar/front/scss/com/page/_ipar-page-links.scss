@@ -1,0 +1,186 @@
+.ipar-ui-page-links {
+    .page-body {
+        margin-top: 40px;
+    }
+    .side {
+        display: none;
+    }
+    .links-page-banner {
+        width: 100%;
+        background: $black url('http://ipar-static.nos-eastchina1.126.net/img/links-banner.png') no-repeat;
+        background-size: cover;
+        text-align: center;
+        padding: 60px 0;
+        margin: 0 0 30px 0;
+        h1, p {
+            color: #fff;
+            font-weight: 300;
+        }
+
+        p {
+            font-weight: 100;
+            font-size: 18px;
+        }
+    }
+
+    dd {
+        width: 25%;
+
+        @include breakpoint(medium) {
+            width: 10%;
+        }
+        float: left;
+
+        a {
+            font-size: 14px;
+            img {
+                margin-right: .5em;
+            }
+        }
+
+        p {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+
+    dt {
+        border-bottom: 1px solid $medium-gray;
+        padding-bottom: .5em;
+        margin-bottom: 1em;
+    }
+
+    dl {
+        margin-bottom: 50px;
+    }
+
+    .item {
+        @include clearfix;
+    }
+
+    .links-set-wrap {
+        h3 {
+            display: inline-block;
+            margin-left: .5em;
+        }
+    }
+
+    i {
+        font-size: 20px;
+    }
+
+    .icon-website-industy {
+        color: #00b6e3;
+    }
+    .icon-website-shop {
+        color: #7bbb5e;
+    }
+    .icon-website-mp {
+        color: #9966cc;
+    }
+    .icon-website-crowdsourcing {
+        color: #ffcb34;
+    }
+    .icon-website-customized {
+        color: #ff8600;
+    }
+    .icon-website-entertainment　 {
+        color: #4c94ff;
+    }
+    .icon-website-design {
+        color: #ea4c89;
+    }
+    .icon-website-zone {
+        color: #f36e6a;
+    }
+    .icon-website-crowdfunding {
+        color: #c09367;
+    }
+
+    .links-set-wrap {
+        padding: 0 15px;
+    }
+
+    .friend-link {
+        background: $light-gray;
+        padding-top: 2em;
+
+        ul {
+            padding-left: .5em;
+            margin-top: 2em;
+            padding-bottom: 50px;
+        }
+
+        li {
+            display: inline-block;
+            padding-right: 1em;
+        }
+
+        img {
+            margin-right: .5em;
+        }
+
+        li:not(:first-child):before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: $medium-gray;
+            vertical-align: middle;
+            margin-right: 1em;
+        }
+
+        a {
+            font-size: 13px;
+        }
+
+        a:hover {
+            color: #598cbc;
+        }
+
+        p {
+            text-align: right;
+            font-size: 14px;
+            height: 7em;
+            line-height: 7;
+            color: $dark-gray;
+        }
+    }
+
+    .page-body {
+        display: none;
+    }
+
+    ul {
+        margin: 0;
+        line-height: 1;
+    }
+
+    .pageFooter {
+        display: none;
+    }
+
+    @media screen and (max-width: 640px) {
+        .box-wrap {
+            width: 100%;
+            margin-bottom: -6px;
+        }
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 640px) {
+        .box-wrap {
+            width: 50%;
+        }
+    }
+
+    @media screen and (min-width: 640px) and (max-width: 800px) {
+        .box-wrap {
+            width: 33.3%;
+        }
+        .links-page-banner {
+            padding: 70px 0;
+        }
+    }
+}

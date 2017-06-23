@@ -1,0 +1,43 @@
+<ul>
+    <?php foreach ($this->invents as $invent) { ?>
+    <?php
+        $invent_url = route_url('invent-show', ['zcode' => $invent->zcode]);
+        $user = user($invent->uid);
+    ?>
+    <li>
+        <div class="img">
+            <a href="<?php echo $invent_url; ?>">
+            <?php if ($imgs = $invent->getImgs()) { ?>
+                <img src="<?php echo img_src($imgs[0], 'cover'); ?>">
+            <?php } else { ?>
+                <i class="icon icon-diandian"></i>
+            <?php } ?>
+            </a>
+
+            <?php if ($invent->tags) { ?>
+            <div class="tag">
+                <?php foreach ($invent->tags as $tid => $tag) { ?>
+                    <a href="javascript:;"><?php echo $tag->title; ?></a>
+                <?php } ?>
+            </div>
+            <?php } ?>
+        </div>
+        <div class="txt">
+            <div class="title"><a href="<?php echo $invent_url; ?>"><?php echo $invent->title; ?></a></div>
+            <div class="extra">
+                <?php echo $this->insert('include/icon-entity-hit', ['entity' => $invent]); ?>
+                <span class="num-ef num-ef-<?php echo $invent->eid; ?>"><?php echo $invent->follow_ct; ?></span>
+
+                <div class="right">
+                    <?php echo $this->insert('include/user/avt', [
+                        'user' => user($invent->uid),
+                        'elem_class' => 'namelink',
+                    ]); ?>
+                    <span><?php echo time_elapsed_string($invent->created); ?></span>
+                </div>
+            </div>
+        </div>
+    </li>
+    <?php } ?>
+</ul>
+

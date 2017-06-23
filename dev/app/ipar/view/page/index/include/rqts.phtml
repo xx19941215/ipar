@@ -1,0 +1,18 @@
+<ul>
+<?php foreach ($this->rqts as $rqt) { ?>
+    <?php $user = user($rqt->uid); ?>
+    <li>
+        <?php if ($rqt->attd == 1) { ?>
+            <div class="mood"><i class="icon icon-positive"></i></div>
+        <?php } else { ?>
+            <div class="mood"><i class="icon icon-negative"></i></div>
+        <?php } ?>
+        <div class="title"><a href="<?php echo route_url('rqt-show', ['zcode' => $rqt->zcode]); ?>"><?php echo $rqt->title; ?></a></div>
+        <div class="extra">
+            <a class="namelink" href="<?php echo route_url('i-home', ['zcode' => $user->zcode]); ?>"><span class="avatar"><i class="icon icon-user"></i></span> <span class="name"><?php echo user($rqt->uid)->nick; ?></span></a>
+            <span>&emsp;&emsp;</span>
+            <span><?php echo time_elapsed_string($rqt->created); ?></span>
+        </div>
+    </li>
+<?php } ?>
+</ul>

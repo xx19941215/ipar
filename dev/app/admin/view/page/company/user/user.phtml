@@ -1,0 +1,51 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-company-show'),
+    'breadcrumbs' => ['admin-company', 'admin-company-user'],
+]);
+$company = $this->company_set;
+$group_user_set = $this->group_user_set;
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show rqt-show">
+    <div class="entity-show-top">
+        <?php echo $this->insert("module/group-menu", [
+            'company' => $company,
+            'select' => 'group_user']); ?>
+    </div>
+<br/>
+<div class="entity-set">
+    <?php foreach ($group_user_set as $group_user) { ?>
+    <div class="entity">
+    <div class="entity-header">
+        <a class="entity-type" href="">
+            <?php echo $group_user->uid;?>
+        </a>
+        <a class="entity-title" href="">
+            <?php echo $group_user->roles;?>
+        </a>
+        <a class="entity-title" href="">
+            <?php echo $group_user->start;?>
+        </a>
+        <a class="entity-title" href="">
+            <?php echo $group_user->end;?>
+        </a>
+        <a class="op eidt" href="<?php echo route_url("admin-company-update-user", ['id' => $group_user->id]); ?>">
+            <?php echo trans('edit')?>
+        </a>
+        <a class="op deactivate" href="<?php echo route_url("admin-company-delete-user-post", ['id' => $group_user->id]); ?>">
+            <?php echo trans('deactivate')?>
+        </a>
+        
+    </div>
+
+<?php } ?>    
+
+    
+</div>
+    
+    
+</div>
+<?php $this->replace(); ?>
+

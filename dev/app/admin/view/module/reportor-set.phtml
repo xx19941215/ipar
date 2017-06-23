@@ -1,0 +1,24 @@
+<?php
+$data = $this->reportor_set==null?false:$this->reportor_set->getitems();
+if(!$data) return;
+?>
+
+<script>
+var data = <?php echo json_encode($data);?>
+</script>
+<div class="reportor">
+
+</div>
+<div>
+<form action="" method="get">
+	<span style="display:inline-block;width: 40%">
+		<label style="display:inline-block;width: 30px;">start:</label>
+		<input type="date" name="start"  style="display: inline-block;width: 70%" value="<?php echo $this->start;?>"/>
+	</span>
+	<span style="display:inline-block;width:40%;">
+		<label style="display:inline-block;width: 30px;">end:</label>
+	    <input type="date" name="end" style="display: inline-block;width: 70%"  value="<?php echo $this->end;?>"/>
+	</span>
+	<input type="submit" value="Submit" class="button small"/>
+	</form>
+</div>

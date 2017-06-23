@@ -1,0 +1,10 @@
+<?php $this->layout('layout/default', [
+    'jses' => ['ipar.editor.js' => 1]
+]); ?>
+
+<?php $this->section('content'); ?>
+    <?php echo $this->insert('include/form/story-form', [
+        'ref' => $this->rqt,
+        'type' => 'invent',
+    ]); ?>
+<?php $this->replace(); ?>

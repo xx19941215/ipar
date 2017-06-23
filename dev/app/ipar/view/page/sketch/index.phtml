@@ -1,0 +1,24 @@
+<?php $this->layout('page'); ?>
+
+
+<?php $this->section('page-body'); ?>
+<div class="row page-feature-list">
+        <div class="feature-list-main">
+            <h2>
+                <?php echo trans('page-feature-list-title'); ?>
+            </h2>
+            <?php echo $this->insert('module/uem-list', [
+                'entities' => $this->features,
+                'is_show_abbr' => true
+            ]); ?>
+            <?php echo $this->insert('include/page-nav-simple', ['items' => $this->features]); ?>
+        </div>
+
+        <div class="feature-list-side">
+            <div>
+                <a href="javascript:"><img src="<?php echo img_url('feature-list-side.png'); ?>"></a>
+            </div>
+        </div>
+
+    </div>
+<?php $this->replace(); ?>

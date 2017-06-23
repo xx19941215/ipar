@@ -1,0 +1,11 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('tag'),
+    'breadcrumbs' => ['admin-ui-tag-index']
+]); ?>
+<?php $this->section('page-body'); ?>
+
+<h1><?php echo trans('admin-ui-industry_tag-add'); ?></h1>
+<?php echo $this->insert('module/form/tag/admin-form-industry_tag'); ?>
+
+
+<?php $this->replace(); ?>

@@ -1,0 +1,70 @@
+<?php
+$this->layout('layout/third-party-login', [
+    'html_title' => trans('wx-login-bind-exist-account'),
+]);
+$errors = $this->errors ? $this->errors : [];
+?>
+
+<?php $this->section('main'); ?>
+
+<div class="link">
+    <i class="icon icon-logo"></i>
+    <i class="icon icon-shuangxiangjiantou"></i>
+    <i class="icon icon-weixin"></i>
+</div>
+
+<div class="user-binding">
+    <div class="avt-wrap">
+        <div class="avt">
+            <img src="<?php echo $this->headimgurl; ?>">
+        </div>
+        <p class="nickname"><?php echo $this->nickname; ?></p>
+    </div>
+    <div class="bind">
+        <p><?php echo trans('wx-login-bind-exist-account'); ?></p>
+        <form action="<?php echo route_url('wx-login-bind-account-post'); ?>" method="post">
+            <?php echo csrf_field(); ?>
+            <ul class="menu vertical bind-exist-account">
+                <li class="item">
+                    <?php echo $this->insert('element/form/input-field', [
+                        'type' => 'text',
+                        'name' => 'email',
+                        'required' => true,
+                        'placeholder' => trans('ideapar-account'),
+                        'value' => $this->email,
+                        'data_type' => '',
+                        'has_error' => isset($errors['email'])
+                    ]); ?>
+                </li>
+                <li class="item">
+                    <?php echo $this->insert('element/form/input-field', [
+                        'type' => 'password',
+                        'name' => 'password',
+                        'required' => true,
+                        'placeholder' => trans('password'),
+                        'value' => '',
+                        'data_type' => '',
+                        'has_error' => isset($errors['password'])
+                    ]); ?>
+                    <i class="icon icon-eye-close view-password"></i>
+                </li>
+            </ul>
+            <?php echo $this->insert('element/errorbox'); ?>
+            <input type="submit" class="bind-account" value="<?php echo trans('bind-account'); ?>">
+        </form>
+    </div>
+</div>
+
+<?php $this->stop(); ?>
+
+<?php $this->section('script'); ?>
+<script>
+    (function () {
+        'use strict';
+        var config = window.config || {};
+        config.wx_state = '<?php echo $this->wx_state; ?>';
+        config.wx_appid = '<?php echo $this->config->get('wx.appid'); ?>';
+        config.wx_oauth_callback = '<?php echo route_url('wx-oauth-callback'); ?>';
+    }());
+</script>
+<?php $this->append(); ?>

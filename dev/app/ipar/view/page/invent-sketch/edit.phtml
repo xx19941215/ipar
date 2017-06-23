@@ -1,0 +1,9 @@
+<?php $this->layout('ipar/invent-sketch/layout-form', [
+    'action' => route_url('invent-sketch-edit-post', ['zcode' => $this->invent->zcode, 'eid' => $this->eid]),
+    'cancel' => route_url('invent-sketch-show', ['zcode' => $this->invent->zcode, 'eid' => $this->eid])
+]); ?>
+
+<?php $this->section('inputs'); ?>
+    <input type="hidden" name="eid" value="<?php echo $this->eid; ?>">
+<?php $this->append(); ?>
+

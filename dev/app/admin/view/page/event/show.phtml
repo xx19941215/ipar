@@ -1,0 +1,90 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-event-show'),
+        'breadcrumbs' => ['admin-event'],
+    ]);
+?>
+<?php $this->section('page-body'); ?>
+<h2><?php echo trans('event'); ?></h2>
+<a onclick="history.go(-1)">
+    <?php echo trans('return'); ?>
+</a>
+<?php
+    function ShowData($index, $args){
+        if($args) {?>
+              <table class='table-data' id="<?php echo 'table-data-'.$index;?>">
+              <?php
+              foreach($args as $key => $val) {
+                  if(is_array($val)){?>
+                      <tr>
+                          <td colspan="2">
+                              <a id="<?php echo 'a-data-'.$key;?>" class='button plus success' onclick="tableClick('<?php echo $key;?>')">
+                                  <?php echo ':'.$key;?>
+                              </a>
+                              <?php ShowData($key, $val);; ?>
+                          </td>
+                      </tr>
+                  <?php
+                  } else {
+                  ?>
+                      <tr>
+                          <td><?php echo $key.':';?></td>
+                          <td><?php echo $val; ?></td>
+                      </tr><?php
+                  }
+              }
+              ?>
+              </table>
+          <?php
+        }
+    }
+?>
+<div class="row column">
+    <table>
+        <tbody>
+            <tr><td>id:</td><td><?php echo $this->event->id; ?></td></tr>
+            <tr><td>uid:</td><td><?php echo $this->event->uid; ?></td></tr>
+            <tr><td>class:</td><td><?php echo $this->event->class; ?></td></tr>
+            <tr><td>action:</td><td><?php echo $this->event->action; ?></td></tr>
+            <tr>
+                <td>data:</td>
+                <td>
+                    <?php
+                    $args = json_decode($this->event->data);
+                    if($args) {
+                        foreach($args as $key => $val) {?>
+                            <a id = "<?php echo 'a-data-'.$key;?>" class='button plus success' onclick = "tableClick('<?php echo $key;?>')">
+                                <?php echo ':'.$key;?>
+                            </a>
+                            <?php ShowData($key, $val);
+                        }
+                    }
+                    ?>
+                </td>
+            </tr>
+            <tr><td>start:</td><td><?php echo $this->event->start; ?></td></tr>
+            <tr><td>elapsed:</td><td><?php echo $this->event->elapsed; ?></td></tr>
+            <tr><td>status:</td><td><?php echo $this->event->status; ?></td></tr>
+        </tbody>
+    </table>
+</div>
+<script>
+var tables = document.getElementsByTagName('table');
+for(var id in tables) {
+    if(tables[id].className=='table-data'){
+        tables[id].style.display = 'none';
+    }
+}
+function tableClick(key){
+    var table = document.getElementById('table-data-'+key);
+    var a = document.getElementById('a-data-'+key);
+    if(table.style.display == 'none') {
+        table.style.display = 'block';
+        a.className = 'button minus success';
+    } else {
+        table.style.display = 'none';
+        a.className = 'button plus success';
+    }
+}
+</script>
+<?php $this->replace(); ?>

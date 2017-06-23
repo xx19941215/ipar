@@ -1,0 +1,10 @@
+<div class="side-share">
+    <div class="side-sharehead">
+        <?php echo trans('share-to'); ?>
+    </div>
+    <div class="social-share side-shareicon" data-sites="weibo,qq,wechat"  data-image="%image%"></div>
+</div>
+
+<?php $this->section('style'); ?>
+<link href="//cdn.bootcss.com/social-share.js/1.0.14/css/share.min.css" rel="stylesheet">
+<?php $this->replace(); ?>

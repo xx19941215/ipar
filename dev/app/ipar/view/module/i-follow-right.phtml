@@ -1,0 +1,37 @@
+<div class="rsidebar">
+    <span id="follow-status" class="<?php 
+    if ($this->is_following && current_uid())
+    {
+        echo "followed";
+    } else {
+        echo "unfollow";
+    }?>" data-uid="<?php echo $this->uid; ?>">
+        <button class="button user">
+            <span class="followed"><?php echo trans("followed-user");?></span>
+            <span class="unfollowing"><?php echo trans("cancel-followed-user");?></span>
+            <span class="following"><?php echo trans("following-user");?></span>
+        </button>
+    </span>
+
+    <div class="info">
+        <span class="left">
+            <span><?php echo trans("following");?></span><br>
+            <span class="following-count"><?php echo $this->following_count;?></span>人
+        </span>
+        <span class="right">
+            <span><?php echo trans("followed");?></span><br>
+            <span class="followed-count"><?php echo $this->followed_count;?></span>人
+        </span>
+    </div>
+
+    <div>
+        <div class="user-info hide">
+        <div>
+            <?php echo trans("in-my-following-user");?>,
+            <span id="common-user-count">0</span>
+            <?php echo trans("following-too");?>
+        </div>
+        <span id="common-user"></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<?php
+$type = ($this->group) ? 'group' : 'company';
+?>
+<form action="<?php echo $this->action; ?>" method="post">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="gid" value="<?php echo $this->{$type}->gid; ?>">
+    <input type="hidden" name="id" value="<?php echo $this->group_contact->id; ?>">
+    <label>
+        <?php echo trans('roles'); ?>
+        <input type="text" name="roles" value="<?php echo $this->group_contact->roles; ?>">
+    </label>
+    <label>
+        <?php echo trans('name') . '*'; ?>
+        <input type="text" name="name" required="required" value="<?php echo $this->group_contact->name; ?>">
+    </label>
+    <label>
+        <?php echo trans('phone') . '*'; ?>
+        <input type="text" name="phone" required="required" value="<?php echo $this->group_contact->phone; ?>">
+    </label>
+    <label>
+        <?php echo trans('email'); ?>
+        <input type="email" name="email" value="<?php echo $this->group_contact->email; ?>">
+    </label>
+
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <a class="button success small" href="<?php echo route_url("admin-ui-{$type}_contact-list", ['gid'
+        => $this->{$type}->gid]); ?>">
+            <?php echo trans('return'); ?>
+        </a>
+    </div>
+</form>

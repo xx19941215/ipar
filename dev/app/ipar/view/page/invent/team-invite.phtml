@@ -1,0 +1,39 @@
+<?php
+$this->layout('layout/invent', [
+    'selected_nav' => 'team'
+]);
+$team_join_url = route_url('invent-team-join', ['tid' => $this->team_invite->tid, 'invite_code' => $this->team_invite->invite_code]);
+?>
+
+<?php $this->section('title'); ?>
+    <?php echo trans('invent-team-invite'); ?>
+<?php $this->append(); ?>
+
+<?php $this->section('content'); ?>
+    <div class="invent-wrap">
+        <div class="invent-title">
+            <h2>组建团队</h2>
+
+            <p class="tips">点趴有N多设计界精英和富有激情的发明达人，在创造的路上，你不再是一个人孤独前行，赶紧组建你的团队吧，让更多的人知道的创意 （别担心，你也可以稍后再组建）</p>
+        </div>
+        <div class="invite-wrap mt-50">
+            <div class="invite-box left">
+                <p class="p1"><i class="icon icon-weibo"></i></p>
+
+                <p class="p2">
+                    <a href="<?php echo route_url('invent-team-invite_user', ['zcode' => $this->invent->zcode, 'tid' => $this->team_invite->tid]); ?>">
+                        站内邀请
+                    </a>
+                </p>
+
+                <p class="p3">搜索已经注册点趴的会员并邀请他们参与你的创意</p>
+            </div>
+            <div class="invite-box right">
+                <p class="p4"><img src="<?php echo qrcode_url($team_join_url, floor(time() / 864000)); ?>"></p>
+
+                <p class="p5"><a href="javascript:" class="button round secondary"><?php echo $team_join_url; ?></a><a href="javascript:" class="a2">复制</a>
+                </p>
+            </div>
+        </div>
+    </div>
+<?php $this->replace(); ?>

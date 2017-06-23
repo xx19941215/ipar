@@ -1,0 +1,106 @@
+<?php
+$entity = $this->entity;
+
+$type_key = $entity->getTypeKey();
+$title = $entity->title ? $entity->title : "{$type_key}#{$entity->eid}";
+
+if ($this->is_imgs && $imgs = $entity->getImgs()) {
+    $img_count = count($imgs);
+    $img_count = $img_count >= 2 ? 2 : $img_count;
+} else {
+    $img_count = 0;
+}
+?>
+<div class="entity">
+    <div class="entity-header">
+        <?php if ($entity->getTagSet()) { ?>
+            <div class="entity-top-tag">
+                <?php $tags = $entity->getTagSet()->getItems(); ?>
+                <?php foreach ($tags as $tag) { ?>
+                    <a href="<?php echo route_url('admin-ui-tag-show', ['tag_id' => $tag->id]); ?>"><span><?php echo $tag->title ?></span></a>
+                <?php } ?>
+            </div>
+        <?php } ?>
+        <a class="entity-type_key" href="<?php echo route_url("admin-$type_key"); ?>">
+            <?php echo $type_key; ?>
+        </a>
+        <a class="entity-title" href="<?php echo route_url("admin-$type_key-show", ['eid' => $entity->eid]); ?>"
+           target="_blank">
+            <?php echo $title; ?>
+        </a>
+
+        <?php if ($entity->status == 1) { ?>
+            <a class="op eidt" target="_blank"
+               href="<?php echo route_url("admin-{$type_key}-edit", ['eid' => $entity->eid]); ?>"><?php echo trans('edit'); ?></a>
+            <a class="op deactivate"
+               href="<?php echo route_url('admin-entity-deactivate', ['eid' => $entity->eid]); ?>"><?php echo trans('deactivate'); ?></a>
+        <?php } else { ?>
+            <a class="op activate" target="_blank"
+               href="<?php echo route_url('admin-entity-activate', ['eid' => $entity->eid]); ?>"><?php echo trans('activate'); ?></a>
+            <?php if (current_user()->isAdmin()) { ?>
+                <a class="op button tiny alert" target="_blank"
+                   href="<?php echo route_url("admin-{$type_key}-delete", ['eid' => $entity->eid]); ?>"><?php echo trans('delete'); ?></a>
+            <?php } ?>
+        <?php } ?>
+        <?php if ($type_key === 'rqt') { ?>
+            <a class="op activate" target="_blank"
+               href="<?php echo route_url('admin-ui-tag_rqt-add_multiple', ['eid' => $entity->eid]); ?>"><?php echo trans('add-tag'); ?></a>
+        <?php } ?>
+        <?php if ($type_key === 'product') { ?>
+            <a class="op activate" target="_blank"
+               href="<?php echo route_url('admin-ui-tag_product-add_multiple', ['eid' => $entity->eid]); ?>"><?php echo trans('add-tag'); ?></a>
+        <?php } ?>
+        <?php if ($this->company_product && $this->select == 'product') { ?>
+            <a class="op activate"
+               href="<?php echo route_url('admin-ui-company_product-unlink', ['gid' => $this->gid, 'eid' => $entity->eid]); ?>">
+                <?php echo trans('delete-product'); ?>
+            </a>
+        <?php } ?>
+    </div>
+
+    <?php if ($this->is_info) { ?>
+        <div class="entity-info">
+            <span class="entity-user"><?php echo user($entity->uid)->nick; ?></span>|
+            <span class="entity-eid"><?php echo $entity->eid; ?></span> |
+            <span class="entity-zcode"><?php echo $entity->zcode; ?></span> |
+            <span class="entity-trace"><?php echo $entity->created . ' - ' . $entity->changed; ?></span>
+        </div>
+    <?php } ?>
+
+    <?php if ($this->is_content) { ?>
+        <div class="entity-content">
+            <?php echo $entity->content; ?>
+        </div>
+    <?php } ?>
+
+    <?php if ($this->is_abbr) { ?>
+        <div class="entity-abbr">
+            <?php echo $entity->getAbbr(); ?>
+            <a href="<?php echo route_url("admin-$type_key-content", ['eid' => $entity->eid]); ?>" target="_blank">
+                <?php echo trans('read-more'); ?>
+            </a>
+        </div>
+    <?php } ?>
+
+    <?php if ($img_count) { ?>
+        <?php for ($i = 0; $i < $img_count; $i++) { ?>
+            <img src="<?php echo img_src($imgs[$i], 'cover'); ?>">
+        <?php } ?>
+    <?php } ?>
+    <?php if ($this->is_analysis) { ?>
+        <div class="entity-analysis">
+            <span class="item">story(<?php echo $entity->countStory(); ?>)</span>
+            <span class="item">followed(<?php echo $entity->countFollowed(); ?>)</span>
+            <span class="item">like(<?php echo $entity->countLike(); ?>)</span>
+            <span class="item">comment(<?php echo $entity->countComment(); ?>)</span>
+            <?php /*
+        <span class="item">tag(<?php echo $entity->countTag(); ?>)</span>
+        <span class="item">tag vote(<?php echo $entity->countTagVote(); ?>)</span>
+ */ ?>
+            <span class="item">submit(<?php echo $entity->countSubmit(); ?>)</span>
+            <span class="item">src(<?php echo $entity->countSrc(); ?>)</span>
+        </div>
+    <?php } ?>
+
+</div>
+

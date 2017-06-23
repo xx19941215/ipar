@@ -1,0 +1,21 @@
+<?php
+$companies = $this->company_set->getItems();
+$page_count = $this->company_set->getPageCount();
+?>
+
+<?php if ($companies) { ?>
+
+<div class="entity-set">
+    <?php foreach ($companies as $company) { ?>
+
+    <?php echo $this->insert('module/company', [
+        'company' => $company
+    ]); ?>
+
+    <?php } ?>
+
+    <?php echo $this->insert('element/pagination', ['page_count' => $page_count]); ?>
+
+</div>
+
+<?php } ?>

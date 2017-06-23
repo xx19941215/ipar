@@ -1,0 +1,13 @@
+<?php $this->layout('layout/admin', [
+    'breadcrumbs' => ['admin-ui-group-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+    <div class="page-group-edit">
+        <div class="row column">
+            <h1><?php echo trans('admin-ui-company-add'); ?></h1>
+            <?php echo $this->insert('module/form/company/admin-form-company'); ?>
+        </div>
+    </div>
+
+<?php $this->replace(); ?>

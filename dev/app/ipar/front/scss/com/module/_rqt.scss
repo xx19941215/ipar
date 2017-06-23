@@ -1,0 +1,27 @@
+.solution-button-wrap {
+    padding: 21px 0;
+    .add-solution-product {
+        i {
+            color: #ffc109;
+        }
+    }
+
+    .add-solution-idea {
+        i {
+            color: #A6DA57;;
+        }
+    }
+}
+
+.like-list > span.text {
+    color: #666;
+}
+
+.like-list > span.text:hover, .show-comments > span.text:hover {
+    color: #222;
+}
+
+
+.count_product > a:hover ,.count_idea > a:hover{
+    color: #222 !important;
+}

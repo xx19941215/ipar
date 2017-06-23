@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/bootstrap.php';
+
+
+build_js_config();
+
+if (isset($argv[1])) {
+    exec_gulp(array_slice($argv, 1));
+}

@@ -1,0 +1,43 @@
+<?php
+$items = [
+    'home' => [
+        'class' => 'home',
+        'url' => route_url('i-home', ['zcode' => $this->user->zcode]),
+        'content' => '<i class="icon icon-home"></i>'
+    ],
+    'rqt' => [
+        'class' => 'i-rqt',
+        'url' => route_url('i-rqt', ['zcode' => $this->user->zcode]),
+        'content' => trans('i-rqt'),
+        'is_dot' => true
+    ],
+    'idea' => [
+        'class' => 'i-idea',
+        'url' => route_url('i-idea', ['zcode' => $this->user->zcode]),
+        'content' => trans('i-idea'),
+        'is_dot' => true
+    ],
+    'invent' => [
+        'class' => 'i-invent',
+        'url' => route_url('i-invent', ['zcode' => $this->user->zcode]),
+        'content' => trans('i-invent'),
+        'is_dot' => true
+    ],
+    'feature' => [
+        'class' => 'i-feature',
+        'url' => route_url('i-feature', ['zcode' => $this->user->zcode]),
+        'content' => trans('i-feature'),
+        'is_dot' => true
+    ],
+];
+$active = $this->active ? $this->active : 'home';
+?><div class="info-links">
+    <?php foreach ($items as $key => $item) { ?>
+        <?php $class = $item['class']; if ($key == $active) $class .= ' active'; ?>
+        <a class="<?php echo $class; ?>" href="<?php echo $item['url']; ?>"><?php echo $item['content']; ?></a>
+        <?php if (isset($item['is_dot'])) { ?>
+            <span class="dot">·</span>
+        <?php } ?>
+    <?php } ?>
+</div>
+

@@ -1,0 +1,28 @@
+<div class="user-setting-menu">
+    <h3><i class="icon icon-shezhi"></i><?php echo trans('setting'); ?></h3>
+    <?php
+    $items = [
+        'account-info' => [
+            'route' => "ipar-ui-i-account-info",
+        ],
+        'third-party-account-binding' => [
+            'route' => "ipar-ui-i-third-party-account-binding",
+        ],
+        'profile-change' => [
+            'route' => "ipar-ui-i-profile",
+        ],
+    ];
+    ?>
+    <ul>
+        <?php foreach ($items as $key => $value) {
+            $route = prop($value, 'route', '0');
+            ?>
+            <li>
+                <a <?php if ($this->select == $key) echo "class = 'selected'"; ?>
+                    href="<?php echo route_url($route, ['zcode' => $this->user->zcode]) ?>">
+                    <?php echo trans($key); ?>
+                </a>
+            </li>
+        <?php } ?>
+    </ul>
+</div>

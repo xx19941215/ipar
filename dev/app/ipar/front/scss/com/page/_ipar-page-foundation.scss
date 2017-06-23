@@ -1,0 +1,256 @@
+.foundation-activity-ad {
+    background: url("http://ipar-static.nos-eastchina1.126.net/img/activity-foundation-1.png") center no-repeat;
+    background-size: cover;
+    height: 850px;
+    text-align: center;
+    position: relative;
+    @media screen and (max-width: 415px) {
+        height: 500px;
+    }
+
+    span {
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    .foundation-banner-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-60%);
+    }
+
+    @include breakpoint(small only) {
+        .foundation-banner-container {
+            width: 100%;
+        }
+    }
+}
+
+.foundation-activity-line {
+    width: 90%;
+    height: 1px;
+    border-bottom: 1px solid $white;
+    margin: 70px auto;
+
+    @include breakpoint(medium) {
+        max-width: 1000px;
+    }
+}
+
+.foundation-activity-brand {
+    max-width: 900px;
+    display: inline-block;
+    overflow: hidden;
+    .foundation-activity-brandofo {
+        float: left;
+        img {
+            width: 240px;
+            @media screen and (max-width: 415px) {
+                width: 15em;
+            }
+        }
+        button {
+            display: block;
+            width: 150px;
+            height: 50px;
+            border: 2px solid;
+            text-align: center;
+            margin: 50px auto;
+            @media screen and (max-width: 415px) {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .foundation-activity-vs {
+        float: left;
+        font-size: 70px;
+        font-weight: 900;
+        height: 240px;
+        text-align: center;
+        line-height: 240px;
+        margin: 0 auto;
+        @media screen and (max-width: 415px) {
+            height: 100px;
+            line-height: 100px;
+        }
+
+    }
+    .foundation-activity-brandmoby {
+        float: left;
+        img {
+            display: block;
+            width: 240px;
+            margin: 0 auto;
+            @media screen and (max-width: 415px) {
+                width: 15em;
+            }
+        }
+        button {
+            display: block;
+            width: 150px;
+            height: 50px;
+            border: 2px solid;
+            text-align: center;
+            margin: 50px auto;
+        }
+    }
+}
+
+.foundation-activity-detail {
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+    @include breakpoint(medium) {
+        max-width: 600px;
+    }
+    p {
+        text-align: center;
+        font-family: Microsoft Yahei;
+    }
+}
+
+.foundation-activity-title {
+    text-align: center;
+    p {
+        font-size: 24px;
+        font-weight: 800;
+        margin: 35px 0;
+    }
+}
+
+.foundation-activity-rank {
+    max-width: 600px;
+    margin: 0 auto;
+    .row {
+        height: 42px;
+        padding: 0 5%;
+        @include breakpoint(medium) {
+            padding: 0;
+        }
+        margin-bottom: 12px;
+
+        .columns:nth-of-type(1) {
+            height: 100%;
+        }
+
+        .followed {
+            width: 5em;
+        }
+
+        .unfollow {
+            width: 5em;
+        }
+        @include breakpoint(medium) {
+            .followed, .unfllow {
+                width: 8em;
+            }
+        }
+    }
+
+    img {
+        height: 42px;
+        max-width: 42px;
+        border-radius: 4px;
+    }
+
+    .columns {
+        padding: 0;
+    }
+    p {
+        margin: 0 5px;
+        font-size: 14px;
+    }
+    .rank {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #f5ac3a;
+        display: inline-block;
+        line-height: 25px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .rankOther {
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        line-height: 25px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    a {
+        width: 5em !important;
+        color: $white;
+        @include breakpoint(medium) {
+            width: 7em !important;
+        }
+
+        span {
+            font-size: 13px;
+            color: #666 !important;
+        }
+    }
+
+    span {
+        color: $white !important;
+    }
+
+    .nike-name {
+        font-size: 16px;
+    }
+    .follow-count {
+        font-size: 13px;
+    }
+}
+
+.foundation-activity-rule {
+    p:nth-child(1) {
+        margin-top: 70px;
+    }
+
+    p {
+        white-space: nowrap;
+    }
+}
+
+.foundation-activity-forwards {
+    p:nth-child(1) {
+        margin-top: 70px;
+    }
+}
+
+.foundation-activity-ideapar {
+    margin: 0 auto;
+    width: 200px;
+    text-align: center;
+    img {
+        margin-top: 35px;
+        width: 100%;
+    }
+    p {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: 900;
+    }
+}
+
+.ipar-ui-page-activity_foundation {
+    color: $white;
+    .page-body {
+        margin-top: 0;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .pageFooter {
+        display: none;
+    }
+}

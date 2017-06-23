@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<dataset>
+    <entity eid="1" type_id="3" zcode="56f89a6756674" owner_uid="0" uid="19" title="Tab-Legs万用两脚平板支架"
+            content="Tab-Legs是一个可以随意卷曲的万能平板支架，它只有两条退，看似简单但可以摆放到任何位置" imgs="" rank="0" status="1"
+            created="2016-03-28 10:43:51" changed="2016-03-28 10:47:39.989065"/>
+    <product_purchase id="2" eid="1" purchase_url="http://item.jd.com/2182165.html" website="item.jd.com" currency="1"
+                      price="200.00" commission="20.00" started="2016-09-01 01:00:00" expired="2016-09-11 01:00:00"/>
+</dataset>

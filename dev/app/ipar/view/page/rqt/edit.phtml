@@ -1,0 +1,96 @@
+<?php
+$this->layout('page', [
+    'jses' => ['ipar.editor.js' => 1],
+]);
+$this->cancel = route_url('rqt-show', ['zcode' => $this->zcode]);
+?>
+
+
+<?php $this->section('page-body'); ?>
+    <?php echo $this->insert('include/form/story-form', [
+        'story_title' => trans('page-rqt-edit-title'),
+        'type' => 'rqt',
+        'action' => route_url('rqt-edit-post', ['zcode' => $this->zcode]),
+        'cancel' => $this->cancel,
+        'operatearea' => $this->insert('ipar/rqt/operatearea', [
+            'cancel' => $this->cancel
+        ]),
+        'hiddens' => [
+            'eid' => $this->eid,
+            'zcode' => $this->zcode
+        ]
+    ]); ?>
+<?php $this->replace(); ?>
+
+<?php /*
+<?php
+$this->layout('ipar/rqt/layout-form', [
+    'html_title' => trans('rqt-edit'),
+    'action' => route_url('rqt-edit-post', ['zcode' => $this->zcode]),
+    'cancel' => route_url('rqt-show', ['zcode' => $this->zcode])
+]);
+?>
+<?php $this->section('inputs'); ?>
+<input type="hidden" name="eid" value="<?php echo $this->eid; ?>">
+<input type="hidden" name="zcode" value="<?php echo $this->zcode; ?>">
+<?php $this->append(); ?>
+<?php $this->layout('layout/default'); ?>
+
+<?php $this->section('title'); ?>
+    <?php echo trans('rqt-edit'); ?>
+<?php $this->append(); ?>
+
+<?php $this->section('content'); ?>
+
+<div class="breadcrumbs-wrap">
+<?php
+echo $this->insert(
+    'include/breadcrumbs',
+    [
+        'items' => [
+            'index' => ['url' => route_url('index'), 'text' => trans('home')],
+            'rqt.index' => [
+                'url' => route_url('rqt.index'),
+                'text' => trans('rqts')
+            ]
+        ]
+    ]
+);
+?>
+</div><!-- .breadcrumbs-wrap -->
+
+<div class="rqt-form-wrap box">
+    <div class="box-main">
+        <form class="rqt-form zform" method="post"
+            action="<?php echo route_url('rqt.edit.post', ['zcode' => $this->rqt->zcode]); ?>">
+
+            <?php echo $this->insert('element/csrf-field'); ?>
+
+            <input type="hidden" name="eid" value="<?php echo $this->rqt->eid; ?>">
+            <input type="hidden" name="zcode" value="<?Php echo $this->rqt->zcode; ?>">
+
+            <div class="input-wrap">
+                <?php echo $this->insert('ipar/rqt/form-inputs', [
+                    'title' => $this->rqt->title,
+                    'content' => $this->rqt->content
+                ]); ?>
+            </div><!-- .input-wrap -->
+
+            <div class="operating-wrap">
+                <?php echo $this->insert('ipar/rqt/form-buttons'); ?>
+                <a class="cancel" href="<?php echo route_url('rqt.index'); ?>">
+                    <?php echo trans('cancel'); ?>
+                </a>
+            </div><!-- .operating-wrap -->
+
+        </form>
+    </div><!-- .box-main -->
+</div><!-- .rqt-form-wrap -->
+
+<?php $this->replace(); ?>
+
+<?php $this->section('js'); ?>
+<script class="static-js"
+    src="<?php echo static_url('/js/ipar.editor.js'); ?>"></script>
+<?php $this->replace(); ?>
+* ?>

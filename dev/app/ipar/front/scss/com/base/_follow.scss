@@ -1,0 +1,101 @@
+.rsidebar {
+    margin-top: 25px;
+    margin-left: 25px;
+
+    .info {
+        display: block;
+        margin-top: 18px;
+        border-bottom: 1px solid $light-gray;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+
+        .right {
+            margin-left: 20px;
+
+            .followed-count {
+                margin-left: 20px;
+            }
+        }
+        .left {
+            float: left;
+            padding: 2px 30px 8px 0;
+            border-right: 1px solid $light-gray;
+        }
+        a {
+            margin-right: 10px;
+        }
+        .followed-count, .following-count {
+            margin: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    }
+    .user-info {
+        width: 270px;
+    }
+}
+
+.followed {
+    width: rem-calc(128);
+    .button {
+        padding: 8px 10px;
+        background-color: $light-green;
+        width: rem-calc(128);
+    }
+    .following, .unfollowing {
+        display: none;
+    }
+    .button:hover {
+        background-color: $light-red;
+        .followed {
+            display: none;
+        }
+        .unfollowing {
+            display: block;
+        }
+    }
+}
+.unfollow {
+    width: rem-calc(128);
+    .button {
+        padding: 8px 10px;
+        background-color: $light-gray;
+        width: rem-calc(128);
+    }
+    .followed, .unfollowing {
+        display: none;
+    }
+    .following {
+        color: $dark-gray;
+    }
+    .button:hover {
+        background-color: $mid-gray;
+    }
+}
+.user-container,
+.user-container-title {
+    overflow: auto;
+    z-index: 1000;
+    width: 400px;
+    height: 350px;
+}
+.user-container-title {
+        margin-left: 136px;
+    }
+.follower {
+    margin: 15px;
+    line-height: 37px;
+
+    .in-line {
+        display: inline-block;
+        vertical-align: top;
+        width: 83%;
+    }
+    .nick {
+        margin-left: 15px;
+    }
+    .panel-follow-status {
+        margin: 2px;
+        float: right;
+    }
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<dataset>
+    <group_social id='1' gid='1' social_id='2' name='kuipu' url='http://www.ideapar.com' qrcode=''/>
+    <group_social id='2' gid='1' social_id='3' name='ideapar' url='https://www.facebook.com/ideaparcom'
+                  qrcode=''/>
+</dataset>

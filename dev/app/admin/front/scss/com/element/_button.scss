@@ -1,0 +1,66 @@
+@mixin button-op {
+    position: relative;
+    padding-left: 32px;
+}
+@mixin button-before {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-width: 0;
+    top: 0;
+    left: -18px;
+    float: left;
+    display: inline-block;
+    font-weight: bold;
+}
+a.button {
+    text-decoration: none;
+}
+.button.light {
+    background: $light-gray;
+    color: $dark-gray;
+
+    &:hover {
+        background: scale-color($light-gray, $lightness: -15%);
+    }
+}
+.button {
+    &.plus {
+        @include button-op;
+        &::before {
+            content: ' + ';
+            @include button-before;
+        }
+    }
+    &.minus {
+        @include button-op;
+        &::before {
+            content: ' - ';
+            @include button-before;
+        }
+    }
+
+    &.large {
+        padding: 14px 34px;
+        border-radius: 34px;
+    }
+    &.small {
+        padding: 5px 14px;
+        &.plus {
+            padding-left: 28px;
+            &::before {
+                left: -16px;
+            }
+        }
+        &.minus {
+            padding-left: 28px;
+            &::before {
+                left: -16px;
+            }
+        }
+    }
+    &.tiny {
+        padding: 3px 11px;
+        border-radius: 11px;
+    }
+}

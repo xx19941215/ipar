@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<dataset>
+    <group gid="1" uid="14" type_id="14" name="group-update-name" fullname="group-update-fullname"
+           content="group-update-content" logo=""
+           website="" size_range_id="2" status="1" established="2016-08-01 10:00:00"/>
+</dataset>

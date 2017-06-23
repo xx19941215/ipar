@@ -1,0 +1,135 @@
+<?php
+$entity = $this->entity;
+$ttag = $this->is_h1 ? 'h1' : 'div';
+$type_key = get_type_key($entity->type_id);
+
+if ($this->is_imgs && $imgs = $entity->getImgs()) {
+    $img_count = count($imgs);
+    $img_count = $img_count >= 2 ? 2 : $img_count;
+} else {
+    $img_count = 0;
+}
+
+$comment_count = $entity->countComment();
+$isLike = $entity->isLike();
+$type_key = $entity->getTypeKey();
+$current_uid = current_uid();
+$tags = 0;
+if ($this->tag_set) {
+    $tags = $this->tag_set->getItems();
+}
+// todo
+//$this->is_tag = false;
+
+?>
+<div class="entity <?php echo $type_key . '-' . $entity->eid; ?>"
+     data-id=<?php echo $entity->eid ?> data-eid="<?php echo $entity->eid; ?>"
+     data-type=<?php echo $entity->type_id; ?> data-type_id=<?php echo $entity->type_id; ?>
+     data-type_key="<?php echo $type_key; ?>">
+    <?php if ($this->is_tag) { ?>
+        <div class="tag-wrap clearfix">
+            <?php if ($tags) { ?>
+                <div class="tag-hot-list">
+                    <?php foreach ($tags as $tag) { ?>
+                        <a href="<?php echo route_url('ipar-ui-tag-index', ['zcode' => $tag->zcode]); ?>">
+                            <span><?php echo $tag->title; ?></span>
+                        </a>
+                    <?php } ?>
+                </div>
+            <?php } ?>
+        </div>
+    <?php } ?>
+
+    <?php if ($title = $entity->getTitle()) { ?>
+        <<?php echo $ttag; ?> class="entity-title">
+        <a href="<?php echo route_url("ipar-{$type_key}-show", ['zcode' => $entity->zcode]); ?>">
+            <?php echo $title; ?>
+        </a>
+        <i class="icon icon-<?php echo $type_key; ?>"></i>
+        <<?php echo '/' . $ttag; ?>>
+    <?php } ?>
+
+    <?php if ($this->is_abbr && $abbr = $entity->getAbbr()) { ?>
+        <div class="entity-abbr">
+            <?php echo $abbr; ?>
+        </div>
+    <?php } ?>
+
+    <?php if ($img_count) { ?>
+        <div class="entity-imgs hide">
+            <?php for ($i = 0; $i < $img_count; $i++) { ?>
+                <img src="<?php echo img_src($imgs[$i], 'cover'); ?>">
+            <?php } ?>
+        </div>
+    <?php } ?>
+
+    <?php if ($this->is_content && $content = $entity->getContent()) { ?>
+        <div class="entity-content">
+            <?php echo $content; ?>
+        </div>
+    <?php } ?>
+
+    <?php if ($this->is_info) { ?>
+        <div class="entity-info">
+            <span class="item">
+                <?php if ($entity->uid) { ?>
+                    <?php
+                    $user = user($entity->uid);
+                    ?>
+                    <a href="<?php echo $user->getUrl(); ?>"><?php echo $user->nick; ?></a>
+                <?php } ?>
+                <?php echo trans('last-update'); ?>:
+                <?php echo time_elapsed_string($entity->changed); ?>
+            </span>
+
+            <span class="item">
+                <?php if ($current_uid) { ?>
+                    <a href="javascript:;" class="entity-edit">
+                        <i class="icon icon-edit"></i>
+                        <?php echo trans('edit'); ?>
+                    </a>
+                <?php } else { ?>
+                    <span class="entity-edit">
+                        <i class="icon icon-edit"></i>
+                        <?php echo trans('edit'); ?>
+                    </span>
+                <?php } ?>
+                    <a href="javascript:;">
+                    <?php echo $entity->countSubmit(); ?>
+                    <?php //echo trans('%s-submits', $entity->countSubmit()); ?>
+                    </a>
+            </span>
+
+            <span class="item">
+                <span class="entity like">
+                    <i class="icon icon-like <?php if ($isLike) echo "liked"; ?>"></i>
+                    <?php echo trans('like'); ?>
+                </span>
+                <span class="like-count"><?php echo $entity->countLike(); ?></span>
+            </span>
+
+            <span class="item">
+                <i class="icon icon-comment"></i>
+                <a href="javascript:;" class="show-comments">
+                    <?php echo trans('comment'); ?>
+                    <span class="comments-count"><?php echo $comment_count ?></span>
+                </a>
+            </span>
+        </div>
+
+        <div class="comments-container" data-comments-count=<?php echo $comment_count; ?>>
+            <div class="comments-list">
+                <!-- comments -->
+            </div>
+            <div class="comment-action">
+                <form class="comment-form">
+                    <input type="hidden" name="dst_id" value="<?php echo $entity->eid; ?>">
+                    <input type="hidden" name="dst_type_id" value="<?php echo $entity->type_id; ?>">
+                    <input type="text" name="content" class="comment-textbox input-group-field">
+                    <input type="submit" class="submit-comment-button button" value="<?php echo trans('comment') ?>">
+                </form>
+            </div>
+        </div>
+    <?php } ?>
+
+</div>

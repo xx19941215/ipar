@@ -1,0 +1,54 @@
+.entity {
+    padding: 7px 0;
+}
+
+.entity-title {
+    a {
+        color: $black;
+    }
+    .icon {
+        color: $success-color;
+        font-weight: normal;
+    }
+}
+h1.entity-title {
+    font-size: rem-calc(18);
+    line-height: 1.5;
+    margin-bottom: 7px;
+}
+.entity-abbr {
+    font-size: $small-font-size;
+    margin-bottom: 7px;
+}
+.entity-content {
+    font-size: $small-font-size;
+    display: none;
+}
+.entity-imgs {
+    margin-bottom: 7px;
+    img {
+        cursor: pointer;
+    }
+}
+.entity-info {
+    color: $dark-gray;
+    font-size: $small-font-size;
+
+    .item {
+        margin-right: 7px;
+    }
+}
+
+.solution-set,
+.property-set,
+.entity-set {
+    .entity {
+        margin-bottom: 21px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid $light-gray;
+    }
+}
+
+.ipar-idea-show .entity-content {
+    display: block;
+}

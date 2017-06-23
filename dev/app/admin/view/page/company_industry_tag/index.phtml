@@ -1,0 +1,48 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-company-industry_tag'),
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="page-company">
+    <?php
+    echo $this->insert('module/entity-menu-group', [
+        'group' => $this->company,
+        'select' => 'industry_tag'
+    ]);
+    ?>
+    <?php echo $this->insert('module/form/company/admin-form-company_detail-show'); ?>
+    <h2><?php echo trans('company-industry_tag-list'); ?></h2>
+    <?php echo $this->insert('module/form/query'); ?>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th><?php echo trans('tag_id'); ?></th>
+                <th><?php echo trans('title'); ?></th>
+                <th><?php echo trans('content'); ?></th>
+                <th><?php echo trans('delete'); ?></th>
+            </tr>
+            </thead>
+            <?php foreach ($this->industry_tag_set->getItems() as $industry_tag) { ?>
+                <tr>
+                    <td><?php echo $industry_tag->id; ?></td>
+                    <td>
+                        <a href="<?php echo route_url('admin-ui-industry_tag-show',['tag_id' => $industry_tag->id])?>"><?php echo $industry_tag->title; ?></a>
+                    </td>
+                    <td><?php echo $industry_tag->content; ?></td>
+                    <td>
+                        <a href="<?php echo route_url('admin-ui-company_industry_tag-unlink', ['gid' => $this->company->gid, 'tag_id' => $industry_tag->id]); ?>"
+                           class="button">
+                            <?php echo trans('delete'); ?>
+                        </a>
+                    </td>
+                </tr>
+            <?php } ?>
+        </table>
+    </div>
+
+</div>
+<?php $this->replace(); ?>
+
+
+

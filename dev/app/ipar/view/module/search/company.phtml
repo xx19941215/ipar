@@ -1,0 +1,11 @@
+<div class="header-div company-header-div hide">
+    <i class="icon icon-company"></i>
+    <h3><?php echo trans('company'); ?></h3>
+</div>
+<div class="company-set-wrap"></div>
+<div class="loading" data-action="search_company" data-page="1" data-query="<?php echo $this->query; ?>">
+</div>
+
+<div class="more-about company-hide hide">
+    <a href="./search/company?query=<?php echo $this->query; ?>"><?php echo trans('see-more'); ?></a>
+</div>

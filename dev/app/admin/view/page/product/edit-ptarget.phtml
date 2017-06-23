@@ -1,0 +1,11 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-product-ptarget-edit'),
+    'breadcrumbs' => ['admin-entity', 'admin-product']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="row column">
+    <h1><?php echo trans('admin-product-ptarget-edit'); ?></h1>
+    <?php echo $this->insert('module/form/admin-form-ptarget'); ?>
+</div>
+<?php $this->replace(); ?>

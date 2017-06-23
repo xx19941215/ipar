@@ -1,0 +1,9 @@
+{
+  "name": "milky-way-front",
+  "dependencies": {
+    "foundation-sites": "~6.2.0",
+    "motion-ui": "~1.1.0",
+    "d3": "^3.5.16",
+    "jquery": "^2.2.3"
+  }
+}

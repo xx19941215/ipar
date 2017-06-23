@@ -1,0 +1,82 @@
+<?php
+$product = $this->product;
+if (!$product) {
+    _debug('product cannot be empty');
+}
+$items = [
+    'story' => [
+        'route' => 'admin-product-show',
+        'count' => $product->countStory(),
+    ],
+    'property' => [
+        'count' => $product->countProperty(),
+    ],
+    'feature' => [
+        'count' => $product->countPfeature(),
+        'add' => 1
+    ],
+    'solved' => [
+        'count' => $product->countPsolved(),
+        'add' => 1
+    ],
+    'improving' => [
+        'count' => $product->countPimproving(),
+        'add' => 1
+    ],
+    'content' => [
+        'route' => 'admin-product-content',
+    ],
+    'tag' => [
+        'route' => 'admin-ui-product_tag-search',
+        'add' => 1,
+        'add_route' => 'admin-ui-product_tag-add',
+    ],
+    'tag-multiple' => [
+        'route' => 'admin-ui-tag_product-add_multiple',
+    ],
+    'edit' => [
+        'route' => 'admin-product-edit',
+    ],
+    'purchase' => [
+        'route' => 'admin-ui-product-purchase',
+        'add' => 1
+    ],
+    'comment' => [
+        'route' => 'admin-ui-product_comment-index'
+    ],
+    'company' => [
+        'route' => 'admin-ui-product_company',
+        'add' => 1,
+        'add_route' => 'admin-ui-product_company-link'
+    ],
+    'brand_tag' =>[
+        'route' => 'admin-ui-product_brand_tag-show'
+    ]
+];
+$select = $this->select ? $this->select : 'story';
+?>
+<div class="entity-menu-product">
+    <ul class="">
+        <?php foreach ($items as $key => $item) { ?>
+<?php
+$route = prop($item, 'route', "admin-product-$key");
+$count = prop($item, 'count', 0);
+$add_route = '';
+if ($add = prop($item, 'add', 0)) {
+    $add_route = prop($item, 'add_route', "$route-add");
+}
+?>
+        <li<?php if ($select == $key) echo ' class="selected"'; ?>>
+            <a href="<?php echo route_url($route, ['eid' => $product->eid]); ?>">
+                <span><?php echo $key; ?></span>
+                <?php if ($count) { ?>(<?php echo $count; ?>)<?php } ?>
+            </a>
+            <?php if ($add_route) { ?>
+            <a class="button success small" href="<?php echo route_url($add_route, ['eid' => $product->eid]); ?>">
+                add
+            </a>
+            <?php } ?>
+        </li>
+        <?php } ?>
+    </ul>
+</div>

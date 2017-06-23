@@ -1,0 +1,149 @@
+<?php
+/**
+ * File php.php
+ * PHP Version 7.0.4
+ * @category Tpl
+ * @package Global
+ * @author Zjh <zhanjh@126.com>
+ * @license http:://www.tecposter.cn/bsd-licence BSD Licence
+ * @link http://www.tecposter.cn
+ */
+$csses = ($this->csses && is_array($this->csses)) ? $this->csses : ['user.css' => 1];
+if ($this->css_appended && is_array($this->css_appended)) {
+    $csses = array_merge($csses, $this->css_appended);
+}
+$jses = ($this->jses && is_array($this->jses)) ? $this->jses : ['user.js' => 1];
+if ($this->js_appended && is_array($this->js_appended)) {
+    $jses = array_merge($jses, $this->js_appended);
+}
+
+$breadcrumbs = ($this->breadcrumbs && is_array($this->breadcrumbs)) ? $this->breadcrumbs : [];
+array_unshift($breadcrumbs, 'user-home');
+
+$site_config = config()->get('site');
+$sites = [
+    'static' => ['host' => $site_config->get('static.host')],
+    'api' => ['host' => $site_config->get('api.host')]
+];
+
+$nav_items = [
+    'reg' => ['router' => 'mobile-reg'],
+    'login' => ['router' => 'login']
+];
+
+
+?><!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+    <title><?php echo $this->html_title; ?></title>
+
+    <?php foreach ($csses as $css=>$val) { ?>
+    <link rel="stylesheet" href="<?php echo css_url($css); ?>">
+    <?php } ?>
+
+    <?php $this->section('style'); ?>
+    <?php $this->stop(); ?>
+
+    <link rel="icon" type="image/png" href="<?php echo img_url('favicon-16x16.png'); ?>" sizes="16x16" />
+    <link rel="icon" type="image/png" href="<?php echo img_url('favicon-32x32.png'); ?>" sizes="32x32" />
+</head>
+
+<body class="user">
+
+<div class="page">
+
+
+    <div class="page-header"></div>
+
+    <div class="page-body">
+
+    <?php echo $this->insert('module/page-header-fixed'); ?>
+
+        <?php if (!$this->hide_nav) { ?>
+        <div class="user-nav">
+            <ul class="menu expanded underline">
+                <?php foreach ($nav_items as $nav_item => $value) { ?>
+                <?php if ($nav_item == $this->selected_nav_item) { ?>
+                <li class="selected"><a href="<?php echo route_url($value['router']); ?>"><?php echo trans($nav_item); ?></a></li>
+                <?php } else { ?>
+                <li><a href="<?php echo route_url($value['router']); ?>"><?php echo trans($nav_item); ?></a></li>
+                <?php } ?>
+                <?php } ?>
+            </ul>
+        </div>
+        <?php } else { ?>
+            <h3 class="forget-tips"><?php echo trans('forgot-your-password?'); ?></h3>
+        <?php } ?>
+        <div class="user-main"><?php $this->section('main'); $this->stop(); ?></div>
+        <?php echo $this->insert('module/third-party-login');?>
+    </div>
+
+
+
+</div>
+ <?php echo $this->insert('module/page-footer'); ?>
+
+<?php foreach ($jses as $js => $val) { ?>
+    <script class="static-js" src="<?php echo js_url($js) ?>"></script>
+<?php } ?>
+
+<?php $this->section('script'); ?><?php $this->stop(); ?>
+
+<script>
+(function() {
+    var config = window.config = window.config || {};
+    var dict = window.dict = window.dict || {};
+    config.zeditor_upload_url = '<?php echo route_url('img-upload-figure'); ?>';
+    //config.site = {static: {host: '<?php echo config()->get('site.static.host'); ?>' }};
+    config.site = <?php echo json_encode($sites, true); ?>;
+    config.token = '<?php echo session()->get('_token'); ?>';
+    config.locale_key = '<?php echo translator()->getLocaleKey(); ?>';
+    config.api = {
+        mobile_check: '<?php echo route_url('user-rest-phone-check'); ?>',
+        nick_check: '<?php echo route_url('user-rest-nick-check'); ?>',
+        send_code: '<?php echo route_url('user-rest-phone-send-code'); ?>',
+        js_trans: '<?php echo route_url('ipar-rest-js-trans')?>'
+    };
+    <?php $untrans = new \Mars\Service\JsTransService;
+    foreach ($untrans->getJsTranKeys() as $key => $value) {?>
+    dict['<?php echo $value->key;?>'] = '<?php echo trans($value->key);?>';
+    <?php } ?>
+}());
+(function () {
+    var api = z.config('api');
+    api.moblie_check = '<?php echo route_url('user-rest-phone-check'); ?>';
+    api.nick_check = '<?php echo route_url('user-rest-nick-check'); ?>';
+    api.send_code = '<?php echo route_url('user-rest-phone-send-code'); ?>';
+    api.js_trans = '<?php echo route_url('ipar-rest-js-trans')?>';
+}());
+</script>
+
+<?php if (config()->get('env') === 'product') { ?>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a846b9b75bb5184739d9f88918212293";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78678033-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<?php } ?>
+
+</body>
+</html>

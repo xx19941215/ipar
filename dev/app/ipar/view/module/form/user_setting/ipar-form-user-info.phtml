@@ -1,0 +1,28 @@
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data">
+    <?php echo csrf_field(); ?>
+
+
+    <div class="">
+        <label for="right-label" class="text-right"><?php echo trans('gender') ?></label>
+        <input type="text" id="right-label" placeholder="Right-aligned text input">
+    </div>
+    <?php if ($this->errors) { ?>
+        <p class="errorbox">
+            <?php foreach ($this->errors as $err_key => $err_value) { ?>
+                <span class="label alert">
+                <?php echo $err_key; ?>,<?php echo $err_value; ?>
+            </span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+
+    <?php if ($this->status) { ?>
+        <span><?php echo trans('set success'); ?></span>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <a class="button small"
+           href="<?php echo route_url('ipar-ui-i-account-info', ['zcode' => $this->user->zcode]); ?>"><?php echo trans('back'); ?></a>
+    </div>
+</form>

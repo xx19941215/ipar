@@ -1,0 +1,20 @@
+<?php
+$has_error = $this->has_error ? true : false;
+$error = $this->error;
+
+if (!$has_error) {
+    $has_error = $error ? true : false;
+}
+?>
+<div class="input-field<?php if ($has_error) echo ' has-error'; ?>">
+    <input<?php if ($this->class) echo " class=\"{$this->class}\""; ?> type="<?php echo $this->type; ?>" name="<?php echo $this->name; ?>"
+        <?php if ($this->required) { echo ' required="required"'; } ?>
+        <?php if ($this->data_type) { echo ' data-type="'.$this->data_type.'"'; } ?>
+        <?php if ($this->maxlength) { ?> maxlength="<?php echo $this->maxlength; ?>"<?php } ?>
+        <?php if ($this->placeholder) { ?> placeholder="<?php echo $this->placeholder; ?>"<?php } ?> value="<?php echo $this->value ; ?>">
+    <?php if ($error) { ?>
+        <div class="msg-error">
+            <i class="icon icon-Error"></i><?php echo $error; ?>
+        </div><!-- .error -->
+    <?php } ?>
+</div><!-- .text-field -->

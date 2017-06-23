@@ -1,0 +1,151 @@
+$ad-img-radius: 3px;
+.rsidebar {
+    margin-top: 0;
+    margin-left: 25px;
+
+    .img-container {
+        margin-bottom: 1em;
+    }
+
+}
+.dabanner {
+    position: static !important;
+    display: inline-block;
+    margin: 0 25px 16px;
+    iframe {
+        border-radius: 4px !important;
+        overflow: hidden;
+        border: none;
+    }
+    .iconfont {
+        display: none;
+    }
+}
+
+.side-share {
+    margin-left: 20px;
+    .side-sharehead {
+        margin-left: 10px;
+    }
+    .side-shareicon{
+        img {
+            .sociak-share-icon{
+                font-size: 20px;
+            }
+        }
+
+    }
+}
+
+.section {
+    //margin-left: 25px;
+    margin-bottom: 35px;
+
+    .section-title {
+        color: $black;
+        font-size: $global-font-size;
+        line-height: 1;
+        margin-bottom: 13px;
+        background: $light-gray;
+        font-weight: normal;
+        padding: 9px 10px;
+        border-radius: 2px;
+        a {
+            font-size: 13px;
+        }
+    }
+    .section-body {
+        img {
+            border-radius: $ad-img-radius;
+        }
+        .item {
+            line-height: 1.2;
+            margin: 0 0 13px 9px;
+            a {
+                // font-size: $small-font-size;
+                font-size: 13px;
+            }
+
+            a:hover {
+                color: #2b6dad;
+            }
+        }
+    }
+
+    &.section-bottom {
+        padding-top: 14px;
+        border-top: 1px solid #eeeeee;;
+        .item-bottom {
+            margin-left: 9px;
+            font-size: $tiny-font-size;
+
+            a:hover {
+                // color: #2b6dad;
+            }
+        }
+        .icon-group {
+            font-size: rem-calc(21);
+
+            a {
+                color: $medium-gray;
+                &:hover {
+                    // color: #2b6dad;
+                }
+            }
+
+        }
+        .locale-group {
+            //font-size: $small-font-size;
+        }
+
+    }
+}
+@include breakpoint(large) {
+    .section {
+        margin-left: 25px;
+    }
+}
+
+a.images-tooltip {
+    display: inline;
+    position: relative;
+}
+
+a.images-tooltip span {
+    width: 140px;
+    height: auto;
+    color: #fff;
+    background: #ffffff;
+    position: absolute;
+    font-size: 13px;
+    text-align: center;
+    padding: 10px;
+    line-height: 20px;
+    visibility: hidden;
+    border-radius: 10px;
+}
+
+a.images-tooltip span:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -8px;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid #2b2b2b;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+}
+
+a:hover.images-tooltip span {
+    visibility: visible;
+    opacity: 0.8;
+    top: 30px;
+    left: 50%;
+    margin-left: -76px;
+    z-index: 999;
+}
+
+/* IMAGES TOOLTIP
+-------------------------------------------------*/

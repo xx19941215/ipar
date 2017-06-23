@@ -1,0 +1,47 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-company_product-unlink'),
+    'breadcrumbs' => ['admin-ui-group-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+    <div id="page-company_product-unlink">
+        <h2><?php echo trans('delete-product-from-this-company'); ?></h2>
+        <form action="<?php echo $this->action; ?>" method="post">
+            <?php echo csrf_field(); ?>
+            <table>
+                <thead>
+                <tr>
+                    <th>
+                        <?php echo trans('eid'); ?>
+                    </th>
+                    <th>
+                        <?php echo trans('title'); ?>
+                    </th>
+                    <th>
+                        <?php echo trans('content'); ?>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <?php echo $this->product->eid; ?>
+                    </td>
+                    <td>
+                        <?php echo $this->product->title; ?>
+                    </td>
+                    <td>
+                        <?php echo $this->product->content; ?>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <input type="hidden" name="id" value="<?php echo $this->company_product->id; ?>">
+            <input type="hidden" name="gid" value="<?php echo $this->company_product->gid; ?>">
+            <input type="submit" value="<?php echo trans('sure'); ?>" class="button">
+            <a onclick="history.go(-1)"><?php echo trans('cancel') ?></a>
+        </form>
+
+    </div>
+
+<?php $this->replace(); ?>

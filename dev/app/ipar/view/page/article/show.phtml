@@ -1,0 +1,103 @@
+<?php
+$article = $this->article;
+$locales = config()->get('i18n.locale.available')->all();
+
+$this->layout('layout/ipar', [
+    'html_title' => $article->title,
+    'header_menu' => 'ipar-article-index'
+]);
+
+//$articles_i18n = $this->articles_i18n->getItems();
+$comment_count = $article->countComment();
+$dst_type_id = get_type_id('article');
+
+$article_link = route_url('ipar-article-show', ['zcode' => $article->zcode]);
+$user_link = route_url('ipar-i-home', ['zcode' => $article->getUser()->zcode]);
+$is_tag = $this->is_tag;
+$tags = 0;
+if ($this->tag_set) {
+    $tags = $this->tag_set->getItems();
+}
+
+?>
+
+<?php $this->section('main'); ?>
+
+<div class="article" data-id=<?php echo $article->id; ?> data-type="article">
+    <div class="">
+        <a href="<?php echo route_url('ipar-article-index') ?>"><?php echo trans('article-index') ?></a>
+    </div>
+
+    <?php if ($is_tag) { ?>
+        <div class="tag-wrap">
+            <?php if ($tags) { ?>
+                <div class="tag-hot-list">
+                    <?php foreach ($tags as $tag) { ?>
+                        <a href="<?php echo route_url('ipar-ui-tag-index', [$zcode = $tag->zcode]); ?>">
+                            <span><?php echo $tag->title; ?></span>
+                        </a>
+                    <?php } ?>
+                </div>
+            <?php } ?>
+        </div>
+    <?php } ?>
+
+    <div class="article-title">
+        <h1><a href="<?php echo $article_link; ?>"><?php echo $article->title; ?></a></h1>
+    </div>
+    <div class="article-info">
+        <span class="item">
+            <a href="<?php echo $user_link; ?>" target="_blank">
+                <?php echo $article->getUser()->nick ?>
+            </a>
+        </span>
+        <span class="item"><?php echo time_elapsed_string($article->created) ?></span>
+        <?php /* if (count($articles_i18n) > 1 ) { ?>
+        <?php foreach ($articles_i18n as $article_i18n): ?>
+            <span class="item">
+                <a href="<?php echo route_url('ipar-article-show', ['zcode' => $article_i18n->zcode])?>">
+                    <?php echo $locales[array_keys($locales)[array_search($article_i18n->locale_id, array_column($locales, 'id'))]]['title'] ?>
+                </a>
+            </span>
+        <?php endforeach; ?>
+        <?php } */ ?>
+    </div>
+    <div class="article-content">
+        <?php echo $article->content ?>
+    </div>
+    <div class="comments">
+        <span class="item">
+            <i class="icon icon-comment"></i>
+            <a href="javascript:;" class="show-comments">
+                <?php echo trans('comment'); ?>
+                <span class="comments-count"><?php echo $comment_count ?></span>
+            </a>
+        </span>
+    </div>
+
+    <div class="comments-container" data-comments-count=<?php echo $comment_count; ?>>
+        <div class="comments-list">
+            <!-- comments -->
+        </div>
+        <div class="comment-action">
+            <form class="comment-form">
+                <input type="hidden" name="dst_id" value="<?php echo $article->id; ?>">
+                <input type="hidden" name="dst_type_id" value="article">
+                <input type="text" name="content" class="comment-textbox input-group-field">
+                <input type="submit" class="submit-comment-button button" value="<?php echo trans('comment') ?>">
+            </form>
+        </div>
+    </div>
+    <div class="social-share" data-image="%image%"></div>
+
+</div>
+
+<?php $this->replace(); ?>
+
+<?php $this->section('style'); ?>
+<link href="//cdn.bootcss.com/social-share.js/1.0.14/css/share.min.css" rel="stylesheet">
+<?php $this->replace(); ?>
+
+<?php $this->section('side'); ?>
+<?php echo $this->insert('module/article-sidebar') ?>
+<?php $this->replace(); ?>

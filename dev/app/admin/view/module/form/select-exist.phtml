@@ -1,0 +1,22 @@
+<?php if ($this->entity_set) { ?>
+
+<form class="select-exist" method="post" action="">
+    <input type="hidden" name="rqt_eid" value="<?php echo $this->rqt->eid; ?>">
+    <?php echo csrf_field(); ?>
+    <ul class="menu vertical">
+        <?php foreach ($this->entity_set->getItems() as $entity) { ?>
+        <li>
+            <button class="button select tiny" name="dst_eid" value="<?php echo $entity->eid; ?>">select</button>
+            <div class="select-entity">
+                <div class="header">
+                    <span class="type"><?php echo $entity->getTypeKey(); ?></span>
+                    <span class="title"><?php echo $entity->getTitle(); ?></span>
+                </div>
+                <div class="abbr"><?php echo $entity->getAbbr(); ?></div>
+            </div>
+        </li>
+        <?php } ?>
+    </ul>
+</form>
+
+<?php } ?>

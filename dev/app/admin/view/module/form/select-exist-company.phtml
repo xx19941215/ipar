@@ -1,0 +1,19 @@
+<?php if ($this->company_set) { ?>
+    <form class="select-exist" method="post" action="<?php echo route_url('admin-ui-product_company-link_post', ['eid' => $this->entity->eid]) ?>">
+        <input type="hidden" name="eid" value="<?php echo $this->entity->eid; ?>">
+        <?php echo csrf_field(); ?>
+        <ul class="menu vertical">
+            <?php foreach ($this->company_set->getItems() as $company) { ?>
+                <li>
+                    <button class="button select tiny" name="gid" value="<?php echo $company->gid; ?>">select</button>
+                    <div class="select-entity">
+                        <div class="header">
+                            <span class="type"><?php echo get_type_key($company->type_id); ?></span>
+                            <span class="title"><?php echo $company->fullname; ?></span>
+                        </div>
+                    </div>
+                </li>
+            <?php } ?>
+        </ul>
+    </form>
+<?php } ?>

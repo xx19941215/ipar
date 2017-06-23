@@ -1,0 +1,8 @@
+<?php $this->layout('layout/admin', ['html_title' => trans('admin-product-add'), 'breadcrumbs' => ['admin-product']]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="row column">
+    <h1><?php echo trans('admin-product-add'); ?></h1>
+    <?php echo $this->insert('module/form/admin-form-product'); ?>
+</div>
+<?php $this->replace(); ?>

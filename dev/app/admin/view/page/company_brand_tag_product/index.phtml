@@ -1,0 +1,64 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-company-brand_tag_product'),
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="page-company">
+    <?php
+    echo $this->insert('module/entity-menu-group', [
+        'group' => $this->company,
+        'select' => 'brand_tag'
+    ]);
+    ?>
+    <h2><?php echo $this->company->fullname; ?></h2>
+    <br>
+    <div class="company-brand-tag-product">
+        <h2><?php echo trans('brand-tag-title') . ':' . $this->tag->title; ?></h2>
+        <br>
+        <h4><?php echo trans('company-brand-tag-product-list'); ?></h4>
+        <div class="link">
+            <a class="button small success" href="<?php echo route_url('admin-ui-company_brand_tag_product-link', [
+                'gid' => $this->company->gid,
+                'tag_id' => $this->brand_tag->tag_id
+            ]); ?>">
+                <?php echo trans('link-product-for-brand-tag'); ?>
+            </a>
+        </div>
+        <?php foreach ($products = $this->product_set->getItems() as $product) { ?>
+            <div class="product-wrap">
+                <h4>
+                    <a target="_blank" href="<?php echo route_url('admin-product-show', ['eid' => $product->eid]) ?>">
+                        <?php echo $product->title; ?>
+                    </a>
+                </h4>
+                <div class="abbr">
+                    <?php echo $product->getAbbr(); ?>
+                </div>
+                <?php if ($imgs = $product->getImgs()) { ?>
+                    <div class="product-img">
+                        <img src="<?php echo img_src($imgs[0], 'cover'); ?>">
+                    </div>
+                <?php } ?>
+                <div class="unlink">
+                    <a class="button small"
+                       href="<?php echo route_url('admin-ui-company_brand_tag_product-unlink', [
+                           'gid' => $this->company->gid,
+                           'tag_id' => $this->brand_tag->tag_id,
+                           'eid' => $product->eid
+                       ]); ?>">
+                        <?php echo trans('unlink-product-from-brand-tag'); ?>
+                    </a>
+                </div>
+            </div>
+        <?php }
+        if (!$products) {
+            echo '<p class="alert">' . trans('no-product') . '</p>';
+        } ?>
+    </div>
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->product_set->getPageCount()]); ?>
+</div>
+
+<?php $this->replace(); ?>
+
+
+

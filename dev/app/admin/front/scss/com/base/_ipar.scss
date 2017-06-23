@@ -1,0 +1,29 @@
+.page {
+    &-header {
+        height: 51px;
+    }
+}
+.loading {
+    background: $medium-gray;
+    padding: 7px 15px;
+    border-radius: 4px;
+    text-align: center;
+
+    a {
+        color: $black;
+    }
+
+    .two {
+        display: none;
+    }
+
+    &.completed {
+        background: $light-gray;
+        .one {
+            display: none;
+        }
+        .two {
+            display: inline;
+        }
+    }
+}

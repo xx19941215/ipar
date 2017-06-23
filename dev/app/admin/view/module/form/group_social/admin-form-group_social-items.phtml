@@ -1,0 +1,51 @@
+<div class="social-items">
+    <table>
+        <thead>
+        <tr>
+            <th class="social"><?php echo trans("social") ?></th>
+            <th class="name"><?php echo trans("name") ?></th>
+            <th class="url"><?php echo trans("url") ?></th>
+            <th class="op-wrap">
+                <a class="button small" href="<?php echo route_url("admin-ui-{$this->type}_social-add",
+                    ['gid' => $this->{$this->type}->gid]); ?>">
+                    <?php echo trans("add"); ?>
+                </a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($this->group_social_set->getItems() as $group_social) { ?>
+            <tr>
+                <td class="social">
+                    <?php
+                    echo array_search("$group_social->social_id", $this->social_config->all());
+                    ?>
+                </td>
+                <td class="name"><?php echo $group_social->name; ?></td>
+                <td class="url">
+                    <?php if ($group_social->social_id == $this->social_config->get('wechat')) {
+                        if (json_decode($group_social->qrcode, true)) {
+                            echo '<img src="' . img_src($group_social->getQrcode(), 'small') . '">';
+                        }
+                    } else {
+                        echo $group_social->url;
+                    }
+                    ?>
+                </td>
+                <td class="op-wrap">
+                    <a class="button small" href="<?php echo route_url("admin-ui-{$this->type}_social-edit",
+                        ['gid' => $this->{$this->type}->gid, 'group_social_id' => $group_social->id]);
+                    ?>">
+                        <?php echo trans("edit"); ?>
+                    </a>
+                    <a class="button success small" href="<?php echo route_url("admin-ui-{$this->type}_social-delete",
+                        ['gid' => $this->{$this->type}->gid, 'group_social_id' => $group_social->id]);
+                    ?>">
+                        <?php echo trans("delete"); ?>
+                    </a>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>

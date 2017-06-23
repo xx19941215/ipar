@@ -1,0 +1,17 @@
+<?php $this->layout('layout/user', [
+    'html_title' => $this->title,
+    'is_hide_user_nav' => true
+]); ?>
+
+<?php $this->section('main'); ?>
+    <div class="tips">— <?php echo $this->tips; ?> —</div>
+    <h3><i class="icon icon-info-success"></i><?php echo $this->title; ?></h3>
+
+    <div class="auth-panel-form w-160">
+        <ul class="menu vertical">
+            <li>
+                <a href="<?php echo $this->link_url; ?>" class="button submit email" rel="nofollow" target="_blank"><?php echo $this->link_text; ?></a>
+            </li>
+        </ul>
+    </div>
+<?php $this->replace(); ?>

@@ -1,0 +1,122 @@
+<?php
+$menu_items = [
+    'ipar-rqt-index',
+    'ipar-product-index',
+    'ipar-ui-company-index',
+    'ipar-ui-company_service-show',
+
+];
+$current_user = current_user();
+?>
+<div class="page-header-fixed">
+    <div class="container">
+        <div class="logo-wrap float-left">
+            <a href="<?php echo route_url('home'); ?>">
+                <i class="icon icon-logo"></i>
+                <i class="icon icon-title zh-cn"></i>
+            </a>
+        </div>
+        <form class="search-wrap float-left" method="get" action="<?php echo route_url('ipar-index-search'); ?>">
+            <div class="input-search">
+                <input type="search" name="query" autocomplete="off"
+                       placeholder="<?php echo trans('search-placeholder'); ?>"
+                       value="<?php echo http_request()->query->get('query'); ?>">
+                <div class="suggest hide">
+                    <?php if (!$current_user) { ?>
+                        <div class="require-login clearfix">
+                            <div class="desc"><?php echo trans('require-login-desc'); ?></div>
+                            <div class="btn">
+                                <a class="button submit"
+                                   href="<?php echo route_url('login'); ?>"><?php echo trans('login-now'); ?></a>
+                            </div>
+                        </div>
+                    <?php } ?>
+
+                    <div class="search-result-wrap">
+                    </div>
+                    <div class="search-all-wrap hide">
+                        <button class="btn-search-all"><?php echo trans('search-all'); ?></button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+        <div class="menu-wrap float-left">
+            <ul class="menu underline">
+                <?php foreach ($menu_items as $item) {
+                    if ($this->header_menu == $item) {
+                        $class = ' class="selected"';
+                    } else {
+                        $class = '';
+                    }
+                    ?>
+                    <li<?php echo $class; ?>><a href="<?php echo route_url($item); ?>"><?php echo trans($item); ?></a>
+                    </li>
+
+                <?php } ?>
+            </ul>
+        </div>
+
+        <div class="sign-wrap float-right">
+            <?php if ($current_user) { ?>
+                <div class="user-logined">
+                    <div class="item float-left">
+                        <?php echo $this->insert('module/user-avt', ['user' => $current_user]); ?>
+                    </div>
+                    <div class="menu-box-wrap">
+                        <div class="menu-box">
+
+                            <?php if (current_uid()) { ?>
+                                <div class="item">
+                                    <a href="<?php echo $current_user->getUrl(); ?>"><?php echo trans('profile'); ?></a>
+                                </div>
+                                <div class="item">
+                                    <a href="<?php echo route_url('ipar-ui-i-account-info', ['zcode' => $current_user->zcode ])?>">
+                                        <?php echo trans('setting'); ?>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="<?php echo route_url('logout'); ?>" onclick="clearSessionStorage()"><?php echo trans('logout'); ?></a>
+                                </div>
+                            <?php } else { ?>
+                                <div class="item">
+                                    <a href="<?php echo route_url('login'); ?>"><?php echo trans('login'); ?></a>
+                                </div>
+                                <div class="item">
+                                    <a href="<?php echo route_url('mobile-reg'); ?>"><?php echo trans('reg'); ?></a>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            <?php } else { ?>
+                <div class="nouser">
+                    <i class="icon icon-login"></i>
+                    <div class="menu-box-wrap">
+                        <div class="menu-box">
+                            <div class="item">
+                                <a href="<?php echo route_url('login', [], [
+                                                    'target' => $this->request->getUri()
+                                                ]); ?>">
+                                    <?php echo trans('login');?>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="<?php echo route_url('mobile-reg'); ?>"><?php echo trans('reg'); ?></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <a href="javascript:;" class="button ipar add-rqt float-right"><?php echo trans('add-rqt'); ?></a>
+        <div class="cancel-search hide"><?php echo trans('cancel'); ?></div>
+    </div>
+</div>
+
+<script>
+    function clearSessionStorage() {
+        window.sessionStorage.clear();
+    }
+</script>

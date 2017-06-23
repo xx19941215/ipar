@@ -1,0 +1,56 @@
+<form action="<?php echo $this->action; ?>" method="post">
+
+<?php $company = $this->company_set;?>
+
+    <?php echo csrf_field(); ?>
+
+    <label>
+        <?php echo trans('owner-uid'); ?>
+        <input type="text" name="owner_uid" required="required" value="<?php echo $this->owner_uid; ?>">
+        <input type="hidden" name="last_url" value="<?php echo $this->last_url; ?>">
+    </label>
+    <label>
+        <?php echo trans('type'); ?>
+        <select name="type">
+        <?php foreach(config()->get('type.group')->all() as $type => $type_id) {?>
+          <option value="<?php echo $type_id; ?>">
+          <?php echo $type;?>
+          </option>
+        <?php } ?>
+        </select>
+    </label>
+    <label>
+        <?php echo trans('title'); ?>
+        <input type="text" name="title" required="required" value="<?php echo $this->title; ?>">
+    </label>
+    <label>
+        <?php echo trans('reg_address_id'); ?>
+        <input type="text" name="reg_address_id" required="required" value="<?php echo $this->reg_address_id; ?>">
+    </label>
+    <label>
+        <?php echo trans('reg_date'); ?>
+        <input type="date" name="reg_date" required="required" value="<?php echo $this->reg_date; ?>">
+    </label>
+    <label>
+        <?php echo trans('legal_uid'); ?>
+        <input type="text" name="legal_uid" required="required" value="<?php echo $this->legal_uid; ?>">
+    </label>
+    <label>
+        <?php echo trans('content'); ?>
+        <?php echo $this->insert('element/zeditor', ['name' => 'content', 'value' => $this->content]); ?>
+    </label>
+
+    <?php if ($this->errors) { ?>
+    <p class="errors">
+    <?php foreach ($this->errors as $err_key => $err_val) { ?>
+    <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+    <?php } ?>
+    </p>
+    <?php } ?>
+    
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <?php echo $this->insert('element/link-go-back'); ?>
+    </div>
+</form>

@@ -1,0 +1,51 @@
+<?php
+    $ptargetes = $this->ptarget_set->getItems();
+    $page_count = $this->ptarget_set->getPageCount();
+ ?>
+
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-product-show'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+<?php $this->section('page-body'); ?>
+
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_content' => false,
+        'select' => 'ptarget',
+    ]); ?>
+
+    <table class="table-ptarget">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>created</th>
+                <th>edit</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($ptargetes as $ptarget) {?>
+            <tr>
+                <td><?php echo $ptarget->id ?></td>
+                <td><?php echo $ptarget->title ?></td>
+                <td><?php echo $ptarget->created ?></td>
+                <td><a href="
+                    <?php echo route_url('admin-product-ptarget-edit', [
+                        'eid' => $this->product->eid,
+                        'ptarget_id' => $ptarget->id
+                    ]); ?>
+                    ">edit</a>
+                </td>
+            </tr>
+
+        <?php } ?>
+        </tbody>
+    </table>
+
+    <?php echo $this->insert('element/pagination', ['page_count' => $page_count]); ?>
+
+<?php $this->replace(); ?>

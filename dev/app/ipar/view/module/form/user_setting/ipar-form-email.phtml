@@ -1,0 +1,53 @@
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data" class="user-setting-form">
+    <?php echo csrf_field(); ?>
+    <ul class="menu vertical">
+        <?php if ($this->user->email) { ?>
+            <li>
+                <div class="title"><?php echo trans('old-email'); ?></div>
+                <?php echo $this->insert('module/form/user_setting/input-field', [
+                    'type' => 'email',
+                    'name' => '',
+                    'placeholder' => '',
+                    'value' => $this->user->email,
+                    'maxlength' => '',
+                    'disabled' => 'true',
+                    'data_type' => '',
+                    'has_error' => isset($errors['email'])
+                ]); ?>
+            </li>
+        <?php } ?>
+        <li>
+            <div class="title"><?php echo trans('new-email'); ?></div>
+            <?php echo $this->insert('module/form/user_setting/input-field', [
+                'type' => 'email',
+                'name' => 'new-email',
+                'placeholder' => trans('new-email'),
+                'value' => '',
+                'maxlength' => '',
+                'disabled' => '',
+                'data_type' => '',
+                'has_error' => isset($errors['email'])
+            ]); ?>
+        </li>
+    </ul>
+
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_value) { ?>
+                <span class="label alert">
+                <?php echo $err_key; ?>,<?php echo $err_value; ?>
+            </span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+
+    <?php if ($this->msg) { ?>
+        <span><?php echo $this->msg; ?></span>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('verify-mailbox'); ?>">
+        <a class="small"
+           href="<?php echo route_url('ipar-ui-i-account-info', ['zcode' => $this->user->zcode]); ?>"><?php echo trans('back'); ?></a>
+    </div>
+</form>

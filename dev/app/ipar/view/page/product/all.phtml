@@ -1,0 +1,16 @@
+<?php
+$this->layout('layout/ipar');
+
+$this->product_set->setCountPerPage(12);
+$page_count = $this->product_set->getPageCount();
+$page = http_request()->query->get('page', $page_count);
+$this->product_set->setCurrentPage($page);
+?>
+
+<?php $this->section('cat'); ?>
+
+<?php echo $this->insert('module/box-set', ['entity_set' => $this->product_set]); ?>
+<?php echo $this->insert('element/pagination-opposite', ['page_count' => $page_count, 'page' => $page]); ?>
+
+
+<?php $this->replace(); ?>

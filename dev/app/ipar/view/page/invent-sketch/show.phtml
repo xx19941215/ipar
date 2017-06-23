@@ -1,0 +1,15 @@
+<?php $this->layout('layout/invent'); ?>
+
+<?php $this->section('title'); ?>
+    <?php echo trans('invent-sketch-show'); ?>
+<?php $this->append(); ?>
+
+<?php $this->section('content'); ?>
+    <div class="content">
+        <?php echo $this->sketch->content; ?>
+    </div>
+    <p>
+        <a href="<?php echo route_url('invent-sketch-edit', ['zcode' => $this->invent->zcode, 'eid' => $this->sketch->eid]); ?>">Edit</a>
+        <a href="<?php echo route_url('invent-sketch-delete', ['zcode' => $this->invent->zcode, 'eid' => $this->sketch->eid]); ?>">delete</a>
+    </p>
+<?php $this->replace(); ?>

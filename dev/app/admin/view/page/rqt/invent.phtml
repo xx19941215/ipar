@@ -1,0 +1,22 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-rqt-show'),
+        'breadcrumbs' => ['admin-rqt'],
+    ]);
+?>
+<?php $this->section('page-body'); ?>
+<h1><?php echo $this->rqt->title; ?></h1>
+<h3><?php echo $this->rqt->content; ?></h3>
+<?php echo $this->insert('module/show-rqt', ['type' => 'invent','eid' => $this->rqt->eid]); ?>
+    <div id = 'solution-invent-div'>
+        <div class="row column">
+            <a class="button small" href="<?php echo route_url('admin-rqt-invent-add', ['eid' => $this->rqt->eid]); ?>">
+                <?php echo trans('add-invent'); ?>
+            </a>
+        </div>
+        <div class="row column">
+            <?php echo $this->insert('module/table-entity', ['entities' => $this->invents,'user' =>$this->user]); ?>
+        </div>
+    </div>
+    <?php echo $this->insert('module/show-page', ['url' => 'admin-rqt-invent', 'opts' => ['eid'=>$this->rqt->eid], 'page' => $this->page, 'page_count' => $this->page_count]); ?>
+<?php $this->replace(); ?>

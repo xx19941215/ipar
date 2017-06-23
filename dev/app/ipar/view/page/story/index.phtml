@@ -1,0 +1,15 @@
+<?php
+$this->layout('layout/ipar');
+
+$page_count = $this->story_set->getPageCount();
+$page = http_request()->query->get('page', $page_count);
+$this->story_set->setCurrentPage($page);
+?>
+
+<?php $this->section('main'); ?>
+
+<?php echo $this->insert('module/story-set', ['story_set' => $this->story_set]); ?>
+<?php echo $this->insert('element/pagination-opposite', ['page_count' => $page_count, 'page' => $page]); ?>
+
+
+<?php $this->replace(); ?>

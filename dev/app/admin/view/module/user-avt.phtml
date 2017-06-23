@@ -1,0 +1,14 @@
+<?php
+$user = $this->user;
+if (!$user) {
+    $uid = $this->uid ? $this->uid : current_uid();
+    $user = user($uid);
+}
+?>
+<a class="user-avt" href="<?php echo $user->getUrl(); ?>">
+<?php if ($avt = $user->getAvt()) { ?>
+    <img src="<?php echo img_src($avt, 'small'); ?>">
+<?php } else { ?>
+    <i class="icon icon-avt"></i>
+<?php } ?>
+</a>

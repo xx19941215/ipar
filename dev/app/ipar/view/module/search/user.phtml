@@ -1,0 +1,11 @@
+<div class="header-div user-header-div hide">
+    <i class="icon icon-user"></i>
+    <h3><?php echo trans('user'); ?></h3>
+</div>
+<div class="user-set-wrap"></div>
+<div class="loading" data-action="search_user" data-page="1" data-query="<?php echo $this->query; ?>">
+</div>
+
+<div class="more-about user-hide hide">
+    <a href="./search/user?query=<?php echo $this->query; ?>"><?php echo trans('see-more'); ?></a>
+</div>

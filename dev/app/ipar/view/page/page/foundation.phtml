@@ -1,0 +1,96 @@
+<?php $this->layout('layout/page', [
+    'csses' => [
+        'ipar.css' => 1,
+        'page.css' => 1
+    ]
+]); ?>
+
+<?php $this->section('main'); ?>
+
+<div class="foundation-activity-ad">
+    <div class="foundation-banner-container">
+        <img src="<?php echo nos_url('activity-foundation-2.png') ?>" alt="">
+    </div>
+</div>
+
+<div class="foundation-activity-detail">
+    <div class="foundation-activity-title">
+        <p>
+            活动细则
+        </p>
+    </div>
+    <div class="foundation-activity-style">
+        <p>
+            “点趴网”是一个需求驱动的众创平台，我们聚集生活家、创客，培养用户追求创意生活、精品生活。本次活动旨在寻找更多热爱创意、热爱生活的你。因此，本次活动只比被关注数。
+        </p>
+    </div>
+    <div class="foundation-activity-forwards">
+        <p>
+            活动时间
+        </p>
+        <p>
+            2016年11月22日12:00-2016年12月06日12:00
+        </p>
+    </div>
+    <div class="foundation-activity-rule">
+        <p>
+            活动要求：
+        </p>
+        <p>
+            活动期间，所有用户皆可参与
+        </p>
+    </div>
+
+    <div class="foundation-activity-rule">
+        <p>
+            活动奖励：
+        </p>
+        <p>
+            活动结束后，关注数排名第一的用户，奖励1000元创意生活基金——给爱♥生活的你。
+        </p>
+    </div>
+</div>
+<div class="foundation-activity-line"></div>
+<div class="foundation-activity-title">
+    <p class="title-sm">
+        排行榜
+    </p>
+</div>
+<div class="foundation-activity-rank">
+    <?php foreach ($this->rank as $key => $value) { ?>
+        <div class="row">
+            <div class="columns small-2 medium-1">
+                <?php if ($key < 3) echo '<span class="rank">' . ($key + 1) . '</span>';
+                else echo '<span class="rankOther">' . ($key + 1) . '</span>'; ?>
+            </div>
+            <div class="columns small-2 medium-1">
+                <img src="<?php echo img_src((array)(json_decode($value->avt)), 'small'); ?>" alt="">
+            </div>
+            <div class="columns small-5 medium-7">
+                <p class="nike-name">
+                    <a href="<?php echo route_url('ipar-i-home', [$value->zcode]); ?>"><?php echo $value->nick ?></a>
+                </p>
+                <p class="follow-count"><span><?php echo $value->follow_count; ?></span> 关注</p>
+            </div>
+            <div class="columns small-3">
+            <span class="unfollow" data-uid="<?php echo $value->uid ?>">
+                <a class="button user" href="<?php echo route_url('ipar-i-home', [$value->zcode]); ?>">
+                    <span class="followed">已关注</span>
+                    <span class="unfollowing">取消关注</span>
+                    <span class="following">去关注TA</span>
+                </a>
+            </span>
+            </div>
+        </div>
+    <?php } ?>
+</div>
+<div class="foundation-activity-line"></div>
+<div class="foundation-activity-ideapar">
+    <div class="foundation-activity-ideaparQrcode">
+        <img src="<?php echo static_url('/img/wx_qrcode2.png'); ?>" alt=""/>
+    </div>
+    <p class="title-sm">
+        点趴订阅号
+    </p>
+</div>
+<?php $this->replace(); ?>

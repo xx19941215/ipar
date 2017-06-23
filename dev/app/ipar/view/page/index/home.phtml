@@ -1,0 +1,45 @@
+<?php
+$this->layout('layout/ipar', [
+    'tdk_keywords' => true,
+    'tdk_description' => true,
+]);
+?>
+
+<?php $this->section('main'); ?>
+
+<div class="story-set-wrap">
+<?php /*
+    <div id="story-set-1">
+        <?php echo $this->insert('module/story-set', ['story_set' => $this->story_set]); ?>
+    </div>
+ */?>
+</div>
+
+<div class="loading" data-action="story" data-page="1">
+    <div class="one">
+        <a href="javascript:;" class="trigger"><?php echo trans('see-more'); ?></a>
+    </div>
+    <div class="two">
+        <a href="<?php echo route_url('ipar-story-index'); ?>"><?php echo trans('explore-all-stories'); ?></a>
+    </div>
+</div>
+
+<?php $this->replace(); ?>
+
+<?php $this->section('side'); ?>
+    <?php echo $this->insert('module/activity', [
+        'activity_advice_banner_url' => $this->activity_advice_banner_url
+        ])?>
+    <?php echo $this->insert('module/sidebar/section-rqt') ?>
+
+    <?php echo $this->insert('module/sidebar/section-product') ?>
+
+    <?php echo $this->insert('module/sidebar/section-article') ?>
+
+<?php $this->replace(); ?>
+
+<?php if (!current_uid()) { ?>
+<?php $this->section('cat'); ?>
+<?php echo $this->insert('module/cat/home-banner'); ?>
+<?php $this->replace(); ?>
+<?Php } ?>

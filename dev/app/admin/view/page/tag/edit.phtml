@@ -1,0 +1,8 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('tag'),
+    'breadcrumbs' => ['']
+]); ?>
+<?php $this->section('page-body'); ?>
+    <h1><?php echo trans('amdin-ui-tag-edit');?></h1>
+<?php echo $this->insert('module/form/tag/admin-form-tag');?>
+<?php $this->replace(); ?>

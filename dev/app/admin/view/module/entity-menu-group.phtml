@@ -1,0 +1,70 @@
+<?php
+$group_type = $this->group ? $this->group : $this->company;
+$type_key = get_type_key($group_type->type_id);
+if (!$type_key) {
+    _debug('group cannot be empty');
+}
+$items = [
+    'description' => [
+        'route' => "admin-ui-{$type_key}-show",
+    ],
+    'contact' => [
+        'route' => "admin-ui-{$type_key}_contact-list",
+    ],
+    'office' => [
+        'route' => "admin-ui-{$type_key}_office-list",
+    ],
+    'social' => [
+        'route' => "admin-ui-{$type_key}_social-list",
+    ],
+];
+if ($type_key == 'company') {
+    $items['industry_tag'] = [
+        'route' => "admin-ui-company_industry_tag",
+        'add' => 1,
+    ];
+    $items['brand_tag'] = [
+        'route' => "admin-ui-company_brand_tag-index",
+        'add' => 1,
+    ];
+}
+$select = $this->select ? $this->select : 'description';
+if ($type_key == 'company') {
+    $items['product'] = [
+        'route' => "admin-ui-{$type_key}_product-list",
+        'add' => 1,
+        'count' => $this->count
+    ];
+}
+?>
+<div class="entity-menu entity-menu-group">
+    <ul class="">
+        <?php foreach ($items as $key => $item) { ?>
+
+        <?php
+        $route = prop($item, 'route');
+        $count = prop($item, 'count', 0);
+        $add_route = '';
+        if ($add = prop($item, 'add', 0)) {
+            $add_route = prop($item, 'add_route', "admin-ui-company_{$key}-link");
+            if ($key == 'brand_tag') {
+                $add_route = "admin-ui-company_brand_tag-save";
+            }
+        }
+        ?>
+        <li<?php if ($select == $key) echo ' class="selected"'; ?>>
+            <a href="<?php echo route_url($route, ['id' => $group_type->gid]); ?>">
+                <span><?php echo $key; ?></span>
+                <?php if ($count) { ?>(<?php echo $count; ?>)<?php } ?>
+            </a>
+            <?php if ($add_route) { ?>
+                <a class="button success small" href="<?php echo route_url($add_route, ['id' => $group_type->gid]); ?>">
+                    add
+                </a>
+            <?php } ?>
+            <?php } ?>
+        </li>
+
+
+    </ul>
+</div>

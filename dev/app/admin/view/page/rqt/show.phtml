@@ -1,0 +1,31 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-rqt-show'),
+    'breadcrumbs' => ['admin-entity', 'admin-rqt'],
+]);
+if ($page = http_request()->query->get('page')) {
+    $is_info = false;
+    $is_abbr = false;
+} else {
+    $is_info = true;
+    $is_abbr = true;
+}
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show rqt-show">
+
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->rqt,
+        'is_info' => $is_info,
+        'is_abbr' => $is_abbr,
+        'is_tag' => true,
+        'tag_set' => $this->tag_set,
+    ]); ?>
+
+    <div class="rqt-story-set">
+        <?php echo $this->insert('module/story-set', ['story-set' => $this->story_set]); ?>
+    </div>
+</div>
+<?php $this->replace(); ?>
+

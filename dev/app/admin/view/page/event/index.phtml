@@ -1,0 +1,12 @@
+<?php $this->layout('layout/admin', ['html_title' => trans('admin-event')]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="row column">
+    <h1><?php echo trans('admin-event'); ?></h1>
+</div>
+
+<div class="row column">
+    <?php echo $this->insert('module/table-event', ['events' => $this->events->getItems()]); ?>
+</div>
+<?php echo $this->insert('module/show-page', ['url' => 'admin-event', 'opts' => [], 'page' => $this->events->getCurrentPage(), 'page_count' => $this->events->getPageCount()]); ?>
+<?php $this->replace(); ?>

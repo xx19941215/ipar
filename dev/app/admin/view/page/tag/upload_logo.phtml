@@ -1,0 +1,31 @@
+<?php $this->layout('layout/admin', [
+    'breadcrumbs' => ['admin-ui-group-index']
+]);
+?>
+<?php $this->section('page-body'); ?>
+
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="uid" value="<?php echo current_uid(); ?>">
+    <input type="hidden" name="id" value="<?php echo $this->tag->id; ?>">
+
+    <h2><?php echo trans('upload-logo'); ?></h2>
+    <br>
+    <input type="file" name="logo">
+
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                <span class="label alert">
+                    <?php echo trans($err_key); ?>,
+                    <?php echo trans($err_val); ?>
+                </span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('sure'); ?>">
+    </div>
+</form>
+<?php $this->replace(); ?>

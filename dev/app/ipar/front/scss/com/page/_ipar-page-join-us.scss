@@ -1,0 +1,95 @@
+$title_color:#ff7f5d;
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+    line-height: 1.5;
+}
+h1, h2, h3, h4, h5, h6, p {
+    text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    font-style: normal;
+    color: #000;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+ol,ul{
+    margin-left: 2.25rem;
+}
+
+dl, ol, p, ul {
+    margin-bottom: .5rem;
+    line-height: 1.6;
+}
+
+
+
+.page-body{
+    .main{
+        width:100%;
+        padding:0;
+    }
+}
+
+.joinus-header{
+    background-color: $title_color;
+    text-align: center;
+    margin:0;
+    height: 200px;
+
+    * {
+        color: #fff;
+    }
+    h1{
+        margin-top: 50px;
+    }
+    p{
+        margin-bottom: 60px;
+    }
+
+}
+
+
+.company-section h3 {
+    color: $title_color;
+    font-size: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+
+.company-section ul li{
+    list-style-type: disc;
+    color: #9b9b9b;
+}
+
+.joinus-section{
+    h2{
+        margin:1.5em auto 1.5em 0;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+        font-size: 1.4em;
+        font-weight: 400;
+    }
+
+    li{
+        list-style-type: decimal;
+    }
+}
+
+.joinus-jobs .job-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    color: #000;
+}
+
+.joinus-jobs .job-section {
+    margin-bottom: 5em;
+}
+
+.joinus-action{
+    text-align: center;
+    margin-bottom: 100px;
+}

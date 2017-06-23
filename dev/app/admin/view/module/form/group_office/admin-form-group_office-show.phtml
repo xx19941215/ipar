@@ -1,0 +1,42 @@
+<?php
+$type_key = ($this->group) ? 'group' : 'company';
+?>
+<div class="group-detail-info">
+    <h2><?php echo trans('group-office'); ?></h2>
+    <div class="contents">
+        <div class="office">
+            <table>
+                <thead>
+                <tr>
+                    <th><?php echo trans("name") ?></th>
+                    <th><?php echo trans("address") ?></th>
+                    <th>
+                        <a class="button" href="<?php echo route_url("admin-ui-{$type_key}_office-add",
+                            ['gid' => $this->{$type_key}->gid]); ?>">
+                            <?php echo trans("add") ?>
+                        </a>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->group_office_set->getItems() as $group_office) { ?>
+                    <tr>
+                        <td><?php echo $group_office->name; ?></td>
+                        <td><?php echo $group_office->office_address; ?></td>
+                        <td>
+                            <a class="button" href="<?php echo route_url("admin-ui-{$type_key}_office-edit",
+                                ['gid' => $this->{$type_key}->gid, 'group_office_id' => $group_office->id]); ?>">
+                                <?php echo trans("edit"); ?>
+                            </a>
+                            <a class="button success" href="<?php echo route_url("admin-ui-{$type_key}_office-delete",
+                                ['gid' => $this->{$type_key}->gid, 'group_office_id' => $group_office->id]); ?>">
+                                <?php echo trans("delete"); ?>
+                            </a>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

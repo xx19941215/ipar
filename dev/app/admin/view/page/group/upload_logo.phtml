@@ -1,0 +1,35 @@
+<?php $this->layout('layout/admin', [
+    'breadcrumbs' => ['admin-ui-group-index']
+]);
+?>
+<?php $this->section('page-body'); ?>
+<?php
+$type_key = get_type_key($this->group->type_id);
+?>
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="uid" value="<?php echo current_uid(); ?>">
+    <input type="hidden" name="gid" value="<?php echo $this->group->gid; ?>">
+
+    <h2><?php echo trans('upload-logo'); ?></h2>
+    <br>
+    <input type="file" name="logo">
+
+
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                <span class="label alert">
+                    <?php echo trans($err_key); ?>,
+                    <?php echo trans($err_val); ?>
+                </span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('sure'); ?>">
+        <a href="<?php echo route_url("admin-ui-{$type_key}-show", ['gid' => $this->group->gid]); ?>" class="button success small"><?php echo trans('return'); ?></a>
+    </div>
+</form>
+<?php $this->replace(); ?>

@@ -1,0 +1,23 @@
+<div class="tag_sort">
+    <ul>
+        <a href="<?php echo route_url('ipar-index-search') . "?query=" . "$this->query";; ?>">
+            <li class="<?php if ($this->type == 'all') echo 'selected'; ?>"><?php echo trans('all'); ?></li>
+        </a>
+        <a href='<?php echo route_url('ipar-index-search-rqt') . "?query=" . "$this->query"; ?>'>
+            <li class="<?php if ($this->type == 'rqt') echo 'selected'; ?>"><?php echo trans('rqt'); ?></li>
+        </a>
+        <a href="<?php echo route_url('ipar-index-search-product') . "?query=" . "$this->query"; ?>">
+            <li class="<?php if ($this->type == 'product') echo 'selected'; ?>"><?php echo trans('product'); ?></li>
+        </a>
+        <a href="<?php echo route_url('ipar-index-search-user') . "?query=" . "$this->query"; ?>">
+            <li class="<?php if ($this->type == 'user') echo 'selected'; ?>"><?php echo trans('user'); ?></li>
+        </a>
+        <a href="<?php echo route_url('ipar-index-search-article') . "?query=" . "$this->query"; ?>">
+            <li class="<?php if ($this->type == 'article') echo 'selected'; ?>"><?php echo trans('article'); ?></li>
+        </a>
+        <a href="<?php echo route_url('ipar-index-search-company') . "?query=" . "$this->query"; ?>">
+            <li class="<?php if ($this->type == 'company') echo 'selected'; ?>"><?php echo trans('company'); ?></li>
+        </a>
+
+    </ul>
+</div>

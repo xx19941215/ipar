@@ -1,0 +1,18 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-company-office'),
+    'breadcrumbs' => ['admin-ui-group-index']
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+    <div class="page-company">
+        <?php
+        echo $this->insert('module/entity-menu-group', [
+            'group' => $this->company,
+            'select' => $this->select
+        ]);
+        ?>
+        <?php echo $this->insert('module/form/company/admin-form-company_detail-show'); ?>
+        <?php echo $this->insert('module/form/group_office/admin-form-group_office-show'); ?>
+    </div>
+<?php $this->replace(); ?>

@@ -1,0 +1,84 @@
+@import 'util/util';
+
+// global
+$global-width: 1000px;
+
+$foundation-palette: (
+    primary: #f25653,
+    secondary: #eee,
+    success: #9cd54d,
+    warning: #ffae00,
+    alert: #000,
+    //alert: #ec5840,
+) !default;
+$global-font-size: 16px;
+$body-font-family: PingFang SC, PingHei, Helvetica Neue, Microsoft YaHei, Helvetica, Arial, sans-serif;
+$body-font-color: #222222;
+
+//$primary-color: #f25653;
+//$secondary-color: #eee;
+//$success-color: #9cd54d;
+//$alert-color: #f00;
+
+$light-gray: #eeeeee;
+$medium-gray: #bbbbbb;
+$dark-gray: #9b9b9b;
+
+$black: #000000;
+$white: #ffffff;
+
+
+// Typography
+$tiny-font-size: rem-calc(12);
+$paragraph-margin-bottom: 0.5rem;
+
+$header-color: #000;
+$header-font-weight: bold;
+$header-margin-bottom: 0;
+$header-lineheight: 1.5;
+$header-sizes: (
+    small: (
+        'h1': rem-calc(28),
+        'h2': rem-calc(16),
+        'h3': rem-calc(14),
+        'h4': rem-calc(12),
+        'h5': rem-calc(10),
+        'h6': rem-calc(8),
+    ),
+    medium: (
+        'h1': rem-calc(30),
+        'h2': rem-calc(18),
+        'h3': rem-calc(16),
+        'h4': rem-calc(14),
+        'h5': rem-calc(12),
+        'h6': rem-calc(10),
+    ),
+);
+
+$small-font-size: rem-calc(14);
+
+$anchor-color: $dark-gray;
+$anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
+$anchor-text-decoration-hover: underline;
+
+// button
+$button-padding: 8px 16px;
+$button-margin: 0;
+$button-radius: 4px;
+$button-color-alt: #666;
+$button-sizes: (
+    tiny: rem-calc(12),
+    small: rem-calc(14),
+    default: rem-calc(14),
+    large: rem-calc(18),
+);
+
+// forms
+$input-border: 1px solid $light-gray;
+
+// menu
+$menu-item-padding: 20px 0;
+
+// breadcrumbs
+$breadcrumbs-item-font-size: rem-calc(16);
+$breadcrumbs-item-uppercase: false;

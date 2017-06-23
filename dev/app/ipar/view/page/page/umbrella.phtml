@@ -1,0 +1,703 @@
+<?php
+$this->layout('layout/page', [
+    'csses' => [
+        'ipar.css' => 1,
+        'page.css' => 1
+    ]
+]); ?>
+
+<?php $this->section('main'); ?>
+
+<div class="umbrella-activity-ad">
+    <div class="umbrella-activity-title">
+        <p>
+            <span>参与有奖，</span>
+            <span>轻奢遮阳伞等你来拿</span>
+        </p>
+    </div>
+    <div class="umbrella-activity-advertise">
+        <p>谁说伞只能遮阳？</p>
+        <p>谁说伞只能避雨？</p>
+        <p>我就要这与众不同的伞</p>
+    </div>
+    <div class="umbrella-banner-container">
+        <img src="<?php echo nos_url('umbrella.png') ?>" alt="">
+    </div>
+</div>
+
+<div class="culture choose" id="culture">
+    <div class="umbrella-activity-introduce">
+        <p>伞在中国有着几千年的历史</p>
+        <p>在古代，伞是帝王将相、达官贵人权势的象征</p>
+        <p>如今，伞早已是大众产品</p>
+        <p>但同时，更多的伞文化被挖掘</p>
+        <p>骄阳之下，细雨之中，举伞伫立的母亲在等候她散学的小儿</p>
+        <p>这是亲情</p>
+        <p>《白蛇传》中许仙那把书生味十足的油纸伞为白娘子撑起，由此演绎出一曲惊天地泣鬼神的爱情故事</p>
+        <p>这是真情</p>
+        <p>......</p>
+        <p>现代的伞早已不是仅仅满足超强防晒、遮雨的功能需求</p>
+        <p>伞要成为您的搭配心物</p>
+    </div>
+</div>
+
+<div class="umbrella-activity-container">
+    <div class="pdttitle" id="pdttitle">
+        <p>产品展示</p>
+    </div>
+    <div class="umbrella-activity-logo">
+        <img src="<?php echo static_url('/img/jorqueen.png'); ?>"/>
+        <img src="<?php echo static_url('/img/banana.png'); ?>"/>
+        <img src="<?php echo static_url('/img/justmode.png'); ?>"/>
+    </div>
+    <div class="umbrella-activity jorqueen choose">
+        <div class="umbrella-title">
+            <hr>
+            <p>Jorqueen/娇葵</p>
+            <hr>
+        </div>
+        <div class="umbrella-introduce">
+            <p>
+                JORQUEEN娇葵融合搭配、防晒和轻便的产品理念，认为一只伞不仅要满足超强防晒、遮雨的功能需求，更要成为您的搭配心物，同时不能让“他”成为您的出行负担，随时召唤，光芒出行。JORQUEEN娇葵以匠心态度做设计，用料考究，技术精湛，工艺娴熟，旨在为您打造一款出行爱物。
+            </p>
+        </div>
+        <div class="product-list">
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c102876c94")'>
+                            <img
+                                src="http://ipar-upload.nos-eastchina1.126.net/upload/img/2016/12/09/584aab126aaef.png?imageView&thumbnail=200y123&enlarge=1">
+                        </span>
+                    </div>
+
+                    <h3 class="box-title">
+                        <span onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c102876c94")'>
+                            Jorqueen娇葵Xair系列晴雨伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-2511" data-id="2511">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(2511, $this->LikeItems) ? 'liked' : ''; ?> "></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                <?php echo isset($this->LikeNum[2511]) ? $this->LikeNum[2511] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span id="icon-edit-new" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c102876c94")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                             <a href="javascript:;">
+                                <?php echo isset($this->improveNum[2511]) ? $this->improveNum[2511] : 0; ?>
+                             </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c12687212c")' >
+                            <img
+                                src="http://ipar-upload.nos-eastchina1.126.net/upload/img/2016/12/09/584aa9ca4f576.png?imageView&thumbnail=200y123&enlarge=1">
+                        </span>
+                    </div>
+
+                    <h3 class="box-title">
+                        <span target="_blank" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c12687212c")'>
+                            Jorqueen娇葵清羽系列晴雨伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-2512" data-id="2512">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(2512, $this->LikeItems) ? 'liked' : ''; ?>"></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                <?php echo isset($this->LikeNum[2512]) ? $this->LikeNum[2512] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span target="_blank" id="icon-edit-new"
+                               onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c12687212c")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                            <a href="javascript:;">
+                                <?php echo isset($this->improveNum[2512]) ? $this->improveNum[2512] : 0; ?>
+                             </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span target="_blank" class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c1306322c2")'>
+                            <img
+                                src="http://static.ideapar.com/upload/img/2016/12/01/583fdc223e471-cover.png">
+                        </span>
+                    </div>
+
+                    <h3 class="box-title">
+                        <span target="_blank" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c1306322c2")'>
+                            Jorqueen娇葵Xair系列晴雨伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-2513" data-id="2513">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(2513, $this->LikeItems) ? 'liked' : ''; ?>"></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                <?php echo isset($this->LikeNum[2513]) ? $this->LikeNum[2513] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span target="_blank" id="icon-edit-new"
+                               onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c1306322c2")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                            <a href="javascript:;">
+                                <?php echo isset($this->improveNum[2513]) ? $this->improveNum[2513] : 0; ?>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="umbrella-product-footer"></div>
+    </div>
+
+    <div class="umbrella-activity banana choose" id="banana">
+        <div class="umbrella-title">
+            <hr>
+            <p>BananaUmbrella/焦下</p>
+            <hr>
+        </div>
+        <div class="umbrella-introduce">
+            <p>
+                BananaUmbrella将高效阻隔UVA的L.R.C<sup>TM</sup>涂层首次在伞布上使用，注重设计感的同时结合高科技材料运用和手工缝制，成功定义了专属于Banana Umbrella的防晒美学。
+            </p>
+        </div>
+        <div class="product-list">
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span target="_blank" class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582eabcddbbe8")'>
+                            <img
+                                src="http://ipar-upload.nos-eastchina1.126.net/upload/img/2016/12/12/584e2b362fadf.png?imageView&thumbnail=200y123&enlarge=1">
+                        </span>
+                    </div>
+
+                    <h3 class="box-title">
+                        <span target="_blank" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582eabcddbbe8")'>
+                            BananaUmbrella蕉下Joli系列晴雨伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-2531" data-id="2531">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(2531, $this->LikeItems) ? 'liked' : ''; ?>"></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                <?php echo isset($this->LikeNum[2531]) ? $this->LikeNum[2531] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span target="_blank" id="icon-edit-new"
+                               onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582eabcddbbe8")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                            <a href="javascript:;">
+                                <?php echo isset($this->improveNum[2531]) ? $this->improveNum[2531] : 0; ?>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span target="_blank" class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ead05b77e9")'>
+                            <img
+                                src="http://static.ideapar.com/upload/img/2016/11/18/582eace109c1d-cover.png">
+                        </span>
+                    </div>
+
+                    <h3 class="box-title">
+                        <span target="_blank" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ead05b77e9")'>
+                            BananaUmbrella蕉下Capsule红雨伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-2533" data-id="2533">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(2533, $this->LikeItems) ? 'liked' : ''; ?>"></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                <?php echo isset($this->LikeNum[2533]) ? $this->LikeNum[2533] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span target="_blank" id="icon-edit-new"
+                               onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ead05b77e9")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                            <a href="javascript:;">
+                                <?php echo isset($this->improveNum[2533]) ? $this->improveNum[2533] : 0; ?>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span target="_blank" class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c2c76037f8")'>
+                            <img
+                                src="http://ipar-upload.nos-eastchina1.126.net/upload/img/2016/12/12/584e294534599.png?imageView&thumbnail=200y123&enlarge=1">
+                        </span>
+                    </div>
+
+                    <h3 class="box-title">
+                        <span target="_blank" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c2c76037f8")'>
+                            Banana Umbrella蕉下Bon时尚防晒伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-2515" data-id="2515">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(2515, $this->LikeItems) ? 'liked' : ''; ?>"></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                 <?php echo isset($this->LikeNum[2515]) ? $this->LikeNum[2515] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span target="_blank" id="icon-edit-new"
+                               onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c2c76037f8")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                            <a href="javascript:;">
+                                <?php echo isset($this->improveNum[2515]) ? $this->improveNum[2515] : 0; ?>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span target="_blank" class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c27401279d")'>
+                            <img
+                                src="http://ipar-upload.nos-eastchina1.126.net/upload/img/2016/12/12/584e21504d2ef.png?imageView&thumbnail=200y123&enlarge=1">
+                        </span>
+                    </div>
+
+                    <h3 class="box-title">
+                        <span target="_blank" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c27401279d")'>
+                            BananaUmbrella蕉下Air系列防晒伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-2514" data-id="2514">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(2514, $this->LikeItems) ? 'liked' : ''; ?>"></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                <?php echo isset($this->LikeNum[2514]) ? $this->LikeNum[2514] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span target="_blank" id="icon-edit-new"
+                               onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582c27401279d")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                            <a href="javascript:;">
+                                <?php echo isset($this->improveNum[2514]) ? $this->improveNum[2514] : 0; ?>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span target="_blank" class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582eac98ae313")'>
+                            <img
+                                src="http://ipar-upload.nos-eastchina1.126.net/upload/img/2016/12/12/584e2c3a1a901.png?imageView&thumbnail=200y123&enlarge=1">
+                        </span>
+                    </div>
+
+                    <h3 class="box-title">
+                        <span target="_blank" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582eac98ae313")'>
+                            Banana Umbrella蕉下Moma系列晴雨伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-2532" data-id="2532">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(2532, $this->LikeItems) ? 'liked' : ''; ?>"></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                <?php echo isset($this->LikeNum[2532]) ? $this->LikeNum[2532] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span target="_blank" id="icon-edit-new"
+                               onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582eac98ae313")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                            <a href="javascript:;">
+                                <?php echo isset($this->improveNum[2532]) ? $this->improveNum[2532] : 0; ?>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span target="_blank" class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/57c5416e1cd3d")'>
+                            <img
+                                src="http://ipar-upload.nos-eastchina1.126.net/upload/img/2016/12/12/584e1e50aacdd.png?imageView&thumbnail=200y123&enlarge=1">
+                        </span>
+                    </div>
+
+                    <h3 class="box-title">
+                        <span target="_blank" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/57c5416e1cd3d")'>
+                            BananaUmbrella蕉下Black双层小黑伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-1344" data-id="1344">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(1344, $this->LikeItems) ? 'liked' : ''; ?>"></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                <?php echo isset($this->LikeNum[1344]) ? $this->LikeNum[1344] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span target="_blank" id="icon-edit-new"
+                               onclick='jumpTo("http://www.ideapar.com/zh-cn/product/57c5416e1cd3d")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                            <a href="javascript:;">
+                                <?php echo isset($this->improveNum[1344]) ? $this->improveNum[1344] : 0; ?>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="umbrella-product-footer"></div>
+    </div>
+
+    <div id="justmode" class="umbrella-activity justmode choose">
+        <div class="umbrella-title">
+            <hr>
+            <p>JUSTMODE</p>
+            <hr>
+        </div>
+        <div class="umbrella-introduce">
+            <p>
+                为“伞品类”排他性指定合作伙伴，拒绝一成不变，JUSTMODE完美如我精致每处，自从拥有，便须精心搭配。
+            </p>
+        </div>
+        <div class="product-list">
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span target="_blank" class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ed3fdd31ab")'>
+                            <img
+                                src="http://static.ideapar.com/upload/img/2016/11/18/582ed3a4bcf5b-cover.png">
+                        </span>
+                    </div>
+                    <h3 class="box-title">
+                        <span target="_blank" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ed3fdd31ab")'>
+                            JUSTMODE新款袖珍迷你黑胶五折伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-2544" data-id="2544">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(2544, $this->LikeItems) ? 'liked' : ''; ?>"></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                <?php echo isset($this->LikeNum[2544]) ? $this->LikeNum[2544] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span target="_blank" id="icon-edit-new"
+                               onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ed3fdd31ab")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                            <a href="javascript:;">
+                                <?php echo isset($this->improveNum[2544]) ? $this->improveNum[2544] : 0; ?>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span target="_blank" class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ed1c8870f2")'>
+                            <img
+                                src="http://static.ideapar.com/upload/img/2016/11/18/582ed1672eb4e-cover.png">
+                        </span>
+                    </div>
+
+                    <h3 class="box-title">
+                        <span target="_blank" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ed1c8870f2")'>
+                            JUSTMODE双层黑胶韩国折叠太阳伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-2542" data-id="2542">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(2542, $this->LikeItems) ? 'liked' : ''; ?>"></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                <?php echo isset($this->LikeNum[2542]) ? $this->LikeNum[2542] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span target="_blank" id="icon-edit-new"
+                               onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ed1c8870f2")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                            <a href="javascript:;">
+                                <?php echo isset($this->improveNum[2542]) ? $this->improveNum[2542] : 0; ?>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="box-wrap">
+                <div class="box entity">
+                    <div class="box-cover icon">
+                        <span target="_blank" class="link" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ed11f5427a")'>
+                            <img
+                                src="http://static.ideapar.com/upload/img/2016/11/18/582ed0acba290-cover.png">
+                        </span>
+                    </div>
+
+                    <h3 class="box-title">
+                        <span target="_blank" onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ed11f5427a")'>
+                            JUSTMODE 晴雨伞防晒小黑伞
+                        </span>
+                    </h3>
+
+                    <div class="box-ops clearfix eid-2541" data-id="2541">
+                        <span class="item vote">
+                            <a href="javascript:;" class="like-list">
+                                <i class="icon icon-like <?php echo in_array(2541, $this->LikeItems) ? 'liked' : ''; ?>"></i>
+                                <span class="text">喜欢</span>
+                            </a>
+                            <a href="javascript:;" class="like-count">
+                                <?php echo isset($this->LikeNum[2541]) ? $this->LikeNum[2541] : 0; ?>
+                            </a>
+                        </span>
+                        <span class="item">
+                            <span target="_blank" id="icon-edit-new"
+                               onclick='jumpTo("http://www.ideapar.com/zh-cn/product/582ed11f5427a")'>
+                                <i class="icon icon-edit-new"></i>
+                                <span class="text">待改进点</span>
+                            </span>
+                            <a href="javascript:;">
+                                <?php echo isset($this->improveNum[2541]) ? $this->improveNum[2541] : 0; ?>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="umbrella-list-footer"></div>
+</div>
+
+<div class="hotlist choose" id="hotlist">
+    <div class="umbrella-activity-title">
+        <p>热门榜单</p>
+    </div>
+    <div class="umbrella-activity-rank forbiddenLink">
+        <?php foreach ($this->hotList as $key => $value) { ?>
+            <div class="top">TOP <?php echo $key + 1; ?></div>
+            <div class="story">
+                <div class="story-src">
+                    <span class="label"><?php echo trans("src-product"); ?>:</span>
+                    <span class="title" onclick='jumpTo("<?php echo $value['purl']; ?>")' target="_blank">
+                        <?php echo $value['product_title']; ?>
+                    </span>
+                </div>
+
+                <div class="story-user-action">
+                    <div class="user">
+                        <a class="user-avt" href="<?php echo $value['user_url'];?>" target="_blank">
+                            <?php echo $value['user_avt']; ?>
+                        </a>
+                    </div>
+                    <div class="main">
+                        <span class="user-nick" onclick='jumpTo("<?php echo $value['user_url']; ?>")' target="_blank">
+                            <?php echo $value['user']; ?>
+                        </span>
+                        <div class="action">
+                            <span class="text">提交了一个待改进点</span>
+                            <i class="icon icon-rqt"></i>
+                        </div>
+                    </div>
+                    <div class="date">
+                        <?php echo $value['created']; ?>
+                    </div>
+                </div>
+
+                <div class="story-entity">
+                    <div class="data-title">
+                        <span onclick='jumpTo("<?php echo $value['url']; ?>")' target="_blank">
+                            <?php echo $value['title']; ?>
+                        </span>
+                    </div>
+                    <div class="data-abbr">
+                        <span onclick='jumpTo("<?php echo $value['url']; ?>")' target="_blank">
+                            <?php echo $value['content']; ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="story-ops">
+                    <span onclick='jumpTo("<?php echo $value['url']; ?>")' class="entity like-list" target="_blank">
+                        <i class="icon icon-like"></i>
+                        <span class="text">喜欢</span>
+                    </span>
+                    <span onclick='jumpTo("<?php echo $value['url']; ?>")' class="like-count"
+                       target="_blank"><?php echo $value['like_count']; ?></span>
+                    <span class="comment">
+                <span onclick='jumpTo("<?php echo $value['url']; ?>")' class="show-comments" target="_blank">
+                    <i class="icon icon-comment"></i>
+                    <span class="text">评论</span>
+                </span>
+                <span onclick='jumpTo("<?php echo $value['url']; ?>")' class="comments-count" target="_blank">
+                    <?php echo $value['comment_count']; ?>
+                </span>
+            </span>
+                    <div class="comments-container" data-comments-count=<?php echo $value['comment_count']; ?>>
+                        <div class="comments-list">
+                        </div>
+                        <div class="comment-action">
+                            <form class="comment-form">
+                                <input type="hidden" name="dst_id" value="{{dst_eid}}">
+                                <input type="hidden" name="dst_type_id" value="{{dst_type_id}}">
+                                <textarea rows="1" type="text" name="content" required="required" class="comment-textbox
+                        input-group-field"></textarea>
+                                <input type="submit" class="submit-comment-button button" value="{{trans_comment}}">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</div>
+<div class="detail choose" id="detail">
+    <div class="umbrella-detail-title">
+        <p>活动细则</p>
+    </div>
+    <div class="umbrella-detail way">
+        <div class="umbrella-detail-title">
+            <p>■ 活动时间</p>
+        </div>
+        <div class="umbrella-detail-introduce">
+            <p>即日起 - 2016年12月28日 12:00</p>
+        </div>
+    </div>
+    <div class="umbrella-detail way">
+        <div class="umbrella-detail-title">
+            <p>■ 参与方式</p>
+        </div>
+        <div class="umbrella-detail-introduce">
+            <p>第一步：点击您感兴趣的产品，可给喜欢的产品点赞，</p>
+            <p>第二步：点击“添加期盼/吐槽”按钮给产品提出改进点；</p>
+            <p>点击“添加亮点描述”按钮发表该产品的亮点；也可以通过“评论”留下其他你想说的话。</p>
+            <p>PS：仅仅点赞可是没有机会参与抽奖的哦~</p>
+        </div>
+    </div>
+    <div class="umbrella-detail way">
+        <div class="umbrella-detail-title">
+            <p>■ 活动奖励</p>
+        </div>
+        <div class="umbrella-detail-introduce">
+            <p>在活动结束后，我们会在所有参与用户中随机抽取五名幸运用户，赠送以上品牌随机雨伞一把。</p>
+        </div>
+    </div>
+    <div class="umbrella-detail manner">
+        <div class="umbrella-detail-title">
+            <p>■ 温馨提示</p>
+        </div>
+        <div class="umbrella-detail-introduce">
+            <p>1.请直接使用手机号进行注册，并保持正常通信，以便我们在活动结束后给您发放奖励事宜； </p>
+            <p>2.有任何问题，您可以关注我们的微信公众平台“点趴“，随时微信与我们互动、联系；或者直接拨打电话：021-55520263</p>
+        </div>
+    </div>
+    <div class="umbrella-list-footer"></div>
+</div>
+
+<ul class="anchor hide-for-small-only">
+    <li class="current"><span></span><a href="#culture">伞的文化</a></li>
+    <li><span></span><a href="#pdttitle">娇葵</a></li>
+    <li><span></span><a href="#banana">蕉下</a></li>
+    <li><span></span><a href="#justmode">JUSTMODE</a></li>
+    <li><span></span><a href="#hotlist">热门榜单</a></li>
+    <li><span></span><a href="#detail">活动细则</a></li>
+</ul>
+
+<div class="umbrella-activity-ideapar">
+    <div class="umbrella-activity-ideaparQrcode">
+        <img src="<?php echo static_url('/img/wx_qrcode2.png'); ?>" alt=""/>
+    </div>
+    <p class="title-sm">
+        点趴订阅号
+    </p>
+</div>
+
+<script type="text/javascript">
+    function jumpTo(url) {
+        window.open(url);
+    }
+</script>
+<?php $this->replace(); ?>

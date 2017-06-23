@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<dataset>
+    <entity eid="1" type_id="3" zcode="56f89a6756674" owner_uid="0" uid="19" title="Tab-Legs"
+            content="Tab-Legs" imgs="" rank="0" status="1"
+            created="2016-03-28 10:43:51" changed="2016-03-28 10:47:39.989065"/>
+    <product_purchase id="1" eid="1" purchase_url="http://item.jd.com/2182165.html" website="item.jd.com" currency="1"
+                      price="100.00" commission="10.00" started="2016-09-01 01:00:00" expired="2016-09-11 01:00:00"/>
+    <product_purchase_statistic />
+</dataset>

@@ -1,0 +1,70 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('tag'),
+    'breadcrumbs' => ['']
+]);
+$tag = $this->tag;
+$articles = $this->article_set->getItems();
+$locales = config()->get('i18n.locale.available')->all();
+?>
+<?php $this->section('page-body'); ?>
+    <div class="entity-show">
+        <?php echo $this->insert("module/tag-menu", ['select' => 'article', 'tag' => $tag]); ?>
+        <h2>标签：<?php echo $tag->title; ?></h2>
+        <div class="tag-time">
+            <ul>
+                <li>Created: <?php echo $tag->created; ?></li>
+                <li>Last edit: <?php echo $tag->changed; ?></li>
+            </ul>
+        </div>
+        <div class="tag-body">
+            <div class="row column">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>title</th>
+                        <th>nick</th>
+                        <th>created</th>
+                        <th>changed</th>
+                        <th>locale</th>
+                        <th>status</th>
+                        <th>action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($articles as $article) { ?>
+                        <?php
+                        $article_locale_title = '';
+                        if ($article->locale_id) {
+                            $article_locale_title = array_values($locales)[$article->locale_id - 1]['title'];
+                        }
+                        ?>
+                        <tr>
+                            <td>
+                                <a href="<?php echo route_url('admin-article-show', ['zcode' => $article->zcode]); ?>"><?php echo $article->title; ?></a>
+                            </td>
+                            <td><?php echo ($user = $article->getUser()) ? $user->nick : ''; ?></td>
+                            <td><?php echo $article->created; ?></td>
+                            <td><?php echo $article->changed; ?></td>
+                            <td><?php echo $article_locale_title; ?><?php echo ' ' . $article->locale_id ?></td>
+                            <td><?php echo $article->status; ?></td>
+                            <td>
+                                <?php if ((int)$article->status === 1) { ?>
+                                    <a href="<?php echo route_url('admin-article-deactivate', ['zcode' => $article->zcode]) ?>"><?php echo trans('deactivate') ?></a>
+                                <?php } else { ?>
+                                    <a href="<?php echo route_url('admin-article-activate', ['zcode' => $article->zcode]) ?>"><?php echo trans('activate') ?></a>
+                                <?php } ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+
+                <?php echo $this->insert('element/pagination', ['page_count' => $this->article_set->getPageCount()]); ?>
+
+            </div>
+        </div>
+    </div>
+
+
+<?php $this->replace(); ?>

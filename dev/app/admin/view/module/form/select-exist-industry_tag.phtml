@@ -1,0 +1,30 @@
+<?php if ($this->industry_tag_set) { ?>
+
+    <form class="select-exist" method="post" action="">
+        <input type="hidden" name="gid" value="<?php echo $this->company->gid; ?>">
+
+        <?php echo csrf_field(); ?>
+        <ul class="menu vertical">
+            <?php foreach ($this->industry_tag_set->getItems() as $industry_tag) { ?>
+                <li>
+                    <button class="button select tiny" name="tag_id" value="<?php echo $industry_tag->id; ?>">
+                        select
+                    </button>
+                    <div class="select-entity">
+                        <div class="header">
+                            <span class="title"><?php echo $industry_tag->title; ?></span>
+                        </div>
+                    </div>
+                </li>
+            <?php } ?>
+        </ul>
+    </form>
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+
+<?php } ?>

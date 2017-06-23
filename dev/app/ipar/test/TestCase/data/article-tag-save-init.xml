@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<dataset>
+    <tag id="1" parent_id="0" locale_id="0" title="title1" content="" child_count="0" dst_count="0" vote_total_count="0"
+         status="1"/>
+    <tag id="2" parent_id="0" locale_id="0" title="title2" content="" child_count="0" dst_count="0" vote_total_count="0"
+         status="1"/>
+    <article_tag id="1" article_id="1" tag_id="1" vote_count="0"/>
+    <article_tag_vote article_tag_id="1" vote_uid="1"/>
+</dataset>

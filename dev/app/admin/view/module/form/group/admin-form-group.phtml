@@ -1,0 +1,94 @@
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="uid" value="<?php echo current_uid(); ?>">
+    <input type="hidden" name="gid" value="<?php echo $this->group->gid; ?>">
+    <table>
+        <tbody>
+        <tr class="type">
+            <th><?php echo trans('type') . "*"; ?></th>
+            <td>
+                <select name="type_id">
+                    <option value="">ALL</option>
+                    <option value="14" selected><?php echo trans('groups'); ?></option>
+                    <option value="15"><?php echo trans('company'); ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><?php echo trans('name') . "*"; ?></th>
+            <td><input type="text" name="name" value="<?php echo $this->group->name; ?>"></td>
+        </tr>
+        <tr>
+            <th><?php echo trans('fullname') . "*"; ?></th>
+            <td><input type="text" name="fullname" required="required"
+                       value="<?php echo $this->group->fullname; ?>">
+            </td>
+        </tr>
+        <tr>
+            <th><?php echo trans('established'); ?></th>
+            <td>
+                <input type="datetime-local" name="established"
+                       value="<?php echo substr($this->group->established, 0, 10)
+                           . 'T' . substr($this->group->established, 11); ?>">
+            </td>
+        </tr>
+        <tr>
+            <th><?php echo trans('size'); ?></th>
+            <td>
+                <select name="size_range_id">
+                    <option value=""> -</option>
+                    <?php
+                    foreach (config()->get('size_range')->all() as $key => $id) {
+                        echo '<option ';
+                        if ($id == $this->group->size_range_id) {
+                            echo ' selected ';
+                        }
+                        echo 'value ="' . $id . '" >';
+                        echo $key;
+                        echo '</option>';
+                    }
+                    ?>
+                </select>
+            </td>
+        </tr>
+        <tr class="content">
+            <th><?php echo trans('content'); ?><br/><span>(<?php echo trans('1000-words-or-less'); ?>)</span></th>
+            <td>
+                <textarea name="content"><?php echo trim($this->group->content); ?></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th><?php echo trans('website'); ?></th>
+            <td>
+                <input type="url" name="website" value="<?php echo $this->group->website; ?>"
+                       placeholder="<?php echo trans('http://website-address') ?>"
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+
+    <?php if ($this->errors) { ?>
+        <p class=" errors">
+            <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                <span class="label alert"><?php echo trans($err_key); ?>
+                    , <?php echo trans($err_val); ?></span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value=" <?php echo trans('sure'); ?>">
+        <a class="button success small"
+           href="<?php
+           if ($this->action == 'add') {
+               echo route_url('admin-ui-group-index');
+           } else {
+               echo route_url('admin-ui-group-show', ['group_id' => $this->group->gid]);
+           }
+           ?>">
+            <?php echo trans('return'); ?>
+        </a>
+    </div>
+</form>

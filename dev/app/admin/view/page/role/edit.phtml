@@ -1,0 +1,44 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-role-edit')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+
+<div class="row column">
+    <h1><?php echo trans('admin-role-edit'); ?></h1>
+</div>
+
+<form action ="" method="post">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="id" value="<?php echo $this->id; ?>">
+    <div class="row column">
+        <label>
+            title:
+            <input type="text" name="title" value="<?php echo $this->title; ?>">
+        </label>
+    </div>
+    <div class="row column">
+        <label>
+            content:
+            <textarea name="content"><?php echo $this->content; ?></textarea>
+        </label>
+    </div>
+    <?php if ($this->errors) { ?>
+    <div class="row column">
+        <p>
+        <?php foreach ($this->errors as $key => $txt) { ?>
+            <div class="label alert"><?php echo $key . ', ' . trans($txt); ?></div>
+        <?php } ?>
+        </p>
+    </div>
+    <?php } ?>
+    <div class="row column">
+        <input type="submit" class="button" value="submit">
+        <a href="<?php echo route_url('admin-role'); ?>">cancel</a>
+    </div>
+</form>
+
+<?php $this->replace(); ?>
+

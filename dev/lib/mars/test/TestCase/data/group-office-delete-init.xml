@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<dataset>
+    <group_office
+            gid = '1' name = 'kuipukeji' office_address = 'YangPu,shanghai' />
+    <group_office
+            gid = '2' name = 'wujiaochang' office_address = 'YangPu,shanghai' />
+</dataset>

@@ -1,0 +1,21 @@
+<?php
+$this->layout('layout/admin', [
+    'breadcrumbs' => ['admin-entity', 'admin-rqt'],
+]);
+?>
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->rqt,
+        'is_info' => false,
+        'is_content' => false,
+        'select' => 'edit',
+    ]); ?>
+    <div class="row column">
+        <h1><?php echo trans('admin-rqt-edit'); ?></h1>
+        <?php echo $this->insert('module/form/admin-form-rqt'); ?>
+    </div>
+</div>
+
+<?php $this->replace(); ?>
+

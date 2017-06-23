@@ -1,0 +1,96 @@
+<?php
+    $company = $this->company;
+    $select = $this->select ? $this->select : 'group_website';
+    $items = [
+    'company' => [
+        'route' => 'admin-company-show',
+    ],
+    'group_website' => [
+        'route' => 'admin-company-show-website',
+        'add' => 'admin-company-add-website',
+    ],
+    'group_social' => [
+        'route' => 'admin-company-show-social',
+        'add' => 'admin-company-add-social',
+    ],
+    'group_office' => [
+        'route' => 'admin-company-show-office',
+        'add' => 'admin-company-add-office',
+    ],
+    'group_user' => [
+        'route' => 'admin-company-show-user',
+        'add' => 'admin-company-add-user',
+    ],
+    'group_contact' => [
+        'route' => 'admin-company-show-contact',
+        'add' => 'admin-company-add-contact',
+    ],
+
+];
+?>
+    <div class="entity">
+    <div class="entity-header">
+        <a class="entity-type" href="">
+            rqt        </a>
+        <a class="entity-title" href="">
+            <?php echo $company->title;?>        </a>
+
+                <a class="op eidt" href="<?php echo route_url("admin-company-update", ['gid' => $company->gid]); ?>">
+                <?php echo trans("edit");?>
+                </a>
+        <?php if($company->status == 1) { ?>
+        <a class="op deactivate" href="<?php echo route_url("admin-company-deactivate", ['gid' => $company->gid]); ?>">
+        <?php echo trans('deactivate');?>
+        </a>
+        <?php } ?>
+        <?php if($company->status ==0) { ?>
+            <a class="op deactivate" href="<?php echo route_url("admin-company-activate", ['gid' => $company->gid]); ?>">
+            <?php echo trans('activate');?>
+            </a>
+            <a class="op button tiny alert" href="<?php echo route_url("admin-company-delete", ['gid' => $company->gid]); ?>">
+            <?php echo trans('delete');?>
+            </a>
+        <?php } ?>
+    </div>
+
+        <div class="entity-info">
+        <span class="entity-eid">
+            <?php echo $company->gid; ?>
+        </span> |
+        <span class="entity-zcode">
+            <?php echo $company->zcode; ?>
+        </span> |
+        <span class="entity-trace">
+            <?php echo $company->reg_date; ?>
+        </span>
+    </div>
+
+
+        <div class="entity-abbr">
+        <?php echo $company->content; ?>
+    </div>
+    </div>
+        <div class="entity-menu">
+            <div class="entity-menu-rqt">
+                <ul class="menu">
+        <?php foreach ($items as $key => $item) { ?>
+<?php
+    $route = prop($item, 'route', 'admin-company-show');
+    $addroute = prop($item, 'add', '');
+
+?>
+                <li<?php if ($select == $key) echo ' class="selected"'; ?>>
+                    <a href="<?php echo route_url($route, ['gid' => $company->gid]);?>">
+                        <span><?php echo trans($key);?></span>
+                    </a>
+                <?php if ($addroute) { ?>
+                    <a class="button success" href="<?php echo route_url($addroute, ['gid' => $company->gid]);?>">
+                        add
+                    </a>
+                <?php } ?>
+                </li>
+        <?php }?>
+                </ul>
+            </div>
+        </div>
+    </div>

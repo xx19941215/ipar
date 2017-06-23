@@ -1,0 +1,66 @@
+<?php
+    $this->layout('layout/admin', [
+        'html_title' => trans('admin-article'),
+        'breadcrumbs' => ['admin-entity', 'admin-product']
+    ]);
+
+    $articles = $this->article_set->getItems();
+    $page_count = $this->article_set->getPageCount();
+    $page = http_request()->query->get('page', $page_count);
+
+    $locales = config()->get('i18n.locale.available')->all();
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="input-group-field">
+    <a class="button success" href="<?php echo route_url('admin-article-add') ?>"><?php echo trans('add') ?></a>
+</div>
+
+<div class="row column">
+    <table>
+        <thead>
+            <tr>
+                <th>title</th>
+                <th>nick</th>
+                <th>created</th>
+                <th>changed</th>
+                <th>locale</th>
+                <th>status</th>
+                <th>action</th>
+                <th>add-tag</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($articles as $article) { ?>
+        <?php
+            $article_locale_title = '';
+            if ($article->locale_id) {
+                $article_locale_title = array_values($locales)[$article->locale_id - 1]['title'];
+            }
+        ?>
+        <tr>
+            <td><a href="<?php echo route_url('admin-article-show', ['zcode' => $article->zcode]); ?>"><?php echo $article->title; ?></a></td>
+            <td><?php echo ($user = $article->getUser()) ? $user->nick : ''; ?></td>
+            <td><?php echo $article->created; ?></td>
+            <td><?php echo $article->changed; ?></td>
+            <td><?php echo $article_locale_title; ?><?php echo ' ' . $article->locale_id ?></td>
+            <td><?php echo $article->status; ?></td>
+            <td>
+                <?php if ((int) $article->status === 1) {?>
+                <a href="<?php echo route_url('admin-article-deactivate', ['zcode' => $article->zcode]) ?>"><?php echo trans('deactivate') ?></a>
+                <?php } else { ?>
+                <a href="<?php echo route_url('admin-article-activate', ['zcode' => $article->zcode]) ?>"><?php echo trans('activate') ?></a>
+                <?php } ?>
+            </td>
+            <td>
+                <a href="<?php echo route_url('admin-ui-tag_article-add_multiple',['zcode'=>$article->zcode]);?>"><?php echo trans('add-tag');?></a>
+            </td>
+        </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+
+    <?php echo $this->insert('element/pagination-opposite', ['page_count' => $page_count, 'page' => $page]); ?>
+
+</div>
+<?php $this->replace(); ?>

@@ -1,0 +1,39 @@
+<?php
+    $locales = router()->getI18nUrls();
+    $locale_available_config = config()->get('i18n.locale.available');
+?>
+<div class="section section-bottom">
+<div class="section-body">
+
+    <div class="item-bottom locale-group">
+        <?php foreach ($locales as $key => $value) { ?>
+            <a href="<?php echo $value; ?>">
+                <?php echo $locale_available_config->get($key . '.title'); ?>
+            </a>
+        <?php } ?>
+    </div>
+
+    <div class="item-bottom">
+        <a href="<?php echo route_url('ipar-ui-page-about_us'); ?>"><?php echo trans('about-us') ?></a>
+        &ensp;|&ensp;
+        <a href="<?php echo route_url('ipar-ui-page-join_us'); ?>"><?php echo trans('join-us') ?></a>
+        &ensp;|&ensp;
+        <a href="<?php echo route_url('ipar-article-index'); ?>"><?php echo trans('ipar-article-index') ?></a>
+        &ensp;|&ensp;
+        <a href="<?php echo route_url('ipar-ui-page-links'); ?>"><?php echo trans('ipar-ui-page-links') ?></a>
+    </div>
+
+    <div class="item-bottom">
+        @2016 <a href="<?php echo route_url('home') ?>">ideapar.com</a>
+        &ensp;|&ensp; 沪ICP备 15027035
+        <br>上海葵普科技股份有限公司
+    </div>
+
+    <div class="hide">
+        <div class="qr-code">
+            <img src="<?php echo static_url('img/wx_qrcode.png'); ?>">
+            <div><?php echo trans('weixin-follow-us'); ?></div>
+        </div>
+    </div>
+</div>
+</div>

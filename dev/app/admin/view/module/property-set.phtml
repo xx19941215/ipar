@@ -1,0 +1,56 @@
+<?php
+$entities = $this->property_set->getItems();
+?>
+<?php if ($entities) { ?>
+<div class="entity-set">
+<table class="table-entity">
+    <thead>
+        <tr>
+            <th>eid</th>
+            <th>ptype</th>
+            <th>title</th>
+            <th>content</th>
+            <th>zcode</th>
+            <th width="210">time</th>
+            <th>status</th>
+            <th width="174">actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($entities as $entity) { ?>
+<?php
+$type_name = $entity->getType();
+?>
+    <tr>
+        <td><?php echo $entity->eid; ?></td>
+        <th><?php echo $entity->getSType(); ?></td>
+        <td>
+            <a href="<?php echo route_url("admin-{$type_name}-show", ['eid' => $entity->eid]); ?>"><?php echo $entity->getTitle(); ?></a>
+        </td>
+        <td><?php echo $entity->getAbbr(); ?></td>
+        <td><?php echo $entity->zcode; ?></td>
+        <td>
+            <label class="date changed"><?php echo $entity->changed; ?></label>
+            <label class="date created"><?php echo $entity->created; ?></label>
+        </td>
+        <td><?php echo $entity->status; ?></td>
+        <td>
+            <?php if ($entity->status == 1) { ?>
+            <a class="button tiny" href="<?php echo route_url("admin-{$type_name}-edit", ['eid' => $entity->eid]); ?>"><?php echo trans('edit'); ?></a>
+            <a class="button tiny warning" href="<?php echo route_url('admin-entity-deactivate', ['eid' => $entity->eid]); ?>"><?php echo trans('deactivate'); ?></a>
+            <?php } else { ?>
+            <a class="button tiny info" href="<?php echo route_url('admin-entity-activate', ['eid' => $entity->eid]); ?>"><?php echo trans('activate'); ?></a>
+            <?php if(current_user()->privilege >= config()->get('privilege.admin')) {?>
+            <a class="button tiny alert" href="<?php echo route_url("admin-{$type_name}-delete", ['eid' => $entity->eid]); ?>"><?php echo trans('delete'); ?></a>
+            <?php } ?>
+            <?php } ?>
+        </td>
+    </tr>
+    <?php } ?>
+    </tbody>
+</table>
+
+
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->property_set->getPageCount()]); ?>
+</div>
+<?php } ?>

@@ -1,0 +1,48 @@
+.page {
+    //margin: 0 auto;
+    //padding: 0;
+
+    &-header {
+        height: 50px;
+        @include breakpoint(medium) {
+            margin-bottom: 15px;
+        }
+    }
+
+    &-body {
+        max-width: $global-width;
+        min-width: 320px;
+
+        &::before,
+        &::after {
+            content: ' ';
+            display: table;
+            clear: both;
+        }
+        > .main {
+            width: 100%;
+            padding: 0 7px;
+            float: none;
+        }
+        > .side {
+            margin-top: 16px;
+            width: 100%;
+            float: none;
+        }
+    }
+}
+
+@include breakpoint(large) {
+    .page {
+        &-body {
+            > .main {
+                width: 66%;
+                float: left;
+            }
+            > .side {
+                width: 34%;
+                float: left;
+            }
+        }
+    }
+}

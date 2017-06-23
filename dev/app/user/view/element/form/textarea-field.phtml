@@ -1,0 +1,11 @@
+<?php //$error = isset($this->errors[$this->name]) ? $this->errors[$this->name] : ''; ?>
+<?php $error = $this->error; ?>
+<div class="textarea-field<?php if ($error) echo ' has-error'; ?>">
+    <textarea<?php if ($this->class) echo " class=\"{$this->class}\""; ?> type="<?php echo $this->type; ?>" name="<?php echo $this->name; ?>"<?php if ($this->required) { echo ' required="required"'; } ?>
+        <?php if ($this->placeholder) { ?> placeholder="<?php echo $this->placeholder; ?>"<?php } ?>><?php echo $this->value ; ?></textarea>
+    <?php if ($error) { ?>
+        <div class="msg-error">
+            <i class="icon icon-Error"></i><?php echo $error; ?>
+        </div><!-- .error -->
+    <?php } ?>
+</div><!-- .text-field -->

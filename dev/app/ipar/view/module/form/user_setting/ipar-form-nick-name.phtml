@@ -1,0 +1,54 @@
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data" class="user-setting-form">
+    <?php echo csrf_field(); ?>
+    <ul class="menu vertical">
+            <li>
+                <div class="title"><?php echo trans('old-nick'); ?></div>
+                <?php echo $this->insert('module/form/user_setting/input-field', [
+                    'type' => 'text',
+                    'name' => '',
+                    'placeholder' => '',
+                    'value' => $this->user->nick,
+                    'maxlength' => 21,
+                    'disabled' => 'true',
+                    'data_type' => '',
+                ]); ?>
+            </li>
+        <li>
+            <div class="title"><?php echo trans('new-nick'); ?></div>
+            <?php echo $this->insert('module/form/user_setting/input-field', [
+                'type' => 'text',
+                'name' => 'new-nick',
+                'placeholder' => trans('new-nick'),
+                'value' => '',
+                'maxlength' => 21,
+                'disabled' => '',
+                'data_type' => '',
+                'has_error' => isset($errors['nick'])
+            ]); ?>
+            <p class="nick-error-tips hide error-tips"></p>
+        </li>
+    </ul>
+
+
+    <?php if ($this->errors) { ?>
+        <p class="errorbox">
+            <?php foreach ($this->errors as $err_key => $err_value) { ?>
+                <span class="label alert">
+                <?php echo $err_key; ?>,<?php echo $err_value; ?>
+            </span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+
+    <?php if ($this->status) { ?>
+        <span><?php echo trans('set success');?></span> 
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small user-setting-change-nick-submit" value="<?php echo trans('submit'); ?>">
+        <a class="small"
+           href="<?php echo route_url('ipar-ui-i-account-info', ['zcode' => $this->user->zcode]); ?>">
+            <?php echo trans('back'); ?>
+        </a>
+    </div>
+</form>

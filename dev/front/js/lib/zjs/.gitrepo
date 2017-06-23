@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = ssh://git@git.ideapar.com:3222/tc/zjs.git
+	branch = master
+	commit = 4d97791bc1c7641ac341e98a7e4464df946e2cbc
+	parent = 7f7c06aab2cc447814a177188b6c9512a367dae5
+	cmdver = 0.3.0

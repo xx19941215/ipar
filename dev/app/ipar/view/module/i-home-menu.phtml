@@ -1,0 +1,15 @@
+<?php
+$items = [
+    'story' => ['url' => route_url('ipar-i-home', ['zcode' => $this->user->zcode])],
+    'rqt' => ['url' => route_url('ipar-i-rqt', ['zcode' => $this->user->zcode])],
+    'feature' => ['url' => route_url('ipar-i-feature', ['zcode' => $this->user->zcode])],
+    'product' => ['url' => route_url('ipar-i-product', ['zcode' => $this->user->zcode])],
+];
+?><div class="i-home-menu entity-menu">
+    <ul class="menu underline">
+        <?php foreach ($items as $key => $item) { ?>
+        <li<?php if ($key == $this->selected) echo ' class="selected"'; ?>><a href="<?php echo $item['url']; ?>"><?php echo trans("my-$key"); ?></a></li>
+        <?php } ?>
+    </ul>
+</div>
+

@@ -1,0 +1,80 @@
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data" class="my-profile">
+    <?php echo csrf_field(); ?>
+    <table>
+        <tbody>
+        <tr>
+            <th><?php echo trans('gender'); ?></th>
+            <td>
+                <div class="gender">
+                    <div class="switch-field">
+                        <input type="radio" id="switch_left" name="gender"
+                               value="0" <?php if (isset($this->user->gender) && $this->user->gender == 0) echo 'checked'; ?>/>
+                        <label for="switch_left"><?php echo trans('male'); ?></label>
+                        <input type="radio" id="switch_right" name="gender"
+                               value="1" <?php if (isset($this->user->gender) && $this->user->gender == 1) echo 'checked'; ?> />
+                        <label for="switch_right"><?php echo trans('female'); ?></label>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th><?php echo trans('birth-day'); ?></th>
+            <td>
+                <select name="birth-year" id="sel_year"
+                        data-value="<?php if (isset($this->user->birth_year)) echo $this->user->birth_year; ?>">
+                    <option value=""><?php echo trans('Year'); ?></option>
+                </select>
+                <select name="birth-month" id="sel_month"
+                        data-value="<?php if (isset($this->user->birth_month)) echo $this->user->birth_month; ?>">
+                    <option value=""><?php echo trans('Month'); ?></option>
+                </select>
+                <select name="birth-day" id="sel_day"
+                        data-value="<?php if (isset($this->user->birth_day)) echo $this->user->birth_day; ?>">
+                    <option value=""><?php echo trans('Day'); ?></option>
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <th><?php echo trans('profession'); ?></th>
+            <td>
+                <input type='text' name='profession'
+                       value="<?php if (isset($this->user->profession)) echo $this->user->profession; ?>">
+            </td>
+        </tr>
+        <tr>
+            <th><?php echo trans('residence'); ?></th>
+            <td>
+                <input type='text' name='residence'
+                       value="<?php if (isset($this->user->residence)) echo $this->user->residence; ?>">
+            </td>
+        </tr>
+        <tr>
+            <th><?php echo trans('address'); ?></th>
+            <td>
+                <input type='text' name='address'
+                       value="<?php if (isset($this->user->address)) echo $this->user->address; ?>">
+            </td>
+        </tr>
+        <tr>
+            <th><?php echo trans('introduction'); ?></th>
+            <td>
+                <textarea
+                    name='introduction'><?php if (isset($this->user->introduction)) echo $this->user->introduction; ?></textarea>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <?php if ($this->errors) { ?>
+        <p class=" errors">
+            <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                <span class="label alert"><?php echo trans($err_key); ?>
+                    , <?php echo trans($err_val); ?></span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value=" <?php echo trans('save'); ?>">
+    </div>
+</form>

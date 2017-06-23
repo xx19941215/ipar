@@ -1,0 +1,14 @@
+<?php if ($companies = $this->company_set->getItems()) { ?>
+    <div class="product-company">
+        <h3>
+            <?php echo trans('owned-enterprises'); ?>
+        </h3>
+        <?php foreach ($companies as $company) { ?>
+            <div>
+                <a href="<?php echo route_url('ipar-ui-company-show', ['zcode' => $company->zcode]) ?>" target="_blank">
+                    <?php echo $company->fullname; ?>
+                </a>
+            </div>
+        <?php } ?>
+    </div>
+<?php } ?>

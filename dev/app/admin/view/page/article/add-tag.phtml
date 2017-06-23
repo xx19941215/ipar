@@ -1,0 +1,22 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-article-show'),
+    'breadcrumbs' => ['admin-article']
+]);
+
+$article = $this->article;
+?>
+
+<?php $this->section('page-body'); ?>
+    <div class="entity-show rqt-show">
+        <?php echo $this->insert('module/article-show-top', [
+            'article' => $article,
+            'select' => 'tag'
+        ]); ?>
+
+        <?php echo $this->insert('module/form/tag/admin-form-tag');?>
+    </div>
+
+
+
+<?php $this->replace(); ?>

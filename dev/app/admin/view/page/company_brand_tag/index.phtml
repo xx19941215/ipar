@@ -1,0 +1,80 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-company-brand_tag'),
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="page-company">
+    <?php
+    echo $this->insert('module/entity-menu-group', [
+        'group' => $this->company,
+        'select' => 'brand_tag'
+    ]);
+    ?>
+    <h2><?php echo $this->company->fullname; ?></h2>
+    <br>
+    <div class="company-brand-tag">
+        <h3><?php echo trans('company-brand-tag'); ?></h3>
+        <?php foreach ($brand_tags = $this->brand_tag_set->getItems() as $brand_tag) { ?>
+            <div class="brand-tag">
+                <div class="brand-tag-contents">
+                    <h3>
+                        <a target="_blank"
+                           href="<?php echo route_url('admin-ui-tag-show', ['tag_id' => $brand_tag->tag_id]) ?>">
+                            <?php echo $brand_tag->title; ?>
+                        </a>
+                    </h3>
+                    <p>
+                        created:
+                        <?php if ($brand_tag->uid) { ?>
+                            <a target="_blank" href="<?php echo user($brand_tag->uid)->getUrl(); ?>">
+                                <?php echo user($brand_tag->uid)->nick; ?>
+                            </a>
+                        <?php } ?>
+                        <span><?php echo $brand_tag->created; ?></span>
+                    </p>
+                    <div class="">
+                        <div class="brand-tag-logo">
+                            <a target="_blank"
+                               href="<?php echo route_url('admin-ui-tag-logo-upload', ['id' => $brand_tag->tag_id]); ?>">
+                                <?php if ($brand_tag->logo) {
+                                    echo '<img src="' . img_src($brand_tag->getLogo(), 'small') . '">';
+                                } else {
+                                    echo '<i class="icon icon-furniture"></i>';
+                                } ?>
+                            </a>
+                            <p>Logo</p>
+                        </div>
+                        <div class="content">
+                            <a target="_blank"
+                               href="<?php echo route_url('admin-ui-tag-show', ['tag_id' => $brand_tag->tag_id]) ?>">
+                                <?php echo $brand_tag->content; ?>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-tag-op">
+                    <a target="_blank"
+                       href="<?php echo route_url('admin-ui-tag-edit', ['tag_id' => $brand_tag->tag_id]) ?>">
+                        <i class="icon icon-edit"></i><?php echo trans('edit'); ?>
+                    </a>
+                    <a href="<?php echo route_url('admin-ui-company_brand_tag-unlink', ['gid' => $this->company->gid, 'tag_id' => $brand_tag->tag_id]) ?>">
+                        <i class="icon icon-delete"></i><?php echo trans('delete'); ?>
+                    </a>
+                    <br>
+                    <br>
+                    <a class="button small" target="_blank" href="<?php echo route_url('admin-ui-company_brand_tag_product-index', ['gid' => $this->company->gid, 'tag_id' => $brand_tag->tag_id]) ?>">
+                       <?php echo trans('product-list'); ?>
+                    </a>
+                </div>
+            </div>
+        <?php }
+        if (!$brand_tags) {
+            echo '<p>' . trans('no-brand-tag') . '</p>';
+        } ?>
+    </div>
+
+</div>
+<?php $this->replace(); ?>
+
+
+

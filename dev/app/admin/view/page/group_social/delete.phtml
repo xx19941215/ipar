@@ -1,0 +1,11 @@
+<?php $this->layout('layout/admin', [
+    'breadcrumbs' => ['admin-ui-group-index']
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div id="page-group-social-delete">
+    <?php echo $this->insert('module/form/group_social/admin-form-group_social-delete'); ?>
+</div>
+
+<?php $this->replace(); ?>

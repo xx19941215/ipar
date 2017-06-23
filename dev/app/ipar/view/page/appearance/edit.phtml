@@ -1,0 +1,18 @@
+<?php
+$this->layout('page', [
+    'jses' => ['ipar.editor.js' => 1],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+    <?php echo $this->insert('include/form/story-form', [
+        'story_title' => trans('page-sketch-edit-title'),
+        'type' => 'sketch',
+        'action' => route_url('sketch-edit-post', ['zcode' => $this->zcode]),
+        'cancel' => route_url('sketch-show', ['zcode' => $this->zcode]),
+        'hiddens' => [
+            'eid' => $this->eid,
+            'zcode' => $this->zcode
+        ]
+    ]); ?>
+<?php $this->replace(); ?>

@@ -1,0 +1,39 @@
+<?php echo $this->insert('module/entity', [
+    'entity' => $this->rqt,
+    'tag_set' => $this->tag_set,
+    'is_content' => 1,
+    'is_h1' => 1,
+    'is_imgs' => 1,
+    'is_info' => 1,
+    'is_tag' => 1
+]); ?>
+
+<div class="solution-button-wrap">
+    <button data-rqt_eid="<?php echo $this->rqt->eid; ?>" class="button ipar add-solution-product"><i class="icon icon-product"></i><?php echo trans('add-product'); ?></button>
+    <button data-rqt_eid="<?php echo $this->rqt->eid; ?>" class="button ipar add-solution-idea"><i class="icon icon-idea"></i><?php echo trans('add-idea'); ?></button>
+</div>
+
+<?php echo $this->insert('module/entity-menu', [
+    'items' => [
+        /*
+        'story' => [
+            'route' => 'ipar-rqt-show',
+            'count' => $this->rqt->countStory(),
+        ],
+         */
+        // 'all' => [
+        //     'route' => 'ipar-rqt-show',
+        //     'count' => $this->rqt->countSolution(),
+        // ],
+        'product' => [
+            'route' => 'ipar-rqt-product',
+            'count' => $this->rqt->countSproduct(),
+        ],
+        'idea' => [
+            'route' => 'ipar-rqt-idea',
+            'count' => $this->rqt->countSidea(),
+        ],
+    ],
+    'entity' => $this->rqt,
+    'selected' => $this->select
+]); ?>

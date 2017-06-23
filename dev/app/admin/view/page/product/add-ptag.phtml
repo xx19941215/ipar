@@ -1,0 +1,22 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-product-add-ptag'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_content' => false,
+        'select' => 'ptag',
+    ]); ?>
+
+    <div class="row column">
+        <h2><?php echo trans('add-product-ptag'); ?></h2>
+        <?php echo $this->insert('module/form/admin-form-ptag'); ?>
+    </div>
+
+<?php $this->replace(); ?>

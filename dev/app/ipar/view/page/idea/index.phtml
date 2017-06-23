@@ -1,0 +1,19 @@
+<?php $this->layout('layout/default'); ?>
+
+<?php $this->section('title'); ?>
+    <?php echo trans('idea-index'); ?>
+<?php $this->append(); ?>
+
+<?php $this->section('content'); ?>
+
+<?php foreach ($this->ideas as $idea) { ?>
+    <div class="idea">
+        <span><?php echo $idea->eid; ?> | </span>
+        <span><?php echo $idea->title; ?> | </span>
+        <a href="<?php echo route_url('idea-show', ['zcode' => $idea->zcode]); ?>"><?php echo $idea->zcode; ?></a> |
+        <p><?php echo $idea->content; ?></p>
+    </div>
+    <hr>
+<?php } ?>
+
+<?php $this->replace(); ?>

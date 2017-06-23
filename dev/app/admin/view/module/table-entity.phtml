@@ -1,0 +1,59 @@
+<?php if ($this->entities) { ?>
+<table class="table-entity">
+    <thead>
+        <tr>
+            <th width="50">eid</th>
+            <th width="80">type</th>
+            <th>title/content</th>
+            <th width="210">time</th>
+            <th width="174">actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($this->entities as $entity) { ?>
+<?php
+$type_name = $entity->getType();
+?>
+    <tr>
+        <td><?php echo $entity->eid; ?></td>
+        <th><?php echo $type_name; ?></td>
+        <td>
+            <div class="entity-title">
+                <a href="<?php echo route_url("admin-{$type_name}-show", ['eid' => $entity->eid]); ?>"><?php echo $entity->getTitle(); ?></a>
+            </div>
+            <div class="entity-zcode">
+                <?php echo $entity->zcode; ?>
+            </div>
+            <div class="entity-abbr">
+                <?php echo $entity->getAbbr(); ?>
+            </div>
+            <div class="analysis">
+                <span>follow(<?php echo $entity->countFollow(); ?>)</span>
+                <span>like(<?php echo $entity->countLike(); ?>)</span>
+                <span>comment(<?php echo $entity->countComment(); ?>)</span>
+                <span>tag(<?php echo $entity->countTag(); ?>)</span>
+                <span>tag vote(<?php echo $entity->countTagVote(); ?>)</span>
+                <span>submit(<?php echo $entity->countSubmit(); ?>)</span>
+                <span>src(<?php echo $entity->countSrc(); ?>)</span>
+            </div>
+        </td>
+        <td>
+            <label class="date changed"><?php echo $entity->changed; ?></label>
+            <label class="date created"><?php echo $entity->created; ?></label>
+        </td>
+        <td>
+            <?php if ($entity->status == 1) { ?>
+            <a class="button tiny" href="<?php echo route_url("admin-{$type_name}-edit", ['eid' => $entity->eid]); ?>"><?php echo trans('edit'); ?></a>
+            <a class="button tiny warning" href="<?php echo route_url('admin-entity-deactivate', ['eid' => $entity->eid]); ?>"><?php echo trans('deactivate'); ?></a>
+            <?php } else { ?>
+            <a class="button tiny success" href="<?php echo route_url('admin-entity-activate', ['eid' => $entity->eid]); ?>"><?php echo trans('activate'); ?></a>
+            <?php if(current_user()->isAdmin()) {?>
+            <a class="button tiny alert" href="<?php echo route_url("admin-{$type_name}-delete", ['eid' => $entity->eid]); ?>"><?php echo trans('delete'); ?></a>
+            <?php } ?>
+            <?php } ?>
+        </td>
+    </tr>
+    <?php } ?>
+    </tbody>
+</table>
+<?php } ?>

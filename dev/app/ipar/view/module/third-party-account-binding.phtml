@@ -1,0 +1,115 @@
+<div class="third-party-account-binding">
+    <ul>
+        <li>
+            <div class="icon-wrap">
+                <i class="icon icon-weixin"></i>
+                <?php if ($this->wx_errors) { ?>
+                    <p class="errors">
+                        <?php foreach ($this->errors as $err_key => $err_value) { ?>
+                            <span class="label alert">
+                                <?php echo $err_key; ?>,<?php echo $err_value; ?>
+                            </span>
+                        <?php } ?>
+                    </p>
+                <?php } ?>
+            </div>
+            <div class="binding-status">
+                <?php if (isset($this->user->openid)) {
+                    echo trans('you-binded-id-wechat') . ' : ' . $this->user->wx_nickname;
+                    ?>
+                    <a href="<?php echo route_url('ipar-ui-i-unbind-wx', ['zcode' => $this->user->zcode]); ?>"><?php echo trans('unbind-wx') ?></a>
+                <?php } else { ?>
+                    <?php echo "<a href='javascript:;' onclick='isWeChat()'>" . trans('to-bind-wechat') . "</a>";
+                } ?>
+
+                <?php if (isset($_GET['wx_errors'])) { ?>
+                    <span class="label alert">
+                        <?php echo $_GET['wx_errors']; ?>
+                    </span>
+                <?php } ?>
+            </div>
+        </li>
+        <li class="">
+            <div class="icon-wrap">
+                <i class="icon icon-weibo"></i>
+            </div>
+            <div class="binding-status">
+
+            </div>
+        </li>
+        <li class="">
+            <div class="icon-wrap">
+                <i class="icon icon-qq"></i>
+            </div>
+            <div class="binding-status">
+
+            </div>
+        </li>
+    </ul>
+
+</div>
+<div class="user-info user-email hide">
+    <span class="title">
+        <?php echo trans('email'); ?>
+    </span>
+    <span class="content" <?php echo "data-email='" . $this->user->email . "'"; ?> >
+        <?php if ($this->user->email) {
+            echo $this->user->email;
+        } else {
+            echo trans('not-set-email');
+        } ?>
+    </span>
+    <span class="modify">
+        <a href="<?php echo route_url('ipar-ui-i-change-email', ['zcode' => $this->user->zcode]) ?>">
+            <i class="icon icon-edit-pen"></i>
+        </a>
+    </span>
+</div>
+
+<div class="user-info user-phone hide">
+    <span class="title">
+        <?php echo trans('phone'); ?>
+    </span>
+
+    <span class="content" <?php echo "data-phone='" . $this->user->phone . "'"; ?> >
+        <?php if ($this->user->phone) {
+            echo $this->user->phone;
+        } else {
+            echo trans('not-set-phone');
+        } ?>
+    </span>
+
+    <span class="modify">
+        <a href="<?php echo route_url('ipar-ui-i-bind-phone', ['zcode' => $this->user->zcode]) ?>">
+            <i class="icon icon-edit-pen"></i>
+        </a>
+    </span>
+</div>
+
+<?php if ($this->isSecondaryValid) echo "<span class='valid-" . $this->user->uid . "'></span>"; ?>
+<script type="text/javascript">
+    function isWeChat(e) {
+        if (window.sessionStorage.getItem('valid-' + config.current_uid) == null) {
+            return false;
+        }
+        var ua = navigator.userAgent.toLowerCase();
+        isWeChat = ua.indexOf('micromessenger') != -1;
+
+        var openappid = '<?php echo $this->config->get("wechat.open.app_id"); ?>',
+            serviceappid = '<?php echo $this->config->get("wechat.service.app_id");?>',
+            key = '<?php echo translator()->getLocaleKey();?>',
+            state = '<?php echo $this->wx_state;?>';
+
+        if (isWeChat) {
+            window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='
+                + serviceappid + '&redirect_uri=http%3a%2f%2fwx.ideapar.com%2fbind%2f'
+                + key + '%2f&response_type=code&state='
+                + state + '&scope=snsapi_userinfo#wechat_redirect';
+        } else {
+            window.location.href = 'https://open.weixin.qq.com/connect/qrconnect?appid='
+                + openappid + '&redirect_uri=http%3a%2f%2fwx.ideapar.com%2f'
+                + key + '%2fbind%2f&response_type=code&scope=snsapi_login&state='
+                + state + '#wechat_redirect';
+        }
+    }
+</script>

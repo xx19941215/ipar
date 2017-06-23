@@ -1,0 +1,30 @@
+<?php $this->layout('layout/page', [
+        'tdk_keywords' => true,
+        'tdk_description' => true,
+]); ?>
+
+<?php $this->section('cat'); ?>
+
+<div class="company-page-banner" >
+    <h1><?php echo trans('page-title-ipar-ui-company-index');?></h1>
+    <p><?php echo trans('page-subtitle-ipar-ui-company-index');?></p>
+</div>
+
+<div class="sort-toggle sort-hot">
+    <a href="javascript:void(0);" class='sort-hot sort-visited'><?php echo trans('sort-by-hot'); ?></a>
+    |
+    <a href="javascript:void(0);" class='sort-date'><?php echo trans('sort-by-date'); ?></a>
+</div>
+
+<div class="box-set-wrap"></div>
+
+<div class="loading" data-action="group" data-page="1">
+    <div class="one">
+        <a href="javascript:;" class="trigger"><?php echo trans('see-more'); ?></a>
+    </div>
+    <div class="two">
+       <?php echo trans('no-more'); ?>
+    </div>
+</div>
+
+<?php $this->append(); ?>

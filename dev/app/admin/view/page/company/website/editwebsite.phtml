@@ -1,0 +1,11 @@
+<?php $this->layout('layout/admin', ['html_title' => trans('admin-company-add'), 'breadcrumbs' => ['admin-company']]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="row column">
+    <h1><?php if($this->id) {
+        echo trans('admin-company-website-update');
+        } else  echo trans('admin-company-website-add');?></h1>
+    <?php echo $this->insert('module/form/company/company-group-website'); ?>
+
+</div>
+<?php $this->replace(); ?>

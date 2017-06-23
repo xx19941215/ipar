@@ -1,0 +1,15 @@
+<?php $this->layout('layout/invent'); ?>
+
+<?php $this->section('title'); ?>
+    <?php echo trans('invent-sketch-delete'); ?>
+<?php $this->append(); ?>
+
+<?php $this->section('content'); ?>
+<form method="post" action="<?php echo route_url('invent-sketch-delete-post', ['zcode' => $this->invent->zcode, 'eid' => $this->eid]); ?>">
+    <p>Are you confirm to delete this sketch?</p>
+    <?php echo $this->insert('element/csrf-field'); ?>
+    <input type="hidden" name="eid" value="<?php echo $this->eid; ?>">
+    <input type="submit" class="button" value="<?php echo trans('submit'); ?>">
+</form>
+
+<?php $this->replace(); ?>

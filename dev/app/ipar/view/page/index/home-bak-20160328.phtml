@@ -1,0 +1,130 @@
+<?php $this->layout('page', [
+    'html_title' => trans('ideapar'),
+    'is_home' => true,
+]); ?>
+
+
+<?php $this->section('page-body'); ?>
+
+<div class="wrap-index">
+    <div class="index-banner">
+            <div class="index-slider">
+                <ul class="slider-main">
+                    <li class="l1">
+                        <div class="row">
+                            <div class="b1-p1"><img src="<?php echo img_url('b1-p1.png'); ?>"/></div>
+                            <div class="b1-t1"><img src="<?php echo img_url('b1-t1.png'); ?>"/></div>
+                            <div class="b1-t2"><img src="<?php echo img_url('b1-t2.png'); ?>"/></div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="slider-operate">
+                    <a href="javascript:" class="slider-prev"><i class="icon icon-zuo"></i></a>
+                    <a href="javascript:" class="slider-next"><i class="icon icon-you"></i></a>
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="index-rqt-list-wrap">
+            <h2 class="index-list-wrap-title">
+                <a href="<?php echo route_url('rqt'); ?>" class="link-more"><i class="icon icon-gengduo"></i><?php echo trans('more'); ?></a>
+                <span><?php echo trans('index-rqt-list-title'); ?></span>
+            </h2>
+
+            <div class="index-rqt-list">
+                <h3>
+                    <i class="icon icon-zuixinzixunicon"></i>
+                    <span><?php echo trans('rqt-latest'); ?></span>
+                </h3>
+                <?php echo $this->insert('ipar/index/include/rqts', [
+                    'rqts' => $this->latest_rqts
+                ]); ?>
+            </div>
+
+            <div class="index-rqt-list">
+                <h3>
+                    <i class="icon icon-remen"></i>
+                    <span><?php echo trans('rqt-hot'); ?></span>
+                </h3>
+                <?php echo $this->insert('ipar/index/include/rqts', [
+                    'rqts' => $this->hot_rqts
+                ]); ?>
+            </div>
+
+        </div>
+    </div><!-- .row -->
+
+    <div class="row">
+        <div class="index-idea-list-wrap">
+            <h2 class="index-list-wrap-title">
+                <a href="<?php echo route_url('invent'); ?>" class="link-more"><i class="icon icon-gengduo"></i><?php echo trans('more'); ?></a>
+                <span><?php echo trans('index-invent-list-title'); ?></span>
+            </h2>
+
+            <div class="index-idea-list">
+                <h3>
+                    <i class="icon icon-zuixinzixunicon"></i>
+                    <span><?php echo trans('invent-latest'); ?></span>
+                </h3>
+                <?php echo $this->insert('ipar/index/include/invents', [
+                    'invents' => $this->latest_invents
+                ]); ?>
+            </div>
+
+            <div class="index-idea-list">
+                <h3>
+                    <i class="icon icon-remen"></i>
+                    <span><?php echo trans('invent-hot'); ?></span>
+                </h3>
+                <?php echo $this->insert('ipar/index/include/invents', [
+                    'invents' => $this->hot_invents
+                ]); ?>
+            </div>
+
+        </div>
+    </div>
+
+</div><!-- .wrap-index -->
+
+<?php $this->append(); ?>
+
+<?php $this->section('page-footer-box'); ?>
+    <div class="row">
+        <div class="links clearfix">
+            <dl>
+                <dt>关于公司</dt>
+                <dd><a href="javascript:">公司简介</a></dd>
+                <dd><a href="javascript:">成功案例</a></dd>
+                <dd><a href="javascript:">联系我们</a></dd>
+                <dd><a href="javascript:">招贤纳士</a></dd>
+            </dl>
+            <dl>
+                <dt>服务介绍</dt>
+                <dd><a href="javascript:">服务条款</a></dd>
+                <dd><a href="javascript:">创意孵化</a></dd>
+                <dd><a href="javascript:">专利维护</a></dd>
+                <dd><a href="javascript:">产品合作</a></dd>
+            </dl>
+            <dl>
+                <dt>帮助中心</dt>
+                <dd><a href="javascript:">常见问题</a></dd>
+                <dd><a href="javascript:">免责声明</a></dd>
+                <dd><a href="javascript:">在线客服</a></dd>
+                <dd><a href="javascript:">建议反馈</a></dd>
+            </dl>
+        </div>
+
+        <div class="aboutus">
+            <h3>关于我们</h3>
+
+            <div class="icons">
+                <a href="http://weibo.com/5763590919" target="_blank"><i class="icon icon-weibo"></i></a>
+                <a class="wx-follow" href="javascript:"><i class="icon icon-weixin"></i></a>
+                <a href="https://www.facebook.com/ideapar2015/" target="_blank"><i class="icon icon-facebook"></i></a>
+                <a href="https://twitter.com/ideapar2015" target="_blank"><i class="icon icon-twitter"></i></a>
+            </div>
+        </div>
+
+    </div>
+<?php $this->replace(); ?>

@@ -1,0 +1,14 @@
+<?php
+$social_config = config()->get('social');
+$type_key = ((bool)$this->group) ? "group" : "company";
+?>
+<div class="group-detail-info">
+    <h2><?php echo trans('group-social'); ?></h2>
+    <div class="contents">
+        <?php echo $this->insert('module/form/group_social/admin-form-group_social-items', [
+            'type' => $type_key,
+            'social_config' => $social_config,
+            'group_social_set' => $this->group_social_set
+        ]); ?>
+    </div>
+</div>

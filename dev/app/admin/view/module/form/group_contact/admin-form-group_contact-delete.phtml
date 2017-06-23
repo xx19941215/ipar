@@ -1,0 +1,34 @@
+<?php
+$type = ($this->group) ? 'group' : 'company';
+?>
+<table>
+    <thead>
+    <tr>
+        <th><?php echo trans("position") ?></th>
+        <th><?php echo trans("name") ?></th>
+        <th><?php echo trans("phone number") ?></th>
+        <th><?php echo trans("email") ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><?php echo $this->group_contact->roles; ?></td>
+        <td><?php echo $this->group_contact->name; ?></td>
+        <td><?php echo $this->group_contact->phone; ?></td>
+        <td><?php echo $this->group_contact->email; ?></td>
+    </tr>
+    </tbody>
+</table>
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="gid" value="<?php echo $this->{$type}->gid; ?>">
+    <input type="hidden" name="id" value="<?php echo $this->group_contact->id; ?>">
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <a class="button success small" href="<?php echo route_url("admin-ui-{$type}_contact-list", ['gid'
+        => $this->{$type}->gid]); ?>">
+            <?php echo trans('return'); ?>
+        </a>
+    </div>
+</form>

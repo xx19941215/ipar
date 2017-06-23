@@ -1,0 +1,28 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-company-product'),
+    'breadcrumbs' => ['admin-ui-group-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="page-company">
+    <?php
+    echo $this->insert('module/entity-menu-group', [
+        'company' => $this->company,
+        'select' => $this->select,
+        'company_product' => $this->company_product
+    ]);
+    ?>
+    <?php echo $this->insert('module/form/company/admin-form-company_detail-show'); ?>
+    <br/>
+    <h2><?php echo trans('company-product-list'); ?></h2>
+    <?php echo $this->insert('module/form/query'); ?>
+    <?php echo $this->insert('module/entity-set', [
+        'entity_set' => $this->product_set,
+        'company_product' => 1,
+        'gid' => $this->company->gid,
+        'count' => $this->count
+    ]); ?>
+</div>
+
+
+<?php $this->replace(); ?>

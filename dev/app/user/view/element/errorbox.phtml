@@ -1,0 +1,10 @@
+<?php
+$errors = $this->errors ? $this->errors : [];
+?>
+    <div class="<?php if(count($errors)>0) echo 'errorbox';?>">
+    <?php foreach ($errors as $key => $error) { ?>
+        <i class="icon icon-note"></i>
+        <?php if ($key) echo trans($key); ?> <?php echo trans($error); ?>
+    <?php } ?>
+</div>
+

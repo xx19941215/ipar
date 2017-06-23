@@ -1,0 +1,14 @@
+<?php
+$type_key = ($this->group) ? 'group' : 'company';
+?>
+<div class="group-detail-info">
+    <h2><?php echo trans('group-description'); ?></h2>
+    <div class="contents">
+        <div>
+            <p><?php echo nl2br($this->{$type_key}->content); ?></p>
+            <?php if (!$this->{$type_key}->content) {
+                echo trans('no-information');
+            } ?>
+        </div>
+    </div>
+</div>

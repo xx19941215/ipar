@@ -1,0 +1,62 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-product-company'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_abbr' => false,
+        'select' => 'company'
+    ]); ?>
+
+    <h2><?php echo trans('company-list'); ?></h2>
+    <?php echo $this->insert('module/form/query'); ?>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <?php echo trans('gid'); ?>
+            </th>
+            <th>
+                <?php echo trans('fullname'); ?>
+            </th>
+            <th>
+                <?php echo trans('created'); ?>
+            </th>
+            <th>
+                <?php echo trans('delete'); ?>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($this->company_set->getItems() as $company) { ?>
+            <tr>
+                <td><?php echo $company->gid; ?></td>
+                <td>
+                    <a href="<?php echo route_url('admin-ui-company-show', ['gid' => $company->gid]); ?>" target="_blank">
+                        <?php echo $company->fullname; ?>
+                    </a>
+                </td>
+                <td><?php echo $company->created; ?></td>
+                <td>
+                    <a href="<?php echo route_url('admin-ui-product_company-unlink', ['eid' => $this->product->eid, 'gid' => $company->gid]); ?>"
+                       class="button">
+                        <?php echo trans('delete'); ?>
+                    </a>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->company_set->getPageCount()]); ?>
+</div>
+
+
+<?php $this->replace(); ?>
+
+

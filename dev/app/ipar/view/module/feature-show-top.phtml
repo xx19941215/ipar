@@ -1,0 +1,25 @@
+<?php echo $this->insert('module/entity', [
+    'entity' => $this->feature,
+    'is_abbr' => 1,
+    'is_h1' => 1,
+    'is_content' => 1,
+    'is_imgs' => 1,
+    'is_info' => 1,
+]); ?>
+
+<?php echo $this->insert('module/entity-menu', [
+    'items' => [
+        /*
+        'story' => [
+            'route' => 'ipar-feature-show',
+            'count' => $this->feature->countStory(),
+        ],
+         */
+        'product' => [
+            'route' => 'ipar-feature-show',
+            'count' => $this->feature->countFproduct(),
+        ],
+    ],
+    'entity' => $this->feature,
+    'selected' => $this->select
+]); ?>

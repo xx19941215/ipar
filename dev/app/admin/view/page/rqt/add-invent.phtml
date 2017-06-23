@@ -1,0 +1,17 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-rqt-add-invent')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="row column">
+    <a href="<?php echo route_url('admin-rqt-invent', ['eid' => $this->rqt->eid]); ?>">
+      <?php echo ':invent'; ?></a>
+</div>
+
+<div class="row column">
+    <?php echo $this->insert('module/form/admin-form-invent'); ?>
+</div>
+
+<?php $this->replace(); ?>

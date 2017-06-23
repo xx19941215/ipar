@@ -1,0 +1,78 @@
+<?php
+    $this->layout('layout/admin', [
+    'html_title' => trans('admin-article-add'),
+    'breadcrumbs' => ['admin-article']
+    ]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="company-corporate" style="width:100%;">
+    <div class="top">
+        <span><?php echo trans('corporate-list');?>(<?php echo $this->count['all']; ?>)</span>
+        <span><?php echo trans('have-solved');?>(<?php echo $this->count['handle']; ?>)</span>
+        <span><?php echo trans('not-solved');?>(<?php echo $this->count['unhandle']; ?>)</span>
+    </div>
+
+    <div class="">
+        <form class="" action="<?php echo route_url('admin-ui-company-submit-search');?>" method="get">
+            <input type="text" name="search" value="" style="width:300px;display:inline-block;">
+            <select class="button dropdown" name="status" style="width:80px;">
+                <option value="unhandle"><?php echo trans('not-solved');?></option>
+                <option value="handle"><?php echo trans('have-solved');?></option>
+                <option value="ignore"><?php echo trans('ignored');?></option>
+            </select>
+            <button type="submit" style="width:80px;height:39px;" class="button round" name="button"><?php echo trans('submit-search');?></button>
+        </form>
+        <table>
+          <thead>
+            <tr>
+                 <th>Id</th>
+                 <th>Company</th>
+                 <th>Create time</th>
+                 <th>Answered</th>
+                 <th>Answer time</th>
+                 <th>detail</th>
+                 <th>Status</th>
+                 <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach($this->corporate_set->getItems() as $corporate): ?>
+            <tr>
+                 <td><?php echo $corporate->id; ?></td>
+                 <td><?php echo $corporate->company; ?></td>
+                 <td><?php echo $corporate->createtime; ?></td>
+                 <td><?php echo $corporate->lasted_answered; ?></td>
+                 <td><?php echo $corporate->lasted_answered_time; ?></td>
+                 <td><a href="<?php echo route_url('admin-ui-company-submit-detail', ['id' => $corporate->id]);?>">click</a></td>
+                 <td>
+                     <?php
+                        $status =  $corporate->status;
+                        switch ($status) {
+                            case 'unhandle':
+                                echo '<button type="button" class="button round" name="button">unhandle</button>';
+                                break;
+                            case 'handle':
+                                echo '<button type="button" style="background-color:#2ab7f7" class="button round" name="button">handle</button>';
+                                break;
+                            case 'ignore':
+                                echo '<button type="button" style="background-color:#d0d0d0" class="button round" name="button">ignore</button>';
+                                break;
+                        }
+                     ?>
+
+                 </td>
+                 <td>
+                     <a href="<?php echo route_url('admin-ui-company-submit-delete', ['id' => $corporate->id]);?>">delete</a>
+                 </td>
+            </tr>
+        <?php endforeach; ?>
+          </tbody>
+        </table>
+    </div>
+
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->page_count]); ?>
+
+</div>
+
+<?php $this->replace(); ?>

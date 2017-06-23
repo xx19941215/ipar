@@ -1,0 +1,42 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-role-add')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+
+<div class="row column">
+    <h1><?php echo trans('admin-role-add'); ?></h1>
+</div>
+
+<form action ="" method="post">
+    <?php echo csrf_field(); ?>
+    <div class="row column">
+        <label>
+            title:
+            <input type="text" name="title">
+        </label>
+    </div>
+    <div class="row column">
+        <label>
+            content:
+            <textarea name="content"></textarea>
+        </label>
+    </div>
+    <?php if ($this->errors) { ?>
+    <div class="row column">
+        <p>
+        <?php foreach ($this->errors as $key => $txt) { ?>
+            <div class="label alert"><?php echo $key . ', ' . trans($txt); ?></div>
+        <?php } ?>
+        </p>
+    </div>
+    <?php } ?>
+    <div class="row column">
+        <input type="submit" class="button" value="submit">
+        <a href="<?php echo route_url('admin-role'); ?>">cancel</a>
+    </div>
+</form>
+
+<?php $this->replace(); ?>

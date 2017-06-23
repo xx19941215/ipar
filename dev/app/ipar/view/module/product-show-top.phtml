@@ -1,0 +1,44 @@
+<?php echo $this->insert('module/entity', [
+    'entity' => $this->product,
+    'is_content' => 1,
+    'is_h1' => 1,
+    'is_imgs' => 1,
+    'is_info' => 1,
+    'is_tag' => 1
+]); ?>
+
+
+<div class="property-button-wrap">
+    <button data-product_eid="<?php echo $this->product->eid; ?>" class="button ipar add-property-improving">
+        <i class="icon icon-rqt"></i><?php echo trans('add-improving'); ?>
+    </button>
+    <button data-product_eid="<?php echo $this->product->eid; ?>" class="button ipar add-property-feature">
+        <i class="icon icon-feature"></i><?php echo trans('add-feature'); ?>
+    </button>
+</div>
+
+
+<?php echo $this->insert('module/entity-menu', [
+    'items' => [
+        /*
+        'story' => [
+            'route' => 'ipar-product-show',
+            'count' => $this->product->countStory(),
+        ],
+         */
+        'improving' => [
+            'route' => 'ipar-product-show',
+            'count' => $this->product->countPimproving()
+        ],
+        'solved' => [
+            'route' => 'ipar-product-solved',
+            'count' => $this->product->countPsolved(),
+        ],
+        'feature' => [
+            'route' => 'ipar-product-feature',
+            'count' => $this->product->countPfeature(),
+        ]
+    ],
+    'entity' => $this->product,
+    'selected' => $this->select
+]); ?>

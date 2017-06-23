@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<dataset>
+    <entity_tag id="1" entity_type_id="1" eid="1" tag_id="1" vote_count="0"/>
+    <entity_tag id="2" entity_type_id="3" eid="3" tag_id="1" vote_count="0"/>
+    <entity_tag id="3" entity_type_id="3" eid="4" tag_id="1" vote_count="0"/>
+    <entity eid="1" zcode="563456" type_id="1" title="request1" content="content1"/>
+    <entity eid="2" zcode="342534" type_id="1" title="request2" content="content1"/>
+    <entity eid="3" zcode="452345" type_id="3" title="product1" content="content1"/>
+    <entity eid="4" zcode="345234" type_id="3" title="product2" content="content1"/>
+</dataset>

@@ -1,0 +1,46 @@
+<?php
+$this->layout('layout/third-party-login', [
+    'html_title' => trans('wx-login'),
+]);
+$errors = $this->errors ? $this->errors : [];
+?>
+
+<?php $this->section('main'); ?>
+
+<div class="link">
+    <i class="icon icon-logo"></i>
+    <i class="icon icon-shuangxiangjiantou"></i>
+    <i class="icon icon-weixin"></i>
+</div>
+
+<div class="user-binding">
+    <div class="avt-wrap">
+        <div class="avt">
+            <img src="<?php echo $this->headimgurl; ?>">
+        </div>
+        <p class="nickname"><?php echo $this->nickname; ?></p>
+    </div>
+    <div class="bind">
+        <p><?php echo trans('when-you-login-in-by-wechat-at-the-first-time-you-can-chose'); ?></p>
+        <a class="bind-account" href="<?php echo route_url('wx-login-bind-account'); ?>">
+            <?php echo trans('bind-account'); ?>
+        </a>
+        <a class="direct-access" href="<?php echo route_url('wx-login-reg'); ?>">
+            <?php echo trans('direct-access'); ?>
+        </a>
+    </div>
+</div>
+
+<?php $this->stop(); ?>
+
+<?php $this->section('script'); ?>
+<script>
+    (function () {
+        'use strict';
+        var config = window.config || {};
+        config.wx_state = '<?php echo $this->wx_state; ?>';
+        config.wx_appid = '<?php echo $this->config->get('wx.appid'); ?>';
+        config.wx_oauth_callback = '<?php echo route_url('wx-oauth-callback'); ?>';
+    }());
+</script>
+<?php $this->append(); ?>

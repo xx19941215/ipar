@@ -1,0 +1,53 @@
+<?php
+$entities = $this->entity_set->getItems();
+?><div class="box-set row column">
+    <?php foreach ($entities as $entity) { ?>
+
+<?php
+$type = $entity->getType();
+$imgs = $entity->getImgs();
+
+$cover = $imgs ? $imgs[0] : null;
+$url = route_url("ipar-{$type}-show", ['eid' => $entity->eid]);
+
+?>
+
+<div class="box-wrap">
+    <div class="box">
+        <div class="box-cover icon">
+            <a class="link" href="<?php echo $url; ?>">
+                <?php if ($cover) { ?>
+                <img src="<?php echo img_src($cover, 'cover'); ?>">
+                <?php } ?>
+            </a>
+        </div>
+
+        <h3 class="box-title">
+            <a href="<?php echo $url; ?>"><?php echo $entity->getTitle(); ?></a>
+        </h3>
+
+        <div class="box-tag">
+            <a class="tag" href="javascript:;">智能家居</a>
+            <a class="tag" href="javascript:;">工业设计</a>
+            <a class="tag" href="javascript:;">插电座</a>
+        </div>
+
+        <div class="box-ops">
+            <span class="like">
+                <a href="#"><i class="icon icon-vote"></i></a>
+                <a href="#">点赞</a>
+                <a href="#">15</a>
+            </span>
+            <span class="comment">
+                <a href="#"><i class="icon icon-comment"></i></a>
+                <a href="#">评论</a>
+                <a href="#">35</a>
+            </span>
+        </div>
+
+    </div>
+</div>
+
+    <?php } ?>
+
+</div>

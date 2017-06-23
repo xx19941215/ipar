@@ -1,0 +1,38 @@
+<?php
+$items = [
+    'content' => [
+        'route' => 'admin-ui-industry_tag-show',
+    ],
+    'company' => [
+        'route' => 'admin-ui-industry_tag_company-list',
+    ],
+];
+$select = $this->select ? $this->select : 'content';
+$tag = $this->tag;
+?>
+<div class="entity-menu">
+    <div class="entity-menu-rqt">
+        <ul>
+            <?php foreach ($items as $key => $item) { ?>
+                <?php
+                $route = prop($item, 'route','');
+                $count = prop($item, 'count', 0);
+                $add_route = '';
+                if ($add = prop($item, 'add', 0)) {
+                    $add_route = prop($item, 'add_route', "$route-add");
+                }
+                ?>
+                <li<?php if ($select == $key) echo ' class="selected"'; ?>>
+                    <a href="<?php echo route_url($route, ['tag_id' => $tag->id]); ?>">
+                        <span><?php echo $key; ?></span>
+                    </a>
+                    <?php if ($add_route) { ?>
+                        <a class="button success" href="<?php echo route_url($add_route, ['tag_id' => $tag->id]); ?>">
+                            add
+                        </a>
+                    <?php } ?>
+                </li>
+            <?php } ?>
+        </ul>
+    </div>
+</div>

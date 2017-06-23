@@ -1,0 +1,166 @@
+$light_gray : #F9F9F9;
+$normal_fontsize: 1rem;
+$title_fontsize: 1.25rem;
+$title_margin : 2.125rem;
+$section_margin : 5rem;
+$light_font_color: #666;
+$daken_font_color: #222;
+body,ul,ol,li,h1,h2,h3,h4,h5,h6,p,blockquote,legend,tr,td {
+    margin: 0;
+    padding: 0;
+    font-family: PingFang SC, PingHei, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+}
+ol,ul,li {
+    list-style: none;
+}
+
+.ipar-ui-page-about_us {
+    .page-body {
+        padding: 0;
+        margin: 0 auto;
+        max-width: 100%;
+        ul.aboutusNav { //tab切换视图
+            overflow: hidden;
+            margin: 0 auto;
+            li {
+                float: left;
+                text-align: center;
+                height: 49px;
+                line-height: 49px;
+                a {
+                    font-size: $normal_fontsize;
+                }
+            }
+            li.current {
+                a {
+                    font-weight: bold;
+                    color: black;
+                }
+            }
+        }
+        div.aboutusInfo,div.requirements,div.aboutusContact,div.aboutusTeam {
+            width: 100%;
+            float: none;
+            padding: 0;
+            padding-top: 100px;
+            div.aboutusSection,div.requireSection,div.aboutusContact {
+                padding-bottom: $section_margin;
+                h2.title {
+                    font-size: 1.875rem;
+                    font-weight: 200;
+                    color: #fff;
+                    text-align: center;
+                    padding: 0 2rem;
+                    padding-bottom: $title_margin;
+                }
+                div.container {
+                    padding: 0 2rem;
+                    p {
+                        font-size: $normal_fontsize;
+                        color: #fff;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        div.aboutusInfo {//点趴需求驱动平台
+            height: 1065px;
+            background: url("/img/bg_A.jpg") no-repeat;
+            background-size: cover;
+        }
+        div.requirements {//需求是什么
+            background: url("/img/bg_B.jpg") no-repeat;
+            background-size: cover;
+            padding-top: 150px;
+        }
+        div.aboutusContact{//联系我们
+            @media screen and (min-width: 641px) {
+                padding-top: 50px;
+
+            }
+            @media screen and (max-width: 640px){
+                padding-top: 2rem;
+            }
+            background-color: #F7F7F7;
+            div.aboutusSection.aboutusMap {
+                h2 {
+                    color: $light_font_color !important;
+                }
+            }
+            div.map {
+                border: 1px solid #C8C7C5;
+                padding: 0;
+            }
+            div.txt {
+                p {
+                    color: $light_font_color !important;
+                    margin-bottom: $section_margin*0.5;
+                    text-align: left !important;
+                    @media screen and (max-width: 640px){
+                        margin-bottom: 20px;
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+        div.aboutusTeam {//派对成员
+            background-color: #fff;
+            padding-top: 60px;
+            div.aboutusSection {
+                h2.title {
+                    color: $light_font_color !important;
+                }
+                div.team {
+                    div.teamMember {
+                        margin-bottom: 2rem;
+                        div.photo {
+                            text-align: center;
+                            margin-bottom: 2rem;
+                        }
+                        h3 {
+                            font-size: 1rem;
+                            color: $daken_font_color;
+                            line-height: 2rem;
+                            text-align: center;
+                        }
+                        div.intro {
+                            max-width: 180px;
+                            margin: 0 auto;
+                            font-size: $normal_fontsize;
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pageFooter {//页脚
+    div.container {
+        border-top: 1px solid $light_font_color;
+        margin-bottom: 20px;
+        padding: 0;
+        p.copyright {
+            font-size: $normal_fontsize*0.67;
+        }
+        p.social {
+            text-align: left;
+            span {
+                display: inline-block;
+                width: 100%;
+                overflow: hidden;
+                a {
+                    float: right;
+                    margin-left: 10px;
+                }
+            }
+
+        }
+    }
+
+}
+
+
+
+

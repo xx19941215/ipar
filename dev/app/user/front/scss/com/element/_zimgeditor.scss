@@ -1,0 +1,42 @@
+.photo-out-wrap {
+    position: relative;
+    overflow: hidden
+}
+
+.photo-out-wrap img {
+    max-width: initial;
+    cursor: move
+}
+
+.photo-out {
+    opacity: 0.21;
+    position: relative;
+    top: 0;
+    left: 0
+}
+
+.photo-in-wrap {
+    position: absolute;
+    overflow: hidden;
+    width: 530px;
+    height: 300px;
+    top: 30px;
+    left: 30px
+}
+
+.photo-in {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: -30px;
+    margin-left: -30px
+}
+
+.zimgeditor-input-img {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden
+}

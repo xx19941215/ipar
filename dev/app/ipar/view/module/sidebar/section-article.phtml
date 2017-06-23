@@ -1,0 +1,19 @@
+<?php
+$article_set = service('article')->getArticleSet();
+$article_set->setCountPerPage(5);
+$articles = $article_set->getItems();
+ ?>
+
+<div class="article-container section">
+    <h3 class="section-title"><?php echo trans('latest-article') ?><a href="<?php echo route_url('ipar-article-index')?>" class="float-right"><?php echo trans("more")?>+</a></h3>
+    <div class="section-body">
+<?php foreach ($articles as $article) {?>
+    <div class="item">
+        <?php $article_link = route_url('ipar-article-show', ['zcode' => $article->zcode]); ?>
+        <a href="<?php echo $article_link ?>">
+            <?php echo title_text($article->title); ?>
+        </a>
+    </div>
+<?php } ?>
+    </div>
+</div>

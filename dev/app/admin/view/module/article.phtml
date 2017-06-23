@@ -1,0 +1,27 @@
+<?php
+$article = $this->article;
+?>
+<?php if ($this->is_tag) { $tags = $this->tag_set->getItems();?>
+    <div class="row entity-top-tag">
+        <?php foreach ($tags as $tag) { ?>
+            <a href="<?php echo route_url('admin-ui-tag-show', ['tag_id' => $tag->id]); ?>">
+                <span>
+                    <?php echo $tag->title ?>
+                </span>
+            </a>
+        <?php } ?>
+    </div>
+
+<?php } ?>
+<div class="row">
+    <h1><?php echo $article->title; ?></h1>
+</div>
+<div class="row">
+    <span>article_id: <?php echo $article->id; ?></span>
+    <span>uid: <?php echo $article->uid; ?></span>
+</div>
+<div class="row">
+    <span>created: <?php echo $article->created; ?></span>
+    <span>changed: <?php echo $article->changed; ?></span>
+</div>
+

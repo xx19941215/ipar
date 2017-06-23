@@ -1,0 +1,37 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-role-activate')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+
+<div class="row column">
+    <p>
+        Are you sure to activate this role?
+    </p>
+    <p>
+        <span><?php echo $this->role->name; ?></span>,
+    </p>
+
+    <?php if ($this->errors) { ?>
+    <p>
+        <ul class="menu vertical">
+            <?php foreach ($this->errors as $key => $val) { ?>
+                <li><span class="label alert"><?php echo $key; ?>, <?php echo trans($val); ?></span></li>
+            <?php } ?>
+        </ul>
+    </p>
+    <?php } ?>
+
+    <form action="" method="post">
+        <?php echo csrf_field(); ?>
+        <input type="hidden" name="role_id" value="<?php echo $this->role->id; ?>">
+        <input type="submit" class="button tiny" value="<?php echo trans('yes'); ?>">
+        <a href="<?php echo route_url('admin-role'); ?>"><?php echo trans('cancel'); ?></a>
+    </form>
+
+</div>
+
+<?php $this->replace(); ?>
+

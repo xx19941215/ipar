@@ -1,0 +1,18 @@
+<?php
+$entities = $this->entity_set->getItems();
+?>
+<?php if ($entities) { ?>
+<div class="entity-set row column">
+<?php
+foreach ($entities as $entity) {
+    echo $this->insert('module/entity', [
+        'entity' => $entity,
+        'is_abbr' => 1,
+        'is_imgs' => 1,
+        'is_info' => 1
+    ]);
+}
+?>
+</div>
+<?php } ?>
+

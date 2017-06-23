@@ -1,0 +1,20 @@
+<?php $this->layout('layout/default'); ?>
+
+<?php $this->section('title'); ?>
+    <?php echo trans('idea-delete'); ?>
+<?php $this->append(); ?>
+
+<?php $this->section('content'); ?>
+    <?php echo trans('confirm-delte-%s', $this->idea->title); ?>
+    <form method="post" action="<?php echo route_url('idea-delete-post', ['zcode' => $this->idea->zcode]); ?>">
+        <?php echo $this->insert('element/csrf-field'); ?>
+        <input type="hidden" name="eid" value="<?php echo $this->idea->eid; ?>">
+
+        <div class="operating-wrap">
+            <input type="submit" class="button tiny alert" value="<?php echo trans('commit'); ?>">
+            <a class="cancel" href="<?php echo route_url('idea-index'); ?>">
+                <?php echo trans('cancel'); ?>
+            </a>
+        </div><!-- .operating-wrap -->
+    </form>
+<?php $this->replace(); ?>

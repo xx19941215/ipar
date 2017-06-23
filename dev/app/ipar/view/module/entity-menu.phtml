@@ -1,0 +1,22 @@
+<?php
+$entity = $this->entity;
+?>
+<div class="entity-menu" id="entity-menu">
+    <ul class="menu underline">
+        <?php foreach ($this->items as $key => $item) { ?>
+            <?php
+            if ($key == $this->selected) {
+                $class = ' class="selected"';
+            } else {
+                $class = '';
+            }
+            ?>
+            <li<?php echo $class; ?>>
+                <a href="<?php echo route_url($item['route'], ['zcode' => $entity->zcode]) . '#entity-menu'; ?>">
+                    <?php echo trans($entity->getTypeKey() . '-' . $key); ?>
+                    <span><?php echo $item['count']; ?></span>
+                </a>
+            </li>
+        <?php } ?>
+    </ul>
+</div>

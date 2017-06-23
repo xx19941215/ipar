@@ -1,0 +1,107 @@
+$box-title-height: 48px;
+$box-tag-height: 42px;
+$box-item-margin: 5px;
+$box-max-width: 235px;
+$box-interval: 3px;
+
+.box-set {
+    @include clearfix;
+    margin-left: -$box-interval;
+    margin-right: -$box-interval;
+}
+.box-wrap {
+    float: left;
+    width: 50%;
+    padding: $box-interval;
+}
+.box {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.35);
+    //width: 235px;
+    max-width: $box-max-width;
+    border-radius: 4px;
+    padding-bottom: 1px;
+    margin: auto;
+}
+
+.box-title {
+    height: $box-title-height;
+    //margin: $box-item-margin;
+    display: table;
+    padding: 0 5px;
+    width: 100%;
+    a {
+        //font-size: $small-font-size;
+        color: $black;
+        line-height: 1.05;
+        display: table-cell;
+        border-bottom: 1px solid $light-gray;
+        vertical-align: middle;
+    }
+}
+
+.box-cover {
+    border-radius: 4px 4px 0 0;
+    height: 150px;
+    width: 100%;
+    overflow: hidden;
+    background: $light-gray;
+    position: relative;
+
+    &:before {
+        content: "\e610";
+        position: absolute;
+        z-index: 1;
+        font-size: 126px;
+        line-height: 175px;
+        width: 100%;
+        text-align: center;
+    }
+
+    img {
+        max-width: $box-max-width;
+    }
+
+    .link {
+        z-index: 9;
+        display: block;
+        position: relative;
+    }
+}
+
+.box-tag {
+    margin: $box-item-margin;
+    font-size: $small-font-size;
+    height: $box-tag-height;
+    a {
+        display: inline-block;
+        vertical-align: middle;
+        padding-right: 5px;
+    }
+}
+
+.box-ops {
+    margin: $box-item-margin;
+    font-size: $tiny-font-size;
+    span {
+        margin-right: 7px;
+    }
+}
+
+@include breakpoint(medium) {
+    .box-wrap {
+        width: 33.3333333%;
+    }
+    .box-ops {
+        font-size: $small-font-size;
+    }
+}
+@include breakpoint(large) {
+    .box-set {
+        margin-left: - 2 * $box-interval;
+        margin-right: - 2 * $box-interval;
+    }
+    .box-wrap {
+        padding: 2 * $box-interval;
+        width: 25%;
+    }
+}

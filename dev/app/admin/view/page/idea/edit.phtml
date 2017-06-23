@@ -1,0 +1,11 @@
+	<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-idea-edit'),
+    'breadcrumbs' => ['admin-idea'],
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="row column">
+    <h1><?php echo trans('admin-idea-edit'); ?></h1>
+    <?php echo $this->insert('module/form/admin-form-idea'); ?>
+</div>
+<?php $this->replace(); ?>

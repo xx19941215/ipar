@@ -1,0 +1,28 @@
+<form action="<?php echo $this->action; ?>" method="post">
+    <?php echo csrf_field(); ?>
+
+    <label>
+    <input type="hidden" name="gid" value="<?php echo $this->gid; ?>">
+    <input type="hidden" name="last_url" value="<?php echo $this->last_url; ?>">
+        <?php echo trans('title'); ?>
+        <input type="text" name="title" required="required" value="<?php echo $this->title; ?>">
+    </label>
+    <label>
+        <?php echo trans('url'); ?>
+        <input type="text" name="url" required="required" value="<?php echo $this->url; ?>">
+    </label>
+
+    <?php if ($this->errors) { ?>
+    <p class="errors">
+    <?php foreach ($this->errors as $err_key => $err_val) { ?>
+    <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+    <?php } ?>
+    </p>
+    <?php } ?>
+    
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <?php echo $this->insert('element/link-go-back'); ?>
+    </div>
+</form>

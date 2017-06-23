@@ -1,0 +1,86 @@
+<?php
+/**
+ * File php.php
+ * PHP Version 7.0.4
+ * @category Tpl
+ * @package Global
+ * @author Zjh <zhanjh@126.com>
+ * @license http:://www.tecposter.cn/bsd-licence BSD Licence
+ * @link http://www.tecposter.cn
+ */
+$csses = ($this->csses && is_array($this->csses)) ? $this->csses : ['user.css' => 1];
+if ($this->css_appended && is_array($this->css_appended)) {
+    $csses = array_merge($csses, $this->css_appended);
+}
+$jses = ($this->jses && is_array($this->jses)) ? $this->jses : ['user.js' => 1];
+if ($this->js_appended && is_array($this->js_appended)) {
+    $jses = array_merge($jses, $this->js_appended);
+}
+
+$breadcrumbs = ($this->breadcrumbs && is_array($this->breadcrumbs)) ? $this->breadcrumbs : [];
+array_unshift($breadcrumbs, 'user-home');
+
+$site_config = config()->get('site');
+$sites = [
+    'static' => ['host' => $site_config->get('static.host')],
+    'api' => ['host' => $site_config->get('api.host')]
+];
+
+
+
+
+?><!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+
+    <title><?php echo $this->html_title; ?></title>
+
+    <?php foreach ($csses as $css => $val) { ?>
+        <link rel="stylesheet" href="<?php echo css_url($css); ?>">
+    <?php } ?>
+
+    <?php $this->section('style'); ?>
+    <?php $this->stop(); ?>
+
+    <link rel="icon" type="image/png" href="<?php echo img_url('favicon-16x16.png'); ?>" sizes="16x16"/>
+    <link rel="icon" type="image/png" href="<?php echo img_url('favicon-32x32.png'); ?>" sizes="32x32"/>
+</head>
+
+<body class="user">
+
+<div class="page third-party-login">
+
+
+    <div class="page-header"></div>
+
+    <div class="page-body">
+
+        <div class="user-main user-exterior-login"><?php $this->section('main');
+            $this->stop(); ?></div>
+    </div>
+
+</div>
+
+<?php echo $this->insert('module/page-footer'); ?>
+
+<?php foreach ($jses as $js => $val) { ?>
+    <script class="static-js" src="<?php echo js_url($js) ?>"></script>
+<?php } ?>
+
+<?php $this->section('script'); ?><?php $this->stop(); ?>
+
+<script>
+    (function () {
+        var config = window.config = window.config || {};
+        config.zeditor_upload_url = '<?php echo route_url('img-upload-figure'); ?>';
+        //config.site = {static: {host: '<?php echo config()->get('site.static.host'); ?>' }};
+        config.site = <?php echo json_encode($sites, true); ?>;
+        config.locale_key = '<?php echo translator()->getLocaleKey(); ?>';
+    }());
+</script>
+
+</body>
+</html>

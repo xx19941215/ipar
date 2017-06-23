@@ -1,0 +1,54 @@
+.tag_sort {
+    width: 100%;
+    ul {
+        margin-left: 0px;
+        border-top: solid 1px #EEEEEE;
+        border-bottom: solid 1px #EEEEEE;
+        padding: 0px;
+        overflow: hidden;
+
+        li {
+            display: inline-block;
+            list-style-type: none;
+            font-size: medium;
+            color: gray;
+            margin: 0 20px 0 0;
+            line-height: 36px;
+        }
+    }
+    .selected{
+        border-bottom: solid red;
+        border-bottom-width: 4px;
+        color:black;
+    }
+}
+
+.tag-sidebar-title {
+    font-size: large;
+}
+.ipar-ui-tag-index {
+     .main {
+         > .clearfix {
+             h1 {
+                 font-size: 24px;
+                 color: $black;
+                 display: inline-block;
+                 margin-left: .5em;
+             }
+
+             i {
+                 display: inline-block;
+                 height: 60px;
+                 border-radius: 4px;
+                 font-size: 60px;
+                 background: $medium-gray;
+                 vertical-align: top;
+                 line-height: 60px;
+             }
+         }
+
+         .tag_sort {
+             margin-top: 15px;
+         }
+     }
+}

@@ -1,0 +1,54 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-product-company'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_abbr' => false,
+        'select' => 'company'
+    ]); ?>
+
+    <h2><?php echo trans('are-you-sure-to-delete-product-from-this-company'); ?></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <?php echo trans('gid'); ?>
+            </th>
+            <th>
+                <?php echo trans('fullname'); ?>
+            </th>
+            <th>
+                <?php echo trans('created'); ?>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><?php echo $this->company->gid; ?></td>
+            <td><?php echo $this->company->fullname; ?></td>
+            <td><?php echo $this->company->created; ?></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <form method="post" action="<?php echo $this->action; ?>">
+        <?php echo csrf_field(); ?>
+        <input type="hidden" value="<?php echo $this->company_product->id; ?>" name="id">
+        <input type="hidden" value="<?php echo $this->company_product->eid; ?>" name="eid">
+        <input type="hidden" value="<?php echo $this->company_product->gid; ?>" name="gid">
+        <input type="submit" class="button small" value="<?php echo trans('sure'); ?>">
+        <a href="javascript:history.back(-1)" class="button success small"><?php echo trans('return'); ?></a>
+    </form>
+</div>
+
+
+<?php $this->replace(); ?>
+
+

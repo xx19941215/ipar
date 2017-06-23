@@ -1,0 +1,45 @@
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="id" value="<?php echo $this->friend_link ? $this->friend_link['id'] : ''; ?>">
+    <label><?php echo trans('friend-link-logo'); ?></label>
+    <?php if ($this->friend_link) { ?>
+        <?php if ($this->friend_link['logo_img']) { ?>
+            <img style="display: block" src="<?php echo img_src((array)json_decode($this->friend_link['logo_img'])); ?>"
+                 alt=""><?php } ?>
+    <?php } ?>
+    <input type="file" name="logo_img" value=""
+           style="display: inline-block; width: 30%;"><span><?php echo trans('file-size-hint'); ?></span>
+    <label for="friend-link-type"><?php echo trans('friend-link-type'); ?></label>
+    <select name="friend-link-type" id="friend-link-type">
+        <?php $type_set = $this->friend_link_type_set;
+        foreach ($type_set as $type) { ?>
+            <option
+                value="<?php echo $type->type; ?>"<?php if ($this->friend_link && $type->type == $this->friend_link['type']) echo 'selected="selected"'; ?> ><?php echo trans($type->type); ?></option>
+        <?php } ?>
+    </select>
+    <label for="title"><?php echo trans('link-title'); ?></label>
+    <input type="text" id="title" name="link-title"
+           value="<?php echo $this->friend_link ? $this->friend_link['title'] : ''; ?>">
+    <label for="url"><?php echo trans('link-url'); ?></label>
+    <span><?php echo trans('begin-with-http://-or-https://'); ?></span>
+    <input type="text" id="url" name="link-url"
+           value="<?php echo $this->friend_link ? $this->friend_link['url'] : ''; ?>">
+
+    <input type="hidden" name="uid" value="<?php echo current_uid(); ?>">
+
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_value) { ?>
+                <span class="label alert">
+                <?php echo $err_key; ?>,<?php echo $err_value; ?>
+            </span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <a class="button small"
+           href="<?php echo route_url('admin-ui-friend-link-index') ?>"><?php echo trans('back'); ?></a>
+    </div>
+</form>

@@ -1,0 +1,46 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-company-show'),
+    'breadcrumbs' => ['admin-company', 'admin-company-website'],
+]);
+$company = $this->company_set;
+$group_website_set = $this->group_website_set;
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show rqt-show">
+    <div class="entity-show-top">
+        <?php echo $this->insert("module/group-menu", [
+            'company' => $company,
+            'select' => 'group_website']); ?>
+    </div>
+<br/>
+<div class="entity-set">
+    <?php foreach ($group_website_set as $group_website) { ?>
+    <div class="entity">
+    <div class="entity-header">
+        <a class="entity-type" href="">
+            <?php echo $group_website->title;?>
+        </a>
+        <a class="entity-title" href="">
+            <?php echo $group_website->url;?>
+        </a>
+
+        <a class="op eidt" href="<?php echo route_url("admin-company-update-website", ['id' => $group_website->id]); ?>">
+            <?php echo trans('edit')?>
+        </a>
+        <a class="op deactivate group-delete" href="<?php echo route_url("admin-company-delete-website", ['id' => $group_website->id]); ?>">
+            <?php echo trans('deactivate')?>
+        </a>
+        
+    </div>
+
+<?php } ?>
+
+    
+</div>
+    
+    
+</div>
+<?php $this->replace(); ?>
+

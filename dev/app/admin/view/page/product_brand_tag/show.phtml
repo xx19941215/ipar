@@ -1,0 +1,32 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-product-company'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_abbr' => false,
+        'select' => 'brand_tag'
+    ]); ?>
+
+    <h2><?php echo trans('brand-tag') ?></h2>
+    <p>
+        <?php
+        if ($this->brand_tag) {
+            echo $this->brand_tag->title;
+        } else {
+            echo trans('no-brand_tag');
+        }
+        ?>
+    </p>
+</div>
+
+
+<?php $this->replace(); ?>
+
+

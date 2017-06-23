@@ -1,0 +1,28 @@
+<phpunit>
+    <php>
+        <var name="db_dsn" value="mysql:host=127.0.0.1;dbname=ideapar" />
+        <var name="db_user" value="ideapar" />
+        <var name="db_password" value="123456789" />
+        <var name="db_dbname" value="ideapar" />
+    </php>
+    <testsuites>
+        <testsuite name="gap">
+            <directory>dev/lib/gap/test/TestCase</directory>
+        </testsuite>
+        <testsuite name="mars">
+            <directory>dev/lib/mars/test/TestCase</directory>
+        </testsuite>
+        <testsuite name="app-user">
+            <directory>dev/app/user/test/TestCase</directory>
+        </testsuite>
+        <testsuite name="app-ipar">
+            <directory>dev/app/ipar/test/TestCase</directory>
+        </testsuite>
+        <testsuite name="app-admin">
+            <directory>dev/app/admin/test/TestCase</directory>
+        </testsuite>
+        <testsuite name="app-api">
+            <directory>dev/app/api/test/TestCase</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

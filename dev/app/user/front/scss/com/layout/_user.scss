@@ -1,0 +1,57 @@
+html, body {
+    height: 100%;
+}
+.page {
+    max-width: $global-width;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 0;
+
+    &-header {
+        height: 15%;
+        margin-bottom: 15px;
+    }
+
+    &-body {
+        &::before,
+        &::after {
+            content: ' ';
+            display: table;
+            clear: both;
+        }
+        > .main {
+            width: 100%;
+            padding: 0 7px;
+            float: none;
+        }
+        > .side {
+            width: 100%;
+            float: none;
+        }
+    }
+    &-footer {
+       margin-top: 20px;
+    }
+}
+
+@include breakpoint(medium) {
+    .page {
+        padding: 0 15px;
+        &-body {
+            > .main {
+                width: 66%;
+                float: left;
+            }
+            > .side {
+                width: 34%;
+                float: left;
+            }
+        }
+    }
+}
+@media screen and (max-height:650px) {
+    .page-body {
+        height:auto
+    }
+}
+

@@ -1,0 +1,41 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('brand_tag-index'),
+    'breadcrumbs' => ['admin-ui-brand_tag-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<?php echo $this->insert('module/form/query', [
+]); ?>
+    <div class="row">
+        <h3><?php echo trans('brand-tag'); ?> (<?php echo $this->brand_tag_set->getItemCount(); ?>) </h3>
+        <table class="groups">
+            <thead>
+            <tr>
+                <th><?php echo trans('id'); ?></th>
+                <th><?php echo trans('title'); ?></th>
+                <th><?php echo trans('content'); ?></th>
+                <th><?php echo trans('edit'); ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->brand_tag_set->getItems() as $brand_tag) { ?>
+                <tr>
+                    <td><?php echo $brand_tag->id; ?></td>
+                    <td class="tag-index-title">
+                        <a href="<?php echo route_url('admin-ui-brand_tag-show', ['tag_id' => $brand_tag->id]); ?>"
+                           target="_blank">
+                            <?php echo $brand_tag->title; ?>
+                        </a>
+                    </td>
+                    <td><?php echo $brand_tag->getAbbr(); ?></td>
+                    <td>
+                        <a href="<?php echo route_url('admin-ui-tag-edit', ['tag_id' => $brand_tag->id]); ?>"
+                           target="_blank"><?php echo trans('edit'); ?></a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+<?php echo $this->insert('element/pagination', ['page_count' => $this->brand_tag_set->getPageCount()]); ?>
+<?php $this->replace(); ?>

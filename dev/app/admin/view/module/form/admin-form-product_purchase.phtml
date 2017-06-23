@@ -1,0 +1,59 @@
+<form action="<?php echo $this->action; ?>" method="post">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="id" value="<?php echo $this->product_purchase->id; ?>">
+    <input type="hidden" name="eid" value="<?php echo $this->product->eid; ?>">
+
+    <label>
+        <?php echo trans('purchase-url') . "*"; ?>
+        <input type="url" name="purchase_url" required="required"
+               value="<?php echo $this->product_purchase->purchase_url; ?>">
+    </label>
+    <label>
+        <?php echo trans('currency'); ?>
+        <select name="currency">
+            <?php foreach (config()->get('currency')->all() as $key => $value) {
+                echo '<option ';
+                if ($key == $this->product_purchase->currency) {
+                    echo ' selected ';
+                }
+                echo 'value ="' . $key . '" >';
+                echo $value['0'];
+                echo '</option>';
+            }
+            ?>
+        </select>
+    </label>
+    <label>
+        <?php echo trans('price') . "*"; ?>
+        <input type="text" name="price" required="required"
+               value="<?php echo $this->product_purchase->price; ?>">
+    </label>
+    <label>
+        <?php echo trans('commission') . "*"; ?>
+        <input type="text" name="commission" required="required"
+               value="<?php echo $this->product_purchase->commission; ?>">
+    </label>
+    <label>
+        <?php echo trans('started') . "*"; ?>
+        <input type="datetime-local" name="started" required="required"
+               value="<?php echo substr($this->product_purchase->started, 0, 10) . 'T' . substr($this->product_purchase->started, 11); ?>">
+    </label>
+    <label>
+        <?php echo trans('expired') . "*"; ?>
+        <input type="datetime-local" name="expired" required="required"
+               value="<?php echo substr($this->product_purchase->expired, 0, 10) . 'T' . substr($this->product_purchase->expired, 11); ?>">
+    </label>
+
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <a href="<?php echo route_url('admin-ui-product-purchase', ['eid' => $this->product->eid]); ?>"><?php echo trans('return'); ?></a>
+    </div>
+</form>

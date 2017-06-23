@@ -1,0 +1,23 @@
+<form action="<?php echo $this->action; ?>" method="post">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="tag_id" value="<?php echo $this->industry_tag->tag_id; ?>">
+    <label for="title"><?php echo trans('tag-title'); ?></label>
+    <input type="text" name="title">
+    <label for="content"><?php echo trans('tag-content'); ?></label>
+    <textarea rows="6" type="text" name="content"></textarea>
+    <input type="hidden" name="uid" value="<?php echo current_uid(); ?>">
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_value) { ?>
+                <span class="label alert">
+                <?php echo $err_key; ?>,<?php echo $err_value; ?>
+            </span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <a href="javascript:history.go(-1);"><?php echo trans('back'); ?></a>
+    </div>
+</form>

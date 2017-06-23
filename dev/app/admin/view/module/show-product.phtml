@@ -1,0 +1,67 @@
+<a id='product-detail-a' class="button" href="<?php echo route_url('admin-product-show',['eid'=>$this->eid]); ?>"><?php echo trans('details'); ?></a>
+<a id='product-property-a' class="button" href="<?php echo route_url('admin-product-property',['eid'=>$this->eid]); ?>"><?php echo trans('property'); ?></a>
+<?php if($this->type != 'detail') {?>
+  <div id = 'product-property-div'>
+      <a id='property-all-a' class="button small" href="<?php echo route_url('admin-product-property',['eid'=>$this->eid]); ?>"><?php echo trans('all'); ?></a>
+      <a id='property-feature-a' class="button small" href="<?php echo route_url('admin-product-feature',['eid'=>$this->eid]); ?>"><?php echo trans('feature'); ?></a>
+      <a id='property-scenario-a' class="button small" href="<?php echo route_url('admin-product-scenario',['eid'=>$this->eid]); ?>"><?php echo trans('scenario'); ?></a>
+      <a id='property-rqt-a' class="button small" href="<?php echo route_url('admin-product-rqt',['eid'=>$this->eid]); ?>"><?php echo trans('rqt'); ?></a>
+  </div>
+<?php }?>
+<script>
+productActive('<?php echo $this->type;?>');
+propertyActive('<?php echo $this->type;?>');
+
+function productActive(type){
+  var detail_a = document.getElementById('product-detail-a');
+  var property_a = document.getElementById('product-property-a');
+  if(type == 'detail') {
+      detail_a.style.backgroundColor = "#2199e8";
+      detail_a.style.color = "white";
+
+      property_a.style.backgroundColor = "white";
+      property_a.style.color = "black";
+
+  } else {
+      property_a.style.backgroundColor = "#2199e8";
+      property_a.style.color = "white";
+
+      detail_a.style.backgroundColor = "white";
+      detail_a.style.color = "black";
+  }
+}
+
+function propertyActive(type){
+  var feature_a = document.getElementById('property-feature-a');
+  var scenario_a = document.getElementById('property-scenario-a');
+  var rqt_a = document.getElementById('property-rqt-a');
+  var all_a = document.getElementById('property-all-a');
+
+  all_a.style.backgroundColor = "white";
+  all_a.style.color = "black";
+
+  feature_a.style.backgroundColor = "white";
+  feature_a.style.color = "black";
+
+  scenario_a.style.backgroundColor = "white";
+  scenario_a.style.color = "black";
+
+  rqt_a.style.backgroundColor = "white";
+  rqt_a.style.color = "black";
+
+  if(type == 'feature') {
+      feature_a.style.backgroundColor = "#2199e8";
+      feature_a.style.color = "white";
+  } else if(type == 'scenario') {
+      scenario_a.style.backgroundColor = "#2199e8";
+      scenario_a.style.color = "white";
+  } else if(type == 'rqt') {
+      rqt_a.style.backgroundColor = "#2199e8";
+      rqt_a.style.color = "white";
+  } else if(type == 'property'){
+      all_a.style.backgroundColor = "#2199e8";
+      all_a.style.color = "white";
+  }
+}
+
+</script>

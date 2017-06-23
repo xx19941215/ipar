@@ -1,0 +1,22 @@
+<?php
+$this->layout('layout/ipar', [
+    'html_title' => trans('ipar-index-home')
+]);
+?>
+
+<?php $this->section('main'); ?>
+<div>
+<?php echo $this->insert('module/company-add');?>
+</div>
+
+
+<?php $this->replace(); ?>
+
+<?php $this->section('script'); ?>
+<script>
+(function () {
+    var api = z.config('api');
+    api.upload_logo = '<?php echo route_url('ipar-rest-group-logo'); ?>';
+}());
+</script>
+<?php $this->replace(); ?>

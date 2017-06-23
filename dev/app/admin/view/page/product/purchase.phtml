@@ -1,0 +1,55 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-product-purchase'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_abbr' => false,
+        'select' => 'purchase'
+    ]); ?>
+
+    <table class="purchase_url">
+        <thead>
+        <tr>
+            <th><?php echo trans('purchase-url'); ?></th>
+            <th><?php echo trans('started'); ?></th>
+            <th><?php echo trans('expired'); ?></th>
+            <th><?php echo trans('operation'); ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($this->product_purchase_set->getItems() as $product_purchase) { ?>
+            <tr>
+                <td class="url">
+                    <img src="<?php echo 'http://g.soz.im/http://' . $product_purchase->website; ?>">
+                    <a href="<?php echo $product_purchase->purchase_url; ?>" target="_blank">
+                        <?php echo $product_purchase->purchase_url; ?>
+                    </a>
+                </td>
+                <td>
+                    <?php echo $product_purchase->started; ?>
+                </td>
+                <td>
+                    <?php echo $product_purchase->expired; ?>
+                </td>
+                <td>
+                    <a href="<?php echo route_url('admin-ui-product-purchase-edit', ['eid' => $product_purchase->eid, 'pid' => $product_purchase->id]) ?>"
+                       class="button"><?php echo trans('edit'); ?></a>
+                    <a href="<?php echo route_url('admin-ui-product-purchase-delete', ['eid' => $product_purchase->eid, 'pid' => $product_purchase->id]) ?>"
+                       class="button success"><?php echo trans('delete'); ?></a>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
+
+
+<?php $this->replace(); ?>
+

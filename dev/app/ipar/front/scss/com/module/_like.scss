@@ -1,0 +1,15 @@
+.liked,
+.voted{
+    color: #ff7676!important;
+}
+
+.entity .like,
+.property .vote,
+.property-vote-count,
+.like-count {
+    cursor: pointer;
+}
+
+.icon-like {
+    color: #cbcbcb;
+}

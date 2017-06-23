@@ -1,0 +1,53 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-role'),
+    'breadcrumbs' => ['admin-user', 'admin-role']
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+
+<p>
+<a class="button" href="<?php echo route_url('admin-role-add'); ?>">add</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>content</th>
+            <th>status</th>
+            <th>edit</th>
+            <th>de/activate</th>
+            <th>delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($this->roles->getItems() as $role) { ?>
+        <tr>
+            <td><?php echo $role->id; ?></td>
+            <td><?php echo $role->title; ?></td>
+            <td><?php echo $role->content; ?></td>
+            <td><?php echo $role->status; ?></td>
+            <td><a href="<?php echo route_url('admin-role-edit', ['role_id' => $role->id]); ?>">edit</a></td>
+            <td>
+                <?php if ($role->status == 1) { ?>
+                    <a class="button tiny warning" href="<?php echo route_url('admin-role-deactivate', ['role_id' => $role->id]); ?>"><?php echo trans('deactivate'); ?></a>
+                <?php } else { ?>
+                    <a class="button tiny info" href="<?php echo route_url('admin-role-activate', ['role_id' => $role->id]); ?>"><?php echo trans('activate'); ?></a>
+                <?php } ?>
+            </td>
+            <td>
+                <?php if ($role->status == 0) { ?>
+                    <a class="button tiny alert" href="<?php echo route_url('admin-role-delete', ['role_id' => $role->id]); ?>"><?php echo trans('delete'); ?></a>
+                <?php } ?>
+            </td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>
+
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->roles->getPageCount()]); ?>
+
+<?php $this->replace(); ?>

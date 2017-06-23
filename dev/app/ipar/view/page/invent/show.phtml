@@ -1,0 +1,78 @@
+<?php $this->layout('page', [
+    'html_title' => $this->invent->title
+]); ?>
+
+
+<?php $this->section('page-body'); ?>
+<div class="row page-invent-show layout">
+    <div class="layout-main">
+        <div class="tnrl">
+            <div class="tnrl-topic">
+                <?php echo $this->insert('module/page-uem', ['entity' => $this->invent]); ?>
+            </div>
+            <div class="tnrl-nav clearfix">
+                <div class="nav-title">
+                    <a href="<?php echo route_url('invent-show', ['zcode' => $this->invent->zcode]); ?>"><i class="icon icon-zuixin"></i><?php echo trans('latest-update'); ?></a>
+                </div>
+                <div class="nav-btns">
+                    <a href="javascript:;" class="button"><?php echo trans('invent-add'); ?></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="<?php echo route_url('invent-rqt-create', ['zcode' => $this->invent->zcode]); ?>"><i class="icon icon-xuqiu"></i> <?php echo trans('invent-add-rqt'); ?></a>
+                        <a href="<?php echo route_url('invent-feature-create', ['zcode' => $this->invent->zcode]); ?>"><i class="icon icon-liangdian"></i> <?php echo trans('invent-add-feature'); ?></a>
+                        <a href="<?php echo route_url('invent-sketch-create', ['zcode' => $this->invent->zcode]); ?>"><i class="icon icon-huihua"></i> <?php echo trans('invent-add-sketch'); ?></a>
+                        <a href="<?php echo route_url('invent-appearance-create', ['zcode' => $this->invent->zcode]); ?>"><i class="icon icon-cube"></i> <?php echo trans('invent-add-appearance'); ?></a>
+                    </div>
+                </div>
+
+                <?php echo $this->insert('include/tnrl/nav-tab', [
+                    'type' => 'invent',
+                    'zcode' => $this->invent->zcode,
+                    'cts' => $this->cts
+                ]); ?>
+
+            </div>
+            <div class="tnrl-reply-list">
+                <?php echo $this->insert('module/uem-list', ['entities' => $this->entities]); ?>
+            </div>
+        </div>
+    </div>
+    <div class="layout-side">
+        <?php //echo $this->insert('ipar/rqt/include/side'); ?>
+        <?php //echo $this->insert('include/side/author'); ?>
+
+        <?php echo $this->insert('include/side/entity-followers', [
+            'followers' => $this->followers,
+            'entity' => $this->invent
+        ]); ?>
+        <div class="side-line"></div>
+
+        <?php echo $this->insert('include/side/tag', [
+            'tags' => $this->tags,
+            'entity' => $this->invent
+        ]); ?>
+        <div class="side-line"></div>
+
+        <?php echo $this->insert('include/side/relate'); ?>
+    </div>
+</div><!-- .page-invent-show -->
+<?php $this->replace(); ?>
+
+<?php /*
+<?php $this->section('invent-content'); ?>
+
+    <div class="show-titlearea">
+        <h1><?php echo $this->invent->title; ?></h1>
+        <div class="tags">
+            <span><a href="<?php echo route_url('invent-edit', ['zcode' => $this->invent->zcode]); ?>"><i class="icon icon-idea"></i><?php echo trans('edit'); ?></a></span>
+            <span><a href="<?php echo route_url('invent-delete', ['zcode' => $this->invent->zcode]); ?>"><i class="icon icon-idea"></i><?php echo trans('delete'); ?></a></span>
+        </div>
+        <div class="abstract"><?php echo $this->invent->content; ?></div>
+        <div class="author"><?php echo trans('creator'); ?>：<?php echo $this->invent->uid; ?></div>
+    </div>
+
+<div>
+    <?php echo $this->insert('include/wrap-entities'); ?>
+</div>
+
+<?php $this->replace(); ?>
+*/ ?>

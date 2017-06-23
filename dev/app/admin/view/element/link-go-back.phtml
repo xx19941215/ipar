@@ -1,0 +1,9 @@
+<?php
+if (!$target = session()->get('target_url')) {
+    $target = "javascript:history.go(-1);";
+}
+?>
+<a href="<?php echo $target; ?>">
+    <?php echo trans('go-back'); ?>
+</a>
+

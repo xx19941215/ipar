@@ -1,0 +1,30 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-invent-show'),
+        'breadcrumbs' => ['admin-rqt'],
+    ]);
+?>
+<?php $this->section('page-body'); ?>
+<h2><?php echo trans('invent'); ?></h2>
+<h3><?php echo $this->invent->title; ?></h3>
+<a onclick="history.go(-1)">
+    <?php echo trans( 'return'); ?>
+</a>
+<?php $progress = config()->get('progress')->all();?>
+<div class="row column">
+    <table>
+        <tbody>
+        <tr><td>uid:</td><td><?php echo $this->invent->uid; ?></td></tr>
+        <tr><td>eid:</td><td><?php echo $this->invent->eid; ?></td></tr>
+        <tr><td>type:</td><td><?php echo $this->invent->type; ?></td></tr>
+        <tr><td>title:</td><td><?php echo $this->invent->title; ?></td></tr>
+        <tr><td>zcode:</td><td><?php echo $this->invent->zcode; ?></td></tr>
+        <tr><td>content:</td><td><?php echo $this->invent->content; ?></td></tr>
+        <tr><td>progress:</td><td><?php echo isset($progress[$this->invent->progress]) ? $progress[$this->invent->progress] :''; ?></td></tr>
+        <tr><td>status:</td><td><?php echo $this->invent->status; ?></td></tr>
+        <tr><td>created:</td><td><?php echo $this->invent->created; ?></td></tr>
+        <tr><td>changed:</td><td><?php echo $this->invent->changed; ?></td></tr>
+        </tbody>
+    </table>
+</div>
+<?php $this->replace(); ?>

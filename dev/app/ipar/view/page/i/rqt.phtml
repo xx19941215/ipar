@@ -1,0 +1,28 @@
+<?php
+$this->layout('layout/ipar', [
+    'html_title' => $this->user->nick
+]);
+?>
+
+<?php $this->section('main'); ?>
+
+<?php echo $this->insert('module/i-home-top', ['user' => $this->user]); ?>
+
+<?php echo $this->insert('module/i-home-menu', ['selected' => 'rqt']); ?>
+
+<?php echo $this->insert('module/no-search-result') ?>
+
+<div class="entity-set-wrap"></div>
+
+<div class="loading" data-action="search" data-page="1" data-type_key="rqt" data-uid="<?php echo $this->user->uid; ?>">
+    <span class="one"><?php echo trans('loading'); ?></span>
+    <span class="two"><?php //echo trans('see-more'); ?></span>
+</div>
+
+<?php $this->replace(); ?>
+
+<?php $this->section('side'); ?>
+<?php echo $this->insert('module/i-follow-right', [
+    'uid' =>  $this->user->uid,
+    'is_following' => $this->is_following ]); ?>
+<?php $this->replace(); ?>

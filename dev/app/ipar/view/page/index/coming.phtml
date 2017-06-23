@@ -1,0 +1,82 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>点趴 - 随时与世界讨论你生活中的需求和好点子</title>
+    <meta name="keywords" content="需求，消费者心智挖掘，市场定位，创意，创客，设计师，智制，解决方案，众创，众筹，孵化，原创设计">
+    <meta name="description" content="一个真实的创意诞生社区。帮助你随时随地记录生活需求，讨论创意方案。">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1452654673_2049623.css"/>
+<link rel="stylesheet" href="//static.ideapar.com/css/ipar.css"/>
+    <style>
+        .row.coming {
+            padding-top: 100px;
+            text-align: center;
+        }
+
+        .page-auth .page-footer {
+       padding-top: 30px;
+       max-width: 1000px;
+       margin: auto;
+        }
+    body.bg-white {
+        min-width: inherit;
+    }
+    .row {
+        width: inherit;
+        max-width: inherit;
+        padding: 0 21px;
+    }
+    .pop-panel.mask-weixin {
+       top: 75px;
+       max-width: 95%;
+    }
+    </style>
+</head>
+<body class="bg-white">
+<div class="page-auth">
+    <div class="auth-header">
+        <a href="/" class="icon">&#xe61a;</a>
+    </div>
+    <div class="row coming"><img src="//static.ideapar.com/img/coming.png"/></div>
+    <div class="page-footer page-footer-white">
+    <div class="row">
+        <div class="icons-right-small">
+            <a class="iconweibo" href="http://weibo.com/5763590919" target="_blank"><i class="icon icon-iconweibo"></i></a>
+            <a class="wx-follow J_weixin iconweixin" href="javascript:" target="_blank"><i class="icon icon-iconweixin"></i></a>
+            <a class="iconfacebook" href="https://www.facebook.com/ideapar2015/" target="_blank"><i class="icon icon-iconfacebook"></i></a>
+            <a class="icontwitter" href="https://twitter.com/ideapar2015/" target="_blank"><i class="icon icon-icontwitter"></i></a>
+        </div>
+        <div class="copyright">
+            <p>&copy;2015 ideapar.com. All rights reserved. | 沪ICP备15027035</p>
+        </div>
+    </div>
+</div>
+    <div class="hide">
+        <div class="pop-panel mask-weixin" style="display: none; margin-left: -190px;">
+            <div class="wx-qrcode-wrapper">
+                <div class="img"><img src="http://static.ideapar.com/img/wechat-qrcode-249x249.png"></div>
+                <div class="txt">用微信扫一扫，关注点趴微信公众号</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="//static.ideapar.com/js/dist/ipar.js"></script>
+<script>
+(function (z, s) {
+    'use strict';
+
+    var pop_panel = z.pop_panel({panel_class: 'mask-weixin'});
+
+    pop_panel.append(s('.wx-qrcode-wrapper'));
+
+    s('.wx-follow').on('click', function () {
+        pop_panel.show();
+    });
+}(window.z, window.z.selector));
+</script>
+</body>
+</html>
+

@@ -1,0 +1,116 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-user'),
+    'breadcrumbs' => ['admin-user']
+]);
+$flipped_privilege = array_flip(config()->get('privilege')->all());
+
+$users = $this->user_set->getItems();
+$page_count = $this->user_set->getPageCount();
+
+?>
+
+<?php $this->section('page-body'); ?>
+
+<?php echo $this->insert('module/form/query'); ?>
+
+<div class="row column">
+    <?php foreach ($users as $user) { ?>
+        <div class="user-info-wrap">
+            <div class="nickname">
+                <span class="title"><?php echo trans('nick'); ?></span>
+                <span><?php echo $user->nick; ?></span>
+            </div>
+            <div class="basic-info">
+                <ul>
+                    <li>
+                        <span class="title"><?php echo trans('uid'); ?></span>
+                        <span><?php echo $user->uid; ?></span>
+                    </li>
+                    <li>
+                        <span class="title"><?php echo trans('email'); ?></span>
+                        <span><?php echo $user->email; ?></span>
+                    </li>
+                    <li>
+                        <span class="title"><?php echo trans('phone'); ?></span>
+                        <span><?php echo $user->phone; ?></span>
+                    </li>
+                    <li>
+                        <span class="title"><?php echo trans('wechat'); ?></span>
+                        <span>
+                            <?php if (isset($user->unionid) || isset($user->openid)) {
+                                echo trans('wechat-bound');
+                            } ?>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="title"><?php echo trans('weibo'); ?></span>
+                        <span>
+                            <?php if (isset($user->wb_uid)) {
+                                echo trans('weibo-bound');
+                            } ?>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="login-info">
+                <ul>
+                    <li>
+                        <span class="title"><?php echo trans('created'); ?></span>
+                        <span><?php echo $user->created; ?></span>
+                    </li>
+                    <li>
+                        <span class="title"><?php echo trans('changed'); ?></span>
+                        <span><?php echo $user->changed; ?></span>
+                    </li>
+                    <li>
+                        <span class="title"><?php echo trans('logined'); ?></span>
+                        <span><?php echo $user->logined; ?></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="status-info">
+                <ul>
+                    <li>
+                        <span class="title"><?php echo trans('privilege'); ?></span>
+                        <span>
+                         <a href="<?php echo route_url('admin-user-assign-privilege', ['uid' => $user->uid]); ?>">
+                             <?php if ($privilege_txt = isset($flipped_privilege[$user->privilege]) ?
+                                 $flipped_privilege[$user->privilege] : $user->privilege) { ?>
+                                 <?php echo $privilege_txt; ?>
+                             <?php } else { ?>
+                                 <?php echo trans('assign-privilege'); ?>
+                             <?php } ?>
+                         </a>
+                    </span>
+                    </li>
+                    <li>
+                        <span class="title"><?php echo trans('actions'); ?></span>
+                        <span>
+                            <?php if ($user->status == 1) { ?>
+                                <a class="button tiny warning" href="<?php echo route_url('admin-user-deactivate',
+                                    ['uid' => $user->uid]); ?>">
+                                    <?php echo trans('deactivate'); ?>
+                                </a>
+                            <?php } else { ?>
+                                <a class="button tiny info" href="
+                                    <?php echo route_url('admin-user-activate', ['uid' => $user->uid]); ?>">
+                                    <?php echo trans('activate'); ?>
+                                </a>
+                                <a class="button tiny alert" href="
+                                    <?php echo route_url('admin-user-delete', ['uid' => $user->uid]); ?>">
+                                    <?php echo trans('delete'); ?>
+                                </a>
+                            <?php } ?>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <?php } ?>
+
+    <?php echo $this->insert('element/pagination', ['page_count' => $page_count]); ?>
+
+</div>
+
+<?php $this->replace(); ?>

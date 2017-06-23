@@ -1,0 +1,92 @@
+<?php
+$range_config = config()->get('size_range');
+$type_key = get_type_key($this->company->type_id);
+?>
+
+<div class="group-info">
+    <div class="logo-box">
+        <ul>
+            <li class="group-logo">
+                <span class="button <?php if ($this->company->status == 1) echo 'success'; ?>">
+                    <?php echo get_type_key($this->{$type_key}->type_id) ?>
+                </span>
+            </li>
+            <li class="group-fullname"><span><?php echo $this->{$type_key}->fullname; ?></span></li>
+            <li class="group-operation">
+                <?php if ($this->company->status == 1) { ?>
+                    <a href="<?php echo route_url("admin-ui-{$type_key}-deactivate", ['gid' => $this->company->gid]) ?>">
+                        <?php echo trans('deactivate') ?>
+                    </a>
+                <?php } else { ?>
+                    <a href="<?php echo route_url("admin-ui-{$type_key}-activate", ['gid' => $this->company->gid]) ?>">
+                        <?php echo trans('activate') ?>
+                    </a>
+                <?php } ?>
+                <a href="<?php echo route_url("admin-ui-{$type_key}-edit", ['gid' => $this->company->gid]); ?>"
+                   target="_blank">
+                    <?php echo trans('edit'); ?>
+                </a>
+                <?php if ($this->company->status == 0) {
+                    echo '<a href="' . route_url("admin-ui-{$type_key}-delete", ['gid' => $this->company->gid]) . '">' . trans('delete') . '</a>';
+                } ?>
+            </li>
+        </ul>
+    </div>
+    <p class="group-time-info">
+        <span class="group-create-info">
+            Created: <span class="group-created-person"><?php echo user($this->{$type_key}->uid)->nick; ?></span>
+            <span class="group-created"><?php echo $this->{$type_key}->created; ?></span>
+        </span>
+        <span class="group-changed-info">
+            Last edit: <span class="group-changed-person"><?php echo user($this->{$type_key}->uid)->nick; ?></span>
+            <span class="group-changed"><?php echo $this->{$type_key}->changed; ?></span>
+        </span>
+    </p>
+    <div class="group-content-box">
+        <div class="group-logo">
+            <img src="<?php
+            if (json_decode($this->{$type_key}->logo, true)) {
+                echo img_src($this->{$type_key}->getLogo(), 'small');
+            } else {
+                echo static_url('/img/default_img.png');
+            }
+            ?>">
+            <a href="<?php echo route_url("admin-ui-{$type_key}-logo", ['group_id' => $this->{$type_key}->gid]); ?>"
+               class="change-logo">
+                <i class="icon icon-camera"></i>
+            </a>
+        </div>
+        <div class="group-description">
+            <p>
+                <span><?php echo trans("name") ?>：</span>
+                <?php echo $this->{$type_key}->name; ?>
+            </p>
+            <p>
+                <span><?php echo trans("legal-person") ?>：</span>
+                <?php echo $this->{$type_key}->legal_person; ?>
+            </p>
+            <p>
+                <span><?php echo trans("regsister-time") ?>：</span>
+                <?php echo $this->{$type_key}->established; ?>
+            </p>
+            <p>
+                <span><?php echo trans("regsister-address") ?>：</span>
+                <?php echo $this->{$type_key}->reg_address; ?>
+            </p>
+            <p>
+                <span><?php echo trans("company-address") ?>：</span>
+                <?php echo $this->{$type_key}->company_address; ?>
+            </p>
+            <p>
+                <span><?php echo trans("website") ?>：</span>
+                <a href="<?php echo $this->{$type_key}->website; ?>" target="_blank">
+                    <?php echo $this->{$type_key}->website; ?>
+                </a>
+            </p>
+            <p>
+                <span><?php echo trans("size") ?>：</span>
+                <?php echo array_search($this->{$type_key}->size_range_id, $range_config->all()); ?>
+            </p>
+        </div>
+    </div>
+</div>

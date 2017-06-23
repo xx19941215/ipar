@@ -1,0 +1,21 @@
+
+<form action="<?php echo $this->action; ?>" method="post">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="product_eid" value="<?php echo $this->product->eid; ?>">
+    <input type="hidden" name="id" value="<?php echo $this->id; ?>">
+    <label>
+        <?php echo trans('title'); ?>
+        <input type="text" name="title" required="required" value="<?php echo $this->title; ?>">
+    </label>
+    <?php if ($this->errors) { ?>
+    <p class="errors">
+        <?php foreach ($this->errors as $err_key => $err_val) { ?>
+            <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+        <?php } ?>
+    </p>
+    <?php } ?>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <?php echo $this->insert('element/link-go-back'); ?>
+    </div>
+</form>

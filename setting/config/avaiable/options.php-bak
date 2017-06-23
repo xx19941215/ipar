@@ -1,0 +1,191 @@
+<?php
+
+$base_host = $this->get('base_host');
+
+$site_main_dir = $this->get('site.main.dir');
+$site_db_host = $this->get('site.db.host');
+$site_cache_host = $this->get('site.cache.host');
+
+$this
+    ->set('site', [
+        'www' => ['host' => 'www.' . $base_host],
+        'login' => ['host' => 'login.' . $base_host],
+        'logout' => ['host' => 'logout.' . $base_host],
+        'reg' => ['host' => 'reg.' . $base_host],
+        'safe' => ['host' => 'safe.' . $base_host],
+        'admin' => ['host' => 'admin.' . $base_host],
+
+        'api' => ['host' => 'api.' . $base_host],
+        'i' => ['host' => 'i.' . $base_host],
+
+        'wx' => ['host' => 'wx.' . $base_host],
+    ])
+    ->set('i18n', [
+        'db' => [
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_general_ci',
+            'driver' => 'mysql',
+            'host' => $site_db_host,
+        ],
+        'cache' => [
+            'host' => $site_cache_host,
+            'database' => 3
+        ],
+        'locale' => [
+            'available' => [
+                'zh-cn' => '中国 - 简体中文',
+                'en-us' => 'United States - English',
+            ],
+            'enabled' => [
+                'zh-cn' => '中国 - 简体中文',
+                'zh-tw' => '台灣 - 繁體中文',
+                'en-us' => 'United States - English',
+            ],
+            'default' => 'zh-cn'
+        ]
+    ])
+
+    ->set('db', [
+        'default' => [
+            'adapter' => 'pdo',
+            'driver' => 'mysql',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_general_ci',
+            'host' => $site_db_host,
+        ]
+    ])
+    ->set('img', [
+        'base_url' => 'http://' . $this->get('site.static.host') . '/upload',
+        'base_dir' => $this->get('site.static.dir') . '/upload'
+    ])
+
+    ->set('session', [
+        'cookie_domain' => $base_host,
+        'cookie_path' => '/',
+        'cookie_lifetime' => 8640000,
+        'name' => 'IPARSESS',
+        "save_handler" => "redis",
+        'save_path' => "tcp://{$site_cache_host}:6379"
+    ])
+    ->set('view', [
+        'folders' => [$site_main_dir . '/views/foil/tpl']
+    ])
+    ->set('service', [
+        'user' => 'UserService',
+        'entity' => 'EntityService',
+        'story' => 'StoryService',
+
+        'comment' => 'CommentService',
+        'tag' => 'TagService',
+        'follow' => 'FollowService',
+
+        'rqt' => 'Ipar\RqtService',
+        'invent' => 'Ipar\InventService',
+        'idea' => 'Ipar\IdeaService',
+
+        'feature' => 'Ipar\FeatureService',
+
+        'appearance' => 'Ipar\AppearanceService',
+        'sketch' => 'Ipar\SketchService',
+
+        'demo' => 'Ipar\DemoService',
+        'product' => 'Ipar\ProductService',
+        'pri' => 'Ipar\PriService',
+
+        'team' => 'Ipar\TeamService',
+        'meeting' => 'Ipar\MeetingService',
+    ])
+    ->set('repo', [
+        'user' => 'UserRepo',
+        'entity' => 'EntityRepo',
+        'story' => 'StoryRepo',
+
+        'comment' => 'CommentRepo',
+        'tag' => 'TagRepo',
+        'follow' => 'FollowRepo',
+
+        'rqt' => 'Ipar\RqtRepo',
+
+        'idea' => 'Ipar\IdeaRepo',
+
+        'rqt_feature' => 'Ipar\RqtFeatureRepo',
+
+        'invent' => 'Ipar\InventRepo',
+        'invent_rqt' => 'Ipar\InventRqtRepo',
+        'invent_feature' => 'Ipar\InventFeatureRepo',
+        'invent_team' => 'Ipar\InventTeamRepo',
+        'invent_meeting' => 'Ipar\InventMeetingRepo',
+
+        'feature' => 'Ipar\FeatureRepo',
+
+        'appearance' => 'Ipar\AppearanceRepo',
+        'sketch' => 'Ipar\SketchRepo',
+
+        'team' => 'Ipar\TeamRepo',
+        'team_member' => 'Ipar\TeamMemberRepo',
+
+        'meeting' => 'Ipar\MeetingRepo',
+        'meeting_member' => 'Ipar\MeetingMemberRepo',
+
+        'demo' => 'Ipar\DemoRepo',
+
+        'product' => 'Ipar\ProductRepo',
+
+        'pri' => 'Ipar\PriRepo', //released product item
+        'pri_rqt' => 'Ipar\PriRqtRepo',
+        'pri_feature' => 'Ipar\PriFeatureRepo'
+    ])
+    ->set('dto', [
+        'user' => 'UserDto',
+        'entity' => 'EntityDto',
+        'story' => 'StoryDto',
+        'gstory' => 'GStoryDto',
+
+        'comment' => 'CommentDto',
+        'tag' => 'TagDto',
+        'entity_tag' => 'EntityTagDto',
+
+        'rqt' => 'Ipar\RqtDto',
+
+        'idea' => 'Ipar\IdeaDto',
+
+        'rqt_feature' => 'Ipar\RqtFeatureDto',
+
+        'invent' => 'Ipar\InventDto',
+        'invent_rqt' => 'Ipar\InventRqtDto',
+        'invent_feature' => 'Ipar\InventFeatureDto',
+        'invent_team' => 'Ipar\InventTeamDto',
+        'invent_meeting' => 'Ipar\InventMeetingDto',
+
+        'feature' => 'Ipar\FeatureDto',
+
+        'appearance' => 'Ipar\AppearanceDto',
+        'sketch' => 'Ipar\SketchDto',
+
+        'team' => 'Ipar\TeamDto',
+        'team_member' => 'Ipar\TeamMemberDto',
+        'team_invite' => 'Ipar\TeamInviteDto',
+
+        'demo' => 'Ipar\DemoDto',
+
+        'product' => 'Ipar\ProductDto',
+
+        'pri' => 'Ipar\PriDto',
+        'pri_rqt' => 'Ipar\PriRqtDto',
+        'pri_feature' => 'Ipar\PriFeatureDto',
+    ])
+    ->set('middleware', [
+        'http' => [
+            'Csrf'
+        ],
+        'route' => [
+            'Acl'
+        ]
+    ])
+    ->set('mail', [
+        'sendcloud' => [
+            'api_user' => 'ant_send_ideapar',
+            'api_key' => 'BGWAY4HLOGWHfhiF',
+            'from' => 'no-reply@send.ideapar.com'
+        ]
+    ]);

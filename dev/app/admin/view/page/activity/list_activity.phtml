@@ -1,0 +1,67 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-article-activate')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+
+<?php //print_r($this->set); ?>
+<div class="activity">
+    <table>
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Title</td>
+                <td>Description</td>
+                <td>Action</td>
+                <td>add-index-banner-pic</td>
+                <td>add-asso-product</td>
+                <td>edit-asso-product</td>
+                <td>edit-video</td>
+                <td>Show-index</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->set as $k => $v) : ?>
+                <tr>
+                    <td><?php echo $v->id;?></td>
+                    <td><?php echo $v->title;?></td>
+                    <td><?php echo $v->description;?></td>
+                    <td><a href="<?php echo route_url('admin-activity-list-edit');?>?id=<?php echo $v->id;?>">edit</a></td>
+                    <td><a href="<?php echo route_url('admin-ui-activity-add-index-banner'); ?>?id=<?php echo $v->id;?>">add</a></td>
+                    <td><a href="<?php echo route_url('admin-activity-select-product'); ?>?id=<?php echo $v->id;?>">add</a></td>
+                    <td><a href="<?php echo route_url('admin-activity-edit'); ?>?id=<?php echo $v->id;?>">edit</a></td>
+                    <td><a href="<?php echo route_url('admin-ui-config_video'); ?>?id=<?php echo $v->id;?>">edit</a></td>
+                    <td><input onclick="advice_to_index(<?php echo $v->id;?>);"
+                        type="button" style="width:80px;" value = "<?php echo $v->status ? '√' : '';?>" /></td>
+                    <td>
+                        <a href="./delete-activity?id=<?php echo $v->id;?>">delete</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div>
+        <a target="_blank" href="<?php echo route_url('ipar-ui-page-activity-index'); ?>"><?php echo trans('admin-activity-show-page'); ?></a>
+        <a href="<?php echo route_url('admin-ui-activity-cancel-all-index-advice'); ?>"><?php echo trans('admin-activity-cancel-index-page'); ?></a>
+    </div>
+</div>
+<script type="text/javascript">
+function advice_to_index(id)
+{
+    // var data_list = document.getElementsByClassName('data_list');
+    // console.log(data_list);
+    // for (i in data_list) {
+    //     data_list[i].value = '';
+    // }
+    // document.getElementById('data_'+id).value = '√';
+    // console.log(document.getElementById('data_'+id));
+    location.href = './advice-index-page?id=' + id;
+}
+</script>
+
+<?php echo $this->insert('element/pagination', ['page_count' => $this->pageCount]); ?>
+
+<?php $this->replace(); ?>

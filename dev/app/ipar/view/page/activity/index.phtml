@@ -1,0 +1,74 @@
+<style>
+.page-body
+{
+    width : 100%;
+}
+</style>
+
+<?php $this->layout('layout/page', [
+    'csses' => [
+        'ipar.css' => 1,
+        'page.css' => 1
+    ]
+]);  ?>
+
+<?php $this->section('main'); ?>
+
+<div class="bike-activity-ad" style="height:600px;background-image: url(<?php echo json_decode($this->set['data']->img_banner); ?>);">
+    <div class="bike-activity-info">
+        <div class="bike-activity-title">
+        <?php echo $this->set['data']->title; ?>
+        </div>
+        <div class="bike-activity-message">
+        <?php echo $this->set['data']->description; ?>
+        </div>
+        <div class="bike-activity-deadline">
+            <p>
+                <?php echo $this->set['data']->expired; ?> 截止
+            </p>
+        </div>
+    </div>
+</div>
+<?php if (!empty($this->set['data']->video)) { ?>
+    <div class="activity-video" style="text-align:center;margin-top: 90px;">
+        <embed src="http://static.video.qq.com/TPout.swf?auto=1&vid=<?php echo $this->set['data']->video; ?>&outhost=http://cf.qq.com/"
+        allowFullScreen="true" autostart="true" quality="high" width="880" height="600" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+    </div>}
+<?php } ?>
+<div class="bike-activity-brandcontainer">
+<div class="bike-activity-brand row">
+    <?php foreach ($this->products as $key => $v) : ?>
+    <div class="" style="display:inline-block;">
+        <a href="<?php echo route_url('ipar-product-show',['zcode' => $v->zcode]); ?>"
+            target="_blank"><img src="<?php echo $this->set['data_detail'][$key]->changed_img; ?>" alt="" /></a>
+        <div class="to-look">
+            <a href="<?php echo route_url('ipar-product-show',['zcode' => $v->zcode]); ?>"
+                target="_blank" style="display: block;
+    width: 150px;
+    height: 50px;
+    border: 2px solid;
+    text-align: center;
+    margin: 50px auto;
+    border-radius:10px;
+    line-height:50px;">
+                <button class="bike-activityBtn" type="button" name="button">去看看</button>
+            </a>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</div>
+</div>
+<div class="bike-activity-detail" style="max-width: 880px;">
+    <div class="bike-activity-rule" style="width: 90%; margin: auto;">
+        <?php echo $this->set['data']->rule; ?>
+    </div>
+</div>
+<div class="bike-activity-ideapar">
+    <div class="bike-activity-ideaparQrcode">
+        <img src="<?php echo static_url('/img/wx_qrcode2.png'); ?>"alt="" />
+    </div>
+    <p>
+        点趴订阅号
+    </p>
+</div>
+<?php $this->replace(); ?>

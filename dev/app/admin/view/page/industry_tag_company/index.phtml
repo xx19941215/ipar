@@ -1,0 +1,43 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('companies-with-the-industrial-tag'),
+    'breadcrumbs' => ['']
+]); ?>
+<?php $tag = $this->tag; ?>
+<?php $this->section('page-body'); ?>
+    <div class="entity-show">
+        <?php echo $this->insert("module/industry_tag-menu", ['select' => 'company', 'tag' => $tag]); ?>
+        <h2><?php echo trans('industry-tag') . ':' . $tag->title; ?></h2>
+        <?php echo $this->insert('module/form/query'); ?>
+        <h3><?php echo trans('companies-with-the-industrial-tag'); ?></h3>
+        <table>
+            <thead>
+            <tr>
+                <td><?php echo trans('gid'); ?></td>
+                <td><?php echo trans('company-fullname'); ?></td>
+                <td><?php echo trans('operation'); ?></td>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->company_set->getItems() as $company) { ?>
+                <tr>
+                    <td><?php echo $company->gid; ?></td>
+                    <td>
+                        <a href="<?php echo route_url('admin-ui-company-show', ['gid' => $company->gid]) ?>"
+                           target="_blank">
+                            <?php echo $company->fullname; ?>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="<?php echo route_url('admin-ui-industry_tag_company-unlink', ['tag_id' => $tag->id, 'gid' => $company->gid]); ?>">
+                            <?php echo trans('delete'); ?>
+                        </a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+<?php echo $this->insert('element/pagination', ['page_count' => $this->company_set->getPageCount()]); ?>
+
+<?php $this->replace(); ?>

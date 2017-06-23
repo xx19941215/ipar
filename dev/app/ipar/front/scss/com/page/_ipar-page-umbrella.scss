@@ -1,0 +1,330 @@
+.umbrella-activity-ad {
+  background: -webkit-linear-gradient(top, #ff7700, #ffcc00);
+  height: 656px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  @media screen and (max-width: 415px) {
+    height: 500px;
+  }
+
+  .umbrella-activity-title {
+    p {
+      padding-top: 102px;
+      margin-bottom: 56px;
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 1;
+      @media screen and (max-width: 415px) {
+        font-size: 30px;
+      }
+      span {
+        @media screen and (max-width: 415px) {
+          display: block;
+        }
+      }
+    }
+    img {
+      @media screen and (max-width: 415px) {
+        width: 25em;
+      }
+    }
+  }
+
+  .umbrella-activity-advertise p {
+    margin: 16px auto;
+    font-size: 30px;
+    font-weight: 100;
+    line-height: 1;
+    @media screen and (max-width: 415px) {
+      font-size: 25px;
+    }
+  }
+  .umbrella-banner-container {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 996px;
+    @media screen and (max-width: 415px) {
+      bottom: -10px;
+    }
+    img {
+      @media screen and (max-width: 415px) {
+        width: 25em;
+      }
+    }
+  }
+}
+
+.culture {
+  background-image: url("http://ipar-static.nos-eastchina1.126.net/img/bgwater.png");
+  background-size: cover;
+  text-align: center;
+  padding: 110px;
+  @media screen and (max-width: 415px) {
+    padding: 40px 15px;
+  }
+  .umbrella-activity-introduce p {
+    font-size: 16px;
+    color: #004e66;
+    @media screen and (max-width: 415px) {
+      font-size: 13px;
+    }
+  }
+}
+
+.umbrella-activity-container {
+  background: #ffffff;
+  color: #222;
+  text-align: center;
+  padding: 52px;
+  @media screen and (max-width: 415px) {
+    padding: 52px 5px;
+  }
+  .pdttitle p {
+    font-size: 25px;
+    font-weight: 700;
+  }
+  .umbrella-activity-logo img {
+    margin: 48px 71px 5px;
+
+    @media screen and (max-width: 800px) {
+      margin: 48px 30px 5px;
+      width: 100px;
+    }
+
+    @media screen and (max-width: 415px) {
+      margin: 48px 15px 5px;
+      width: 70px;
+    }
+  }
+  .umbrella-activity {
+    padding: 40px 1px;
+    .umbrella-title {
+      hr {
+        width: 70px;
+        border: 0;
+        background-color: #222222;
+        height: 1px;
+        display: inline-block;
+        vertical-align: -67%;
+        margin: 22px;
+        @media screen and (max-width: 415px) {
+          width: 40px;
+          margin: 22px 3px;
+        }
+      }
+      p {
+        font-size: 20px;
+        font-weight: 700;
+        display: inline;
+      }
+    }
+    .umbrella-introduce p {
+      margin: 20px auto;
+      font-size: 14px;
+      max-width: 750px;
+      color: #666;
+      @media screen and (max-width: 415px) {
+        margin-left: 12px;
+        margin-right: 12px;
+      }
+    }
+    .product-list {
+      margin: 20px auto;
+      width: 700px;
+      @media screen and (max-width: 615px) {
+        margin: 1px auto;
+        width: 550px;
+      }
+      @media screen and (max-width: 415px) {
+        margin: 1px auto;
+        width: 350px;
+      }
+    }
+    .umbrella-product-footer {
+      width: 60%;
+      height: 1px;
+      margin: auto;
+      background-color: #D5D5D5;
+      overflow: hidden;
+      @media screen and (max-width: 1024px) {
+        width:90%;
+      }
+      @media screen and (max-width: 815px) {
+        width:95%;
+      }
+    }
+    .box-wrap {
+      margin-bottom: 20px;
+      .box-title{
+        font-weight: 400;
+        font-size: 15px;
+        color: #666;
+      }
+      @media screen and (max-width: 415px) {
+        width: 49%;
+      }
+      @media screen and (max-width: 380px) {
+        width: 47%;
+      }
+      @media screen and (max-width: 325px) {
+        width: 44%;
+      }
+
+    }
+  }
+}
+
+.hotlist {
+  background: #ffffff;
+  color: #222;
+  text-align: center;
+  margin: -5px;
+  padding: 45px 1px;
+  .umbrella-activity-title p {
+    font-size: 25px;
+    font-weight: 700;
+  }
+  .umbrella-activity-rank {
+    margin: 50px auto;
+    width: 700px;
+    @media screen and (max-width: 615px) {
+      margin: 10px auto;
+      width: 500px;
+    }
+    @media screen and (max-width: 415px) {
+      margin: 10px auto;
+      width: 380px;
+    }
+    .top {
+      width: 70px;
+      color: #666;
+      text-align: center;
+      border: 1px solid #666;
+      border-radius: 3px;
+      float: left;
+      margin: 10px 30px;
+      padding: 2px;
+      @media screen and (max-width: 415px) {
+        width: 60px;
+        margin: 3px 30px;
+      }
+    }
+    .story {
+      text-align: left;
+      .story-user-action {
+        margin-left: 18%;
+        .user {
+          width: 6%;
+        }
+        .main {
+          width: 50%;
+          @media screen and (max-width: 415px) {
+            margin-left: 10%;
+          }
+        }
+        @media screen and (max-width: 415px) {
+          margin-left: 8%;
+        }
+      }
+      .story-entity {
+        margin-left: 18%;
+        @media screen and (max-width: 415px) {
+          margin-left: 8%;
+        }
+      }
+      .story-ops {
+        margin-left: 18%;
+        @media screen and (max-width: 415px) {
+          margin-left: 8%;
+        }
+      }
+    }
+  }
+}
+
+.detail {
+  background: #ffffff;
+  color: #222;
+  text-align: center;
+  padding: 1px;
+  .umbrella-detail-title p {
+    font-size: 25px;
+    font-weight: 700;
+  }
+  .umbrella-detail {
+    color: #666;
+    margin: 55px 1px 66px;
+    .umbrella-detail-title p {
+      font-size: 16px;
+    }
+    .umbrella-detail-introduce p {
+      font-size: 14px;
+      margin: 10px 12px;
+      @media screen and (max-width: 615px) {
+        margin: 10px 22px;
+      }
+    }
+  }
+}
+
+.umbrella-activity-ideapar {
+  background: #ffffff;
+  color: #666;
+  text-align: center;
+  padding: 56px;
+  img {
+    margin: 0 auto;
+    width: 160px;
+  }
+  p {
+    margin-top: 18px;
+    font-size: 16px;
+  }
+}
+
+.anchor {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 13%;
+  display: none;
+  li {
+    margin-bottom: 28px;
+  }
+  span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    margin: 1px 11px;
+    vertical-align: middle;
+  }
+  a {
+    color: #222;
+    font-size: 14px;
+  }
+  .current span {
+    background: #222;
+  }
+  @media screen and (max-width: 1024px) {
+    display: none !important;
+  }
+}
+
+.umbrella-list-footer {
+  width: 60%;
+  height: 1px;
+  margin: auto;
+  background-color: #EEEEEE;
+  overflow: hidden;
+  @media screen and (max-width: 1024px) {
+    width:90%;
+  }
+  @media screen and (max-width: 815px) {
+    width:95%;
+  }
+}

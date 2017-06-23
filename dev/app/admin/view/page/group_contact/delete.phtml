@@ -1,0 +1,12 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-group-delete'),
+    'breadcrumbs' => ['admin-ui-group-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+    <div id="page-group-contact-delete">
+        <p><?php echo trans('Are-you-sure-to-delete-this-contact?')?></p>
+        <?php echo $this->insert('module/form/group_contact/admin-form-group_contact-delete'); ?>
+    </div>
+
+<?php $this->replace(); ?>

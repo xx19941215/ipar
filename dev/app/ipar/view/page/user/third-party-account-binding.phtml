@@ -1,0 +1,21 @@
+<?php
+$this->layout('layout/page', [
+]);
+?>
+
+<?php $this->section('main'); ?>
+<div class="user-setting">
+    <?php echo $this->insert('module/user-setting-menu', [
+        'select' => 'third-party-account-binding',
+        'user' => $this->user,
+    ]); ?>
+    <div class="setting-wrap">
+        <?php echo $this->insert('module/third-party-account-binding', [
+            'user' => $this->user,
+            'wx_state' => $this->wx_state
+        ]); ?>
+    </div>
+</div>
+
+<?php $this->replace(); ?>
+

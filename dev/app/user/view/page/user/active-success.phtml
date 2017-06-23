@@ -1,0 +1,16 @@
+<?php $this->layout('layout/auth2', [
+    'html_title' => trans('user-active-success'),
+]); ?>
+
+<?php $this->section('auth-content'); ?>
+    <div class="tips">— <?php echo trans('user-reg'); ?> —</div>
+    <h3><?php echo trans('email-active-success'); ?></h3>
+
+    <div class="auth-panel-form w-160">
+        <ul>
+            <li>
+                <a href="<?php echo route_url('login'); ?>" class="button submit"><?php echo trans('login-now'); ?></a>
+            </li>
+        </ul>
+    </div>
+<?php $this->stop(); ?>

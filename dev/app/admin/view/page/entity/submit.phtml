@@ -1,0 +1,43 @@
+<?php $this->layout('layout/admin', ['html_title' => trans('admin-entity-submit')]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="row column">
+    <h1><?php echo trans('admin-entity'); ?></h1>
+</div>
+
+
+<div class="row column">
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>user</th>
+                <th>eid</th>
+                <th>data</th>
+                <th>created</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($this->submit_set->getItems() as $submit) { ?>
+        <tr>
+            <td><?php echo $submit->id; ?></td>
+            <td><?php echo user($submit->uid)->nick; ?></td>
+            <td><?php echo $submit->eid; ?></td>
+            <td>
+                <?php foreach (json_decode($submit->data) as $key => $val) { ?>
+                <div>
+                    <strong><?php echo $key; ?></strong>:
+                    <?php echo $val; ?>
+                </div>
+                <?php } ?>
+            </td>
+            <td><?php echo $submit->created; ?></td>
+        </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->submit_set->getPageCount()]); ?>
+</div>
+
+<?php $this->replace(); ?>
+

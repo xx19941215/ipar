@@ -1,0 +1,35 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-user-delete')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="row column">
+    <p>
+        Are you sure to delete this user?
+    </p>
+    <p>
+        <span><?php echo $this->user->nick; ?></span>,
+        <span><?php echo $this->user->getPrimaryEmail(); ?></span>
+    </p>
+
+    <?php if ($this->errors) { ?>
+    <p>
+        <ul class="menu vertical">
+            <?php foreach ($this->errors as $key => $val) { ?>
+                <li><span class="label alert"><?php echo $key; ?>, <?php echo trans($val); ?></span></li>
+            <?php } ?>
+        </ul>
+    </p>
+    <?php } ?>
+
+    <form action="" method="post">
+        <?php echo csrf_field(); ?>
+        <input type="hidden" name="uid" value="<?php echo $this->user->uid; ?>">
+        <input type="submit" class="button tiny" value="<?php echo trans('yes'); ?>">
+        <a href="<?php echo route_url('admin-user'); ?>"><?php echo trans('cancel'); ?></a>
+    </form>
+
+</div>
+<?php $this->replace(); ?>

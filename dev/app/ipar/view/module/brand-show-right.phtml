@@ -1,0 +1,26 @@
+<div class="rsidebar">
+    <h3 class="side-title"><?php echo trans('brand'); ?></h3>
+    <div class="side-body">
+        <div class="brand-hot-list">
+        <?php if ($brand_product_items = $this->product->getBrandProductSet()->getItems()) { ?>
+            <?php foreach ($brand_product_items as $brand_product) { ?>
+            <?php $brand_main = $brand_product->getBrandMain(); ?>
+                <div class="brand item">
+                    <div class="vote-count">
+                        <span class="text"><?php echo $brand_product->countVote(); ?></span>
+                    </div>
+                    <div class="brand-title">
+                        <a href="<?php echo route_url('ipar-product-brand', ['zcode' => $brand_main->zcode]); ?>"><?php echo $brand_main->title; ?></a>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } ?>
+        </div>
+        <?php if (current_uid()) { ?>
+        <a class="brand-edit item" href="javascript:;" data-product_eid="<?php echo $this->product->eid; ?>">
+            <i class="icon icon-edit"></i>
+            <span class="text"><?php echo trans('brand-edit'); ?></span>
+        </a>
+        <?php } ?>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="id" value="<?php echo $this->id; ?>">
+    <label for="title"><?php echo trans('tag-title'); ?></label>
+    <input type="text" name="title" value="<?php echo $this->title; ?>">
+    <label for="content"><?php echo trans('tag-content'); ?></label>
+    <textarea rows="6" type="text" name="content"><?php echo $this->content; ?></textarea>
+    <input type="file" name="logo" value="<?php echo $this->logo; ?>">
+    <input type="hidden" name="uid" value="<?php echo current_uid(); ?>">
+
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_value) { ?>
+                <span class="label alert">
+                <?php echo $err_key; ?>,<?php echo $err_value; ?>
+            </span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+    </div>
+</form>

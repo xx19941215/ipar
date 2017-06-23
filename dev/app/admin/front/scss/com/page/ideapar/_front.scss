@@ -1,0 +1,1711 @@
+//layout
+.layout {
+  &-main {
+    float: left;
+    width: 690px;
+    margin-top: 20px;
+    position: relative;
+  }
+  &-side {
+    float: right;
+    width: 280px;
+    margin-top: 25px;
+  }
+}
+
+/* [ .side */
+.side-line {
+  width: 100%;
+  height: 1px;
+  margin: 20px 0;
+  background: #f2f2f2;
+}
+
+.side-author {
+  .title {
+    font-size: 14px;
+    color: #4a4a4a;
+  }
+  .avatarbox-big {
+    margin-top: 20px;
+    a {
+      position: relative;
+      display: block;
+      width: 148px;
+      height: 148px;
+      line-height: 148px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      overflow: hidden;
+      .icon-avatar1 {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        left: 50%;
+        margin-left: -74px;
+        font-size: 148px;
+        color: #e0e0e0;
+        line-height: 1;
+      }
+      .name {
+        position: absolute;
+        z-index: 2;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 28px;
+        line-height: 28px;
+        background: rgba(0, 0, 0, .3);
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.side-follow {
+  margin-top: 20px;
+  padding-top: 20px;
+  .button {
+    border-radius: 4px;
+    width: 84px;
+    height: 28px;
+    line-height: 28px;
+    color: #fff;
+    font-size: 12px;
+    padding: 0;
+    margin: 0 5px 16px 0;
+  }
+
+  .btn-unfollow {
+    background: #bbb;
+  }
+  .btn-follow {
+    background: transparent;
+    border: 1px solid #ed3535;
+    color: $primary-color;
+  }
+  .follow-title {
+    font-size: 14px;
+    color: #787878;
+    margin-bottom: 10px;
+    .num {
+      color: #000;
+    }
+  }
+  .follow-avatar {
+    overflow: hidden;
+    ul {
+      width: 300px;
+      overflow: hidden;
+    }
+    li {
+      float: left;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      margin: 0 8px 8px 0;
+      text-align: center;
+      .avatarbox {
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        background: #ececec;
+        border-radius: 50%;
+        .icon-avatar1 {
+          font-size: 22px;
+          color: #cbcccb;
+          position: relative;
+          top: 3px;
+        }
+        img {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+.side-tag {
+  .tag-title {
+    font-size: 14px;
+    color: #787878;
+  }
+  .side-tags {
+    margin-top: 5px;
+    a {
+      display: inline-block;
+      height: 22px;
+      line-height: 22px;
+      padding: 0 12px 1px;
+      border-radius: 1000px;
+      color: #f36e6a;
+      background: #ffeaea;
+      font-size: 14px;
+      margin: 0 8px 8px 0;
+    }
+  }
+  .side-addtagbtn {
+    a {
+      display: inline-block;
+      height: 22px;
+      line-height: 21px;
+      padding: 0 12px;
+      border-radius: 1000px;
+      color: #9b9b9b;
+      background: transparent;
+      font-size: 14px;
+      margin: 0 8px 8px 0;
+      border: 1px solid #e0e0e0;
+      .icon {
+        font-size: 12px;
+        margin-right: 3px;
+      }
+    }
+  }
+  .side-addtagbox {
+    input {
+      border: 1px solid #e0e0e0;
+      padding: 0 3px 3px;
+      width: 8em;
+      font-size: 14px;
+      display: inline-block;
+      height: 20px;
+      box-shadow: none;
+      margin: 0 8px 0 0;
+    }
+    button {
+      display: inline-block;
+      height: 22px;
+      line-height: 21px;
+      padding: 0 12px;
+      border-radius: 1000px;
+      color: #9b9b9b;
+      background: transparent;
+      font-size: 14px;
+      margin: 0 8px 0 0;
+      border: 1px solid #e0e0e0;
+    }
+    a {
+      font-size: 14px;
+      color: #9b9b9b;
+    }
+  }
+}
+
+.side-relate {
+  .relate-title {
+    font-size: 14px;
+    color: #787878;
+  }
+  .relate-list {
+    margin-top: 5px;
+    li {
+      position: relative;
+      padding-left: 8px;
+      &:before {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 50%;
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background: #4a4a4a;
+      }
+      a {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+/* side ]*/
+
+/* [ tnrl: topic + nav + reply-list */
+.tnrl {
+  &-topic {
+    overflow: hidden;
+    padding: 10px 0;
+    position: relative;
+    .avatarbox {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      width: 42px;
+      height: 42px;
+      line-height: 42px;
+      text-align: center;
+      background: #ececec;
+      border-radius: 50%;
+      .icon-avatar1 {
+        font-size: 32px;
+        color: #cbcccb;
+      }
+    }
+    .title {
+      a {
+        color: #4a4a4a;
+        font-size: 16px;
+      }
+      .edit {
+        font-size: 14px;
+        color: #ababab;
+        .icon {
+          font-size: 14px;
+          margin-right: 2px;
+          -webkit-text-stroke-width: 0;
+        }
+      }
+    }
+    .abstract {
+      font-size: 14px;
+      color: #787878;
+      margin-top: 10px;
+    }
+    .extra1 {
+      margin-top: 5px;
+      .icon {
+        font-size: 12px;
+      }
+    }
+  }
+  &-nav {
+    background: #f2f2f2;
+    border-radius: 4px;
+    padding: 10px 15px;
+    position: relative;
+    .nav-title {
+      color: #4a4a4a;
+      font-size: 14px;
+      float: left;
+      line-height: 20px;
+      .icon {
+        color: #bbb;
+        font-size: 24px;
+        margin-right: 5px;
+        position: relative;
+        top: 1px;
+      }
+    }
+    .nav-tab {
+      float: right;
+      line-height: 28px;
+      a {
+        font-size: 14px;
+        margin-right: 20px;
+        &.active {
+          color: $primary-color;
+        }
+      }
+    }
+    .nav-btns {
+      float: right;
+      .button {
+        border-radius: 4px;
+        width: 60px;
+        height: 28px;
+        line-height: 28px;
+        color: #fff;
+        font-size: 12px;
+        padding: 0;
+        margin: 0;
+      }
+      .icon-add {
+        font-size: 12px;
+      }
+    }
+    .nav-btns:hover {
+      .nav-dropdown-menu {
+        display: block;
+      }
+    }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      z-index: 100;
+      right: 0;
+      top: 47px;
+      width: 116px;
+      border: 1px solid #d7d7d7;
+      border-radius: 4px;
+      background: #fff;
+      &:before {
+        position: absolute;
+        top: -16px;
+        left: 50%;
+        margin-left: 6px;
+        content: '';
+        border: 8px solid transparent;
+        border-bottom-color: rgba(0, 0, 0, 0.15);
+      }
+      &:after {
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        margin-left: 7px;
+        content: '';
+        border: 7px solid transparent;
+        border-bottom-color: #fff;
+      }
+      a {
+        display: block;
+        line-height: 20px;
+        padding: 5px 15px;
+        color: #b9b9ba;
+        font-size: 14px;
+        position: relative;
+        border-top: 1px solid #ececec;
+        .icon {
+          margin-right: 5px;
+        }
+        &:first-of-type {
+          border-top: none;
+        }
+        &:hover {
+          background: #f7f7f7;
+        }
+      }
+    }
+  }
+}
+
+.topleftnav {
+  position: absolute;
+  top: 20px;
+  left: -165px;
+  width: 135px;
+  height: 290px;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  padding-top: 10px;
+  .icon {
+    font-size: 30px;
+  }
+  > .line {
+    margin: 18px 10px 10px;
+    height: 1px;
+    background: #d7d7d7;
+  }
+  .active {
+    color: $primary-color;
+  }
+  .doing {
+    color: #9b9b9b;
+  }
+  .todo {
+    color: #ccc;
+  }
+}
+
+/* --dev 以上为公有模块提取， 以便复又 -- */
+
+.invent-wrap {
+  padding: 30px 0 70px;
+}
+
+.invent-title {
+  text-align: center;
+  padding: 0 140px;
+  h2 {
+    font-size: 24px;
+    color: #4a4a4a;
+    .icon {
+      font-size: 18px;
+      vertical-align: middle;
+    }
+  }
+  .tips {
+    display: inline-block;
+    font-size: 16px;
+    color: #666;
+    text-align: left;
+  }
+}
+
+.invent-form {
+  &-input {
+    li {
+      margin-bottom: 30px;
+    }
+    input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #9b9b9b;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      font-size: 16px;
+      padding: 14px 25px;
+      line-height: 1;
+      margin-bottom: 10px;
+      &::-webkit-input-placeholder {
+        color: #a3a3a3;
+      }
+      &:-moz-placeholder {
+        color: #a3a3a3;
+      }
+      &::-moz-placeholder {
+        color: #a3a3a3;
+      }
+      &:-ms-input-placeholder {
+        color: #a3a3a3;
+      }
+    }
+    .counting {
+      text-align: right;
+      color: #a3a3a3;
+    }
+  }
+  &-submit {
+    text-align: center;
+    .button {
+      margin-left: 20px;
+      margin-bottom: 0;
+      font-size: 20px;
+      padding: 10px 25px 14px;
+      min-width: 160px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &.secondary {
+        color: #fff;
+        background: #c7c7c7;
+        &:hover {
+          background: #d7d7d7;
+        }
+      }
+
+    }
+  }
+  .msg-error {
+    margin: -30px 30px 0 25px;
+    color: $error-color;
+    font-size: 14px;
+    .icon {
+      margin-right: 5px;
+    }
+  }
+}
+
+.invite-wrap {
+  overflow: hidden;
+  .invite-box {
+    text-align: center;
+    width: 47%;
+    height: 350px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    padding: 40px 20px;
+    .p1 {
+      margin-top: 30px;
+    }
+    .icon-weibo {
+      font-size: 80px;
+      color: #4a4a4a;
+      line-height: 1;
+    }
+    .p2 {
+      color: #4a4a4a;
+      font-size: 24px;
+      margin-top: 15px;
+    }
+    .p3 {
+      color: #9b9b9b;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    .p5 {
+      position: relative;
+    }
+    .button {
+      font-size: 13px;
+    }
+    .a2 {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      color: $primary-color;
+      margin-left: 20px;
+    }
+  }
+}
+
+.invent-invite-user {
+
+}
+
+.wrap-show-detail {
+  margin-left: 161px;
+  margin-right: 315px;
+  padding: 25px 30px 20px;
+  .show-titlearea {
+    padding: 0 20px 0 6px;
+    h1 {
+      font-size: 26px;
+      color: #4a4a4a;
+    }
+    .tags {
+      margin-top: 30px;
+      span {
+        margin-right: 30px;
+        &.highlight {
+          color: $primary-color;
+        }
+        .icon {
+          margin-right: 5px;
+        }
+      }
+    }
+    .abstract {
+      margin-top: 30px;
+      color: #999;
+    }
+    .author {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #4a4a4a;
+    }
+  }
+
+  .show-abstract {
+    padding: 0 20px 0 6px;
+    margin-top: 30px;
+    border-top: 1px solid #d8d8d8;
+    h2 {
+      color: #4a4a4a;
+      font-size: 24px;
+    }
+
+    ul {
+      overflow: hidden;
+      margin-top: 30px;
+      li {
+        float: left;
+        width: 310px;
+        height: 280px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, .5);
+        h3 {
+          font-size: 36px;
+          color: #fff;
+          text-align: center;
+          margin: 60px 0;
+        }
+        .abstrat {
+          margin: 0 20px;
+          font-size: 16px;
+          color: #fff;
+          border-top: 1px solid #fff;
+          padding: 15px 10px;
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+//注册&登录
+
+.page-auth {
+  background: #fff;
+  .auth-header {
+    height: 80px;
+    padding-top: 10px;
+    text-align: center;
+    color: $primary-color;
+    border-bottom: 1px solid #f0f0f0;
+    a {
+      color: $primary-color;
+    }
+    .icon {
+      font-size: 50px;
+      line-height: 1;
+    }
+  }
+  .auth-main {
+    position: relative;
+    min-height: 600px;
+    background: url("../img/pic_ideapar.png") center 200px no-repeat;
+    .auth-slogonimg {
+      position: absolute;
+      z-index: 1;
+      left: 150px;
+      top: 60px;
+    }
+    .auth-panel {
+      position: absolute;
+      z-index: 2;
+      right: 90px;
+      top: 30px;
+      width: 325px;
+      &-tab {
+        a {
+          display: inline-block;
+          width: 50%;
+          padding-bottom: 5px;
+          border-bottom: 2px solid transparent;
+          color: #9b9b9b;
+          font-size: 16px;
+          text-align: center;
+          &:hover {
+            color: $primary-color;
+          }
+          &.active {
+            color: $primary-color;
+            border-bottom: 2px solid $primary-color;
+          }
+        }
+      }
+      &-form {
+        padding-top: 24px;
+        position: relative;
+        li {
+          .input-field {
+            border: 1px solid #d6d6d6;
+            overflow: hidden;
+            margin-top: -1px;
+            position: relative;
+            z-index: 1;
+            &.has-error {
+              z-index: 2;
+              border: 1px solid $primary-color;
+            }
+          }
+          input {
+            width: 100%;
+            height: 48px;
+            border-radius: 2px;
+            box-shadow: none;
+            border: none;
+            margin: 0;
+            padding: 8px 16px 12px;
+          }
+          &:first-of-type {
+            .input-field {
+              border-top-left-radius: 2px;
+              border-top-right-radius: 2px;
+            }
+          }
+          &:last-of-type {
+            .input-field {
+              border-bottom-right-radius: 2px;
+              border-bottom-left-radius: 2px;
+            }
+          }
+        }
+        .submit {
+          width: 100%;
+          border-radius: 2px;
+          margin: 10px 0;
+          font-size: 14px;
+          padding: 10px 30px 11px;
+          background: $primary-color;
+          color: #fff;
+          line-height: 1.5;
+        }
+        .pwdlink {
+          float: right;
+          color: #f67f80;
+          font-size: 14px;
+        }
+      }
+      &-third {
+        h3 {
+          font-size: 12px;
+          color: #9b9b9b;
+          position: relative;
+          text-align: center;
+          margin-top: 10px;
+          &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 1px;
+            background: #eee;
+          }
+          span {
+            position: relative;
+            z-index: 2;
+            background: #fff;
+            padding: 0 10px;
+          }
+        }
+      }
+      &-center {
+        margin-top: 30px;
+        text-align: center;
+        h3 {
+          font-size: 20px;
+          color: #4a4a4a;
+          .icon {
+            font-size: 30px;
+            color: #69bd0d;
+            vertical-align: -3px;
+            margin-right: 5px;
+          }
+        }
+        .auth-panel-form {
+          padding-top: 10px;
+        }
+        .w-320 {
+          width: 320px;
+          margin: 0 auto;
+        }
+        .w-160 {
+          width: 160px;
+          margin: 0 auto;
+        }
+        .tips {
+          color: #9b9b9b;
+          font-size: 14px;
+        }
+        .errorbox {
+          text-align: left;
+        }
+      }
+    }
+  }
+  .page-footer {
+    padding-top: 10px;
+    .copyright {
+      border-top: none;
+    }
+  }
+}
+
+//登录后页面
+
+.page-story {
+
+}
+
+.story-section-title {
+  margin-top: 25px;
+  padding-bottom: 15px;
+  color: #4a4a4a;
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
+}
+
+.story-section {
+  margin: 30px auto;
+  .story-entity {
+    position: relative;
+    padding-left: 170px;
+    .main {
+      border-top: 1px solid #e0e0e0;
+      border-right: 1px solid #e0e0e0;
+      background: #fff;
+      font-size: 18px;
+      &-body {
+        border-top: 1px dashed #ececec;
+      }
+      h2 {
+        padding: 20px 30px;
+        font-weight: bold;
+        color: #333;
+        font-size: 18px;
+        margin: 0;
+      }
+      &-input {
+        padding: 11px 22px;
+        color: #333;
+        input {
+          margin: 0;
+          border: none;
+          box-shadow: none;
+          font-size: 16px;
+          padding: 7px 8px 8px;
+          width: 100%;
+        }
+      }
+      &-cnt {
+        padding: 20px 30px;
+      }
+      &-textarea {
+        padding: 12px 22px;
+        textarea {
+          border: none;
+          box-shadow: none;
+          font-size: 16px;
+          margin: 0;
+          height: 10em;
+        }
+      }
+      &-imgupload {
+        padding: 20px 30px;
+        a {
+          .icon {
+            font-size: 30px;
+            color: #d6d6d6;
+          }
+        }
+      }
+    }
+    &-rqt {
+      .title {
+        border-left: 4px solid $color-rqt;
+      }
+      .main {
+        border-left: 4px solid $color-rqt;
+      }
+    }
+    &-idea {
+      .title {
+        border-left: 4px solid $color-idea;
+      }
+      .main {
+        border-left: 4px solid $color-idea;
+      }
+    }
+    &-invent {
+      .title {
+        border-left: 4px solid $color-invent;
+      }
+      .main {
+        border-left: 4px solid $color-invent;
+      }
+    }
+    &-feature {
+      .title {
+        border-left: 4px solid $color-feature;
+      }
+      .main {
+        border-left: 4px solid $color-feature;
+      }
+    }
+    &-sketch {
+      .title {
+        border-left: 4px solid $color-sketch;
+      }
+      .main {
+        border-left: 4px solid $color-sketch;
+      }
+    }
+    &-appearance {
+      .title {
+        border-left: 4px solid $color-appearance;
+      }
+      .main {
+        border-left: 4px solid $color-appearance;
+      }
+    }
+    &-label {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      font-size: 20px;
+      color: #4a4a4a;
+      margin-bottom: 18px;
+      &:after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        left: 20px;
+        top: 40px;
+        width: 6px;
+        height: 100%;
+        background: #d8d8d8;
+      }
+      .icon {
+        position: relative;
+        z-index: 2;
+        display: inline-block;
+        width: 46px;
+        height: 46px;
+        line-height: 46px;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;
+        font-size: 18px;
+        -webkit-text-stroke-width: 0;
+        margin-right: 10px;
+      }
+      .icon-s-rqt {
+        background: $color-rqt;
+      }
+      .icon-s-idea {
+        background: $color-idea;
+      }
+      .icon-s-invent {
+        background: $color-invent;
+      }
+      .icon-s-feature {
+        background: $color-feature;
+      }
+      .icon-s-sketch {
+        background: $color-sketch;
+      }
+      .icon-s-appearance {
+        background: $color-appearance;
+      }
+    }
+    &:first-of-type {
+      .main {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+    }
+    &:last-of-type {
+      .main {
+        border-bottom: 1px solid #e0e0e0;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+      .story-entity-label:after {
+        display: none;
+      }
+    }
+  }
+  .operatearea {
+    margin-top: 20px;
+    padding-left: 170px;
+    button {
+      border-radius: 1000px;
+      font-size: 16px;
+      width: 190px;
+      padding: 10px 30px;
+      color: #fff;
+      &.btn-rqt {
+        background-color: $color-rqt;
+      }
+      &.btn-idea {
+        background-color: $color-idea;
+      }
+      &.btn-invent {
+        background-color: $color-invent;
+      }
+      &.btn-feature {
+        background-color: $color-feature;
+      }
+      &.btn-sketch {
+        background-color: $color-sketch;
+      }
+      &.btn-appearance {
+        background-color: $color-appearance;
+      }
+    }
+    &-title {
+      font-size: 16px;
+      color: #4a4a4a;
+    }
+    .btn-mood {
+      margin-top: 10px;
+      button {
+        width: 142px;
+        padding: 3px 40px 4px;
+        margin-right: 10px;
+        background: none;
+        border: 2px solid #9b9b9b;
+        border-radius: 1000px;
+        color: #9b9b9b;
+        &:hover {
+          background: $primary-color;
+          border: 2px solid $primary-color;
+          color: #fff;
+        }
+        &.active {
+          border: 2px solid $primary-color;
+          color: $primary-color;
+          &:hover {
+            color: #fff;
+          }
+        }
+        .icon {
+          font-size: 40px;
+          -webkit-text-stroke-width: 0;
+          line-height: 1;
+        }
+      }
+      .btn-cancel {
+        font-size: 16px;
+        color: #9b9b9b;
+        margin-left: 10px;
+        position: relative;
+        top: -6px;
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+// 创建需求
+.page-rqt-create {
+  .story-section {
+    width: 868px;
+  }
+}
+
+//S 需求列表页
+.rqt-list-main {
+  float: left;
+  width: 690px;
+  margin-top: 30px;
+  h2 {
+    color: #4a4a4a;
+    font-size: 18px;
+    margin: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+.rqt-list-side {
+  float: right;
+  width: 280px;
+  margin-top: 25px;
+}
+
+//E 需求列表页
+//S 需求详情页
+
+//E 需求详情页
+//S 创意列表页
+.page-invent-list {
+  .index-list-wrap-title {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin: 10px 0 0 0;
+  }
+  .index-idea-list {
+    width: 100%;
+    margin: 0;
+    float: none;
+    ul {
+      width: 1020px;
+    }
+    li {
+      margin-right: 15px;
+    }
+  }
+}
+
+//E 创意列表页
+
+//S 搜索结果页
+.page-srh-list {
+  h2 {
+    margin: 0;
+    padding: 0 0 0 30px;
+    border-bottom: 1px solid #ccc;
+    a {
+      font-size: 16px;
+      color: #4a4a4a;
+      display: inline-block;
+      height: 56px;
+      line-height: 60px;
+      &:hover {
+        color: $primary-color;
+      }
+      &.active {
+        color: $primary-color;
+        border-bottom: 4px solid $primary-color;
+      }
+    }
+    span {
+      color: #e0e0e0;
+      font-size: 16px;
+      margin: 0 20px;
+    }
+  }
+}
+
+//E 搜索结果页
+
+//S 个人中心
+.ps-center-info {
+  .info-panel {
+    width: 100%;
+    height: 274px;
+    background: url("../img/bg-ps-info.jpg") no-repeat;
+    border-radius: 4px 4px 0 0;
+    padding: 20px;
+    position: relative;
+    .avatarbox-big {
+      float: left;
+      margin-right: 25px;
+      position: relative;
+      width: 115px;
+      height: 115px;
+      .avatar {
+        width: 115px;
+        height: 115px;
+        line-height: 115px;
+        background: #f1f1f1;
+        border-radius: 4px;
+        text-align: center;
+        .icon-avatar1 {
+          color: #dbdcdc;
+          font-size: 120px;
+          position: relative;
+          top: 5px;
+        }
+        img {
+          width: 115px;
+          height: 115px;
+          border-radius: 4px;
+          vertical-align: bottom;
+        }
+      }
+      .camera {
+        display: none;
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        line-height: 1;
+        .icon-camera {
+          color: #fff;
+          line-height: 1;
+        }
+      }
+      &:hover {
+        .camera {
+          display: block;
+        }
+      }
+    }
+    .name {
+      font-size: 30px;
+      color: #fff;
+      position: relative;
+      line-height: 1;
+    }
+
+    .followbtns {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      width: 84px;
+      height: 28px;
+      .icon {
+        margin-right: 5px;
+      }
+    }
+    .tagarea {
+      margin-top: 35px;
+      .title {
+        color: rgba(255, 255, 255, .6);
+        font-size: 13px;
+      }
+      .tag {
+        border: 1px solid #fff;
+        border-radius: 1000px;
+        color: #fff;
+        font-size: 13px;
+        padding: 3px 10px;
+      }
+      .edit {
+        color: rgba(255, 255, 255, .6);
+        position: relative;
+        top: 6px;
+        .icon {
+          font-size: 13px;
+        }
+      }
+    }
+    .motto-date-area {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding: 10px 20px;
+    }
+    .mottoarea {
+      float: left;
+      .title {
+        color: rgba(255, 255, 255, .6);
+        font-size: 13px;
+      }
+      .motto {
+        color: #fff;
+        font-size: 20px;
+        .edit {
+          color: rgba(255, 255, 255, .6);
+          position: relative;
+          top: 3px;
+          .icon {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    .datearea {
+      float: right;
+      margin-top: 10px;
+      color: rgba(255, 255, 255, .6);
+      font-size: 13px;
+      .date {
+        color: #fff;
+
+      }
+    }
+  }
+  .info-links {
+    width: 100%;
+    height: 54px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 0 0 4px 4px;
+    a {
+      float: left;
+      height: 52px;
+      line-height: 52px;
+      color: #4a4a4a;
+      font-size: 14px;
+      .num {
+        color: #ababab;
+      }
+      &:hover {
+        color: $primary-color;
+      }
+      &.active {
+        color: $primary-color;
+        border-bottom: 4px solid $primary-color;
+        .num {
+          color: $primary-color;
+        }
+      }
+    }
+    .dot {
+      float: left;
+      margin: 0 30px;
+      height: 52px;
+      line-height: 52px;
+      color: #ababab;
+    }
+    .home {
+      width: 66px;
+      text-align: center;
+      color: #ccc;
+      border-right: 1px solid #e0e0e0;
+      margin-right: 30px;
+      .icon {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+.ps-center-list {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-top: 22px;
+  h3 {
+    padding: 10px 20px;
+    color: #4a4a4a;
+    font-size: 16px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .module-uem-list {
+    margin-top: -5px;
+  }
+}
+
+.page-pscenter {
+  .layout-side {
+    margin-top: 15px;
+  }
+  .side-follow {
+    border-top: 1px solid #f2f2f2;
+    &:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+  }
+}
+
+.layout-side {
+  .reports {
+    border-top: 1px solid #f2f2f2;
+    margin-top: 20px;
+    padding-top: 20px;
+    a {
+      color: #787878;
+      font-size: 14px;
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  .browse-number {
+    border-top: 1px solid #f2f2f2;
+    margin-top: 20px;
+    padding-top: 20px;
+    color: #bbb;
+    font-size: 12px;
+  }
+}
+
+//E 个人中心
+//S 关于我们
+.page-aboutus {
+  color: #4a4a4a;
+}
+
+.aboutus-h1 {
+  font-size: 30px;
+  text-align: center;
+  margin: 20px 0;
+  height: 40px;
+  line-height: 40px;
+}
+
+.aboutus-section {
+  padding-bottom: 50px;
+  h2 {
+    font-size: 24px;
+    text-align: center;
+    margin: 40px 0;
+    height: 30px;
+    line-height: 30px;
+  }
+}
+
+.aboutus-company {
+  h2 {
+    margin: 20px 0;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+.aboutus-contect {
+  background: #f5f5f5;
+  padding-bottom: 65px;
+  .map {
+    float: left;
+    margin-right: 60px;
+    img {
+      max-width: 600px;
+    }
+  }
+  .txt {
+    float: left;
+    font-size: 14px;
+    color: #5c5c5c;
+    p {
+      margin-bottom: 30px;
+      .icon {
+        font-size: 24px;
+        margin-right: 14px;
+        color: #9b9b9b;
+      }
+    }
+  }
+}
+
+.aboutus-team {
+  .team {
+    width: 100%;
+    overflow: hidden;
+    ul {
+      width: 1170px;
+      li {
+        float: left;
+        width: 220px;
+        text-align: center;
+        margin-right: 170px;
+        margin-bottom: 70px;
+        .name {
+          margin: 30px 0 10px;
+          font-weight: bold;
+          font-size: 20px;
+        }
+        .intro {
+          color: #9b9b9b;
+          font-size: 14px;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+//E 关于我们
+//S 消息列表
+.page-message-list {
+  padding-bottom: 100px;
+  .left-nav {
+    margin-top: 32px;
+    float: left;
+    width: 155px;
+    a {
+      display: block;
+      color: #4a4a4a;
+      font-size: 14px;
+      padding: 14px;
+      .icon {
+        margin-right: 10px;
+        color: #9b9b9b;
+      }
+      .icon-dotlarge {
+        margin-left: 10px;
+        font-size: 12px;
+        color: $primary-color;
+      }
+    }
+    .active {
+      background: #f4f4f4;
+    }
+  }
+  .message-list {
+    margin-top: 20px;
+    float: left;
+    width: 845px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 20px;
+    li {
+      overflow: hidden;
+      padding: 10px 20px 10px 70px;
+      position: relative;
+      border-top: 1px solid #f2f2f2;
+      &:first-of-type {
+        border-top: none;
+      }
+    }
+    .module-uem {
+      .abstract {
+        padding-right: 30px;
+      }
+    }
+  }
+}
+
+//E 消息列表
+//E 团队组建
+.layout-main {
+  > .line {
+    height: 1px;
+    background: #ccc;
+  }
+}
+
+.team-joinin {
+  position: relative;
+  margin-top: 20px;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  padding: 30px;
+  .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #d8d8d8;
+    .icon {
+      font-size: 18px;
+    }
+  }
+  p {
+    color: #000;
+    font-size: 18px;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .joinin-btn {
+    text-align: center;
+    margin-top: 20px;
+    .btn {
+      display: inline-block;
+      width: 160px;
+      height: 48px;
+      line-height: 48px;
+      border-radius: 1000px;
+      background: $primary-color;
+      color: #fff;
+      font-size: 16px;
+    }
+  }
+}
+
+.team-members {
+  margin-top: 30px;
+  overflow: hidden;
+  h3 {
+    color: #4a4a4a;
+    font-size: 16px;
+  }
+  ul {
+    width: 750px;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  li {
+    float: left;
+    width: 80px;
+    height: 100px;
+    overflow: hidden;
+    margin-right: 20px;
+    text-align: center;
+    .avatarbox {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+    }
+    .avatar {
+      .icon {
+        font-size: 40px;
+        color: #c8c9ca;
+      }
+      img {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #c8c9ca;
+        border-radius: 50%;
+      }
+    }
+    .name {
+      margin-top: 10px;
+      color: #9b9b9b;
+      font-size: 13px;
+    }
+  }
+}
+
+.team-creat {
+  margin-top: 30px;
+  overflow: hidden;
+  h3 {
+    color: #4a4a4a;
+    font-size: 16px;
+  }
+  .team-invitation {
+    margin-top: 20px;
+    width: 700px;
+    overflow: hidden;
+    li {
+      width: 340px;
+      height: 244px;
+      float: left;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 15px;
+      text-align: center;
+      &:first-child {
+        margin-right: 10px;
+      }
+      .iconbox {
+        padding-top: 20px;
+        .icon {
+          font-size: 100px;
+          color: #272636;
+        }
+      }
+      .title {
+        color: #4a4a4a;
+        font-size: 18px;
+      }
+      .txt {
+        margin-top: 10px;
+        color: #bbb;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+//E 团队组建
+
+// hit follow
+.hit-item {
+  display: none;
+}
+
+.hit-follow {
+  .follow-item {
+    display: inline-block;
+  }
+}
+
+.hit-following {
+  .following-item {
+    display: inline-block;
+  }
+}
+
+.btn-hit {
+  &.hit-following:hover {
+    .following-item {
+      display: none;
+    }
+    .unfollow-item {
+      display: inline-block;
+    }
+  }
+  &.hit-waiting {
+    .waiting-item {
+      display: inline-block;
+    }
+  }
+
+  .hit-item {
+    width: 84px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .follow-item {
+    background: #fff;
+    color: #ed3535;
+    border: 1px solid #ed3535;
+    &:hover {
+      color: #fff;
+      background: #ed3535;
+    }
+  }
+  .following-item {
+    background: #ed3535;
+    color: #fff;
+    border: 1px solid #ed3535;
+  }
+  .unfollow-item {
+    border: 1px solid #ed3535;
+    color: #ed3535;
+    background: #fff;
+  }
+  .waiting-item {
+    border: 1px solid #fff;
+    background: #bbb;
+    color: #fff;
+  }
+}
+
+.icon-hit {
+  &.hit-waiting {
+    .following-item {
+      display: inline-block;
+      .icon {
+        color: #bbb;
+      }
+    }
+  }
+
+  .follow-item:hover .icon {
+    color: #ff8b89;
+  }
+  .following-item:hover .icon {
+    color: #999;
+  }
+}

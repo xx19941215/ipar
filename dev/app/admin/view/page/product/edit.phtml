@@ -1,0 +1,22 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-product-edit'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_content' => false,
+        'select' => 'edit',
+    ]); ?>
+
+    <div class="row column">
+        <h1><?php echo trans('admin-product-edit'); ?></h1>
+        <?php echo $this->insert('module/form/admin-form-product'); ?>
+    </div>
+</div>
+
+<?php $this->replace(); ?>

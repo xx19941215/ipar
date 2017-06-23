@@ -1,0 +1,29 @@
+<form action="<?php echo $this->action;?>" method="post">
+    <?php echo csrf_field(); ?>
+
+    <div><?php echo trans('resource');?></div>
+
+    <div>
+        <span><?php echo trans('company');?></span>
+        <input type="text" name="title" phalcon="name" value="<?php echo $this->title;?>"></input>
+    </div>
+    <div>
+        <span><?php echo trans('describe');?></span>
+        <textarea name="content"></textarea>
+    </div>
+    <div>
+        <div><?php echo trans('logo'); ?></div>
+        <span class="change-company-logo">
+            <i class="icon icon-camera"></i>
+        </span>
+        <input type="hidden" class="company-logo-url" name="company_logo_url" value=""></input>
+    </div>
+    <div>
+        <span><?php echo trans('address'); ?></span>
+        <input type="text" name="address" class="keyword" width="500px" style="margin-bottom: auto;" autocomplete="off"></input>
+        <input type="hidden" class="address_id" name="address_id" value="1">
+        </input>
+        <div id="suggestion"></div>
+    </div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>" style="margin-top: 25px;">
+</form>

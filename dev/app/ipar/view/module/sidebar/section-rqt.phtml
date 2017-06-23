@@ -1,0 +1,19 @@
+<?php
+$rqt_set = service('entity')->schEntitySet([
+    'type_key' => 'rqt'
+]);
+$rqts = $rqt_set->setCountPerPage(5)->getItems();
+?>
+
+<div class="section">
+    <h3 class="section-title"><?php echo trans('hot-rqt'); ?><a href="<?php echo route_url('ipar-rqt-index')?>" class="float-right"><?php echo trans("more")?>+</a></h3>
+    <div class="section-body">
+    <?php foreach ($rqts as $rqt) { ?>
+        <div class="item">
+        <a href="<?php echo route_url('ipar-rqt-show', ['zcode' => $rqt->zcode]); ?>">
+            <?php echo title_text($rqt->title); ?>
+        </a>
+        </div>
+    <?php } ?>
+    </div>
+</div>

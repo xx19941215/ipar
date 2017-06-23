@@ -1,0 +1,14 @@
+<?php
+$this->layout('page', [
+    'jses' => ['ipar.editor.js' => 1],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+    <?php echo $this->insert('include/form/story-form', [
+        'story_title' => trans('page-appearance-create-title'),
+        'action' => route_url('appearance-create-post'),
+        'type' => 'appearance',
+        'cancel' => route_url('appearance-index')
+    ]); ?>
+<?php $this->replace(); ?>

@@ -1,0 +1,62 @@
+<?php
+$social_config = config()->get('social');
+$type_key = ((bool)$this->group) ? "group" : "company";
+?>
+
+<?php echo $this->insert('module/form/group_social/admin-form-group_social-items', [
+    'type' => $type_key,
+    'social_config' => $social_config,
+    'group_social_set' => $this->group_social_set
+]); ?>
+
+<div class="row column">
+    <form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
+        <input type="hidden" name="gid" value="<?php echo $this->{$type_key}->gid; ?>">
+        <input type="hidden" name="id" value="<?php echo $this->group_social->id; ?>">
+        <label>
+            <?php echo trans('social'); ?>
+            <select name="social_id">
+                <?php
+                if ($this->action == 'add') {
+                    foreach (config()->get('social')->all() as $key => $id) {
+                        echo "<option value = " . $id . " >" . $key . "</option>";
+                    }
+                } else {
+                    echo "<option value=" . $this->group_social->social_id . ">" . array_search($this->group_social->social_id, $social_config->all()) . "</option>";
+                }
+                ?>
+            </select>
+        </label>
+        <label>
+            <?php echo trans('name') . '*'; ?>
+            <input type="text" name="name" required="required" value="<?php echo $this->group_social->name; ?>"
+                   placeholder="<?php echo trans('social-name'); ?>">
+        </label>
+        <label>
+            <?php echo trans('url'); ?>
+            <input type="url" name="url" value="<?php echo $this->group_social->url; ?>"
+                   placeholder="<?php echo trans('http://website-address'); ?>">
+        </label>
+        <label>
+            <?php echo trans('qrcode'); ?>
+            <input type="file" name="qrcode" value="<?php echo $this->group_social->qrcode; ?>">
+        </label>
+
+        <?php if ($this->errors) { ?>
+            <p class=" errors">
+                <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                    <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+                <?php } ?>
+            </p>
+        <?php } ?>
+        <br>
+        <div>
+            <input type="submit" class="button small" value="<?php echo trans('sure'); ?>">
+            <a class="button success small" href="<?php echo route_url("admin-ui-{$type_key}_social-list", ['gid'
+            => $this->{$type_key}->gid]); ?>">
+                <?php echo trans('return'); ?>
+            </a>
+        </div>
+    </form>
+</div>

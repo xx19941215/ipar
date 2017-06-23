@@ -1,0 +1,48 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('industry_tag-index'),
+    'breadcrumbs' => ['admin-ui-industry_tag-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<?php echo $this->insert('module/form/query', [
+    'buttons' => [
+        ['link' => route_url('admin-ui-industry_tag-add'), 'text' => trans('add-industry_tag')]
+    ]
+]); ?>
+    <div class="row">
+        <h3><?php echo trans('industry-tag'); ?></h3>
+        <table class="groups">
+            <thead>
+            <tr>
+                <th><?php echo trans('id'); ?></th>
+                <th><?php echo trans('title'); ?></th>
+                <th><?php echo trans('content'); ?></th>
+                <th><?php echo trans('edit'); ?></th>
+                <th><?php echo trans('status'); ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($this->industry_tag_set->getItems() as $industry_tag) { ?>
+                <tr>
+                    <td><?php echo $industry_tag->id; ?></td>
+                    <td class="tag-index-title">
+                        <a href="<?php echo route_url('admin-ui-industry_tag-show', ['tag_id' => $industry_tag->id]); ?>"
+                           target="_blank">
+                            <?php echo $industry_tag->title; ?>
+                        </a>
+                    </td>
+                    <td><?php echo $industry_tag->content; ?></td>
+                    <td>
+                        <a href="<?php echo route_url('admin-ui-tag-edit', ['tag_id' => $industry_tag->id]); ?>"
+                           target="_blank"><?php echo trans('edit'); ?></a>
+                    </td>
+                    <td>
+                        <a href="<?php echo route_url('admin-ui-industry_tag-delete', ['tag_id' => $industry_tag->id]); ?>"><?php echo trans('delete'); ?></a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+<?php echo $this->insert('element/pagination', ['page_count' => $this->industry_tag_set->getPageCount()]); ?>
+<?php $this->replace(); ?>

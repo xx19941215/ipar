@@ -1,0 +1,16 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-entity'),
+    'breadcrumbs' => ['admin-entity']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+
+<?php echo $this->insert('module/order'); ?>
+<?php echo $this->insert('module/form/query'); ?>
+
+
+<div class="row column">
+    <?php echo $this->insert('module/entity-set', ['entity_set' => $this->entity_set]); ?>
+</div>
+
+<?php $this->replace(); ?>

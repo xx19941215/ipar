@@ -1,0 +1,38 @@
+<?php
+$locales = config()->get('i18n.locale.available')->all();
+?><table class="table-entity">
+    <thead>
+        <tr>
+            <th>str</th>
+            <th>trans</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php if($this->transes) {
+      foreach ($this->transes as $trans) { ?>
+    <tr>
+        <td><?php echo $trans->str; ?></td>
+        <td>
+            <?php foreach ($locales as $locale => $opt) { ?>
+            <?php if ($ts = isset($trans->transes[$opt['id']]) ? $trans->transes[$opt['id']] : '') { ?>
+            <div>
+                <span><?php echo $locale . ': '; ?></span><?php echo $ts; ?>
+            </div>
+            <?php } ?>
+            <?php } ?>
+        </td>
+        <td>
+            <a class="button tiny" href="<?php echo route_url("admin-trans-edit", ['id' => $trans->id]); ?>">
+                <?php echo trans('edit'); ?>
+            </a>
+            <?php /* ?>
+            <?php if(current_user()->isAdmin()) {?>
+                <a class="button tiny alert" href="<?php echo route_url("admin-trans-delete", ['id' => $trans->id]); ?>"><?php echo trans('delete'); ?></a>
+            <?php } ?>
+            <?php */ ?>
+        </td>
+    </tr>
+    <?php } }?>
+    </tbody>
+</table>

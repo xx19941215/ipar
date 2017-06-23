@@ -1,0 +1,18 @@
+#!/usr/bin/python
+# -*- coding: utf8 -*-
+
+
+def getConfig():
+
+	host = "127.0.0.1"
+	user = "ideapar"
+	passwd = "123456789"
+	useDb = "ideapar"
+	table = "dr_entity"
+
+	return host,user,passwd,useDb,table
+
+
+
+	
+# */5 * * * * python /var/python/cron.py >>/var/python/cron/log.log 2>&1

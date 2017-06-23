@@ -1,0 +1,50 @@
+<div class="third-party-login">
+    <p>
+        <i></i>
+        <span><?php echo trans('use-third-party-account-to-login'); ?></span>
+        <i></i>
+    </p>
+    <div class="icon-container">
+        <a target="_blank" class="icon icon-weixin-round"
+           href="javascript:void(0)"
+           onclick="isWeChat()">
+        </a>
+        <a class="icon icon-weibo-round  "
+           href="javascript:void(0)"
+           onclick="wbLogin()"></a>
+        <a class="icon icon-qq-round hide"></a>
+    </div>
+</div>
+<script type="text/javascript">
+    function isWeChat() {
+        var ua = navigator.userAgent.toLowerCase();
+        isWeChat = ua.indexOf('micromessenger') != -1;
+
+        var openappid = '<?php echo $this->config->get("wechat.open.app_id"); ?>',
+            serviceappid = '<?php echo $this->config->get("wechat.service.app_id");?>',
+            key = '<?php echo translator()->getLocaleKey();?>',
+            state = '<?php echo $this->wx_state;?>';
+
+        if (isWeChat) {
+            window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='
+                + serviceappid + '&redirect_uri=http%3a%2f%2fwx.ideapar.com%2f'
+                + key + '%2f&response_type=code&state='
+                + state + '&scope=snsapi_userinfo#wechat_redirect';
+        } else {
+            window.location.href = 'https://open.weixin.qq.com/connect/qrconnect?appid='
+                + openappid + '&redirect_uri=http%3a%2f%2fwx.ideapar.com%2f'
+                + key + '%2f&response_type=code&scope=snsapi_login&state='
+                + state + '#wechat_redirect';
+        }
+    }
+function wbLogin(){
+    var wb_appkey =  '<?php echo $this->config->get("wb.open.app_key"); ?>';
+    var key = '<?php echo translator()->getLocaleKey();?>';
+    var state = '<?php echo $this->wb_state;?>';
+    var callbackurl = '<?php echo $this->config->get("wb.open.wb_callback_url"); ?>';
+    window.location.href = 'https://api.weibo.com/oauth2/authorize?client_id='
+        + wb_appkey + '&redirect_uri='
+        + callbackurl + '&response_type=code&scope=email&state='
+        + state;
+}
+</script>

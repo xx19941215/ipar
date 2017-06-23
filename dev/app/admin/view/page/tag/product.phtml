@@ -1,0 +1,25 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('tag'),
+    'breadcrumbs' => ['']
+]);
+$tag = $this->tag;
+$entity_set = $this->entity_set;
+?>
+<?php $this->section('page-body'); ?>
+    <div class="entity-show">
+        <?php echo $this->insert("module/tag-menu", ['select' => 'product', 'tag' => $tag]); ?>
+        <h2>标签：<?php echo $tag->title; ?></h2>
+        <div class="tag-time">
+            <ul>
+                <li>Created: <?php echo $tag->created; ?></li>
+                <li>Last edit: <?php echo $tag->changed; ?></li>
+            </ul>
+        </div>
+        <div class="tag-body">
+            <?php echo $this->insert('module/entity-set', ['entity_set' => $entity_set]); ?>
+            <?php echo $this->insert('element/pagination', ['page_count' => $this->entity_set->getPageCount()]); ?>
+        </div>
+    </div>
+
+<?php $this->replace(); ?>

@@ -1,0 +1,35 @@
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<?php echo $this->company_product->id; ?>">
+<!--    <input type="hidden" name="gid" value="--><?php //echo $this->company_product->gid; ?><!--">-->
+<!--    <input type="hidden" name="eid" value="--><?php //echo $this->company_product->eid; ?><!--">-->
+    <input type="hidden" name="gid" value="<?php echo $this->gid; ?>">
+    <input type="hidden" name="eid" value="<?php echo $this->eid; ?>">
+<!--    <input type="hidden" name="gid" value="2">-->
+<!--    <input type="hidden" name="eid" value="2">-->
+    <table>
+        <thead>
+        <tr>
+            <th><?php echo trans('eid'); ?></th>
+            <th><?php echo trans('product-name'); ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><?php echo $this->company_product->eid; ?></td>
+            <td><?php echo $this->company_product->title; ?></td>
+        </tr>
+        </tbody>
+    </table>
+    <input type="submit" class="button small" value="<?php echo trans('unlink'); ?>">
+
+    <?php if ($this->errors) { ?>
+        <p class="errors">
+            <?php foreach ($this->errors as $err_key => $err_val) { ?>
+                <span class="label alert">
+                    <?php echo trans($err_key); ?>,
+                    <?php echo trans($err_val); ?>
+                </span>
+            <?php } ?>
+        </p>
+    <?php } ?>
+</form>

@@ -1,0 +1,53 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-user-assign-role'),
+    'breadcrumbs' => ['admin-user', 'admin-role']
+]);
+
+?>
+
+<?php $this->section('page-body'); ?>
+
+<div class="row column">
+    <p>
+        Assign roles to this user.
+    </p>
+    <p>
+        <span><?php echo $this->user->nick; ?></span>,
+    </p>
+
+    <?php if ($this->errors) { ?>
+    <p>
+        <ul class="menu vertical">
+            <?php foreach ($this->errors as $key => $val) { ?>
+                <li><span class="label alert"><?php echo $key; ?>, <?php echo trans($val); ?></span></li>
+            <?php } ?>
+        </ul>
+    </p>
+    <?php } ?>
+
+    <form action="" method="post">
+        <?php echo csrf_field(); ?>
+
+        <input type="hidden" name="uid" value="<?php echo $this->user->uid; ?>">
+
+        <div>
+            <?php
+            if($this->roles) {
+              $i = 0;
+              foreach ($this->roles as $role) {?>
+                <input type='checkbox' name='role_id[]' id = "<?php echo 'checkbox-role_id-'.$i; ?>" value="<?php echo $role->id; ?>"<?php echo isset($this->user->roles[$role->title])? 'checked':'';?>>
+                </input>
+                <?php echo $role->title;$i++; ?>
+            <?php } }?>
+        </div>
+
+        <div>
+            <input type="submit" class="button tiny" value="<?php echo trans('submit'); ?>">
+            <a href="<?php echo route_url('admin-user'); ?>"><?php echo trans('cancel'); ?></a>
+        </div>
+    </form>
+
+</div>
+
+<?php $this->replace(); ?>

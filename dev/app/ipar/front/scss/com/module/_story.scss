@@ -1,0 +1,148 @@
+$story-avt-size: 40px;
+$cell-interval: 7px;
+.story {
+    max-width: 690px;
+    margin-bottom: 21px;
+    border-bottom: 1px solid $light-gray;
+    padding: 5px 7px 5px 0px;
+
+    .story-src {
+        margin-bottom: $cell-interval;
+
+        .label {
+            font-size: $small-font-size;
+            color: $dark-gray;
+        }
+        .title {
+            font-size: $small-font-size;
+            color: $black;
+        }
+    }
+
+    .story-user-action {
+        @include clearfix;
+
+        position: relative;
+        font-size: $small-font-size;
+
+        margin-bottom: $cell-interval;
+
+        a.user-nick {
+            color: $black;
+            line-height: 1.5;
+            font-size: rem-calc(14);
+        }
+
+        .user {
+            float: left;
+            width: $story-avt-size;
+
+        }
+
+        .main {
+            float: left;
+            margin-left: 16px;
+            line-height: $global-font-size;
+        }
+
+        .action {
+            .icon {
+                font-size: rem-calc(18);
+                line-height: rem-calc(18);
+                color: $secondary-color;
+            }
+            .text {
+                color: $dark-gray;
+                margin-right: 4px;
+            }
+
+        }
+
+        .date {
+            float: right;
+            font-size: $small-font-size;
+            color: $medium-gray;
+        }
+    }
+
+    .story-entity {
+        margin-bottom: $cell-interval;
+        .data-title {
+            a {
+                color: $black;
+            }
+        }
+        .data-abbr {
+            font-size: $small-font-size;
+            margin: 3px 0 7px;
+        }
+        .imgs img {
+            margin: 0 1px 0;
+        }
+    }
+
+    .story-ops {
+        font-size: $tiny-font-size;
+        color: $medium-gray;
+        // margin-bottom: $cell-interval;
+        margin-bottom: 18px;
+
+        a {
+            // color: $medium-gray;
+            // color: #ccc;
+            &:hover {
+                color: $dark-gray;
+                text-decoration: none;
+            }
+        }
+        .comment {
+            margin-left: 15px;
+        }
+    }
+}
+
+
+.story-ops > .count_product,.story-ops > .count_idea{
+    margin-left:10px;
+}
+
+.story-ops > a:hover {
+    color: #222;
+}
+
+.entity > .entity-title{
+    display:inline-block;
+    width:80%;
+    font-size:16px !important
+}
+
+.entity > .entity-title > .date {
+    font-size: 13px;
+    color: #cbcbcb;
+}
+
+.entity > .date{
+    float: right;
+    font-size: 13px;
+    color: #cbcbcb;
+}
+
+.story-set-wrap{
+    margin-top: 16px;
+}
+.product-set-wrap{
+    margin-top: 31px;
+}
+
+.story-ops > a.like-list{
+    color: #ccc;
+}
+.solution {
+    margin-bottom: 21px;
+}
+.solution-set {
+    .solution.entity {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+    }
+}

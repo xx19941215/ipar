@@ -1,0 +1,52 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-article-activate')
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="activity">
+    <div class="search_product">
+        <form class="" action="<?php echo route_url('admin-ui-activity-search-product'); ?>" method="post">
+            <?php echo csrf_field(); ?>
+            <input type="text" name="search" value="">
+            <input type="submit" value="<?php echo trans('submit'); ?>">
+        </form>
+    </div>
+    <div class="product">
+        <table>
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>product</td>
+                    <td>img</td>
+                    <td>action</td>
+                    <td>advice</td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->product_set as $s) : ?>
+                <tr>
+                    <td><?php echo $s->eid; ?></td>
+                    <td><?php echo $s->title; ?></td>
+                    <td>
+                        <img height="100" width="100" src="<?php echo 'sss'; ?>" alt="null" />
+                    </td>
+                    <td>
+                        <a type="button" href='<?php echo route_url('admin-ui-activity-add-product'); ?>?aid=<?php echo $this->aid; ?>&eid=<?php echo $s->eid; ?>' >select</a>
+                        <a type="button" href='<?php echo route_url('admin-ui-activity-delete-product'); ?>?aid=<?php echo $this->aid; ?>&eid=<?php echo $s->eid; ?>' >delete</a>
+                    </td>
+                    <td>
+                        <a type="button" href='<?php echo route_url('admin-ui-activity-advice-product'); ?>?aid=<?php echo $this->aid; ?>&eid=<?php echo $s->eid; ?>' >advice</a>
+                        <a type="button" href='<?php echo route_url('admin-ui-activity-cancel-advice-product'); ?>?aid=<?php echo $this->aid; ?>&eid=<?php echo $s->eid; ?>' >cancel-advice</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->pageCount]); ?>
+</div>
+
+
+<?php $this->replace(); ?>

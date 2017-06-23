@@ -1,0 +1,49 @@
+<?php
+$stories = $this->story_set->getItems();
+?>
+<?php $this->layout('layout/admin', ['html_title' => trans('admin-home')]); ?>
+
+<?php $this->section('page-body'); ?>
+<?php echo $this->insert('module/story-set', ['story-set' => $this->story_set]); ?>
+
+<?php /*
+<div class="row column">
+    <?php if ($stories) { ?>
+    <?php foreach ($stories as $story) { ?>
+    <?php $dst_type = get_type_name($story->dst_type); ?>
+    <div class="story">
+        <?php if ($story->src_eid) { ?>
+        <?php $src_type = get_type_name($story->src_type); ?>
+        <div class="story-src">
+            <span><?php echo trans("refer-to-{$src_type}"); ?></span>,
+            <a href="<?php echo route_url("admin-{$src_type}-show", ['eid' => $story->src_eid]); ?>"><?php echo $story->src_title; ?></a>
+        </div>
+        <?php } ?>
+        <div class="story-action">
+            <span>(<?php echo $story->id; ?>)</span>
+            <span><?php echo user($story->uid)->nick; ?></span>
+            <span><?php echo trans($story->getAction() . '-' . $dst_type); ?></span>
+        </div>
+        <?php if ($data = $story->getData()) { ?>
+        <?php $dst_url = route_url("admin-{$dst_type}-show", ['eid' => $story->dst_eid]); ?>
+        <div class="story-title">
+            <?php if ($title = isset($data->title) ? $data->title : '') { ?>
+            <a href="<?php echo $dst_url; ?>"><?php echo $title; ?></a>
+            <?php } else { ?>
+            <a href="<?php echo $dst_url; ?>"><?php echo $story->dst_eid; ?></a>
+            <?php } ?>
+        </div>
+
+        <?php if ($data->content) { ?>
+        <div class="story-content"><?php echo $data->content; ?></div>
+        <?php } ?>
+
+        <?php } ?>
+    </div>
+    <?php } ?>
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->story_set->getPageCount()]); ?>
+    <?php } ?>
+</div>
+ */ ?>
+
+<?php $this->replace(); ?>

@@ -1,0 +1,37 @@
+<?php
+namespace Mars\Repo;
+
+class TagDstRepo extends \Mars\RepoBase
+{
+    public function saveTagDst()
+    {
+    }
+
+    public function createTagDst()
+    {
+    }
+
+    public function deleteTagDstById()
+    {
+    }
+
+    public function clearTagDst()
+    {
+    }
+
+    public function findTagDst()
+    {
+    }
+
+    public function getVoteSet()
+    {
+    }
+
+    public function voteTagDst()
+    {
+    }
+
+    public function unvoteTagDst()
+    {
+    }
+}

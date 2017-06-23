@@ -1,0 +1,20 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-company-industry_tag-add'),
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php
+    echo $this->insert('module/entity-menu-group', [
+        'group' => $this->company,
+        'select' => 'industry_tag'
+    ]);
+    ?>
+
+    <?php
+    echo $this->insert('module/form/select-exist-industry_tag', [
+        'industry_tag_set' => $this->industry_tag_set
+    ])
+    ?>
+</div>
+<?php $this->replace(); ?>

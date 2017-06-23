@@ -1,0 +1,67 @@
+<?php
+$rqt = $this->rqt;
+if (!$rqt) {
+    _debug('rqt cannot be empty');
+}
+$items = [
+    'story' => [
+        'route' => 'admin-rqt-show',
+        'count' => $rqt->countStory(),
+    ],
+    'solution' => [
+        'count' => $rqt->countSolution(),
+    ],
+    'product' => [
+        'count' => $rqt->countSproduct(),
+        'add' => 1
+    ],
+    'idea' => [
+        'count' => $rqt->countSidea(),
+        'add' => 1
+    ],
+    'content' => [
+        'route' => 'admin-rqt-content',
+    ],
+    'tag' => [
+        'route' => 'admin-ui-rqt_tag-search',
+        'add' => 1,
+        'add_route' => 'admin-ui-rqt_tag-add'
+    ],
+    'tag-multiple' => [
+        'route' => 'admin-ui-tag_rqt-add_multiple',
+    ],
+    'edit' => [
+        'route' => 'admin-rqt-edit',
+    ],
+    'comment' => [
+        'route' => 'admin-ui-rqt_comment-index',
+    ]
+];
+$select = $this->select ? $this->select : 'story';
+?>
+<div class="entity-menu-rqt">
+    <ul class="">
+        <?php foreach ($items as $key => $item) { ?>
+            <?php
+            $route = prop($item, 'route', "admin-rqt-$key");
+            $count = prop($item, 'count', 0);
+            $add_route = '';
+            if ($add = prop($item, 'add', 0)) {
+//    $add_route = "$route-add";
+                $add_route = prop($item, 'add_route', "$route-add");
+            }
+            ?>
+            <li<?php if ($select == $key) echo ' class="selected"'; ?>>
+                <a href="<?php echo route_url($route, ['eid' => $rqt->eid]); ?>">
+                    <span><?php echo $key; ?></span>
+                    <?php if ($count) { ?>(<?php echo $count; ?>)<?php } ?>
+                </a>
+                <?php if ($add_route) { ?>
+                    <a class="button success" href="<?php echo route_url($add_route, ['eid' => $rqt->eid]); ?>">
+                        add
+                    </a>
+                <?php } ?>
+            </li>
+        <?php } ?>
+    </ul>
+</div>

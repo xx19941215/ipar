@@ -1,0 +1,71 @@
+<?php
+$this->layout('layout/ipar', [
+    'html_title' => trans('ipar-ui-company-brand_tag-show')
+]);
+?>
+
+<?php $this->section('main'); ?>
+    <div class="row">
+        <h2 class="title"><?php echo $this->tag->title; ?></h2>
+        <div class="tag-info">
+            <div class="tag-logo">
+                <?php
+                echo json_decode($this->tag->logo, true) ?
+                    '<img src="' . img_src($this->tag->getLogo(), 'small') . '">' :
+                    '<i class="icon icon-groups"></i>';
+                ?>
+            </div>
+            <div class="entity tag-content">
+                <div class="entity-abbr">
+                    <?php
+                    $abbr = $this->tag->getAbbr();
+                    mb_strlen($this->tag->content) > 150 && $abbr .= '...<a class="read-more" href="javascript:;">'
+                        . trans('read-more') . '</a>';
+                    echo $abbr;
+                    ?>
+                </div>
+                <div class="entity-content">
+                    <?php echo $this->tag->content; ?>
+                </div>
+            </div>
+        </div>
+        <p class="created-person">
+            <span><?php echo trans('created') . ':'; ?></span>
+            <?php if ($this->tag->uid) { ?>
+                <span>
+                     <a target="_blank"
+                        href="<?php echo route_url('ipar-i-home', [
+                            'zcode' => user($this->tag->uid)->zcode
+                        ]); ?>">
+                    <?php echo user($this->tag->uid)->nick; ?>
+                </a>
+                </span>
+            <?php } ?>
+            <?php echo time_elapsed_string($this->tag->created); ?>
+        </p>
+    </div>
+    <!--品牌下产品列表-->
+    <div class="brand_tag-product-wrap">
+        <h3 class="brand_tag-product-title">
+            <?php echo trans('product'); ?>
+        </h3>
+        <div class="product-set-wrap"></div>
+
+        <div class="loading" data-action="brand_tag_product"
+             data-company_brand_tag_id="<?php echo $this->company_brand_tag->id; ?>">
+            <div class="one">
+                <a href="javascript:;" class="trigger"><?php echo trans('see-more'); ?></a>
+            </div>
+        </div>
+    </div>
+<?php $this->replace(); ?>
+
+<?php $this->section('side'); ?>
+
+<?php
+echo $this->insert('module/brand_tag-company', [
+    'company' => $this->company,
+]);
+?>
+
+<?php $this->replace(); ?>

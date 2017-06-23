@@ -1,0 +1,34 @@
+<div class="rsidebar">
+    <span id="follow-status" class="<?php 
+    if ($this->is_following && current_uid())
+    {
+        echo "followed";
+    } else {
+        echo "unfollow";
+    }?>" data-gid="<?php echo $this->eid; ?>">
+        <button class="button group">
+            <span class="followed"><?php echo trans("followed-company");?></span>
+            <span class="unfollowing"><?php echo trans("cancel-follow-company");?></span>
+            <span class="following"><?php echo trans("following-company");?></span>
+        </button>
+    </span>
+
+    <div class="info">
+        <span>
+            <span class="followed-count"><?php echo $this->group_follow_set?$this->group_follow_set->getItemCount():0;?></span>
+            <?php echo trans("followed-company");?>
+        </span>
+        <div class="user-info">
+        <?php foreach ($this->group_follow_set->getItems() as $group_follow) { ?>
+        <?php $followed_user = $group_follow->getFollowedUser(); ?>
+
+        <span><?php echo $this->insert('module/user-avt', ['user' => $followed_user]);?></span> 
+        <?php } ?>
+        </div>
+    </div>
+</div>
+
+<div class="user-container" data-url="1" data-page="1">
+<span class="user-container-title"></span>
+<div class="user-body"></div>
+</div>

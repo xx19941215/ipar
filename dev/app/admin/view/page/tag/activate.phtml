@@ -1,0 +1,39 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-entity-activate')
+]);
+$tag = $this->tag;
+?>
+
+<?php $this->section('page-body'); ?>
+
+    <div class="row column">
+        <p>
+            Are you sure to activate this tag?
+        </p>
+
+        <div>
+            <h3>标题：<?php echo $tag->title; ?></h3>
+            <p><?php echo $tag->content; ?></p>
+        </div>
+
+        <?php if ($this->errors) { ?>
+            <p>
+            <ul class="menu vertical">
+                <?php foreach ($this->errors as $key => $val) { ?>
+                    <li><span class="label alert"><?php echo $key; ?>, <?php echo trans($val); ?></span></li>
+                <?php } ?>
+            </ul>
+            </p>
+        <?php } ?>
+
+        <form action="" method="post">
+            <?php echo csrf_field(); ?>
+            <input type="hidden" name="id" value="<?php echo $tag->id; ?>">
+            <input type="submit" class="button tiny" value="<?php echo trans('yes'); ?>">
+            <a onclick="history.go(-1)"><?php echo trans('cancel'); ?></a>
+        </form>
+
+    </div>
+
+<?php $this->replace(); ?>

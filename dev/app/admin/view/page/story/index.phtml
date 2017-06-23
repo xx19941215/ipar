@@ -1,0 +1,12 @@
+<?php $this->layout('layout/admin', ['html_title' => trans('admin-story')]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="row column">
+    <h1><?php echo trans('admin-story'); ?></h1>
+</div>
+
+<div class="row column">
+    <?php echo $this->insert('module/story-set', ['story-set' => $this->story_set]); ?>
+</div>
+
+<?php $this->replace(); ?>

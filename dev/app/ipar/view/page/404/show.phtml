@@ -1,0 +1,18 @@
+<?php
+$this->layout('layout/page', [
+    'html_title' => trans('error-request'),
+]);
+?>
+
+<?php $this->section('main'); ?>
+
+<div class="error-request">
+    <div class="alert-msg">
+        <p><?php echo trans('Oops-The-visited-page-does-not-exist'); ?></p>
+        <a href="<?php echo route_url('home') ?>"><?php echo trans('home') ?></a>
+        <a href="javascript:history.go(-1)"><?php echo trans('back') ?></a>
+    </div>
+</div>
+
+<?php $this->replace(); ?>
+

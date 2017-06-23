@@ -1,0 +1,23 @@
+{
+    "require": {
+        "nikic/fast-route": "^0.6.0",
+        "symfony/http-kernel": "^2.7",
+        "phpunit/phpunit": "^5.0",
+        "robmorgan/phinx": "^0.4.6",
+        "respect/validation": "^0.9.3",
+        "bacon/bacon-qr-code": "^1.0",
+        "foil/foil": "^0.6.2",
+        "phpunit/dbunit": "^2.0",
+        "hightman/xunsearch": "*@beta",
+        "netease/nos-php-sdk": "^1.0",
+        "xiaosier/libweibo": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gap\\": "core/gap/src/"
+        },
+        "files": [
+            "core/gap/src/functions.php"
+        ]
+    }
+}

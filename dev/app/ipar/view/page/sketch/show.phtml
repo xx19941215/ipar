@@ -1,0 +1,43 @@
+<?php
+$this->layout('page', [
+    'html_title' => $this->feature->title
+]);
+$feature = $this->feature;
+?>
+
+
+<?php $this->section('page-body'); ?>
+    <div class="row page-feature-show layout">
+        <div class="layout-main">
+
+            <div class="tnrl">
+                <div class="tnrl-topic">
+                    <?php echo $this->insert('module/page-uem', ['entity' => $feature, 'is_show_abbr' => $this->is_show_abbr]); ?>
+                </div>
+
+                <div class="tnrl-nav clearfix">
+                    <div class="nav-title">
+                        <a href="<?php echo route_url('feature-show', ['zcode' => $feature->zcode]); ?>"><i class="icon icon-zuixin"></i><?php echo trans('latest-update'); ?></a>
+                    </div>
+                    <div class="nav-btns">
+                        <a href="<?php echo route_url('idea-create', [], ['src_eid' => $feature->eid]); ?>" class="button"><?php echo trans('feature-add-idea'); ?></a>
+                    </div>
+                    <?php echo $this->insert('include/tnrl/nav-tab', [
+                        'type' => 'feature',
+                        'zcode' => $feature->zcode,
+                        'cts' => $this->cts
+                    ]); ?>
+                </div>
+
+                <div class="tnrl-reply-list">
+                    <?php echo $this->insert('module/uem-list', ['entities' => $this->solutions]); ?>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="layout-side">
+            <?php echo $this->insert('ipar/feature/include/side'); ?>
+        </div>
+    </div>
+<?php $this->replace(); ?>

@@ -1,0 +1,7 @@
+<?php
+$this
+    ->setCurrentSite('api')
+    ->setCurrentAccess('login')
+
+    ->postRest('/tag/entity', ['as' => 'tag-entity', 'action' => 'Ipar\Rest\TagController@tagEntityPost'])
+    ->postRest('/tag/user', ['as' => 'tag-user', 'action' => 'Ipar\Rest\TagController@tagUserPost']);

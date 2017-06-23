@@ -1,0 +1,12 @@
+$activity-color: #fff000;
+
+.activity > button {
+  color: black;
+  border: 1px solid black;
+}
+
+.activity-index-img {
+  background-color: $activity-color;
+  height: 200px;
+  width: 200px;
+}

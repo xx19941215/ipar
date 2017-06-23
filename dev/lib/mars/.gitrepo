@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = ssh://git@git.ideapar.com:3222/tc/mars.git
+	branch = master
+	commit = 68f4fb690e4dc208050b4d4f54d4c8d795a15c38
+	parent = 3c004dab014dfec1324a47c430b28748ef39e5e8
+	cmdver = 0.3.0

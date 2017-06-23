@@ -1,0 +1,61 @@
+<?php
+$range_config = config()->get('size_range');
+?>
+<div class="group-info">
+    <div class="logo-box">
+        <ul>
+            <li class="group-logo"><span><?php echo get_type_key($this->group->type_id) ?></span></li>
+            <li class="group-fullname"><span><?php echo $this->group->fullname; ?></span></li>
+            <li class="group-operation">
+                <?php
+                $edit_or_activate = (($this->group->status == 1) ? 'edit' : 'activate');
+                $deactivate_or_delete = (($this->group->status == 1) ? 'deactivate' : 'delete');
+                $type = get_type_key($this->group->type_id);
+                ?>
+                <a href="<?php echo route_url("admin-ui-{$type}-$edit_or_activate", ['group_id' => $this->group->id]); ?>"
+                   class="button">
+                    <?php echo trans($edit_or_activate); ?>
+                </a>
+                <a href="<?php echo route_url("admin-ui-{$type}-$deactivate_or_delete", ['eid' => $this->group->id]); ?>"
+                   class="button success">
+                    <?php echo trans($deactivate_or_delete); ?>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p class="group-time-info">
+        <span class="group-create-info">
+            Created: <span class="group-created-person"><?php echo user($this->group->uid)->nick; ?></span>
+            <span class="group-created"><?php echo $this->group->created; ?></span>
+        </span>
+        <span class="group-changed-info">
+            Last edit: <span class="group-changed-person"><?php echo user($this->group->uid)->nick; ?></span>
+            <span class="group-changed"><?php echo $this->group->changed; ?></span>
+        </span>
+    </p>
+    <div class="group-content-box">
+        <div class="group-logo">
+            <img src="" alt="">
+        </div>
+        <div class="group-description">
+            <p>
+                <span><?php echo trans("name") ?>：</span>
+                <?php echo $this->group->name; ?>
+            </p>
+            <p>
+                <span><?php echo trans("establish Time") ?>：</span>
+                <?php echo $this->group->established; ?>
+            </p>
+            <p>
+                <span><?php echo trans("website") ?>：</span>
+                <a href="<?php echo $this->group->website; ?>" target="_blank">
+                    <?php echo $this->group->website; ?>
+                </a>
+            </p>
+            <p>
+                <span><?php echo trans("size") ?>：</span>
+                <?php echo array_search($this->group->size_range_id, $range_config->all()); ?>
+            </p>
+        </div>
+    </div>
+</div>

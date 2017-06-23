@@ -1,0 +1,130 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => 'admin-lang'
+]); ?>
+
+<?php $this->section('css'); ?>
+<style>
+    .lang {
+        margin: 0;
+    }
+    .lang input {
+    }
+    .lang table {
+        margin: 0;
+    }
+    .lang input {
+        margin-bottom: 0;
+    }
+    .lang select {
+        margin-bottom: 0;
+    }
+    table {
+        background: transparent;
+        border: 0;
+        width: 100%;
+    }
+    table td {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<?php $this->append(); ?>
+
+<?php $this->section('content'); ?>
+    <div class="nav">
+        <a href="<?php echo route_url('admin-lang'); ?>">Lang</a>
+    </div>
+
+    <form class="search" action="<?php echo route_url('amdin-lang'); ?>" method="get">
+        <table>
+            <tbody>
+                <tr>
+                    <td width="90">
+                        <?php echo $this->insert('include/elem/select', [
+                            'name' => 'locale',
+                            'value' => $this->locale,
+                            'options' => [
+                                ['text' => ' - ', 'value' => ''],
+                                ['text' => '中文', 'value' => 'zh'],
+                                ['text' => 'Englisn', 'value' => 'en']
+                            ]
+                        ]); ?>
+                    </td>
+                    <td>
+                        <input type="text" name="s" value="<?php echo $this->search; ?>">
+                    </td>
+                    <td>
+                        <input class="button tiny" type="submit" value="Search">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <div class="lang">
+        <form method="post" action="<?php echo route_url('admin-lang-save-post'); ?>">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td width="90">
+                                <?php echo csrf_field(); ?>
+                                <?php echo $this->insert('include/elem/select', [
+                                    'name' => 'locale',
+                                    'options' => [
+                                        ['text' => '中文', 'value' => 'zh'],
+                                        ['text' => 'Englisn', 'value' => 'en']
+                                    ]
+                                ]); ?>
+                            </td>
+                            <td>
+                                <input type="text" name="str" value="" required="required">
+                            </td>
+                            <td>
+                                <input type="text" name="trans" value="" required="required">
+                            </td>
+                            <td>
+                                <input class="button tiny" type="submit" value="save">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+<hr>
+
+    <?php foreach ($this->rows as $row) { ?>
+        <div class="lang">
+            <form method="post" action="<?php echo route_url('admin-lang-save-post'); ?>">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td width="90">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo $this->insert('include/elem/select', [
+                                        'name' => 'locale',
+                                        'value' => $row->locale,
+                                        'options' => [
+                                            ['text' => '中文', 'value' => 'zh'],
+                                            ['text' => 'Englisn', 'value' => 'en']
+                                        ]
+                                    ]); ?>
+                                </td>
+                                <td>
+                                    <input type="text" name="str" value="<?php echo $row->str; ?>" required="required">
+                                </td>
+                                <td>
+                                    <input type="text" name="trans" value="<?php echo $row->trans; ?>" required="required">
+                                </td>
+                                <td>
+                                    <input type="hidden" name="id" value="<?php echo $row->id; ?>">
+                                    <input class="button tiny" type="submit" value="save">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+    <?php } ?>
+
+<?php $this->replace(); ?>

@@ -1,0 +1,57 @@
+<table class="table-entity">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>uid</th>
+            <th>class</th>
+            <th>action</th>
+            <th width="600">data</th>
+            <th>start</th>
+            <th>elapsed</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php if ($this->events) { ?>
+    <?php foreach ($this->events as $event) { ?>
+    <tr>
+        <td><?php echo $event->id; ?></td>
+        <td><?php echo user($event->uid)->nick; ?></td>
+
+        <td>
+            <a href="<?php echo route_url("admin-event-show", ['id' => $event->id]); ?>">
+            <?php echo $event->class; ?></a></td>
+        <td>
+            <a href="<?php echo route_url("admin-event-show", ['id' => $event->id]); ?>">
+            <?php echo $event->action; ?></a>
+        </td>
+        <td style="font-size: 12px">
+            <ul>
+            <?php foreach (json_decode($event->data, true) as $key => $sub) { ?>
+            <li>
+                <span class="key"><?php echo $key; ?></span>
+                <ul>
+                <?php foreach ($sub as $k => $v) { ?>
+                    <?php if (is_string($v)) { ?>
+                    <li><?php echo $k . ': ' . $v; ?></li>
+                    <?php } else if (is_array($v)) { ?>
+                    <li>
+                        <span class="key"><?php echo $k; ?></span>
+                        <ul>
+                            <?php foreach ($v as $item) { ?>
+                            <li><?php echo $item; ?></li>
+                            <?php } ?>
+                        </ul>
+                    </li>
+                    <?php } ?>
+                <?php } ?>
+                </ul>
+            </li>
+            <?php } ?>
+            </ul>
+        </td>
+        <td><?php echo $event->start; ?></td>
+        <td><?php echo $event->elapsed; ?></td>
+    </tr>
+    <?php } }?>
+    </tbody>
+</table>

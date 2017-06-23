@@ -1,0 +1,42 @@
+<?php
+    $this->layout('layout/admin', [
+    'html_title' => trans('admin-article-add'),
+    'breadcrumbs' => ['admin-article']
+    ]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="company-corporate" style="width:100%;">
+    <h2>search result:</h2>
+    <a href="<?php echo route_url('admin-ui-company-submit-index'); ?>" style="float:right;text-decoration:underline;" name="button">return</a>
+    <table>
+  <thead>
+      <tr>
+           <th>Id</th>
+           <th>Company</th>
+           <th>Create time</th>
+           <th>Answered</th>
+           <th>Answer time</th>
+           <th>detail</th>
+           <th>Status</th>
+      </tr>
+  </thead>
+  <tbody>
+      <?php foreach($this->search_set as $search): ?>
+        <tr>
+          <td><?php echo $search->id; ?></td>
+          <td><?php echo $search->company; ?></td>
+          <td><?php echo $search->createtime; ?></td>
+          <td><?php echo $search->lasted_answered; ?></td>
+          <td><?php echo $search->lasted_answered_time; ?></td>
+          <td><a href="<?php echo route_url('admin-ui-company-submit-detail', ['id' => $search->id]);?>">click</a></td>
+          <td>
+              <button type="button" class="button round" name="button">
+                  <?php echo $search->status; ?>
+              </button></td>
+        </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
+</div>
+<?php $this->replace(); ?>

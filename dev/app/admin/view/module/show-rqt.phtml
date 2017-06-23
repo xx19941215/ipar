@@ -1,0 +1,67 @@
+<a id='rqt-detail-a' class="button" href="<?php echo route_url('admin-rqt-show',['eid'=>$this->eid]); ?>"><?php echo trans('details'); ?></a>
+<a id='rqt-solution-a' class="button" href="<?php echo route_url('admin-rqt-solution',['eid'=>$this->eid]); ?>"><?php echo trans('solution'); ?></a>
+<?php if($this->type != 'detail') {?>
+  <div id = 'rqt-solution-div'>
+      <a id='solution-all-a' class="button small" href="<?php echo route_url('admin-rqt-solution',['eid'=>$this->eid]); ?>"><?php echo trans('all'); ?></a>
+      <a id='solution-idea-a' class="button small" href="<?php echo route_url('admin-rqt-idea',['eid'=>$this->eid]); ?>"><?php echo trans('idea'); ?></a>
+      <a id='solution-product-a' class="button small" href="<?php echo route_url('admin-rqt-product',['eid'=>$this->eid]); ?>"><?php echo trans('product'); ?></a>
+      <a id='solution-invent-a' class="button small" href="<?php echo route_url('admin-rqt-invent',['eid'=>$this->eid]); ?>"><?php echo trans('invent'); ?></a>
+  </div>
+<?php }?>
+<script>
+rqtActive('<?php echo $this->type;?>');
+solutionActive('<?php echo $this->type;?>');
+
+function rqtActive(type){
+  var detail_a = document.getElementById('rqt-detail-a');
+  var solution_a = document.getElementById('rqt-solution-a');
+  if(type == 'detail') {
+      detail_a.style.backgroundColor = "#2199e8";
+      detail_a.style.color = "white";
+
+      solution_a.style.backgroundColor = "white";
+      solution_a.style.color = "black";
+
+  } else {
+      solution_a.style.backgroundColor = "#2199e8";
+      solution_a.style.color = "white";
+
+      detail_a.style.backgroundColor = "white";
+      detail_a.style.color = "black";
+  }
+}
+
+function solutionActive(type){
+  var idea_a = document.getElementById('solution-idea-a');
+  var product_a = document.getElementById('solution-product-a');
+  var invent_a = document.getElementById('solution-invent-a');
+  var all_a = document.getElementById('solution-all-a');
+
+  all_a.style.backgroundColor = "white";
+  all_a.style.color = "black";
+
+  idea_a.style.backgroundColor = "white";
+  idea_a.style.color = "black";
+
+  product_a.style.backgroundColor = "white";
+  product_a.style.color = "black";
+
+  invent_a.style.backgroundColor = "white";
+  invent_a.style.color = "black";
+
+  if(type == 'idea') {
+      idea_a.style.backgroundColor = "#2199e8";
+      idea_a.style.color = "white";
+  } else if(type == 'product') {
+      product_a.style.backgroundColor = "#2199e8";
+      product_a.style.color = "white";
+  } else if(type == 'invent') {
+      invent_a.style.backgroundColor = "#2199e8";
+      invent_a.style.color = "white";
+  } else if(type == 'solution'){
+      all_a.style.backgroundColor = "#2199e8";
+      all_a.style.color = "white";
+  }
+}
+
+</script>

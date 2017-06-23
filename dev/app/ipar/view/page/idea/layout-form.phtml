@@ -1,0 +1,12 @@
+<?php $this->layout('page', [
+    'jses' => ['ipar.editor.js' => 1]
+]); ?>
+
+<?php $this->section('page-body'); ?>
+<div class="row page-rqt-create">
+    <?php echo $this->insert('include/form/story-form', [
+        'src' => $this->rqt,
+        'type' => 'idea',
+    ]); ?>
+</div>
+<?php $this->replace(); ?>

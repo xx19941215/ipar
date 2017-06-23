@@ -1,0 +1,27 @@
+<?php $this->layout('layout/ipar', [
+    'header_menu' => 'ipar-product-index',
+    'html_title' => $this->brand_main->title
+]); ?>
+
+<?php $this->section('main'); ?>
+
+<h1><?php echo $this->brand_main->title; ?></h1>
+
+<hr>
+
+<div class="entity-set-wrap"></div>
+
+<div class="loading" data-action="search" data-page="1" data-type="product" data-brand_id="<?php echo $this->brand_main->brand_id; ?>">
+    <div class="one">
+        <a href="javascript:;" class="trigger"><?php echo trans('see-more'); ?></a>
+    </div>
+    <div class="two">
+        <a href="<?php echo route_url('ipar-product-all'); ?>"><?php echo trans('explore-all-products'); ?></a>
+    </div>
+</div>
+
+<?php $this->append(); ?>
+
+<?php $this->section('side'); ?>
+<?php echo $this->insert('module/rqt-sidebar') ?>
+<?php $this->replace(); ?>

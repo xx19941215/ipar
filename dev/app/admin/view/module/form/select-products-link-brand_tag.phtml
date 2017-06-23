@@ -1,0 +1,24 @@
+<?php if ($this->entity_set) { ?>
+    <form class="select-exist" method="post" action="<?php echo route_url('admin-ui-company_brand_tag_product-link_post', [
+              'gid' => $this->gid,
+              'tag_id' => $this->brand_tag->tag_id
+          ]) ?>">
+        <input type="hidden" name="brand_tag_id" value="<?php echo $this->brand_tag->id; ?>">
+        <input type="hidden" name="tag_id" value="<?php echo $this->brand_tag->tag_id; ?>">
+        <?php echo csrf_field(); ?>
+        <ul class="menu vertical">
+            <?php foreach ($this->entity_set->getItems() as $entity) { ?>
+                <li>
+                    <button class="button select tiny" name="eid" value="<?php echo $entity->eid; ?>">select</button>
+                    <div class="select-entity">
+                        <div class="header">
+                            <span class="type"><?php echo get_type_key($entity->type_id); ?></span>
+                            <span class="title"><?php echo $entity->getTitle(); ?></span>
+                        </div>
+                        <div class="abbr"><?php echo $entity->getAbbr(); ?></div>
+                    </div>
+                </li>
+            <?php } ?>
+        </ul>
+    </form>
+<?php } ?>

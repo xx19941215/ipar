@@ -1,0 +1,112 @@
+<?php
+/**
+ * File php.php
+ * PHP Version 5.6
+ * @category Tpl
+ * @package Global
+ * @author Zjh <zhanjh@126.com>
+ * @license http:://www.tecposter.cn/bsd-licence BSD Licence
+ * @link http://www.tecposter.cn
+ */
+$csses = ($this->csses && is_array($this->csses)) ? $this->csses : ['admin.css' => 1];
+if ($this->css_appended && is_array($this->css_appended)) {
+    $csses = array_merge($csses, $this->css_appended);
+}
+$jses = ($this->jses && is_array($this->jses)) ? $this->jses : ['admin.js' => 1];
+if ($this->js_appended && is_array($this->js_appended)) {
+    $jses = array_merge($jses, $this->js_appended);
+}
+
+$breadcrumbs = ($this->breadcrumbs && is_array($this->breadcrumbs)) ? $this->breadcrumbs : [];
+array_unshift($breadcrumbs, 'admin-home');
+
+$menu = config()->get('admin.menu.main')->all();
+
+?><!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>
+        <?php echo $this->html_title; ?></title>
+    <?php foreach ($csses as $css => $val) { ?>
+        <link rel="stylesheet" href="<?php echo css_url($css); ?>">
+    <?php } ?>
+    <?php /* <link rel="stylesheet" href="//at.alicdn.com/t/font_1456841108_5251517.css" async="async" /> */ ?>
+    <?php $this->section('style'); ?>
+    <?php $this->stop(); ?>
+
+    <link rel="icon" type="image/png" href="<?php echo img_url('favicon-16x16.png'); ?>" sizes="16x16"/>
+    <link rel="icon" type="image/png" href="<?php echo img_url('favicon-32x32.png'); ?>" sizes="32x32"/>
+
+</head>
+<body class="admin">
+
+<div class="page">
+    <div class="header-top-fixed">
+        <div class="logo">
+            <a href="/">
+                <i class="icon icon-logo"></i>点趴后台管理
+            </a>
+        </div>
+        <div class="ops">
+            <ul>
+                <li><a target="_blank" href="<?php echo route_url('home'); ?>"><?php echo trans('home'); ?></a></li>
+                <li><a href="<?php echo route_url('logout') ?>"><?php echo trans('logout'); ?></a></li>
+                <li><i></i></li>
+                <li><span class="name"><?php echo user(current_uid())->nick; ?></span></li>
+                <li class="user"><?php echo $this->insert('module/user-avt', ['user' => user(current_uid())]); ?></li>
+            </ul>
+        </div>
+    </div>
+    <div class="sidebar">
+        <ul class="menu vertical">
+            <?php foreach ($menu as $name => $items) { ?>
+                <li>
+                    <h3 class="section-title"><?php echo trans($name); ?></h3>
+                    <div class="section-box">
+                        <ul class="menu vertical">
+                            <?php foreach ($items as $item) { ?>
+                                <li>
+                                    <a href="<?php echo route_url($item); ?>">
+                                        <?php echo trans($item); ?>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+
+                </li>
+            <?php } ?>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="page-body">
+            <?php $this->section('page-body'); ?><?php $this->stop(); ?>
+        </div>
+    </div>
+
+</div>
+
+
+<?php foreach ($jses as $js => $val) { ?>
+    <script class="static-js" src="<?php echo js_url($js) ?>"></script>
+<?php } ?>
+
+<?php $this->section('script'); ?><?php $this->stop(); ?>
+<script>
+    (function () {
+        var config = window.config = window.config || {};
+        config.site = {
+            static: {host: '<?php echo config()->get('site.static.host'); ?>'},
+            'nos_ipar_upload': {host: '<?php echo config()->get('site.nos_ipar_upload.host'); ?>'}
+        };
+        config.api = {};
+        config.api.retrieve_image = '<?php echo route_url('img-retrieve') ?>'
+        config.api.zeditor_upload_url = '<?php echo route_url('img-upload-figure'); ?>';
+        config.token = '<?php echo session()->get('_token'); ?>';
+        config.locale_key = '<?php echo translator()->getLocaleKey(); ?>';
+    }());
+</script>
+</body>
+</html>

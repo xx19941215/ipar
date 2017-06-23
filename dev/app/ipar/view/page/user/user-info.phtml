@@ -1,0 +1,19 @@
+<?php
+$this->layout('layout/page', [
+]);
+?>
+
+<?php $this->section('main'); ?>
+<div class="user-setting">
+    <?php echo $this->insert('module/user-setting-menu', [
+        'select' => 'ipar-ui-i-user-info',
+        'user' => $this->user,
+    ]); ?>
+    <div class="setting-wrap">
+        <?php echo $this->insert('module/form/user_setting/ipar-form-user-info'); ?>
+    </div>
+</div>
+
+
+<?php $this->replace(); ?>
+

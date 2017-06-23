@@ -1,0 +1,186 @@
+<?php
+namespace Mars\Repo;
+
+//old code extends \Mars\RepoBase
+//new code extends \Gap\Repo\TableRepoBase
+class TagRepo extends \Mars\RepoBase
+{
+    // old -delete
+    //every repo contact a tableRepoBase
+//    use TagMainRepoTrait;
+//    use TagDstRepoTrait;
+//    use TagDstVoteRepoTrait;
+    protected $table_name = 'tag';
+    protected $dto = 'group';
+    protected $fields = [
+
+    ];
+
+    public function schTagSsb($query = [], $fields = [])
+    {
+        $status = prop($query, 'status', 1);
+
+        $ssb = $this->db->select(['t', '*'])
+            ->from(['tag', 't'])
+            ->leftJoin(
+                ['tag_main', 'tm'],
+                ['tm', 'tag_id'],
+                '=',
+                ['t', 'id']
+            )
+            ->setDto('tag');
+
+        if ($fields) {
+            $ssb->fields($fields);
+        }
+
+        if (null !== $status) {
+            $ssb->andWhere(['t', 'status'], '=', $status, 'int');
+        }
+
+        if ($tag_id = prop($query, 'tag_id')) {
+            $ssb->andWhere(['t', 'id'], '=', $tag_id, 'int');
+        }
+
+        if ($title = prop($query, 'title')) {
+            $ssb->andWhere(['tm', 'title'], '=', $title);
+        }
+
+        if ($keywords = prop($query, 'keywords')) {
+            $ssb->andWhere(['tm', 'title'], 'LIKE', "$keywords%");
+        }
+        return $ssb;
+    }
+
+    public function findTag($query = [], $fields = [])
+    {
+        $ssb = $this->schTagSsb($query, $fields);
+        if (!$ssb->getWheres()) {
+            return null;
+        }
+        return $ssb->fetchOne();
+    }
+
+    public function saveTag($title, $locale_id = 0)
+    {
+        if ($tag_id = $this->findTagId(['title' => $title])) {
+            return $this->packItem('tag_id', $tag_id);
+        }
+
+        $this->db->beginTransaction();
+        $pack = $this->createTag();
+        if (!$pack->isOk()) {
+            $this->db->rollback();
+            return $pack;
+        }
+
+        $tag_id = $pack->getItem('tag_id');
+        $pack = $this->createTagMain($tag_id, $locale_id, $title);
+
+        $this->db->commit();
+        return $this->packItem('tag_id', $tag_id);
+    }
+
+    public function createTag($parent_id = 0, $status = 1)
+    {
+        $parent_id = (int) $parent_id;
+        $status = (int) $status;
+
+        $inserted = $this->db->insert('tag')
+            ->value('parent_id', $parent_id, 'int')
+            ->value('status', $status, 'int')
+            ->value('child_count', 0, 'int')
+            ->value('dst_count', 0, 'int')
+            ->value('vote_total_count', 0, 'int')
+            ->execute();
+
+        if ($inserted) {
+            return $this->packItem('tag_id', $this->db->lastInsertId());
+        }
+
+        return $this->packError('tag', 'insert-failed');
+    }
+
+    public function changeStatus($tag_id, $status)
+    {
+        if ($this->db->update('tag')
+            ->set('status', $status, 'int')
+            ->where('id', '=', $tag_id, 'int')
+            ->execute()
+        ) {
+            return $this->packItem('tag_id', $tag_id);
+        }
+
+        return $this->packError('tag', 'update-failed');
+    }
+
+    public function deleteTag($query = [])
+    {
+        $dsb = $this->db->delete('t', 'tm', 'td', 'tdv')
+            ->from(['tag', 't'])
+            ->leftJoin(
+                ['tag_main', 'tm'],
+                ['tm', 'tag_id'],
+                '=',
+                ['t', 'id']
+            )
+            ->leftJoin(
+                ['tag_dst', 'td'],
+                ['td', 'tag_id'],
+                '=',
+                ['t', 'id']
+            )
+            ->leftJoin(
+                ['tag_dst_vote', 'tdv'],
+                ['tdv', 'tag_dst_id'],
+                '=',
+                ['td', 'id']
+            );
+
+        if ($tag_id = prop($query, 'tag_id')) {
+            $dsb->andWhere(['t', 'id'], '=', $tag_id);
+        }
+        if ($title = prop($query, 'title')) {
+            if ($tag = $this->findTag(['title' => $title])) {
+                $tag_id = $tag->id;
+                $dsb->andWhere(['t', 'id'], '=', $tag_id);
+            }
+        }
+
+        if (!$dsb->getWheres()) {
+            return $this->packError('query', 'error-query');
+        }
+
+        if ($dsb->execute()) {
+            return $this->packItem('tag_id', $tag_id);
+        }
+
+        return $this->packError('tag', 'delete-failed');
+    }
+
+    /*
+     * todo
+    public function setParent($tag_id, $parent_tag_id)
+    {
+    }
+
+    public function merge()
+    {
+        // todo
+    }
+
+    public function separate()
+    {
+        // todo
+    }
+     */
+
+    protected function findTagId($query = [])
+    {
+        if ($tag = $this->findTag($query)) {
+            return $tag->id;
+        }
+
+        return 0;
+    }
+}

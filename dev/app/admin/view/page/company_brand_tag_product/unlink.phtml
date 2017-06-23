@@ -1,0 +1,54 @@
+<?php $this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-company_product-unlink'),
+    'breadcrumbs' => ['admin-ui-group-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+    <div class="page-company">
+        <?php echo $this->insert('module/entity-menu-group', [
+            'company' => $this->company,
+            'select' => 'brand_tag'
+        ]); ?>
+
+        <h2>
+            <span><?php echo $this->company->fullname; ?></span>
+        </h2>
+        <br>
+        <h2><?php echo trans('brand-tag-title') . ':' . $this->tag->title; ?></h2>
+        <br>
+        <div class="page-company_product-unlink">
+            <h3><?php echo trans('delete-product-from-this-brand-tag'); ?></h3>
+            <form action="<?php echo $this->action; ?>" method="post">
+                <?php echo csrf_field(); ?>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>
+                            <?php echo trans('eid'); ?>
+                        </th>
+                        <th>
+                            <?php echo trans('product-title'); ?>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <?php echo $this->product->eid; ?>
+                        </td>
+                        <td>
+                            <?php echo $this->product->title; ?>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <input type="hidden" name="id" value="<?php echo $this->brand_tag_product->id; ?>">
+                <input type="hidden" name="gid" value="<?php echo $this->company->gid; ?>">
+                <input type="hidden" name="tag_id" value="<?php echo $this->tag->id; ?>">
+                <input type="submit" value="<?php echo trans('sure'); ?>" class="button">
+                <a onclick="history.go(-1)"><?php echo trans('cancel') ?></a>
+            </form>
+
+        </div>
+    </div>
+<?php $this->replace(); ?>

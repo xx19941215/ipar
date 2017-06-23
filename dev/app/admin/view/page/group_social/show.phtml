@@ -1,0 +1,17 @@
+<?php $this->layout('layout/admin', [
+    'breadcrumbs' => ['admin-ui-group-index']
+]); ?>
+
+<?php $this->section('page-body'); ?>
+    <div class="page-group">
+        <?php
+        echo $this->insert('module/entity-menu-group', [
+            'group' => $this->group,
+            'select' => $this->select
+        ]);
+        ?>
+        <?php echo $this->insert('module/form/group/admin-form-group_detail-show'); ?>
+        <?php echo $this->insert('module/form/group_social/admin-form-group_social-show'); ?>
+    </div>
+
+<?php $this->replace(); ?>

@@ -1,0 +1,91 @@
+.fixed-header {
+
+    @include clearfix;
+
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 50px;
+    border-bottom: 1px solid $light-gray;
+    background: rgba(255, 255, 255, 0.84);
+
+    .container {
+        max-width: $global-width;
+        margin: 0 auto;
+
+        .logo-wrap {
+            margin-top: 5px;
+            width: 18%;
+        }
+
+        .menu-wrap {
+            width: 35%;
+        }
+
+        .search-wrap {
+            margin-top: 7px;
+            width: 33%;
+        }
+    }
+
+    .input-search {
+        input {
+            padding-top: 3.2px;
+            padding-bottom: 4.8px;
+            padding-right: 33.6px;
+            height: 35px;
+            font-size: $small-font-size;
+        }
+
+        &::after {
+            top: 7px;
+        }
+    }
+
+    a {
+        display: block;
+        line-height: 1;
+        text-decoration: none !important;
+    }
+
+    .icon {
+        color: $black;
+        font-size: 54px;
+        line-height: 37px;
+        height: 37px;
+        display: block;
+        float: left;
+    }
+
+    .icon-logo {
+        color: $primary-color;
+        font-size: 35px;
+        line-height: 35px;
+        height: 35px;
+        margin: 0 5px;
+        //font-size: 44px;
+    }
+
+    .sign-wrap {
+        margin-top: 13px;
+        color: $medium-gray;
+
+        a {
+            color: $primary-color;
+            margin: 0 6px;
+            display: inline;
+        }
+    }
+}
+
+@include breakpoint(medium) {
+    .fixed-header {
+        .container {
+            .menu-wrap {
+                display: none;
+            }
+        }
+    }
+}

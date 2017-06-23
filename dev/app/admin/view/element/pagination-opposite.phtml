@@ -1,0 +1,66 @@
+<?php if($this->page_count > 1) {?>
+    <ul class="pagination">
+        <?php
+$query = http_request()->query;
+if (!$this->page) {
+    $this->page = $query->get('page', 1);
+}
+$query_arr = $query->all();
+
+$this->page = $this->page ? $this->page : 1;
+$next_page = ($this->page > 1) ? (int)($this->page - 1) : '1';
+$prev_page = ($this->page < $this->page_count) ? (int)($this->page + 1) : $this->page_count;
+$prev_page = $prev_page > 0 ? $prev_page : 1;
+$firstShowPage = 1;
+if($this->page_count > 5) {
+    if($this->page > 4) {
+        if ($this->page > ($this->page_count - 2)){
+            $firstShowPage = $this->page_count - 4;
+            $endShowPage = $this->page_count;
+        } else {
+            $firstShowPage = $this->page - 2;
+        }
+    }
+    $endShowPage = $firstShowPage + 4;
+} else {
+    $endShowPage = $this->page_count;
+}
+$query_arr['page'] = 1;
+$first_page_url = '?' . http_build_query($query_arr);
+$query_arr['page'] = $prev_page;
+$prev_page_url = '?' . http_build_query($query_arr);
+$query_arr['page'] = $next_page;
+$next_page_url = '?' . http_build_query($query_arr);
+$query_arr['page'] = $this->page_count;
+$end_page_url = '?' . http_build_query($query_arr);
+        ?>
+
+        <?php if ($this->page < $this->page_count) { ?>
+        <li class="pagination-previous"><a href="<?php echo $prev_page_url; ?>"><?php echo trans('prev-page'); ?></a></li>
+        <?php } ?>
+
+        <?php if($endShowPage < $this->page_count) { ?>
+        <li><a href="<?php echo $end_page_url; ?>"><?php echo $this->page_count; ?></a></li>
+        <li>...</li>
+        <?php } ?>
+        <?php for($i = $endShowPage; $i >= $firstShowPage; $i--){ ?>
+<?php
+$query_arr['page'] = $i;
+$i_page_url = '?' . http_build_query($query_arr);
+?>
+        <?php if ($i == $this->page) { ?>
+        <li class="current"><?php echo $i; ?></li>
+        <?php } else { ?>
+        <li><a href="<?php echo $i_page_url; ?>"><?php echo $i; ?></a></li>
+        <?php } ?>
+        <?php } ?>
+        <?php if($firstShowPage > 1) { ?>
+        <li>...</li>
+        <li><a href="<?php echo $first_page_url; ?>">1</a></li>
+        <?php } ?>
+
+        <?php if ($this->page > 1) { ?>
+        <li class="pagination-next"><a href="<?php echo $next_page_url; ?>"><?php echo trans('next-page'); ?></a></li>
+        <?php } ?>
+    </ul>
+<?php }?>

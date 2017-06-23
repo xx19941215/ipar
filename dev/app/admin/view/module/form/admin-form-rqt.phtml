@@ -1,0 +1,27 @@
+<form action="<?php echo $this->action; ?>" method="post">
+    <?php echo csrf_field(); ?>
+    <label>
+        <?php echo trans('title'); ?>
+        <input type="text" name="title" required="required" value="<?php echo $this->title; ?>">
+    </label>
+    <label>
+        <?php echo trans('content'); ?>
+        <?php echo $this->insert('element/zeditor', ['name' => 'content', 'value' => $this->content]); ?>
+    </label>
+    <?php if ($this->errors) { ?>
+    <p class="errors">
+        <?php foreach ($this->errors as $err_key => $err_val) { ?>
+            <span class="label alert"><?php echo trans($err_key); ?>, <?php echo trans($err_val); ?></span>
+        <?php } ?>
+    </p>
+    <?php } ?>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('submit'); ?>">
+        <?php if ($this->eid) { ?>
+        <input type="hidden" name="eid" value="<?php echo $this->eid; ?>">
+        <a href="<?php echo route_url('admin-rqt-show', ['eid' => $this->eid]); ?>"><?php echo trans('cancel'); ?></a>
+        <?php } else { ?>
+        <?php echo $this->insert('element/link-go-back'); ?>
+        <?php } ?>
+    </div>
+</form>

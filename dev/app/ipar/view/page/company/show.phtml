@@ -1,0 +1,228 @@
+<?php
+$this->layout('layout/ipar', [
+    'html_title' => $this->company->fullname . trans('ipar-company-show')
+]);
+$user = $this->user;
+if (!$user) {
+    $uid = $this->uid ? $this->uid : current_uid();
+    $user = user($uid);
+}
+$social_config = config()->get('social');
+$group_social_items = $this->group_social_set->getItems();
+?>
+
+<?php $this->section('main'); ?>
+<div class="row">
+    <h2 class="fullname"><?php echo $this->company->fullname; ?></h2>
+    <div class="group-info">
+        <div class="group-logo">
+            <?php
+            if (json_decode($this->company->logo, true)) {
+                echo '<img src="' . img_src($this->company->getLogo(), 'small') . '">';
+            } else {
+                echo '<i class="icon icon-groups"></i>';
+            }
+            ?>
+        </div>
+        <div class="entity">
+            <div class="entity-abbr">
+                <?php
+                $abbr = $this->company->getContentAbbr();
+                if (mb_strlen($this->company->content) > 150) {
+                    $abbr .= '...<a class="read-more" href="javascript:;">' . trans('read-more') . '</a>';
+                }
+                echo $abbr;
+                ?>
+            </div>
+            <div class="entity-content">
+                <?php echo $this->company->content; ?>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<?php if ($this->company->reg_address) { ?>
+    <div class="reg_addr">
+        <?php echo trans('reg-address'); ?>：<?php echo $this->company->reg_address; ?>
+    </div>
+<?php } ?>
+
+<ul class="edit-wrap">
+    <li class="user">
+        <?php echo $this->insert('module/user-avt', ['user' => user($this->company->uid)]); ?>
+    </li>
+    <li class="last-edit">
+        <?php echo trans('last-edit'); ?>：<?php echo time_elapsed_string($this->company->changed); ?>
+    </li>
+</ul>
+
+<?php if ($industry_tag_set = $this->industry_tag_set->getItems()) { ?>
+    <div class="tag-company-industry-list">
+        <h3 class="company_industry_tag-title"><?php echo trans('Industry'); ?></h3>
+        <?php foreach ($industry_tag_set as $industry_tag) { ?>
+            <span><?php echo $industry_tag->title; ?></span>
+        <?php } ?>
+    </div>
+<?php } ?>
+
+<!--品牌标签-->
+<?php if ($brand_tag_set = $this->brand_tag_set->getItems()) { ?>
+    <div class="tag-company-brand-list">
+        <h3 class="company_brand_tag-title"><?php echo trans('brand-tag'); ?></h3>
+        <?php foreach ($brand_tag_set as $brand_tag) { ?>
+            <div class="brand-tag-wrap">
+                <div class="brand-tag-logo">
+                    <a target="_blank"
+                       href="<?php echo route_url('ipar-ui-brand_tag-show', ['zcode' => $brand_tag->zcode]); ?>">
+                        <?php if ($brand_tag->logo) {
+                            echo '<img src="' . img_src($brand_tag->getLogo(), 'small') . '">';
+                        } else {
+                            echo '<i class="icon icon-groups"></i>';
+                        } ?>
+                    </a>
+                </div>
+                <div class="brand-tag-content">
+                    <h3>
+                        <a target="_blank"
+                           href="<?php echo route_url('ipar-ui-brand_tag-show', ['zcode' => $brand_tag->zcode]); ?>">
+                            <?php echo $brand_tag->title; ?>
+                        </a>
+                    </h3>
+                    <p><?php
+                        echo $brand_tag->getAbbr();
+                        if (isset($brand_tag->getAbbr()[60])) {
+                            echo '<a target="_blank" href="'.route_url('ipar-ui-brand_tag-show',
+                                    ['zcode' => $brand_tag->zcode]).'">' . trans('see-more') . '</a>';
+                        } ?>
+                    </p>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+<?php } ?>
+
+<div class="company_product-wrap">
+    <h3 class="company_product-title"><?php echo trans('product'); ?></h3>
+    <div class="product-set-wrap">
+    </div>
+    <div class="loading" data-action="company_product" data-gid="<?php echo $this->company->gid; ?>">
+        <div class="one">
+            <a href="javascript:;" class="trigger"><?php echo trans('see-more'); ?></a>
+        </div>
+    </div>
+    <?php if (!$this->product_set->getItems()) {
+        echo '<p class="no-product">' . trans('sorry-no-product') . '</p>';
+    } ?>
+</div>
+
+<?php $this->replace(); ?>
+
+
+<?php $this->section('side'); ?>
+<?php if ($group_contact_items = $this->group_contact_set->getItems()) { ?>
+    <div class="group_contact">
+        <h2 class="title">
+            <?php echo trans('company-contact'); ?>
+            <a href=""><?php echo trans('edit'); ?></a>
+        </h2>
+        <?php foreach ($group_contact_items as $group_contact) { ?>
+            <div class="contact-set">
+                <p>
+                    <span class="name"><?php echo trans('person'); ?>:</span>
+                    <?php echo $group_contact->name; ?>
+                </p>
+                <?php if ($group_contact->roles) { ?>
+                    <p>
+                        <span><?php echo trans('roles'); ?>:</span>
+                        <?php echo $group_contact->roles; ?>
+                    </p>
+                <?php } ?>
+                <p>
+                    <span><?php echo trans('phone'); ?>:</span>
+                    <?php echo $group_contact->phone; ?>
+                </p>
+                <?php if ($group_contact->email) { ?>
+                    <p>
+                        <span><?php echo trans('Email'); ?>:</span>
+                        <?php echo $group_contact->email; ?>
+                    </p>
+                <?php } ?>
+            </div>
+        <?php } ?>
+
+    </div>
+<?php } ?>
+
+<?php if ($group_office_items = $this->group_office_set->getItems()) { ?>
+    <div class="group_office">
+        <h2 class="title">
+            <?php echo trans('company-office'); ?>
+            <a href=""><?php echo trans('edit'); ?></a>
+        </h2>
+        <?php foreach ($group_office_items as $group_office) { ?>
+            <p>
+                <span><?php echo $group_office->name; ?>:</span>
+                <?php echo $group_office->office_address; ?>
+            </p>
+        <?php } ?>
+    </div>
+<?php } ?>
+
+<?php if ($group_social_items || $this->company->website) { ?>
+    <div class="group_social">
+        <h2 class="title">
+            <?php echo trans('company-social'); ?>
+            <a href=""><?php echo trans('edit'); ?></a>
+        </h2>
+        <?php
+        if ($this->company->website) {
+            echo "<p><span>" . trans('website') . ":</span><a target='_blank' href=" . $this->company->website . ">" . $this->company->website . "</a></p>";
+        } ?>
+        <?php if ($group_social_items) { ?>
+            <?php foreach ($group_social_items as $group_social) { ?>
+                <?php if ($group_social->social_id == $social_config->get('wechat')) { ?>
+                    <p>
+                        <span><?php echo trans('wechat'); ?>:</span>
+                        <a class="images-tooltip" href="">
+                            <?php echo $group_social->name; ?>
+                            <span><img src="<?php echo img_src($group_social->getQrcode(), 'small'); ?>"/></span>
+                        </a>
+                    </p>
+                <?php } else if ($group_social->social_id != $social_config->get('qq')) { ?>
+                    <p>
+                        <span><?php echo array_search("$group_social->social_id", $social_config->all()); ?>:</span>
+                        <a href="<?php echo $group_social->url; ?>"
+                           target="_blank"><?php echo $group_social->name; ?></a>
+                    </p>
+                <?php } else { ?>
+                    <p>
+                        <span><?php echo array_search("$group_social->social_id", $social_config->all()); ?>:</span>
+                        <?php echo $group_social->name; ?>
+                    </p>
+                <?php } ?>
+            <?php } ?>
+        <?php } ?>
+    </div>
+<?php } ?>
+<?php $this->replace(); ?>
+
+<?php $this->section('script'); ?>
+<script>
+    (function () {
+        var api = z.config('api');
+        api.create_contact = '<?php echo route_url('ipar-rest-group-contact-create'); ?>';
+        api.update_contact = '<?php echo route_url('ipar-rest-group-contact-update'); ?>';
+        api.delete_contact = '<?php echo route_url('ipar-rest-group-contact-delete'); ?>';
+        api.edit_social = '<?php echo route_url('ipar-rest-group-social-edit'); ?>';
+        api.create_office = '<?php echo route_url('ipar-rest-group-office-create'); ?>';
+        api.update_office = '<?php echo route_url('ipar-rest-group-office-update'); ?>';
+        api.delete_office = '<?php echo route_url('ipar-rest-group-office-delete'); ?>';
+        api.follow_group = '<?php echo route_url('api-follow-group'); ?>';
+        api.unfollow_group = '<?php echo route_url('api-unfollow-group'); ?>';
+        api.upload_logo = '<?php echo route_url('ipar-rest-group-logo'); ?>';
+        api.update_logo = '<?php echo route_url('ipar-rest-group-logo-update'); ?>';
+    }());
+</script>
+<?php $this->append(); ?>

@@ -1,0 +1,32 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans('admin-ui-product-company'),
+    'breadcrumbs' => ['admin-entity', 'admin-product'],
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="entity-show">
+    <?php echo $this->insert('module/entity-show-top', [
+        'entity' => $this->product,
+        'is_info' => false,
+        'is_abbr' => false,
+        'select' => 'company'
+    ]); ?>
+
+
+    <div class="row column">
+        <h2><?php echo trans('add-company-from-existed-company-list'); ?></h2>
+        <?php echo $this->insert('module/form/query'); ?>
+        <?php echo $this->insert('module/form/select-exist-company', [
+            'company_set' => $this->company_set,
+            'entity' => $this->product
+        ]); ?>
+    </div>
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->company_set->getPageCount()]); ?>
+</div>
+
+
+<?php $this->replace(); ?>
+
+

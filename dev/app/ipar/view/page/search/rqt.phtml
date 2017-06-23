@@ -1,0 +1,15 @@
+<?php
+$this->layout('layout/ipar', [
+    'html_title' => $this->query
+]);
+?>
+
+<?php $this->section('main'); ?>
+
+
+<?php echo $this->insert('module/search-bar');?>
+<?php echo $this->insert('module/no-search-result') ?>
+
+<?php echo $this->insert('module/search/rqt');?>
+
+<?php $this->replace(); ?>

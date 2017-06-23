@@ -1,0 +1,46 @@
+<?php
+$type_key = ($this->group) ? 'group' : 'company';
+?>
+<div class="group-detail-info">
+    <h2><?php echo trans('group-contact'); ?></h2>
+    <div class="contents">
+        <div class="contact">
+            <table>
+                <thead>
+                <tr>
+                    <th><?php echo trans("position") ?></th>
+                    <th><?php echo trans("name") ?></th>
+                    <th><?php echo trans("phone number") ?></th>
+                    <th><?php echo trans("email") ?></th>
+                    <th>
+                        <a href="<?php echo route_url("admin-ui-{$type_key}_contact-add", ['gid' => $this->{$type_key}->gid]); ?>"
+                           class="button">
+                            <?php echo trans("add") ?>
+                        </a>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->group_contact_set->getItems() as $group_contact) { ?>
+                    <tr>
+                        <td><?php echo $group_contact->roles; ?></td>
+                        <td><?php echo $group_contact->name; ?></td>
+                        <td><?php echo $group_contact->phone; ?></td>
+                        <td><?php echo $group_contact->email; ?></td>
+                        <td>
+                            <a class="button" href="<?php echo route_url("admin-ui-{$type_key}_contact-edit",
+                                ['gid' => $this->{$type_key}->gid, 'group_contact_id' => $group_contact->id]); ?>">
+                                <?php echo trans("edit"); ?>
+                            </a>
+                            <a class="button success" href=" <?php echo route_url("admin-ui-{$type_key}_contact-delete",
+                                ['gid' => $this->{$type_key}->gid, 'group_contact_id' => $group_contact->id]); ?>">
+                                <?php echo trans("delete"); ?>
+                            </a>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

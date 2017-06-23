@@ -1,0 +1,163 @@
+.h3-inline {
+    display: inline;
+}
+
+.company-title {
+    margin: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.float-right {
+    float: right;
+    cursor: pointer;
+}
+
+.cols-30 {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+.error {
+    margin: 25px;
+    color: red;
+}
+
+#address {
+    word-wrap: break-word;
+    word-break: break-all;
+    display: inline-block;
+    width: 62%;
+}
+
+.remove-able {
+    margin-top: 25px;
+    margin-left: 250px;
+}
+
+.group-container {
+    width: 350px;
+    .header {
+        padding: 12px 12px 8px;
+        background-color: #f25653;
+        color: white;
+        font-size: 22px;
+    }
+    input[type="text"] {
+        border: none;
+        border-bottom: 1px solid #eeeeee;
+        width: 320px;
+        margin-left: 13px;
+    }
+
+    .footer {
+        margin-top: 20px;
+        margin-bottom: 25px;
+
+    }
+
+}
+
+.group {
+    height: 202px;
+    padding: 14px;
+    .box-cover {
+        height: 70px;
+        margin-top: 0;
+        overflow: hidden;
+        background-color: #fff;
+        &:before {
+            display: none;
+        }
+        .link {
+            height: 70px;
+        }
+        .group-logo {
+            border: 1px solid #eee;
+            border-radius: 4px;
+            height: 70px;
+            width: 70px;
+            float: left;
+            margin-right: 14px;
+            overflow: hidden;
+            &:before {
+                content: '\e62c';
+                position: absolute;
+                top: 4px;
+                z-index: -1;
+                font-size: 70px;
+                color: #ccc;
+                line-height: 70px;
+            }
+            img {
+                z-index: 1;
+                height: 70px;
+                width: 70px;
+                background-color: #fff;
+            }
+        }
+        .group-back {
+            float: left;
+            padding: 0;
+            height: 70px;
+        }
+        .group-title {
+            position: absolute;
+            margin: 0;
+            height: 50px;
+            font-size: 0.875rem;
+            line-height: 1rem;
+            color: #222;
+        }
+        .group-address {
+            position: absolute;
+            top: 50px;
+            height: 20px;
+            width: 88px;
+            margin: 0;
+            font-size: .8125rem;
+            color: #666;
+            .icon-weizhi {
+                color: #ccc;
+            }
+        }
+    }
+    .box-content {
+        //height: 90px;
+        width: 100%;
+        margin-top: 14px;
+        a {
+            display: inline-block;
+            font-size: 13px;
+            color: #666;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .group {
+        padding: 7px;
+        .box-cover {
+            .group-logo {
+                margin-right: 10px;
+            }
+            .group-title {
+                font-size: .75rem;
+            }
+            .group-address {
+                font-size: .6875rem;
+            }
+        }
+        .box-content {
+            margin-top: 6px;
+        }
+    }
+
+}
+
+@media screen and (min-width: 640px) and (max-width: 800px) {
+    .box-wrap {
+        width: 33.3%;
+    }
+}

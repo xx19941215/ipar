@@ -1,0 +1,17 @@
+<?php
+$this->layout('layout/admin', [
+    'html_title' => trans("activity-config-video")
+]);
+?>
+
+<?php $this->section('page-body'); ?>
+<h2>tencent shared vid ”code“:<br>eg:https://v.qq.com/x/cover/zxos9omizrpchx5/w0352u90rdv.html's vid code is w0352u90rdv<br></h2>
+<form action="<?php echo route_url('admin-ui-post-config_video'); ?>" method="post">
+    <?php echo csrf_field(); ?>
+    <input type="text" name="video" />
+    <input type="hidden" name="id" value="<?php echo $this->request->get('id'); ?>">
+    <input type="submit"  value="submit">
+</form>
+<embed src="http://static.video.qq.com/TPout.swf?auto=1&vid=<?php echo empty($this->video) ? $this->video : ''; ?>&outhost=http://cf.qq.com/"
+allowFullScreen="true" autostart="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+<?php $this->replace(); ?>

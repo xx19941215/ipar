@@ -1,0 +1,92 @@
+$article-avt-size: 40px;
+$cell-interval: 7px;
+$article-blue: #2b6dad;
+.article {
+    max-width: 690px;
+    padding: 5px 7px 15px 0px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid $light-gray;
+    .article-title {
+        margin-bottom: 7px;
+        a {
+            font-size: $global-font-size;
+        }
+
+        h2 > a:hover {
+            color: $article-blue;
+        }
+    }
+
+    p {
+        font-size: $small-font-size;
+    }
+    .user-avt-small-picture {
+        display: none;
+    }
+    .article-info {
+        color: $medium-gray;
+        @extend .entity-info;
+        a {
+            color: $medium-gray;
+            &:hover {
+                color: $dark-gray;
+            }
+        }
+    }
+    .comments {
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    .comments-container {
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+}
+
+.read-more {
+    color: blue;
+}
+
+.entity-abbr {
+    font-size: 13px;
+}
+
+.ipar-article-show {
+    .article {
+
+        > div:nth-of-type(1) {
+            margin-bottom: 10px;
+            > a {
+                color: $article-blue;
+            }
+
+            > a:hover {
+                color: $dark-gray;
+            }
+
+            > a:before {
+                content: "< ";
+
+            }
+        }
+    }
+
+    .share-component {
+        .icon-diandian, .icon-tencent {
+            display: none;
+        }
+    }
+
+    .share-component {
+        @include hide-for(small only);
+    }
+
+}
+
+.ipar-index-search, .ipar-index-search-article {
+    .article .entity {
+        > span {
+            display: none;
+        }
+    }
+}

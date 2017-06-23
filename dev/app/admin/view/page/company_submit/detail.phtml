@@ -1,0 +1,77 @@
+<?php
+    $this->layout('layout/admin', [
+    'html_title' => trans('admin-article-add'),
+    'breadcrumbs' => ['admin-article']
+    ]);
+?>
+
+<?php $this->section('page-body'); ?>
+<div class="company-detail" style="width:100%;">
+    <h3>create time:<?php echo $this->corporate_set->createtime; ?></h3>
+    <a href="<?php echo route_url('admin-ui-company-submit-index'); ?>" style="float:right;text-decoration:underline;" name="button">return</a>
+    <form>
+          Name:
+          <input type="text" value="<?php echo $this->corporate_set->username; ?>">
+          Phone:
+          <input type="text" value="<?php echo $this->corporate_set->phone; ?>">
+          Email:
+          <input type="text" value="<?php echo $this->corporate_set->email; ?>">
+          Company:
+          <input type="text" value="<?php echo $this->corporate_set->company; ?>">
+          Job:
+          <input type="text" value="<?php echo $this->corporate_set->job; ?>">
+
+          Content:
+          <textarea rows="4"><?php echo $this->corporate_set->content; ?></textarea>
+
+    </form>
+    <button onclick="showMarkContent();" type="button" name="button" style="border:1px solid gray;width:100px;height:30px;"><?php echo trans('bakup');?></button>
+    <form style="float:left;" class="" action="<?php echo route_url('admin-ui-company-submit-status');?>" method="get">
+        <input type="hidden" name="uid" value="<?php echo $this->corporate_set->id; ?>">
+        <button type="submit" name="ignore" value="ignore" style="border:1px solid gray;width:100px;height:30px;"><?php echo trans('ignored');?></button>
+        <button type="submit" name="handle" value="handle" style="border:1px solid gray;width:100px;height:30px;"><?php echo trans('have-solved');?></button>
+        <button type="submit" name="unhandle" value="unhandle" style="border:1px solid gray;width:100px;height:30px;"><?php echo trans('not-solved');?></button>
+    </form>
+    <button type="button" class="button round" style="float:right;" name="button">Status:<?php echo $this->corporate_set->status; ?></button>
+</div>
+
+<div id="company_mark" class="company-mark" style="display:none;">
+    <hr/>
+    <form class="" action="<?php echo route_url('admin-ui-company-submit-addmark');?>" method="get">
+        <textarea name="mark_content" rows="4" placeholder="please mark here"></textarea>
+        <input type="hidden" name="uid" value="<?php echo $this->corporate_set->id; ?>">
+        <center><button type="submit" class="button">submit</button></center>
+    </form>
+    <hr/>
+    <table>
+      <thead>
+        <tr>
+             <th>Admin Name</th>
+             <th>Backup Content</th>
+             <th>Backup Time</th>
+        </tr>
+      </thead>
+      <tbody>
+          <?php foreach($this->mark_set as $mark): ?>
+          <tr>
+               <td><?php echo $mark->admin; ?></td>
+               <td><?php echo $mark->content; ?></td>
+               <td><?php echo $mark->marktime; ?></td>
+          </tr>
+          <?php endforeach; ?>
+      </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+function showMarkContent(){
+    var mark = document.getElementById('company_mark');
+    mark.style.display = mark.style.display.substr('none','block');
+}
+showMarkContent();
+
+</script>
+
+
+
+<?php $this->replace(); ?>

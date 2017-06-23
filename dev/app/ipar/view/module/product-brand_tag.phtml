@@ -1,0 +1,12 @@
+<?php if ($this->brand_tag) { ?>
+    <div class="product-company">
+        <h3>
+            <?php echo trans('owned-brand-tag'); ?>
+        </h3>
+        <div>
+            <a href="<?php echo route_url('ipar-ui-brand_tag-show', ['zcode' => $this->brand_tag->zcode]) ?>" target="_blank">
+                <?php echo $this->brand_tag->title; ?>
+            </a>
+        </div>
+    </div>
+<?php } ?>

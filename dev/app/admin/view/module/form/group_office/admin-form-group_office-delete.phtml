@@ -1,0 +1,30 @@
+<?php
+$type = ($this->group) ? 'group' : 'company';
+?>
+<table>
+    <thead>
+    <tr>
+        <th><?php echo trans("name") ?></th>
+        <th><?php echo trans("office_address") ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><?php echo $this->group_office->name; ?></td>
+        <td><?php echo $this->group_office->office_address; ?></td>
+    </tr>
+    </tbody>
+</table>
+<form action="<?php echo $this->action; ?>" method="post" enctype="multipart/form-data">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="id" value="<?php echo $this->group_office->id; ?>">
+    <input type="hidden" name="gid" value="<?php echo $this->{$type}->gid; ?>">
+    <br>
+    <div>
+        <input type="submit" class="button small" value="<?php echo trans('sure'); ?>">
+        <a class="button success small" href="<?php echo route_url("admin-ui-{$type}_office-list",
+            ['gid' => $this->{$type}->gid]); ?>">
+            <?php echo trans('return'); ?>
+        </a>
+    </div>
+</form>

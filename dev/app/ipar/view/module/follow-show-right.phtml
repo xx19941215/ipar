@@ -1,0 +1,35 @@
+<div class="rsidebar">
+    <span id="follow-status" class="<?php
+    if ($this->is_following && current_uid()) {
+        echo "followed";
+    } else {
+        echo "unfollow";
+    } ?>" data-eid="<?php echo $this->eid; ?>">
+        <button class="button entities">
+            <span class="followed"><?php echo trans("followed-" . $this->entity_type_key); ?></span>
+            <span class="unfollowing"><?php echo trans("cancel-follow-" . $this->entity_type_key); ?></span>
+            <span class="following"><strong>+</strong> <?php echo trans("following-" . $this->entity_type_key); ?></span>
+        </button>
+    </span>
+
+    <div class="info">
+        <span>
+            <span class="followed-count"><?php echo $this->followed_count ? $this->followed_count : 0; ?></span>
+            <?php echo trans("followed-" . $this->entity_type_key); ?>
+        </span>
+        <div class="user-info">
+            <?php if ($entity_follow_dtos = $this->followed_set->getItems()) { ?>
+                <?php foreach ($entity_follow_dtos as $dto) { ?>
+                    <?php $followed_user = $dto->getFollowedUser(); ?>
+                    <span><?php echo $this->insert('module/user-avt', ['user' => $followed_user]); ?></span>
+                <?php } ?>
+
+            <?php } ?>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="user-container" data-url="1" data-page="1">
+<span class="user-container-title"></span>
+<div class="user-body"></div>
+</div> -->

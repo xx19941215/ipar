@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+// setting
+@import 'setting/admin';
+
+// foundation
+@import 'foundation';
+@import 'motion-ui';
+
+
+@include foundation-global-styles;
+@include foundation-typography;
+@include foundation-button;
+@include foundation-table;
+@include foundation-tabs;
+@include foundation-menu;
+@include foundation-breadcrumbs;
+@include foundation-pagination;
+@include foundation-forms;
+@include foundation-badge;
+
+// typo
+@import 'typo/typo';
+
+// base
+@import 'base/admin';
+
+// layout
+@import 'layout/admin';
+
+// element
+@import 'element/zeditor';
+@import 'element/button';
+@import 'element/form';
+@import 'element/icon';
+
+// page
+@import 'page/admin/main';
+
+@import 'page/tag/main';
+
+//company-corporate
+@import 'page/admin/corporate';
+
+@import 'page/admin/activity';

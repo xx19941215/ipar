@@ -1,0 +1,578 @@
+<?php
+namespace Mars\Repo;
+
+class TagRepo extends \Mars\RepoBase
+{
+    public function saveTag($title)
+    {
+    }
+
+    public function createTag()
+    {
+    }
+
+    public function deleteTagById()
+    {
+    }
+
+    public function activateTagById()
+    {
+    }
+
+    public function deactivateTagById()
+    {
+    }
+
+    public function findTagId()
+    {
+    }
+
+    /*
+    public function clearEntityTags($eid)
+    {
+        $this->db->delete('etv', 'et')
+            ->from(['entity_tag_vote', 'etv'])
+            ->leftJoin(
+                ['entity_tag', 'et'],
+                ['et', 'id'],
+                '=',
+                ['etv', 'entity_tag_id']
+            )
+            ->where(['et', 'eid'], '=', $eid, 'int')
+            ->execute();
+    }
+
+    public function schEntityTags($opts = [])
+    {
+        $bd = $this->db->select(['t', 'title'])
+            ->from(['tag', 't'])
+            ->leftJoin(
+                ['entity_tag', 'et'],
+                ['et', 'tag_id'],
+                '=',
+                ['t', 'id']
+            )
+            ->leftJoin(
+                ['entity_tag_vote', 'etv'],
+                ['etv', 'entity_tag_id'],
+                '=',
+                ['et', 'id']
+            );
+        if ($eid = prop($opts, 'eid')) {
+            $bd->andWhere(['et', 'eid'], '=', $eid, 'int');
+        }
+        if ($vote_uid = prop($opts, 'vote_uid')) {
+            $bd->andWhere(['etv', 'vote_uid'], '=', $vote_uid, 'int');
+        }
+
+        $bd->groupBy(['t', 'id']);
+
+        $tags = [];
+        foreach ($bd->fetchAll() as $tag) {
+            $tags[$tag->title] = $tag;
+        }
+        return $tags;
+    }
+
+    public function getEntityTagBd($eid)
+    {
+        $bd = $this->db->select(
+                ['et', 'id'],
+                ['t', 'title'],
+                ['et', 'vote_count'],
+                ['et', 'eid']
+            )
+            ->from(['entity_tag', 'et'])
+            ->leftJoin(
+                ['tag', 't'],
+                ['t', 'id'],
+                '=',
+                ['et', 'tag_id']
+            )
+            ->setDto('entity_tag')
+            ->where(['et', 'eid'], '=', $eid, 'int')
+            ->orderBy(['et', 'vote_count'], 'DESC');
+        return $bd;
+
+    }
+
+    public function tagEntity($eid, $title)
+    {
+        $this->beginTransaction();
+        $tag_id = $this->getTagIdByTitle($title);
+        if (!$tag_id) {
+            $tag_id = $this->createTag($title);
+        }
+
+        $entity_tag_id = $this->getEntityTagId($eid, $tag_id);
+        if (!$entity_tag_id) {
+            $entity_tag_id = $this->createEntityTag($eid, $tag_id);
+        }
+
+        if (!$this->isEntityTagVoted($entity_tag_id)) {
+            $this->voteEntityTag($entity_tag_id);
+            $this->incrVoteEntityTag($eid, $tag_id);
+        }
+
+        return $this->commit();
+    }
+
+    public function untagEntity($eid, $tag_id)
+    {
+        $entity_tag_id = $this->getEntityTagId($eid, $tag_id);
+        if (!$entity_tag_id) {
+            return $this->packError('entity_tag', 'not-found');
+        }
+        if (!$this->isEntityTagVoted($entity_tag_id)) {
+            return $this->packError('entity_tag_vote', 'not-voted');
+        }
+
+        $this->beginTransaction();
+        $this->unVoteEntityTag($entity_tag_id);
+        $this->incrVoteEntityTag($eid, $tag_id, -1);
+        return $this->commit();
+    }
+
+    protected function voteEntityTag($entity_tag_id)
+    {
+        $uid = $this->getCurrentUid();
+        if ($uid <= 0) {
+            _debug('uid must be positive');
+        }
+        if (!$this->db->insert('entity_tag_vote')
+            ->value('entity_tag_id', $entity_tag_id, 'int')
+            ->value('vote_uid', $uid, 'int')
+            ->execute()
+        ) {
+            _debug('vote entity_tag failed');
+        }
+        return true;
+    }
+
+    protected function unvoteEntityTag($entity_tag_id)
+    {
+        $uid = $this->getCurrentUid();
+        if ($uid <= 0) {
+            _debug('uid must be positive');
+        }
+        if (!$this->db->delete('entity_tag_vote')
+            ->from('entity_tag_vote')
+            ->where('entity_tag_id', '=', $entity_tag_id, 'int')
+            ->andWhere('vote_uid', '=', $uid, 'int')
+            ->execute()
+        ) {
+            _debug('unvote entity_tag failed');
+        }
+        return true;
+    }
+
+    protected function incrVoteEntityTag($eid, $tag_id, $rate = 1)
+    {
+        $this->db->update('entity_tag')
+            ->incr('vote_count', $rate)
+            ->where('eid', '=', $eid, 'int')
+            ->andWhere('tag_id', '=', $tag_id, 'int')
+            ->execute();
+    }
+
+    protected function isEntityTagVoted($entity_tag_id)
+    {
+        $uid = $this->getCurrentUid();
+        if ($uid <= 0) {
+            _debug('uid must be positive');
+        }
+        $vote = $this->db->select('vote_uid')
+            ->from('entity_tag_vote')
+            ->where('entity_tag_id', '=', $entity_tag_id, 'int')
+            ->andWhere('vote_uid', '=', $uid, 'int')
+            ->fetchOne();
+        if ($vote) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function getEntityTagId($eid, $tag_id)
+    {
+        $entity_tag = $this->db->select('id')
+            ->from('entity_tag')
+            ->where('eid', '=', $eid, 'int')
+            ->andWhere('tag_id', '=', $tag_id, 'int')
+            ->fetchOne();
+        if ($entity_tag) {
+            return $entity_tag->id;
+        } else {
+            0;
+        }
+    }
+
+    protected function createEntityTag($eid, $tag_id)
+    {
+        if ($this->db->insert('entity_tag')
+            ->value('eid', $eid, 'int')
+            ->value('tag_id', $tag_id, 'int')
+            ->execute()
+        ) {
+            return $this->db->lastInsertId();
+        } else {
+            _debug('crate entity_tag failed');
+        }
+    }
+
+    protected function getTagIdByTitle($title)
+    {
+        $title = trim($title);
+        $tag = $this->db->select('id')
+            ->from('tag')
+            ->where('title', '=', $title)
+            ->fetchOne();
+        if ($tag && $tag->id) {
+            return $tag->id;
+        } else {
+            return 0;
+        }
+    }
+
+    protected function createTag($title)
+    {
+        if ($this->db->insert('tag')
+            ->value('zcode', $this->generateZcode())
+            ->value('title', trim($title))
+            ->value('status', 1, 'int')
+            ->execute()
+        ) {
+            return $this->db->lastInsertId();
+        } else {
+            _debug('create tag failed');
+        }
+    }
+
+    public function tagEntity_old($by_uid, $eid, $tag_title)
+    {
+        $this->beginTransaction();
+        $tid = $this->checkTaggedEntityByTitle($eid, $tag_title);
+        if ($tid) {
+            if (!$this->hitTagByTid($tid, '+')) {
+                return $this->rollback('tagEntity + hit tag by tid failed');
+            }
+            if (!$this->hitTaggedEntity($eid, $tid, '+')) {
+                return $this->rollback('tagEntity + hit tagged entity failed');
+            }
+        } else {
+            $tid = $this->hitTagByTitle($tag_title, '+');
+            if (!$tid) {
+                return $this->rollback('tagEntity + hit tag by title failed');
+            }
+            if (!$this->createTaggedEntity($eid, $tid)) {
+                return $this->rollback('tagEntity create tagged entity failed');
+            }
+        }
+
+        if (!$this->traceTaggedEntity($by_uid, $eid, $tid, '+')) {
+            return $this->rollback('tagEntity + trace tagged entity failed');
+        }
+        if ($this->commit()) {
+            return $tid;
+        } else {
+            return false;
+        }
+    }
+
+    public function untagEntity($by_uid, $eid, $tid)
+    {
+        $tid = $this->checkTaggedEntityByTid($eid, $tid);
+        if (!$tid) {
+            return false;
+        }
+
+        $this->beginTransaction();
+        if (!$this->hitTagByTid($tid, '-')) {
+            return $this->rollback('untagEntity - hit tag by tid failed');
+        }
+        if (!$this->hitTaggedEntity($eid, $tid, '-')) {
+            return $this->rollback('untagEntity - hit tagged entity failed');
+        }
+        if (!$this->traceTaggedEntity($by_uid, $eid, $tid, '-')) {
+            return $this->rollback('untagEntity - trace tagged entity failed');
+        }
+        return $this->commit();
+    }
+
+    public function tagUser($by_uid, $uid, $tag_title)
+    {
+        $this->beginTransaction();
+        $tid = $this->checkTaggedUserByTitle($uid, $tag_title);
+        if ($tid) {
+            if (!$this->hitTagByTid($tid, '+')) {
+                return $this->rollback('tagUser + hit tag by tid failed');
+            }
+            if (!$this->hitTaggedUser($uid, $tid, '+')) {
+                return $this->rollback('tagUser + hit tagged user failed');
+            }
+        } else {
+            $tid = $this->hitTagByTitle($tag_title, '+');
+            if (!$tid) {
+                return $this->rollback('tagUser + hit tag by title faield');
+            }
+            if (!$this->createTaggedUser($uid, $tid)) {
+                return $this->rollback('tagUser create tagged user failed');
+            }
+        }
+
+        if (!$this->traceTaggedUser($by_uid, $uid, $tid, '+')) {
+            return $this->rollback('tagUser + trace tagged user failed');
+        }
+        if ($this->commit()) {
+            return $tid;
+        } else {
+            return false;
+        }
+    }
+
+    public function untagUser($by_uid, $uid, $tid)
+    {
+        $tid = $this->checkTaggedUserByTid($uid, $tid);
+        if (!$tid) {
+            return false;
+        }
+
+        $this->beginTransaction();
+        if (!$this->hitTagByTid($tid, '-')) {
+            return $this->rollback('untagUser - hit tag by tid failed');
+        }
+        if (!$this->hitTaggedUser($uid, $tid, '-')) {
+            return $this->rollback('untagUser - hit tagged user failed');
+        }
+        if (!$this->traceTaggedUser($by_uid, $uid, $tid, '-')) {
+            return $this->rollback('untagUser - trace tagged user failed');
+        }
+        return $this->commit();
+    }
+
+    public function getTagsByEid($eid, $limit = 10, $offset = 0)
+    {
+        return $this->db->select()
+            ->from(['tag', 't'])
+            ->leftJoin(
+                ['entity_tag', 'et'],
+                ['et', 'tid'],
+                '=',
+                ['t', 'tid']
+            )
+            ->where(['et', 'eid'], '=', $eid, 'int')
+            ->limit($limit)
+            ->offset($offset)
+            ->orderBy(['et', 'ct'], 'DESC')
+            ->setDto($this->dto('tag'))
+            ->fetchAll();
+    }
+
+    public function getTagsByUid($uid, $limit = 10, $offset = 0)
+    {
+        return $this->db->select()
+            ->from(['tag', 't'])
+            ->leftJoin(
+                ['user_tag', 'ut'],
+                ['ut', 'tid'],
+                '=',
+                ['t', 'tid']
+            )
+            ->where(['ut', 'uid'], '=', $uid, 'int')
+            ->limit($limit)
+            ->offset($offset)
+            ->orderBy(['ut', 'ct'], 'DESC')
+            ->setDto($this->dto('tag'))
+            ->fetchAll();
+
+    }
+
+    public function getTagsByEids($eids)
+    {
+        return $this->db->select(
+                ['et', 'eid'],
+                ['et', 'tid'],
+                ['t', 'zcode'],
+                ['t', 'title']
+            )
+            ->from(['entity_tag', 'et'])
+            ->leftJoin(
+                ['tag', 't'],
+                ['t', 'tid'],
+                '=',
+                ['et', 'tid']
+            )
+            ->where(['et', 'eid'], 'IN', $eids, 'int')
+            ->andWhere(['et', 'status'], '=', 1, 'int')
+            ->andWhere(['t', 'status'], '=', 1, 'int')
+            ->setDto($this->dto('entity_tag'))
+            ->fetchAll();
+    }
+
+    protected function hitTagByTitle($tag_title, $op = '+')
+    {
+        $tag = $this->db->select('tid')
+            ->from('tag')
+            ->where('title', '=', $tag_title)
+            ->fetchOne();
+        if ($tag && $tag->tid) {
+            if ($this->hitTagByTid($tag->tid, $op)) {
+                return $tag->tid;
+            }
+        } else if ($op === '+') {
+            $inserted = $this->db->insert('tag')
+                ->value('zcode', $this->generateZcode())
+                ->value('title', $tag_title)
+                ->value('ct', 1, 'int')
+                ->value('status', 1, 'int')
+                ->execute();
+            if ($inserted) {
+                return $this->db->lastInsertId();
+            }
+        }
+        return false;
+    }
+
+    protected function hitTagByTid($tid, $op = '+')
+    {
+        $op = ($op === '-') ? '-' : '+';
+        $stmt = $this->db->prepare(
+            "UPDATE tag SET ct = ct {$op} 1 WHERE tid = :tid"
+        );
+        $stmt->bindValue('tid', $tid, 'int');
+        return $stmt->execute();
+    }
+
+    protected function createTaggedEntity($eid, $tid)
+    {
+        return $this->db->insert('entity_tag')
+            ->value('eid', $eid, 'int')
+            ->value('tid', $tid, 'int')
+            ->value('status', 1, 'int')
+            ->value('ct', 1, 'int')
+            ->execute();
+    }
+
+    protected function createTaggedUser($uid, $tid)
+    {
+        return $this->db->insert('user_tag')
+            ->value('uid', $uid, 'int')
+            ->value('tid', $tid, 'int')
+            ->value('status', 1, 'int')
+            ->value('ct', 1, 'int')
+            ->execute();
+    }
+
+    protected function hitTaggedEntity($eid, $tid, $op = '+')
+    {
+        $op = ($op === '-') ? '-' : '+';
+        $stmt = $this->db->prepare(
+            "UPDATE entity_tag SET ct = ct {$op} 1 WHERE eid = :eid AND tid = :tid"
+        );
+        $stmt->bindValue('eid', $eid, 'int');
+        $stmt->bindValue('tid', $tid, 'int');
+        return $stmt->execute();
+    }
+
+    protected function hitTaggedUser($uid, $tid, $op = '+')
+    {
+        $op = ($op === '-') ? '-' : '+';
+        $stmt = $this->db->prepare(
+            "UPDATE user_tag SET ct = ct {$op} 1 WHERE uid = :uid AND tid = :tid"
+        );
+        $stmt->bindValue('uid', $uid, 'int');
+        $stmt->bindValue('tid', $tid, 'int');
+        return $stmt->execute();
+    }
+
+    protected function checkTaggedEntityByTitle($eid, $tag_title)
+    {
+        $entity_tag = $this->db
+            ->select(['et', 'eid'], ['et', 'tid'])
+            ->from(['entity_tag', 'et'])
+            ->leftJoin(
+                ['tag', 't'],
+                ['t', 'tid'],
+                '=',
+                ['et', 'tid']
+            )
+            ->where(['t', 'title'], '=', $tag_title)
+            ->andWhere(['et', 'eid'], '=', $eid, 'int')
+            ->fetchOne();
+        if ($entity_tag && $entity_tag->tid) {
+            return $entity_tag->tid;
+        } else {
+            return false;
+        }
+    }
+
+    protected function checkTaggedUserByTitle($uid, $tag_title)
+    {
+        $user_tag = $this->db
+            ->select(['ut', 'uid'], ['ut', 'tid'])
+            ->from(['user_tag', 'ut'])
+            ->leftJoin(
+                ['tag', 't'],
+                ['t', 'tid'],
+                '=',
+                ['ut', 'tid']
+            )
+            ->where(['t', 'title'], '=', $tag_title)
+            ->andWhere(['ut', 'uid'], '=', $uid, 'int')
+            ->fetchOne();
+        if ($user_tag && $user_tag->tid) {
+            return $user_tag->tid;
+        } else {
+            return false;
+        }
+    }
+
+    protected function checkTaggedEntityByTid($eid, $tid)
+    {
+        $entity_tag = $this->db->select('eid', 'tid')
+            ->from('entity_tag')
+            ->where('eid', '=', $eid, 'int')
+            ->andWhere('tid', '=', $tid, 'int')
+            ->fetchOne();
+        if ($entity_tag && $entity_tag->tid) {
+            return $tid;
+        } else {
+            return false;
+        }
+    }
+
+    protected function checkTaggedUserByTid($uid, $tid)
+    {
+        $user_tag = $this->db->select('uid', 'tid')
+            ->from('user_tag')
+            ->where('uid', '=', $uid, 'int')
+            ->andWhere('tid', '=', $tid, 'int')
+            ->fetchOne();
+        if ($user_tag && $user_tag->tid) {
+            return $tid;
+        } else {
+            return false;
+        }
+    }
+
+    protected function traceTaggedEntity($by_uid, $eid, $tid, $op = '+')
+    {
+        return $this->db->insert('entity_tag_trace')
+            ->value('by_uid', $by_uid, 'int')
+            ->value('eid', $eid, 'int')
+            ->value('tid', $tid, 'int')
+            ->value('status', ($op === '-') ? -1 : 1)
+            ->execute();
+    }
+
+    protected function traceTaggedUser($by_uid, $uid, $tid, $op = '+')
+    {
+        return $this->db->insert('user_tag_trace')
+            ->value('by_uid', $by_uid, 'int')
+            ->value('uid', $uid, 'int')
+            ->value('tid', $tid, 'int')
+            ->value('status', ($op === '-') ? -1 : 1)
+            ->execute();
+    }
+    */
+}

@@ -1,0 +1,102 @@
+$wrap-padding: 5px 10px;
+.suggest {
+    position: absolute;
+    z-index: 999;
+    top: 36px;
+    left: 0px;
+    border: 1px solid $light-gray;
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.21);
+    background: $white;
+    width: 200%;
+    max-width: 500px;
+    min-width: 300px;
+    @media screen and (max-width:450px ){
+        position: fixed;
+        top:42px;
+        width: 100%;
+    }
+    .require-login {
+        padding: $wrap-padding;
+
+        .desc {
+            float: left;
+            font-size: $small-font-size;
+            line-height: 2;
+        }
+
+        .btn {
+            float: right;
+        }
+    }
+    .search-result-wrap {
+        .title {
+            padding: $wrap-padding;
+            background: $light-gray;
+            font-size: $small-font-size;
+            font-weight: normal;
+        }
+        .list {
+            padding: $wrap-padding;
+
+            li {
+                margin: 8px 0 12px 0
+            }
+            a {
+                font-size: $small-font-size;
+                line-height: 1.2;
+                em {
+                    color: $primary-color;
+                    font-style: normal;
+                }
+            }
+        }
+    }
+
+    .search-all-wrap {
+        padding: $wrap-padding;
+        border-top: 1px solid $light-gray;
+        text-align: center;
+
+        .btn-search-all {
+            font-size: $small-font-size;
+            color: $black;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .button-wrap {
+        padding: $wrap-padding;
+        border-top: 1px solid $light-gray;
+
+        .text {
+            font-size: $tiny-font-size;
+            margin: 5px 0;
+        }
+        .button {
+            margin: 5px 5px 12px 0;
+        }
+        .icon {
+            font-size: $small-font-size;
+            line-height: 1;
+            height: auto;
+        }
+    }
+
+    .list {
+        ul {
+            list-style: none;
+            margin-left: 0;
+            li {
+                margin-bottom: 7px;
+            }
+        }
+    }
+
+    a.button {
+        display: inline-block;
+    }
+}

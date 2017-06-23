@@ -1,0 +1,17 @@
+<?php
+$article = $this->article;
+$select = $this->select;
+?>
+<div class="entity-menu">
+    <?php echo $this->insert("module/article-menu", [
+        'select' => $select,
+    ]); ?>
+</div>
+<div class="entity-show-top">
+    <?php echo $this->insert('module/article', [
+        'article' => $article,
+        'is_tag' => $this->is_tag,
+    ]); ?>
+
+
+</div>

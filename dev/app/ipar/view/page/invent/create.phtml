@@ -1,0 +1,15 @@
+<?php
+$this->layout('page', [
+    'jses' => ['ipar.editor.js' => 1],
+]);
+?>
+
+
+<?php $this->section('page-body'); ?>
+    <?php echo $this->insert('include/form/story-form', [
+        'story_title' => trans('page-invent-create-title'),
+        'action' => route_url('invent-create-post'),
+        'type' => 'invent',
+        'cancel' => route_url('invent-index')
+    ]); ?>
+<?php $this->replace(); ?>

@@ -1,0 +1,22 @@
+<?php $this->layout('layout/invent'); ?>
+
+<?php $this->section('title'); ?>
+    <?php echo trans('invent-team'); ?>
+<?php $this->append(); ?>
+
+<?php $this->section('content'); ?>
+
+<?php foreach ($this->invent_teams as $team) { ?>
+    <div class="team">
+        <div><?php echo $team->key; ?></div>
+        <div><?php echo $team->name; ?></div>
+        <div><?php echo $team->desc; ?></div>
+        <div><?php echo $team->uid; ?></div>
+        <div><?php echo $team->tid; ?></div>
+        <div>
+            <a href="<?php echo route_url('invent-team-invite', ['zcode' => $this->invent->zcode, 'tid' => $team->tid]); ?>">invite</a>
+        </div>
+    </div>
+<?php } ?>
+
+<?php $this->replace(); ?>

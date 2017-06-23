@@ -1,0 +1,14 @@
+<?php echo $this->insert('include/form/input-field', [
+    'class' => 'item title',
+    'type' => 'text',
+    'name' => 'title',
+    'required' => true,
+    'placeholder' => trans('rqt-title'),
+    'value' => $this->title
+]); ?>
+<?php echo $this->insert('include/form/zeditor', [
+    'name' => 'content',
+    'placeholder' => trans('rqt-content'),
+    'value' => $this->content
+]); ?>
+

@@ -1,0 +1,25 @@
+<?php
+    $locales = router()->getI18nUrls();
+ ?>
+
+@2016 <a href="<?php echo route_url('home') ?>">ideapar.com</a> All rights reserved
+&ensp;|&ensp; 沪ICP备 15027035
+&ensp;|&ensp; <a href="http://page.ideapar.com/zh-cn/about-us.html"><?php echo trans('about-us') ?></a>
+&ensp;|&ensp; <a href="http://page.ideapar.com/zh-cn/join-us.html"><?php echo trans('join-us') ?></a>
+&ensp;|&ensp; 上海葵普科技股份有限公司
+
+<?php foreach ($locales as $key => $value) { ?>
+&ensp;|&ensp; <a href="<?php echo $value; ?>"><?php echo $key; ?></a>
+<?php } ?>
+
+<span class="right icon-group">
+    <a class="show-qrcode" href="javascript:;"><i class="icon icon-weixin"></a></i>
+    <a href="http://weibo.com/u/5763590919" target="_blank"><i class="icon icon-weibo"></i></a>
+</span>
+
+<div class="hide">
+    <div class="qr-code">
+        <img src="<?php echo static_url('img/wx_qrcode.png'); ?>">
+        <div><?php echo trans('weixin-follow-us'); ?></div>
+    </div>
+</div>

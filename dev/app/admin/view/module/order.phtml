@@ -1,0 +1,20 @@
+<?php
+$current_order = session()->get('admin-order', 'default');
+$query = http_request()->query->all();
+unset($query['page']);
+$orders = [
+    'default' => trans('default-order'),
+    'created' => trans('created-order'),
+];
+?>
+<div class="admin-order">
+    <?php /*<span><?php echo trans('order'); ?></span> */ ?>
+    <?php foreach ($orders as $key => $txt) { ?>
+    <?php $url = '?' . http_build_query(array_merge($query, ['order' => $key])); ?>
+    <?php if ($current_order == $key) { ?>
+    <a class="current" href="<?php echo $url; ?>"><?php echo $txt; ?></a>
+    <?php } else { ?>
+    <a href="<?php echo $url; ?>"><?php echo $txt; ?></a>
+    <?php } ?>
+    <?php } ?>
+</div>

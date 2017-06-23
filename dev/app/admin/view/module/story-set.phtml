@@ -1,0 +1,75 @@
+<?php
+$stories = $this->story_set->getItems();
+?>
+<?php if ($stories) { ?>
+<div class="story-set row column">
+    <?php foreach ($stories as $story) { ?>
+
+<?php
+    $dst_type_key = get_type_key($story->dst_type_id);
+    $dst_entity_type_key = $dst_type_key;
+    if ($dst_type_key == 'solved' || $dst_type_key == 'improving') {
+        $dst_entity_type_key = 'rqt';
+    }
+    $dst_url = route_url("admin-{$dst_entity_type_key}-show", ['eid' => $story->dst_eid]);
+    $src_type_key = '';
+    if ($story->src_eid) {
+        $src_type_key = get_type_key($story->src_type_id);
+    }
+    if ($imgs = $story->getImgs()) {
+        $img_count = count($imgs);
+        $img_count = $img_count >= 2 ? 2 : $img_count;
+    } else {
+        $img_count = 0;
+    }
+    //$data = $story->getDataArr();
+    //$title = prop($data, 'title', '');
+    //$content = prop($data, 'content', '');
+?>
+
+    <div class="story">
+        <?php if ($src_type_key) { ?>
+        <div class="story-src">
+            <span><?php echo trans("src-{$src_type_key}"); ?></span>,
+            <a href="<?php echo route_url("admin-{$src_type_key}-show", ['eid' => $story->src_eid]); ?>"><?php echo $story->src_title; ?></a>
+        </div>
+        <?php } ?>
+
+        <div class="story-action">
+            <span class="story-id"><?php echo $story->id; ?>.</span>
+            <span><?php echo user($story->uid)->nick; ?></span>
+            <span><?php echo trans($story->getActionKey() . '-' . $dst_type_key); ?></span>,
+
+            <?php if ($data_title = $story->getDataTitle()) { ?>
+            <a class="dst_title" href="<?php echo $dst_url; ?>"><?php echo $data_title; ?></a>
+            <?php } else { ?>
+            <a class="dst_title" href="<?php echo $dst_url; ?>"><?php echo "{$dst_type_key}#{$story->dst_eid}"; ?></a>
+            <?php } ?>
+
+            <a class="eidt" href="<?php echo route_url("admin-{$dst_entity_type_key}-edit", ['eid' => $story->dst_eid]); ?>"><?php echo trans('edit'); ?></a>
+
+        </div>
+
+        <div class="story-created">
+            <?php echo $story->created; ?>
+        </div>
+
+        <?php if ($data_abbr = $story->getDataAbbr()) { ?>
+        <div class="story-data-abbr">
+            <?php echo $data_abbr; ?>
+            <a href="<?php echo route_url('admin-story-show', ['id' => $story->id]); ?>"><?php echo trans('read-more'); ?></a>
+        </div>
+        <?php } ?>
+
+        <?php if ($img_count) { ?>
+        <?php for ($i = 0; $i < $img_count; $i++) { ?>
+        <img src="<?php echo img_src($imgs[$i], 'cover'); ?>">
+        <?php } ?>
+        <?php } ?>
+
+    </div>
+    <?php } ?>
+    <?php echo $this->insert('element/pagination', ['page_count' => $this->story_set->getPageCount()]); ?>
+</div>
+<?php } ?>
+

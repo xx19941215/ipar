@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<dataset>
+    <company gid = "2" legal_person = "person" reg_address = "reg_address" company_address = "company_addr" email = "name@email.com" admin_uid = "14" is_claimed = "1"/>
+    <company gid = "3" legal_person = "peter" reg_address = "yangpu,shanghai" company_address = "335,guodingroad" email = "name@email.com" admin_uid = "14" is_claimed = "1"/>
+    <group gid="1" uid="14" type_id="14" name="name" fullname="fullname" content="content" logo=""
+           website="http://company_website" size_range_id="1" status="1" established="2016-07-01 00:00:00" />
+    <group gid="2" uid="14" type_id="15" name="company-name" fullname="company-fullname" content="company-content" logo=""
+           website="http://company_website" size_range_id="1" status="1" established="2016-07-01 00:00:00" />
+    <group gid="3" uid="14" type_id="15" name="ideapar" fullname="ideapar.com" content="ideapar-content" logo=""
+           website="http://ideapar.com" size_range_id="1" status="1" established="2016-07-01 00:00:00" />
+</dataset>
